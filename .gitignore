@@ -1,0 +1,18 @@
+# Environment
+.env
+google-service-account.json
+
+# Output
+output/
+*.mp4
+*.jpg
+*.png
+*.pdf
+
+# Node
+node_modules/
+npm-debug.log
+
+# OS
+.DS_Store
+Thumbs.db
