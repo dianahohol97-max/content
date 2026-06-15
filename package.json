@@ -1,0 +1,17 @@
+{
+  "name": "content-system",
+  "version": "1.0.0",
+  "description": "Automated content system for TouchMemories, bloom focus, VistelaCo",
+  "type": "module",
+  "scripts": {
+    "plan": "node content-planner.js",
+    "generate": "node text-generator.js",
+    "week": "node content-planner.js && echo 'Review plan in Sheets, then run: npm run generate'"
+  },
+  "dependencies": {
+    "@anthropic-ai/sdk": "^0.39.0",
+    "googleapis": "^144.0.0",
+    "dotenv": "^16.4.5",
+    "node-fetch": "^3.3.2"
+  }
+}
