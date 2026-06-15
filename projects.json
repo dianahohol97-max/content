@@ -1,0 +1,582 @@
+{
+  "meta": {
+    "version": "1.0",
+    "created": "2026-06-15",
+    "description": "Content system config for TouchMemories, bloom focus, VistelaCo"
+  },
+
+  "platforms": {
+    "ig_reels":    { "label": "Instagram Reels",   "format": "9:16", "duration_short": 15, "duration_long": 30 },
+    "ig_carousel": { "label": "Instagram Carousel", "format": "1:1",  "slides_min": 4, "slides_max": 9 },
+    "ig_stories":  { "label": "Instagram Stories",  "format": "9:16", "duration": 5 },
+    "tiktok":      { "label": "TikTok",             "format": "9:16", "duration_short": 15, "duration_long": 60 },
+    "yt_shorts":   { "label": "YouTube Shorts",     "format": "9:16", "duration_max": 60 },
+    "yt_long":     { "label": "YouTube Long",       "format": "16:9", "duration_min": 480 },
+    "pinterest":   { "label": "Pinterest",          "format": "2:3",  "size": "1000x1500" },
+    "telegram":    { "label": "Telegram",           "format": "text", "max_chars": 4096 },
+    "facebook":    { "label": "Facebook",           "format": "1:1",  "max_chars": 63206 },
+    "reddit":      { "label": "Reddit",             "format": "text", "manual_only": true }
+  },
+
+  "safe_zones": {
+    "reels_tiktok": {
+      "note": "Safe zone to avoid UI elements",
+      "x_min": 60, "x_max": 960,
+      "y_min": 150, "y_max": 1580,
+      "text_center_x": 540,
+      "text_safe_y_min": 200,
+      "text_safe_y_max": 1550
+    }
+  },
+
+  "projects": {
+
+    "touchmemories": {
+      "id": "touchmemories",
+      "label": "touch.memories",
+      "handle": "@touch.memories",
+      "url": "https://touchmemories.com.ua",
+      "status": "active",
+      "language": "uk",
+      "language_label": "Ukrainian",
+
+      "mission": "Формуємо культуру збереження пам'яті в Україні. Не продаємо фотожурнали — ми змінюємо як люди думають про свої фото.",
+      "tagline": "Твої фото заслуговують більше ніж папка в телефоні.",
+      "brand_message": "touch.memories зберігає те що важливо — у форматі який залишається назавжди.",
+
+      "tone": {
+        "primary": "тепло і ностальгія",
+        "secondary": "емоційний але не сентиментальний",
+        "voice": "як близька подруга яка нагадує про важливе",
+        "never": ["офіційний", "рекламний", "тиск", "агресивний продаж"]
+      },
+
+      "forbidden": [
+        "ретуш",
+        "фотошоп",
+        "редагування фото",
+        "передаємо у виробництво",
+        "друкуємо",
+        "виробництво",
+        "перешли подрузі",
+        "купи зараз"
+      ],
+
+      "safe_language": {
+        "instead_of_printing": ["робимо журнал", "збираємо журнал", "створюємо"],
+        "product_terms": ["фотожурнал", "фотокнига", "travel book", "book of wishes", "фотомагніти", "пазл"]
+      },
+
+      "products": [
+        "фотожурнал",
+        "фотокнига",
+        "travel book",
+        "book of wishes",
+        "фотомагніти",
+        "фотопазл",
+        "зірковий постер",
+        "настінний календар",
+        "принти на полотні"
+      ],
+
+      "audiences": {
+        "gift_giver_f": {
+          "id": "gift_giver_f",
+          "label": "Дарувальник — жінка",
+          "age": "25-45",
+          "pain": "не знає що подарувати, боїться помилитись",
+          "trigger": "впізнає ситуацію — це про неї",
+          "hook_style": "ситуативний · емоційний",
+          "cta": "пиши який привід — підберемо разом"
+        },
+        "gift_giver_m": {
+          "id": "gift_giver_m",
+          "label": "Дарувальник — чоловік",
+          "age": "25-45",
+          "pain": "не знає що купити, в останній момент",
+          "trigger": "бачить реакцію дівчини яка отримує подарунок",
+          "hook_style": "короткий · прямий · максимум 20 сек",
+          "cta": "пиши в директ — допоможемо обрати",
+          "video_max_sec": 20
+        },
+        "wedding_before": {
+          "id": "wedding_before",
+          "label": "Наречена — до весілля",
+          "pain": "не встигнути, обрати не те, не знає терміни",
+          "trigger": "book of wishes в дії на реальному весіллі",
+          "hook_style": "практичний · дедлайни",
+          "cta": "є питання про терміни? пиши в директ"
+        },
+        "wedding_after": {
+          "id": "wedding_after",
+          "label": "Пара після весілля",
+          "pain": "фото залишились тільки в телефоні, не відкривала з дня весілля",
+          "trigger": "укол провини + просте рішення поруч",
+          "hook_style": "емоційний · нагадування",
+          "cta": "скільки років тому було ваше весілля? пиши цифру в коментарях"
+        },
+        "travel": {
+          "id": "travel",
+          "label": "Тревел",
+          "age": "22-35",
+          "pain": "сотні фото з подорожей лежать в телефоні нічого з ними не робить",
+          "trigger": "travel book з конкретної країни — хочу таке зі своєї подорожі",
+          "hook_style": "атмосферний · конкретна країна або кількість фото",
+          "cta": "з якої своєї подорожі зробила б першою? пиши країну в коментарях",
+          "never": ["подаруй", "для подарунку"]
+        }
+      },
+
+      "platforms": ["ig_reels", "ig_carousel", "ig_stories", "tiktok", "yt_shorts", "pinterest", "telegram"],
+
+      "content_rubrics": {
+        "ce_pro_tebe": {
+          "id": "ce_pro_tebe",
+          "label": "Це про тебе",
+          "frequency": "раз на тиждень",
+          "format": ["ig_carousel", "ig_reels"],
+          "style": "білий фон · Montserrat 900 · мінімум деталей",
+          "goal": "впізнавання ситуації → зберігають або пересилають",
+          "closing": "запитання для коментарів"
+        },
+        "ось_як": {
+          "id": "ось_як",
+          "label": "Ось як це виглядає",
+          "frequency": "2 рази на тиждень",
+          "format": ["ig_reels", "tiktok", "yt_shorts"],
+          "style": "кінематографічний · природне тепле світло · без постановки",
+          "goal": "хочу таке саме → продаж",
+          "closing": "CTA в директ"
+        },
+        "збережи": {
+          "id": "збережи",
+          "label": "Збережи і зроби",
+          "frequency": "раз на 2 тижні",
+          "format": ["ig_carousel"],
+          "style": "блакитний фон #DDEEFF · нумерація · освітній",
+          "goal": "найвищий save rate",
+          "closing": "запитання для коментарів"
+        },
+        "вона_написала": {
+          "id": "вона_написала",
+          "label": "Вона написала",
+          "frequency": "раз на тиждень",
+          "format": ["ig_carousel", "ig_reels"],
+          "style": "світло-сірий · цитата без редагування · Playfair Display italic",
+          "goal": "соціальний доказ · довіра",
+          "rule": "відгук публікуємо максимум через 48 год після отримання"
+        },
+        "bts": {
+          "id": "bts",
+          "label": "Як ми робимо",
+          "frequency": "раз на тиждень",
+          "format": ["ig_reels", "tiktok"],
+          "style": "реальний · без постановки · природне світло",
+          "goal": "довіра до якості · бренд як живий"
+        },
+        "для_нього": {
+          "id": "для_нього",
+          "label": "Для нього",
+          "frequency": "перед кожним святом",
+          "format": ["ig_reels", "tiktok"],
+          "style": "темний · стриманий · прямий · максимум 20 сек",
+          "goal": "швидка конверсія дарувальника-чоловіка",
+          "seasonal": true
+        }
+      },
+
+      "stories_rubrics": {
+        "zaraz_v_roboti": { "label": "Зараз в роботі", "frequency": "щодня або через день" },
+        "qa": { "label": "Питання/відповідь", "frequency": "раз на тиждень" },
+        "opytuvannya": { "label": "Опитування", "frequency": "3-4 рази на тиждень" },
+        "klient_dnya": { "label": "Клієнт дня", "frequency": "щодня або через день" },
+        "do_pislia": { "label": "До/Після", "frequency": "раз на тиждень" },
+        "pidglyad": { "label": "Підглядаємо в замовлення", "frequency": "2-3 рази на тиждень" },
+        "sezonni": { "label": "Сезонні нагадування", "frequency": "за 2-3 тижні до свята" }
+      },
+
+      "visual_style": {
+        "colors": {
+          "white": "#FFFFFF",
+          "light_grey": "#F4F4F6",
+          "blue": "#2B3BFF",
+          "blue_light": "#DDEEFF",
+          "dark": "#18181B"
+        },
+        "fonts": {
+          "display": "Montserrat",
+          "body": "Open Sans",
+          "quote": "Playfair Display"
+        },
+        "logo": "touch.memories",
+        "logo_opacity": 0.1
+      },
+
+      "image_generation": {
+        "provider": "gemini_imagen4",
+        "style": "lifestyle photography feel · warm amber · cream · natural light",
+        "subjects": ["ностальгічні інтер'єри з журналами на полиці", "руки що гортають сторінки", "деталі текстури паперу та обкладинок", "моменти отримання подарунку"],
+        "never": ["студійне фото на білому фоні без контексту", "пластикові фігурки", "кліпарт"]
+      },
+
+      "weekly_post_count": {
+        "ig_reels": 4,
+        "ig_carousel": 3,
+        "ig_stories": 7,
+        "tiktok": 3,
+        "yt_shorts": 2,
+        "pinterest": 5,
+        "telegram": 4
+      },
+
+      "three_pillars": {
+        "pillar_1": "Діана як голос категорії — особистий Reel раз на 2 тижні",
+        "pillar_2": "Контент який формує культуру — раз на тиждень без продажу",
+        "pillar_3": "Екосистема фотографів — пасивний канал продажів"
+      }
+    },
+
+    "bloom_focus": {
+      "id": "bloom_focus",
+      "label": "bloom focus",
+      "handle": "@bloomfocus",
+      "url": "https://bloomfocus.org",
+      "status": "active",
+      "language": "en",
+      "language_label": "English",
+
+      "mission": "Help people with ADHD understand their brain and build systems that actually work for how they think. Content is not a funnel — it is the product experience before the purchase.",
+      "tagline": "Your brain works differently. Here is what actually helps.",
+
+      "tone": {
+        "primary": "warm · direct · science-backed without being clinical",
+        "secondary": "like a friend who has a neuroscience degree and also lost their keys this morning",
+        "voice": "empathetic · honest · specific · never preachy",
+        "never": ["just try harder", "stay consistent without explaining how", "fix your ADHD", "productivity hack", "toxic positivity"]
+      },
+
+      "forbidden_phrases": [
+        "just focus",
+        "try harder",
+        "be more disciplined",
+        "everyone can do it",
+        "it is simple",
+        "just make a list",
+        "productivity hack"
+      ],
+
+      "products": [
+        "Dopamine Menu",
+        "Hyperfocus Planner",
+        "ADHD Daily Tracker",
+        "Body Double Timer",
+        "Task Initiation Kit",
+        "ADHD Morning Routine",
+        "Executive Function Workbook"
+      ],
+
+      "quiz_url": "https://bloomfocus.org/quiz",
+      "quiz_cta": "Find out your ADHD type → link in bio",
+      "quiz_inject_every_n_videos": 3,
+
+      "audiences": {
+        "adhd_adults": {
+          "id": "adhd_adults",
+          "label": "ADHD adults — diagnosed and self-suspected",
+          "pain": "tried normal productivity systems and failed repeatedly · feels shame or confusion about inconsistency",
+          "trigger": "someone who finally gets it",
+          "searches": ["why can not I just start things", "ADHD and motivation", "ADHD planner that actually works", "dopamine and ADHD", "task paralysis ADHD"]
+        }
+      },
+
+      "platforms": ["ig_reels", "ig_carousel", "ig_stories", "tiktok", "yt_shorts", "yt_long", "pinterest", "reddit"],
+
+      "content_pillars": {
+        "pillar_1": {
+          "id": "this_is_your_brain",
+          "label": "This Is Your Brain",
+          "type": "Education",
+          "goal": "Saves · shares · new followers",
+          "formats": ["ig_carousel", "yt_long", "pinterest"]
+        },
+        "pillar_2": {
+          "id": "you_are_not_alone",
+          "label": "You Are Not Alone",
+          "type": "Validation",
+          "goal": "Comments · shares · community",
+          "formats": ["tiktok", "ig_reels", "reddit"]
+        },
+        "pillar_3": {
+          "id": "what_actually_helps",
+          "label": "What Actually Helps",
+          "type": "Practical Tools",
+          "goal": "Saves · profile visits · Etsy clicks",
+          "formats": ["tiktok", "ig_reels", "yt_shorts", "pinterest"]
+        },
+        "pillar_4": {
+          "id": "know_your_brain",
+          "label": "Know Your Brain",
+          "type": "Interactive",
+          "goal": "Shares · comments · quiz traffic",
+          "formats": ["ig_stories", "tiktok", "yt_shorts"],
+          "always_end_with_quiz_cta": true
+        },
+        "pillar_5": {
+          "id": "behind_the_product",
+          "label": "Behind the Product",
+          "type": "Soft Sell",
+          "goal": "Etsy conversions",
+          "formats": ["tiktok", "yt_shorts", "pinterest"]
+        }
+      },
+
+      "reddit_rules": {
+        "manual_only": true,
+        "never_promotional": true,
+        "give_value_first": true,
+        "product_mention": "only when directly relevant to a question someone asked",
+        "communities": ["r/ADHD", "r/adhdwomen", "r/productivity", "r/ADHD_Programmers", "r/neurodiversity"]
+      },
+
+      "hook_library": {
+        "reframe": [
+          "You do not have a motivation problem. You have a dopamine problem.",
+          "ADHD is not about attention — it is about regulating attention.",
+          "The reason you can focus for 6 hours on a game but not 20 minutes on work is not willpower."
+        ],
+        "validation": [
+          "Spent 3 hours deciding what to do. Did nothing. ADHD productivity.",
+          "The task takes 10 minutes. I have been avoiding it for 6 days.",
+          "POV: you finally start the task at 11pm and suddenly you are unstoppable"
+        ],
+        "interactive": [
+          "Pick the image that looks most like your brain right now →",
+          "Which of these 4 mornings is yours? (be honest)",
+          "3 statements. If 2 apply to you, you probably have ADHD."
+        ]
+      },
+
+      "image_generation": {
+        "provider": "gemini_imagen4",
+        "style": "soft pastel illustration · lavender · cream · sage · flat vector or soft watercolor",
+        "subjects": ["abstract brain and neuron illustrations", "minimalist chaos vs calm scenes", "workspace flat-lay with products", "ADHD relatable moments illustrated"],
+        "never": ["stock brain scans", "glowing heads", "generic productivity photos", "men in suits"]
+      },
+
+      "yt_long_schedule": "2 videos per month minimum",
+      "yt_long_format": "8-20 min · structured like a documentary not a tutorial",
+
+      "weekly_post_count": {
+        "tiktok": 5,
+        "ig_reels": 4,
+        "ig_stories": 7,
+        "ig_carousel": 2,
+        "yt_shorts": 3,
+        "yt_long": 0.5,
+        "pinterest": 5,
+        "reddit": 3
+      }
+    },
+
+    "vistela": {
+      "id": "vistela",
+      "label": "VistelaCo",
+      "handle": "@vistelaco",
+      "url": "https://www.etsy.com/shop/VistelaCo",
+      "status": "active",
+      "language": "en",
+      "language_label": "English",
+
+      "mission": "Digital wedding stationery that looks expensive, customizes in minutes, and works for any wedding style. Content shows — not tells — how simple and beautiful the experience can be.",
+      "tagline": "Your wedding, your style. Set up in minutes.",
+
+      "tone": {
+        "primary": "elegant but approachable",
+        "secondary": "like a stylish friend who planned her own wedding beautifully and wants to show you how",
+        "never": ["cheap or budget — say accessible instead", "template without context", "easy as standalone claim — always show it"]
+      },
+
+      "active_products": [
+        "Save the Date template",
+        "Wedding Website template",
+        "RSVP template"
+      ],
+
+      "frozen_products": ["Guest Camera", "Photo Booth", "Guest Book"],
+
+      "audiences": {
+        "diy_brides": {
+          "id": "diy_brides",
+          "label": "DIY Brides",
+          "pain": "wants professional look without hiring a designer · worried they cannot customize it",
+          "trigger": "sees it is simple in a demo video",
+          "searches": ["wedding website template", "save the date digital template editable", "DIY wedding invitations Canva", "how to make a wedding website"],
+          "objections": ["Will I be able to customize it?", "Will it look good when I am done?", "Is it worth it vs free?"]
+        },
+        "wedding_planners": {
+          "id": "wedding_planners",
+          "label": "Wedding Planners",
+          "pain": "needs speed · variety of styles · easy client customization",
+          "trigger": "sees it works for multiple client styles",
+          "buying_pattern": "repeat buyers if first experience is smooth"
+        }
+      },
+
+      "platforms": ["ig_reels", "ig_carousel", "ig_stories", "tiktok", "yt_shorts", "pinterest"],
+
+      "content_tracks": {
+        "demo": {
+          "id": "demo",
+          "label": "Product Demo",
+          "type": "Screen recording",
+          "goal": "Profile visits · Etsy clicks",
+          "platforms": ["tiktok", "yt_shorts", "ig_reels"],
+          "hook_examples": [
+            "POV: you just got engaged and need a wedding website today",
+            "Watch me set up a full wedding website in 8 minutes flat",
+            "Before vs after: what our Save the Date looks like when you actually customize it"
+          ]
+        },
+        "aesthetic": {
+          "id": "aesthetic",
+          "label": "Wedding Inspiration",
+          "type": "Editorial aesthetic content",
+          "goal": "New followers · Pinterest traffic · brand awareness",
+          "platforms": ["pinterest", "ig_reels", "ig_carousel"],
+          "hook_examples": [
+            "2026 wedding stationery trends — what is in what is out",
+            "The stationery details guests actually notice",
+            "Wedding website setup in 8 minutes — watch me do it live"
+          ]
+        }
+      },
+
+      "objection_matrix": {
+        "Will I be able to customize it": "Screen recording — they see it is simple",
+        "Will it look good when I am done": "Before/after with real customization",
+        "Is it worth it vs free": "Show the quality gap in 15 seconds",
+        "Does it work for my style": "3-styles-1-template videos",
+        "Can my client use it without me": "Planner demo: hands-off client workflow"
+      },
+
+      "pinterest_boards": [
+        "Wedding Website Ideas",
+        "Save the Date Inspiration",
+        "Wedding RSVP Templates",
+        "Minimalist Wedding Stationery",
+        "Boho Wedding Stationery",
+        "Modern Wedding Details",
+        "Wedding Planning Tips",
+        "For Wedding Planners"
+      ],
+
+      "image_generation": {
+        "provider": "gemini_imagen4",
+        "style": "editorial wedding photography feel · ivory · sage · dusty rose · warm white",
+        "subjects": ["wedding details close-up", "florals · table settings · decor details", "bride from behind · hands · rings", "styled stationery flat-lay"],
+        "never": ["loud or busy backgrounds", "clip art", "generic stock wedding photos"]
+      },
+
+      "screen_recording": {
+        "needed": true,
+        "count": "5-10 base videos",
+        "duration": "2-3 minutes each",
+        "tool": "OBS Studio (free) or Loom",
+        "note": "Record once — system cuts into all formats and rotates for months"
+      },
+
+      "weekly_post_count": {
+        "tiktok": 4,
+        "ig_reels": 3,
+        "ig_stories": 5,
+        "ig_carousel": 2,
+        "yt_shorts": 2,
+        "pinterest": 7
+      }
+    },
+
+    "momently": {
+      "id": "momently",
+      "label": "Momently Co",
+      "status": "placeholder",
+      "language": "en",
+      "note": "Wedding SaaS — activate when ready"
+    },
+
+    "mindmatter": {
+      "id": "mindmatter",
+      "label": "MindMatter",
+      "status": "placeholder",
+      "language": "en",
+      "note": "Faceless YouTube/TikTok — activate when ready"
+    },
+
+    "wonderly": {
+      "id": "wonderly",
+      "label": "Wonderly",
+      "status": "placeholder",
+      "language": "en",
+      "note": "Activate when ready"
+    },
+
+    "project_4": {
+      "id": "project_4",
+      "label": "Project 4",
+      "status": "placeholder",
+      "note": "Activate when ready"
+    }
+  },
+
+  "content_plan_schema": {
+    "fields": ["week", "project_id", "day", "platform", "rubric_id", "audience_id", "topic", "format", "duration_or_slides", "status"],
+    "status_values": {
+      "review": "⬜ Review",
+      "approved": "✅ Approved",
+      "generating": "⏳ Generating",
+      "done": "✔ Done",
+      "skip": "⏭ Skip"
+    }
+  },
+
+  "content_schema": {
+    "fields": ["plan_id", "project_id", "platform", "hook", "body", "closing", "cta", "hashtags", "visual_notes", "status"],
+    "status_values": {
+      "draft": "📝 Draft",
+      "approved": "✅ Approved",
+      "scheduled": "🗓 Scheduled",
+      "posted": "✔ Posted"
+    }
+  },
+
+  "telegram_tags": {
+    "projects": {
+      "#tm": "touchmemories",
+      "#bloom": "bloom_focus",
+      "#vistela": "vistela"
+    },
+    "media_types": {
+      "реакція": "reaction",
+      "bts": "bts",
+      "журнал": "journal",
+      "travel": "travel_book",
+      "обкладинка": "cover",
+      "mockup": "mockup",
+      "demo": "demo",
+      "естетика": "aesthetic",
+      "відгук": "review"
+    },
+    "audience_tags": {
+      "дарувальник": "gift_giver_f",
+      "чоловік": "gift_giver_m",
+      "весілля": "wedding_before",
+      "після": "wedding_after",
+      "тревел": "travel",
+      "всі": "all",
+      "brides": "diy_brides",
+      "planners": "wedding_planners",
+      "adhd": "adhd_adults"
+    },
+    "format": "#project media_type audience",
+    "example": "#tm журнал реакція дарувальник"
+  }
+}
