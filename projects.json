@@ -345,7 +345,17 @@
       "product_facts": {
         "travel_book": "Фото надруковані на сторінках. Можна додати ТІЛЬКИ друкований текст за бажанням. НЕ підписи від руки. НЕ предмети (квитки, серветки, монети).",
         "journals": "Друкований текст за бажанням. Без рукописних підписів.",
-        "pages_range": "журнали 12-100 сторінок"
+        "pages_range": "журнали 12-100 сторінок",
+        "photo_albums": {
+          "type": "Фотоальбоми для вставки фото (класичні, фото вставляються в кишеньки)",
+          "sizes_available": [
+            "на 200 фото",
+            "на 500 фото"
+          ],
+          "cover": "велюрова обкладинка",
+          "personalization": "можливість персоналізованого надпису + вибір кольорів",
+          "note": "Це окремий продукт від фотожурналів/фотокниг — тут фото ВСТАВЛЯЮТЬСЯ, не друкуються"
+        }
       },
       "platform_notes": {
         "pinterest": "Auto-posts daily — do NOT generate manually",
@@ -803,6 +813,16 @@
     },
     "audience_rotation": {
       "rule": "Never repeat same audience persona twice in a row (mama → friend → partner)"
+    },
+    "crossposting": {
+      "rule": "Most content is cross-posted across Instagram, TikTok, YouTube",
+      "one_video_three_platforms": true,
+      "adaptation": {
+        "instagram": "NO hashtags in caption",
+        "tiktok": "WITH hashtags",
+        "youtube": "WITH tags"
+      },
+      "note": "Generate content once, adapt caption per platform. Same video/carousel works across all three."
     }
   }
 }
