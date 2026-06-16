@@ -1,25 +1,26 @@
 /**
  * bloom focus — image-generator.js
- * Reads DALL-E image prompts from the weekly JSON output,
- * generates soft pastel illustrations via OpenAI API,
+ * Reads image prompts from the weekly JSON output,
+ * generates soft pastel illustrations via Google Gemini Imagen API,
  * and saves them to /output/images/week_XX/.
  *
  * Usage:
  *   node bloom/image-generator.js --week=26
  *   node bloom/image-generator.js --week=26 --id=video_p1   (single image)
+ *
+ * Requires:
+ *   GEMINI_API_KEY in .env
+ *   npm install @google/genai
  */
 
-import OpenAI from "openai";
+import { GoogleGenAI } from "@google/genai";
 import fs from "fs";
 import path from "path";
-import https from "https";
 import { fileURLToPath } from "url";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
-const openai = new OpenAI({
-  apiKey: process.env.OPENAI_API_KEY,
-});
+const ai = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY });
 
 // ─── CLI args ────────────────────────────────────────────────────────────────
 const args = Object.fromEntries(
@@ -40,6 +41,17 @@ if (!WEEK) {
   process.exit(1);
 }
 
+// ─── Aspect ratio → Imagen aspectRatio string ────────────────────────────────
+// Gemini Imagen supports: "1:1" | "3:4" | "4:3" | "9:16" | "16:9"
+function mapAspectRatio(ratio) {
+  const map = {
+    "9:16": "9:16",   // vertical video — TikTok / Reels
+    "4:5":  "3:4",    // carousel — closest available is 3:4
+    "1:1":  "1:1",
+  };
+  return map[ratio] ?? "9:16";
+}
+
 // ─── Load weekly content pack ─────────────────────────────────────────────────
 function loadWeeklyPack(weekNumber) {
   const filePath = path.join(
@@ -54,33 +66,9 @@ function loadWeeklyPack(weekNumber) {
   return JSON.parse(fs.readFileSync(filePath, "utf-8"));
 }
 
-// ─── Download image from URL to disk ─────────────────────────────────────────
-function downloadImage(url, dest) {
-  return new Promise((resolve, reject) => {
-    const file = fs.createWriteStream(dest);
-    https
-      .get(url, (response) => {
-        response.pipe(file);
-        file.on("finish", () => {
-          file.close();
-          resolve(dest);
-        });
-      })
-      .on("error", (err) => {
-        fs.unlink(dest, () => {});
-        reject(err);
-      });
-  });
-}
-
-// ─── Generate one image ───────────────────────────────────────────────────────
+// ─── Generate one image via Gemini Imagen ────────────────────────────────────
 async function generateImage(imagePromptObj, outputDir) {
   const { id, prompt, aspect_ratio, content_type, pillar } = imagePromptObj;
-
-  // Map aspect ratio to DALL-E size
-  // 9:16 → 1024x1792 (portrait video)
-  // 4:5  → 1024x1280 (carousel, closest available)
-  const size = aspect_ratio === "9:16" ? "1024x1792" : "1024x1024";
 
   const filename = `${id}_${aspect_ratio.replace(":", "x")}.png`;
   const outputPath = path.join(outputDir, filename);
@@ -91,36 +79,44 @@ async function generateImage(imagePromptObj, outputDir) {
     return { id, status: "skipped", path: outputPath };
   }
 
-  const response = await openai.images.generate({
-    model: "dall-e-3",
+  const response = await ai.models.generateImages({
+    model: "imagen-3.0-generate-002",
     prompt: prompt,
-    n: 1,
-    size: size,
-    quality: "standard",
-    style: "natural", // "natural" produces softer, more painterly results vs "vivid"
+    config: {
+      numberOfImages: 1,
+      aspectRatio: mapAspectRatio(aspect_ratio),
+      // Imagen safety — "block_only_high" gives more creative freedom
+      // for illustration-style content
+      safetySetting: "BLOCK_ONLY_HIGH",
+      personGeneration: "DONT_ALLOW", // no real people — brand rule
+    },
   });
 
-  const imageUrl = response.data[0].url;
-  await downloadImage(imageUrl, outputPath);
+  const imageData = response.generatedImages[0]?.image?.imageBytes;
+  if (!imageData) {
+    throw new Error("No image returned from Gemini Imagen");
+  }
+
+  // imageBytes is base64 — decode and save as PNG
+  const buffer = Buffer.from(imageData, "base64");
+  fs.writeFileSync(outputPath, buffer);
 
   return {
     id,
     status: "generated",
     path: outputPath,
-    url: imageUrl,
     pillar,
     content_type,
     aspect_ratio,
-    size_used: size,
+    model: "imagen-3.0-generate-002",
   };
 }
 
 // ─── Main runner ──────────────────────────────────────────────────────────────
 async function generateImages(weekNumber) {
-  console.log(`\n🎨 bloom focus — generating Week ${weekNumber} images\n`);
+  console.log(`\n🎨 bloom focus — generating Week ${weekNumber} images (Gemini Imagen)\n`);
   console.log("━".repeat(50));
 
-  // Load the content pack created by text-generator.js
   const pack = loadWeeklyPack(weekNumber);
   let prompts = pack.image_prompts.image_prompts;
 
@@ -133,11 +129,7 @@ async function generateImages(weekNumber) {
     }
   }
 
-  // Create output directory
-  const outputDir = path.join(
-    __dirname,
-    `../output/images/week_${weekNumber}`
-  );
+  const outputDir = path.join(__dirname, `../output/images/week_${weekNumber}`);
   if (!fs.existsSync(outputDir)) fs.mkdirSync(outputDir, { recursive: true });
 
   console.log(`📋 ${prompts.length} image(s) to generate`);
@@ -158,11 +150,12 @@ async function generateImages(weekNumber) {
         skipped++;
       } else {
         generated++;
-        console.log(`✓ saved as ${path.basename(result.path)}`);
+        console.log(`✓ ${path.basename(result.path)}`);
       }
 
-      // Respect rate limits — wait 1s between calls
-      await new Promise((r) => setTimeout(r, 1000));
+      // Imagen rate limit: ~2 req/sec — wait 600ms between calls
+      await new Promise((r) => setTimeout(r, 600));
+
     } catch (err) {
       failed++;
       console.log(`✗ FAILED: ${err.message}`);
@@ -170,44 +163,43 @@ async function generateImages(weekNumber) {
     }
   }
 
-  // Save results manifest
-  const manifestPath = path.join(outputDir, "_manifest.json");
+  // Save manifest
   const manifest = {
     week: weekNumber,
     generated_at: new Date().toISOString(),
+    model: "imagen-3.0-generate-002",
     total: prompts.length,
     generated,
     skipped,
     failed,
     images: results,
   };
-  fs.writeFileSync(manifestPath, JSON.stringify(manifest, null, 2));
+  fs.writeFileSync(
+    path.join(outputDir, "_manifest.json"),
+    JSON.stringify(manifest, null, 2)
+  );
 
-  // Update the weekly pack with image paths
+  // Update weekly pack with local image paths
   const updatedPack = { ...pack };
   for (const result of results) {
-    const promptInPack = updatedPack.image_prompts.image_prompts.find(
-      (p) => p.id === result.id
-    );
-    if (promptInPack) {
-      promptInPack.local_path = result.path;
-      promptInPack.status = result.status;
+    const p = updatedPack.image_prompts.image_prompts.find((p) => p.id === result.id);
+    if (p) {
+      p.local_path = result.path;
+      p.status = result.status;
     }
   }
-  const packPath = path.join(
-    __dirname,
-    `../output/bloom_focus_week_${weekNumber}.json`
+  fs.writeFileSync(
+    path.join(__dirname, `../output/bloom_focus_week_${weekNumber}.json`),
+    JSON.stringify(updatedPack, null, 2)
   );
-  fs.writeFileSync(packPath, JSON.stringify(updatedPack, null, 2));
 
   console.log("\n" + "━".repeat(50));
   console.log(`✅ Image generation complete!`);
   console.log(`   ✓ Generated: ${generated}`);
-  if (skipped > 0) console.log(`   ⏭  Skipped (already exist): ${skipped}`);
+  if (skipped > 0) console.log(`   ⏭  Skipped: ${skipped}`);
   if (failed > 0) console.log(`   ✗ Failed: ${failed}`);
   console.log(`   📁 Saved to: output/images/week_${weekNumber}/`);
-  console.log(`   📄 Manifest: output/images/week_${weekNumber}/_manifest.json`);
-  console.log(`\n   ➜ Next: run video-generator.js --week=${weekNumber}`);
+  console.log(`\n   ➜ Next: node bloom/video-generator.js --week=${weekNumber}`);
   console.log("━".repeat(50) + "\n");
 
   return manifest;
