@@ -1,0 +1,75 @@
+name: bloom focus — Content Pipeline
+
+on:
+  # Run manually from GitHub UI
+  workflow_dispatch:
+    inputs:
+      week:
+        description: 'Week number (e.g. 26)'
+        required: true
+        default: '26'
+      step:
+        description: 'Which step to run'
+        required: true
+        default: 'text-only'
+        type: choice
+        options:
+          - text-only
+          - sheets-only
+          - text-and-sheets
+
+  # Auto-run every Monday at 9am Kyiv time (UTC+3 = 6am UTC)
+  schedule:
+    - cron: '0 6 * * 1'
+
+jobs:
+  generate:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Get week number
+        id: week
+        run: |
+          if [ "${{ github.event_name }}" = "schedule" ]; then
+            WEEK=$(date +%V | sed 's/^0//')
+            echo "number=$WEEK" >> $GITHUB_OUTPUT
+          else
+            echo "number=${{ github.event.inputs.week }}" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Generate text content (Claude API)
+        if: ${{ github.event.inputs.step != 'sheets-only' }}
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          GOOGLE_SHEETS_ID: ${{ secrets.GOOGLE_SHEETS_ID }}
+          GOOGLE_SERVICE_ACCOUNT_KEY: ${{ secrets.GOOGLE_SERVICE_ACCOUNT_KEY }}
+        run: node bloom/text-generator.js --week=${{ steps.week.outputs.number }}
+
+      - name: Publish to Google Sheets
+        if: ${{ github.event.inputs.step != 'text-only' }}
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          GOOGLE_SHEETS_ID: ${{ secrets.GOOGLE_SHEETS_ID }}
+          GOOGLE_SERVICE_ACCOUNT_KEY: ${{ secrets.GOOGLE_SERVICE_ACCOUNT_KEY }}
+        run: node bloom/sheets-publisher.js --week=${{ steps.week.outputs.number }}
+
+      - name: Upload content pack as artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: bloom-focus-week-${{ steps.week.outputs.number }}
+          path: output/bloom_focus_week_${{ steps.week.outputs.number }}.json
+          retention-days: 30
