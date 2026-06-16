@@ -12,6 +12,7 @@
  *   text-generator → image-generator → video-generator → sheets-publisher
  */
 
+import 'dotenv/config';
 import { execSync } from "child_process";
 import path from "path";
 import { fileURLToPath } from "url";

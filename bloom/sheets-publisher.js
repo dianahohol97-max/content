@@ -16,6 +16,7 @@
  *   node bloom/sheets-publisher.js --week=26 --clear   (clear tab before pushing)
  */
 
+import 'dotenv/config';
 import { google } from "googleapis";
 import fs from "fs";
 import path from "path";

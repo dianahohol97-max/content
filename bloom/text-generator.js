@@ -16,6 +16,7 @@
  *   node bloom/text-generator.js --week=26 --pillar=2
  */
 
+import 'dotenv/config';
 import Anthropic from "@anthropic-ai/sdk";
 import fs from "fs";
 import path from "path";

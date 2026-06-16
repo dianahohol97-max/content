@@ -13,6 +13,7 @@
  *   npm install @google/genai
  */
 
+import 'dotenv/config';
 import { GoogleGenAI } from "@google/genai";
 import fs from "fs";
 import path from "path";

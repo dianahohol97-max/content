@@ -14,6 +14,7 @@
  *   node bloom/video-generator.js --week=26 --no-voice   (skip voiceover)
  */
 
+import 'dotenv/config';
 import { execSync, exec } from "child_process";
 import fs from "fs";
 import path from "path";
