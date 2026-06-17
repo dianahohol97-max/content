@@ -229,6 +229,10 @@ function buildRows(pack) {
       [story.poll_option_1, story.poll_option_2].filter(Boolean).join(" / ") ??
       "";
 
+    const storyImagePrompt = pack.story_image_prompts?.find(
+      (p) => p.day === story.day
+    );
+
     rows.push([
       `W${pack.meta.week}_S${rowId++}`,
       "Mixed",
@@ -239,7 +243,7 @@ function buildRows(pack) {
       story.cta ?? "",
       "",
       "",
-      "",
+      storyImagePrompt?.prompt ?? "",
       "",
       "",
       "",
@@ -252,6 +256,10 @@ function buildRows(pack) {
 
   // ── Pinterest pins ──
   for (const pin of pack.pinterest.pins) {
+    const pinImagePrompt = pack.pinterest_image_prompts?.find(
+      (p) => p.id === `pinterest_pin_${pin.pin_number}`
+    );
+
     rows.push([
       `W${pack.meta.week}_P${rowId++}`,
       "Mixed",
@@ -262,7 +270,7 @@ function buildRows(pack) {
       pin.link,
       "",
       "",
-      "",
+      pinImagePrompt?.prompt ?? "",
       "",
       "",
       pin.title,

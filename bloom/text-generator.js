@@ -328,6 +328,45 @@ function generateImagePrompts(scripts, carousels, weekNumber) {
   return { week: weekNumber, total: prompts.length, image_prompts: prompts };
 }
 
+// ─── Generate image prompts for Stories ──────────────────────────────────────
+function generateStoryImagePrompts(stories, weekNumber) {
+  const BASE = `Soft pastel digital illustration in a cozy, approachable style. Color palette: lavender #E8DEFF, cream #FFF8F0, sage green #D4E8D4, blush #FFD4E4, sky blue #D4EEFF. Flat vector illustration with soft watercolor texture. Warm, calm, friendly feeling. No real people, no photos. No text or words inside the image. Square 1:1 format for Instagram Stories card.`;
+
+  const TYPE_ADDITIONS = {
+    "Poll": "Two contrasting abstract elements suggesting a choice. Playful, light energy.",
+    "Tip": "Single calm scene suggesting focus or clarity. Minimal, one focal point.",
+    "BTS": "Cozy behind-the-scenes feel — soft desk, notebook, warm light.",
+    "Quiz": "Curious, engaging visual — checklist, question mark motif, interactive feel.",
+    "Product": "Illustrated product on a soft pastel desk. Planner or toolkit, warm and inviting.",
+    "QA": "Open, curious feeling — speech bubble motif, soft warm tones.",
+    "Reflection": "Gentle, calm scene — evening light, plant, cup of tea. Peaceful."
+  };
+
+  return stories.map((story, i) => ({
+    id: `story_${story.day}`,
+    content_type: "story_card",
+    aspect_ratio: "1:1",
+    day: story.day,
+    type: story.type,
+    headline: story.headline,
+    prompt: `${BASE} ${TYPE_ADDITIONS[story.type] ?? ""} Scene inspired by: "${story.headline}"`,
+  }));
+}
+
+// ─── Generate image prompts for Pinterest pins ────────────────────────────────
+function generatePinterestImagePrompts(pins, weekNumber) {
+  const BASE = `Soft pastel digital illustration in a cozy, approachable style. Color palette: lavender #E8DEFF, cream #FFF8F0, sage green #D4E8D4, blush #FFD4E4, sky blue #D4EEFF. Flat vector illustration with soft watercolor texture. Warm, calm, friendly feeling. No real people, no photos. No text or words inside the image. Vertical 2:3 format for Pinterest.`;
+
+  return pins.map((pin, i) => ({
+    id: `pinterest_pin_${pin.pin_number}`,
+    content_type: "pinterest_pin",
+    aspect_ratio: "2:3",
+    title: pin.title,
+    link: pin.link,
+    prompt: `${BASE} Evergreen educational illustration. Scene inspired by ADHD topic: "${pin.title}". Infographic-style layout feel but no text. Calm workspace, brain concept, or organizational visual.`,
+  }));
+}
+
 // ─── Main runner ──────────────────────────────────────────────────────────────
 async function generateWeeklyPack(weekNumber) {
   console.log(`\n🌸 bloom focus — Week ${weekNumber} content pack\n`);
@@ -387,10 +426,18 @@ async function generateWeeklyPack(weekNumber) {
   results.pinterest = await generatePinterestDescriptions(results.video_scripts, weekNumber);
   console.log("   ✓ 5 pins");
 
-  // 5. Image prompts
+  // 5. Image prompts — videos + carousels
   console.log("\n🎨 Building image prompts...");
   results.image_prompts = generateImagePrompts(results.video_scripts, results.carousels, weekNumber);
-  console.log(`   ✓ ${results.image_prompts.total} prompts`);
+  console.log(`   ✓ ${results.image_prompts.total} video/carousel prompts`);
+
+  // 5b. Image prompts — Stories
+  results.story_image_prompts = generateStoryImagePrompts(results.stories.stories, weekNumber);
+  console.log(`   ✓ ${results.story_image_prompts.length} Story image prompts`);
+
+  // 5c. Image prompts — Pinterest
+  results.pinterest_image_prompts = generatePinterestImagePrompts(results.pinterest.pins, weekNumber);
+  console.log(`   ✓ ${results.pinterest_image_prompts.length} Pinterest image prompts`);
 
   // Save
   const outputDir = path.join(__dirname, "../output");
