@@ -274,15 +274,43 @@ Return JSON (no apostrophes): {"carousel_type":"educational","topic":"the main t
 // ─── Image prompts ────────────────────────────────────────────────────────────
 const BASE_IMG = `Soft pastel digital illustration. Color palette: lavender #E8DEFF, cream #FFF8F0, sage green #D4E8D4, blush #FFD4E4, sky blue #D4EEFF. Flat vector with soft watercolor texture. No real people. No text or letters in image. Warm, calm, friendly.`;
 
-function videoImagePrompt(script) {
+function videoImagePrompts(script) {
+  // Generate 8 frame prompts — one per script segment for a dynamic slideshow
   const additions = {
-    1: "Abstract brain concept — neurons, thought bubbles, metaphorical lightbulb or sparks.",
-    2: "Cozy comfort scene — warm cup of tea, soft blanket, gently lit desk.",
-    3: "Organized calm workspace, open planner, simple illustrated elements.",
-    4: "Interactive feel — checklist, quiz-style layout, Y/N visual.",
-    5: `Illustrated product on pastel desk: "${script.product}". Minimal, inviting.`
+    1: "abstract brain concept — neurons, thought bubbles, metaphorical lightbulb or sparks",
+    2: "cozy comfort scene — warm cup of tea, soft blanket, gently lit desk",
+    3: "organized calm workspace, open planner, simple illustrated elements",
+    4: "interactive feel — checklist, quiz-style layout, Y/N visual",
+    5: `illustrated product on pastel desk: "${script.product}"`
   };
-  return `${BASE_IMG} ${additions[script.pillar_id] ?? additions[1]} Vertical 9:16. Scene inspired by: "${script.hook}"`;
+  const theme = additions[script.pillar_id] ?? additions[1];
+
+  // Build a scene per segment of the script
+  const segments = [
+    { seg: "hook", text: script.hook },
+    { seg: "bridge", text: script.bridge },
+    ...(script.body ?? []).map((b, i) => ({ seg: `body_${i+1}`, text: b })),
+    { seg: "cta", text: script.cta },
+  ];
+
+  // Pad to 8 frames if fewer, by adding atmospheric variations
+  const atmospheric = [
+    "wide calm establishing scene, soft pastel atmosphere",
+    "close-up detail of a small comforting object, warm tones",
+    "gentle transition scene with soft floating shapes",
+  ];
+  while (segments.length < 8) {
+    segments.push({ seg: `extra_${segments.length}`, text: atmospheric[segments.length % atmospheric.length] });
+  }
+
+  // Cap at 10
+  const finalSegments = segments.slice(0, 10);
+
+  return finalSegments.map((s, i) => ({
+    frame: i + 1,
+    segment: s.seg,
+    prompt: `${BASE_IMG} Theme: ${theme}. Vertical 9:16 format. Frame ${i+1} of ${finalSegments.length} in a sequence — keep consistent style and palette across frames. Scene for this moment: "${s.text}"`,
+  }));
 }
 
 function pinterestImagePrompt(pin) {
@@ -335,7 +363,7 @@ async function generateWeeklyPack(weekNumber) {
       results.video_scripts.push(script);
       results.tiktok_captions.push({ day: day+1, slot: slot+1, ...captions });
       results.ig_captions.push({ day: day+1, slot: slot+1, ig_caption: captions.ig_caption });
-      results.image_prompts.videos.push({ id: `video_d${day+1}_s${slot+1}`, ...script, prompt: videoImagePrompt(script) });
+      results.image_prompts.videos.push({ id: `video_d${day+1}_s${slot+1}`, day: day+1, slot: slot+1, pillar_name: script.pillar_name, hook: script.hook, frames: videoImagePrompts(script) });
 
       productIdx++;
       console.log("✓");
@@ -401,7 +429,8 @@ async function generateWeeklyPack(weekNumber) {
   if (!fs.existsSync(outputDir)) fs.mkdirSync(outputDir, { recursive: true });
 
   const totalPins = results.pinterest_days.reduce((s, d) => s + d.pins.length, 0);
-  const totalImgPrompts = results.image_prompts.videos.length + results.image_prompts.pinterest.length + results.image_prompts.stories.length + results.image_prompts.carousels.length;
+  const videoFrameCount = results.image_prompts.videos.reduce((s, v) => s + v.frames.length, 0);
+  const totalImgPrompts = videoFrameCount + results.image_prompts.pinterest.length + results.image_prompts.stories.length + results.image_prompts.carousels.length;
 
   results.meta.summary = {
     video_scripts: results.video_scripts.length,

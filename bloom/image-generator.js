@@ -1,16 +1,17 @@
 /**
  * bloom focus — image-generator.js
- * Reads image prompts from the weekly JSON output,
- * generates soft pastel illustrations via Google Gemini Imagen API,
- * and saves them to /output/images/week_XX/.
+ * Generates all illustrations via Google Gemini Imagen.
+ *
+ * Handles the new multi-frame structure:
+ *   - video frames (8-10 per video × 21 videos)
+ *   - pinterest pins (70)
+ *   - stories (7)
+ *   - carousels (3)
  *
  * Usage:
- *   node bloom/image-generator.js --week=26
- *   node bloom/image-generator.js --week=26 --id=video_p1   (single image)
- *
- * Requires:
- *   GEMINI_API_KEY in .env
- *   npm install @google/genai
+ *   node bloom/image-generator.js --week=27
+ *   node bloom/image-generator.js --week=27 --only=video   (video frames only)
+ *   node bloom/image-generator.js --week=27 --limit=10      (first 10 only, for testing)
  */
 
 import 'dotenv/config';
@@ -20,194 +21,147 @@ import path from "path";
 import { fileURLToPath } from "url";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
-
 const ai = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY });
 
-// ─── CLI args ────────────────────────────────────────────────────────────────
 const args = Object.fromEntries(
-  process.argv
-    .slice(2)
-    .filter((a) => a.startsWith("--"))
-    .map((a) => {
-      const [k, v] = a.slice(2).split("=");
-      return [k, v ?? true];
-    })
+  process.argv.slice(2).filter(a => a.startsWith("--"))
+    .map(a => { const [k,v] = a.slice(2).split("="); return [k, v ?? true]; })
 );
-
 const WEEK = args.week ? parseInt(args.week) : null;
-const SINGLE_ID = args.id ?? null;
+const ONLY = args.only ?? null;       // video | pinterest | stories | carousels
+const LIMIT = args.limit ? parseInt(args.limit) : null;
+if (!WEEK) { console.error("❌ --week required"); process.exit(1); }
 
-if (!WEEK) {
-  console.error("❌ --week is required. Example: node bloom/image-generator.js --week=26");
-  process.exit(1);
+function loadPack(weekNumber) {
+  const p = path.join(__dirname, `../output/bloom_focus_week_${weekNumber}.json`);
+  if (!fs.existsSync(p)) throw new Error(`Week ${weekNumber} pack not found. Run text-generator first.`);
+  return JSON.parse(fs.readFileSync(p, "utf-8"));
 }
 
-// ─── Aspect ratio → Imagen aspectRatio string ────────────────────────────────
-// Gemini Imagen supports: "1:1" | "3:4" | "4:3" | "9:16" | "16:9"
-function mapAspectRatio(ratio) {
-  const map = {
-    "9:16": "9:16",   // vertical video — TikTok / Reels
-    "4:5":  "3:4",    // carousel — closest available is 3:4
-    "1:1":  "1:1",
-  };
-  return map[ratio] ?? "9:16";
+function mapAspect(ratio) {
+  return { "9:16": "9:16", "2:3": "3:4", "4:5": "3:4", "1:1": "1:1" }[ratio] ?? "9:16";
 }
 
-// ─── Load weekly content pack ─────────────────────────────────────────────────
-function loadWeeklyPack(weekNumber) {
-  const filePath = path.join(
-    __dirname,
-    `../output/bloom_focus_week_${weekNumber}.json`
-  );
-  if (!fs.existsSync(filePath)) {
-    throw new Error(
-      `Week ${weekNumber} content pack not found. Run text-generator.js --week=${weekNumber} first.`
-    );
+// ─── Flatten all prompts into one job list ────────────────────────────────────
+function buildJobList(pack) {
+  const jobs = [];
+
+  // Video frames
+  if (!ONLY || ONLY === "video") {
+    for (const video of pack.image_prompts.videos) {
+      for (const frame of video.frames) {
+        jobs.push({
+          id: `${video.id}_f${frame.frame}`,
+          category: "video",
+          aspect: "9:16",
+          prompt: frame.prompt,
+          subfolder: `videos/${video.id}`,
+        });
+      }
+    }
   }
-  return JSON.parse(fs.readFileSync(filePath, "utf-8"));
+
+  // Pinterest
+  if (!ONLY || ONLY === "pinterest") {
+    for (const pin of pack.image_prompts.pinterest) {
+      jobs.push({
+        id: pin.id, category: "pinterest", aspect: "2:3",
+        prompt: pin.prompt, subfolder: "pinterest",
+      });
+    }
+  }
+
+  // Stories
+  if (!ONLY || ONLY === "stories") {
+    for (const story of pack.image_prompts.stories) {
+      jobs.push({
+        id: story.id, category: "story", aspect: "1:1",
+        prompt: story.prompt, subfolder: "stories",
+      });
+    }
+  }
+
+  // Carousels
+  if (!ONLY || ONLY === "carousels") {
+    for (const carousel of pack.image_prompts.carousels) {
+      jobs.push({
+        id: carousel.id, category: "carousel", aspect: "4:5",
+        prompt: carousel.prompt, subfolder: "carousels",
+      });
+    }
+  }
+
+  return LIMIT ? jobs.slice(0, LIMIT) : jobs;
 }
 
-// ─── Generate one image via Gemini Imagen ────────────────────────────────────
-async function generateImage(imagePromptObj, outputDir) {
-  const { id, prompt, aspect_ratio, content_type, pillar } = imagePromptObj;
+// ─── Generate one image ───────────────────────────────────────────────────────
+async function generateImage(job, baseDir) {
+  const dir = path.join(baseDir, job.subfolder);
+  if (!fs.existsSync(dir)) fs.mkdirSync(dir, { recursive: true });
 
-  const filename = `${id}_${aspect_ratio.replace(":", "x")}.png`;
-  const outputPath = path.join(outputDir, filename);
-
-  // Skip if already exists
-  if (fs.existsSync(outputPath)) {
-    console.log(`   ⏭  ${id} already exists, skipping`);
-    return { id, status: "skipped", path: outputPath };
-  }
+  const filename = `${job.id}.png`;
+  const outPath = path.join(dir, filename);
+  if (fs.existsSync(outPath)) return { id: job.id, status: "skipped", path: outPath };
 
   const response = await ai.models.generateImages({
     model: "imagen-3.0-generate-002",
-    prompt: prompt,
+    prompt: job.prompt,
     config: {
       numberOfImages: 1,
-      aspectRatio: mapAspectRatio(aspect_ratio),
-      // Imagen safety — "block_only_high" gives more creative freedom
-      // for illustration-style content
-      safetySetting: "BLOCK_ONLY_HIGH",
-      personGeneration: "DONT_ALLOW", // no real people — brand rule
+      aspectRatio: mapAspect(job.aspect),
+      personGeneration: "DONT_ALLOW",
     },
   });
 
-  const imageData = response.generatedImages[0]?.image?.imageBytes;
-  if (!imageData) {
-    throw new Error("No image returned from Gemini Imagen");
-  }
+  const imageData = response.generatedImages?.[0]?.image?.imageBytes;
+  if (!imageData) throw new Error("No image returned");
+  fs.writeFileSync(outPath, Buffer.from(imageData, "base64"));
 
-  // imageBytes is base64 — decode and save as PNG
-  const buffer = Buffer.from(imageData, "base64");
-  fs.writeFileSync(outputPath, buffer);
-
-  return {
-    id,
-    status: "generated",
-    path: outputPath,
-    pillar,
-    content_type,
-    aspect_ratio,
-    model: "imagen-3.0-generate-002",
-  };
+  return { id: job.id, status: "generated", path: outPath, category: job.category };
 }
 
-// ─── Main runner ──────────────────────────────────────────────────────────────
-async function generateImages(weekNumber) {
-  console.log(`\n🎨 bloom focus — generating Week ${weekNumber} images (Gemini Imagen)\n`);
-  console.log("━".repeat(50));
+// ─── Main ─────────────────────────────────────────────────────────────────────
+async function run(weekNumber) {
+  console.log(`\n🎨 bloom focus — Week ${weekNumber} images (Gemini Imagen)\n${"━".repeat(50)}`);
 
-  const pack = loadWeeklyPack(weekNumber);
-  let prompts = pack.image_prompts.image_prompts;
+  const pack = loadPack(weekNumber);
+  const jobs = buildJobList(pack);
+  const baseDir = path.join(__dirname, `../output/images/week_${weekNumber}`);
+  if (!fs.existsSync(baseDir)) fs.mkdirSync(baseDir, { recursive: true });
 
-  // Filter to single image if --id was passed
-  if (SINGLE_ID) {
-    prompts = prompts.filter((p) => p.id === SINGLE_ID);
-    if (prompts.length === 0) {
-      console.error(`❌ No image prompt found with id="${SINGLE_ID}"`);
-      process.exit(1);
-    }
-  }
+  console.log(`📋 ${jobs.length} images to generate`);
+  if (ONLY) console.log(`   Filter: ${ONLY} only`);
+  if (LIMIT) console.log(`   Limit: first ${LIMIT}`);
+  console.log("");
 
-  const outputDir = path.join(__dirname, `../output/images/week_${weekNumber}`);
-  if (!fs.existsSync(outputDir)) fs.mkdirSync(outputDir, { recursive: true });
-
-  console.log(`📋 ${prompts.length} image(s) to generate`);
-  console.log(`📁 Output: output/images/week_${weekNumber}/\n`);
-
+  let generated = 0, skipped = 0, failed = 0;
   const results = [];
-  let generated = 0;
-  let skipped = 0;
-  let failed = 0;
 
-  for (const promptObj of prompts) {
-    process.stdout.write(`   [${promptObj.id}] ${promptObj.pillar}... `);
+  for (let i = 0; i < jobs.length; i++) {
+    const job = jobs[i];
+    process.stdout.write(`   [${i+1}/${jobs.length}] ${job.id} (${job.category})... `);
     try {
-      const result = await generateImage(promptObj, outputDir);
-      results.push(result);
-
-      if (result.status === "skipped") {
-        skipped++;
-      } else {
-        generated++;
-        console.log(`✓ ${path.basename(result.path)}`);
-      }
-
-      // Imagen rate limit: ~2 req/sec — wait 600ms between calls
-      await new Promise((r) => setTimeout(r, 600));
-
+      const res = await generateImage(job, baseDir);
+      results.push(res);
+      if (res.status === "skipped") { skipped++; console.log("⏭"); }
+      else { generated++; console.log("✓"); }
+      await new Promise(r => setTimeout(r, 600));
     } catch (err) {
-      failed++;
-      console.log(`✗ FAILED: ${err.message}`);
-      results.push({ id: promptObj.id, status: "failed", error: err.message });
+      failed++; console.log(`✗ ${err.message}`);
+      results.push({ id: job.id, status: "failed", error: err.message });
     }
   }
 
-  // Save manifest
-  const manifest = {
-    week: weekNumber,
-    generated_at: new Date().toISOString(),
-    model: "imagen-3.0-generate-002",
-    total: prompts.length,
-    generated,
-    skipped,
-    failed,
-    images: results,
-  };
   fs.writeFileSync(
-    path.join(outputDir, "_manifest.json"),
-    JSON.stringify(manifest, null, 2)
+    path.join(baseDir, "_manifest.json"),
+    JSON.stringify({ week: weekNumber, total: jobs.length, generated, skipped, failed, results }, null, 2)
   );
 
-  // Update weekly pack with local image paths
-  const updatedPack = { ...pack };
-  for (const result of results) {
-    const p = updatedPack.image_prompts.image_prompts.find((p) => p.id === result.id);
-    if (p) {
-      p.local_path = result.path;
-      p.status = result.status;
-    }
-  }
-  fs.writeFileSync(
-    path.join(__dirname, `../output/bloom_focus_week_${weekNumber}.json`),
-    JSON.stringify(updatedPack, null, 2)
-  );
-
-  console.log("\n" + "━".repeat(50));
-  console.log(`✅ Image generation complete!`);
-  console.log(`   ✓ Generated: ${generated}`);
-  if (skipped > 0) console.log(`   ⏭  Skipped: ${skipped}`);
-  if (failed > 0) console.log(`   ✗ Failed: ${failed}`);
-  console.log(`   📁 Saved to: output/images/week_${weekNumber}/`);
-  console.log(`\n   ➜ Next: node bloom/video-generator.js --week=${weekNumber}`);
-  console.log("━".repeat(50) + "\n");
-
-  return manifest;
+  console.log(`\n${"━".repeat(50)}`);
+  console.log(`✅ Done! Generated: ${generated}, Skipped: ${skipped}, Failed: ${failed}`);
+  console.log(`   📁 output/images/week_${weekNumber}/`);
+  console.log(`   ➜ Next: node bloom/video-generator.js --week=${weekNumber}`);
+  console.log(`${"━".repeat(50)}\n`);
 }
 
-// ─── Run ──────────────────────────────────────────────────────────────────────
-generateImages(WEEK).catch((err) => {
-  console.error("\n❌ image-generator failed:", err.message);
-  process.exit(1);
-});
+run(WEEK).catch(err => { console.error("\n❌ image-generator failed:", err.message); process.exit(1); });

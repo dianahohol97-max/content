@@ -79,6 +79,11 @@ function buildRows(pack) {
     const igCap = pack.ig_captions.find(c => c.day === script.day && c.slot === script.slot);
     const img = pack.image_prompts.videos.find(p => p.day === script.day && p.slot === script.slot);
 
+    // Join all frame prompts with clear separators so each can be copied
+    const framePrompts = img?.frames
+      ? img.frames.map(f => `[FRAME ${f.frame} — ${f.segment}]\n${f.prompt}`).join("\n\n")
+      : "";
+
     rows.push([
       `W${W}_V${String(id++).padStart(2,'0')}`,
       `Day ${script.day}`,
@@ -90,10 +95,10 @@ function buildRows(pack) {
       script.cta,
       cap?.tiktok_caption ?? "",
       igCap?.ig_caption ?? "",
-      img?.prompt ?? "",
+      framePrompts,
       "", "",
       "", "", "", "en",
-      "pending", `Slot ${script.slot} — ${script.on_screen_text ?? ""}`, ""
+      "pending", `Slot ${script.slot} — ${img?.frames?.length ?? 0} frames — ${script.on_screen_text ?? ""}`, ""
     ]);
   }
 
