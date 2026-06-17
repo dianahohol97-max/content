@@ -111,17 +111,23 @@ async function generateImage(job, baseDir, driveFolderId) {
 
   // Generate (skip if local file exists)
   if (!fs.existsSync(outPath)) {
-    const response = await ai.models.generateImages({
-      model: "imagen-3.0-generate-002",
-      prompt: job.prompt,
-      config: {
-        numberOfImages: 1,
-        aspectRatio: mapAspect(job.aspect),
-        personGeneration: "DONT_ALLOW",
-      },
+    // Nano Banana (gemini-2.5-flash-image) — generateContent with IMAGE modality
+    const aspectNote = `\n\nGenerate this as a ${job.aspect} aspect ratio vertical image.`;
+    const response = await ai.models.generateContent({
+      model: "gemini-2.5-flash-image",
+      contents: job.prompt + aspectNote,
     });
-    const imageData = response.generatedImages?.[0]?.image?.imageBytes;
-    if (!imageData) throw new Error("No image returned");
+
+    // Extract image bytes from response parts
+    let imageData = null;
+    const parts = response.candidates?.[0]?.content?.parts ?? [];
+    for (const part of parts) {
+      if (part.inlineData?.data) {
+        imageData = part.inlineData.data;
+        break;
+      }
+    }
+    if (!imageData) throw new Error("No image returned from Nano Banana");
     fs.writeFileSync(outPath, Buffer.from(imageData, "base64"));
   }
 
