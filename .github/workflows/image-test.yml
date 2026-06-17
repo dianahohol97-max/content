@@ -40,6 +40,7 @@ jobs:
       - name: Generate test images
         env:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          GOOGLE_SERVICE_ACCOUNT_KEY: ${{ secrets.GOOGLE_SERVICE_ACCOUNT_KEY }}
         run: node bloom/image-generator.js --week=${{ github.event.inputs.week }} --only=${{ github.event.inputs.only }} --limit=${{ github.event.inputs.limit }}
 
       - name: Upload images as artifact
