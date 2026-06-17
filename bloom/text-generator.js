@@ -164,20 +164,15 @@ async function generatePinBatch(dayIndex, weekNumber, product, lang, batchNum) {
         { num: 10, stream: "blog_edu",     link: "https://bloomfocus.org/blog", cta: "Read more", product: "Blog", lang: lang },
       ];
 
+  const streamList = streams.map(s => s.num + "=" + s.stream + "(" + s.lang + ")").join(", ");
   const template = streams.map(s =>
-    `{"pin_number":${s.num},"stream":"${s.stream}","title":"SEO title here","description":"2-3 sentences here","link":"${s.link}","cta":"${s.cta}","product":"${s.product}","lang":"${s.lang}","keywords":["kw1","kw2","kw3"]}`
-  ).join(",
-    ");
+    '{"pin_number":' + s.num + ',"stream":"' + s.stream + '","title":"SEO title here","description":"2-3 sentences here","link":"' + s.link + '","cta":"' + s.cta + '","product":"' + s.product + '","lang":"' + s.lang + '","keywords":["kw1","kw2","kw3"]}'
+  ).join(",\n    ");
 
-  const prompt = `Generate ${streams.length} Pinterest pins for bloom focus. Day ${dayIndex+1}, batch ${batchNum}.
-Product focus: "${product.name}". No apostrophes in values. Evergreen SEO content only.
-
-Streams: ${streams.map(s => `${s.num}=${s.stream}(${s.lang})`).join(", ")}
-
-Return JSON array only:
-[
-    ${template}
-]`;
+  const prompt = "Generate " + streams.length + " Pinterest pins for bloom focus. Day " + (dayIndex+1) + ", batch " + batchNum + ".\n" +
+    "Product focus: \"" + product.name + "\". No apostrophes in values. Evergreen SEO content only.\n\n" +
+    "Streams: " + streamList + "\n\n" +
+    "Return JSON array only:\n[\n    " + template + "\n]";
 
   const r = await client.messages.create({
     model: "claude-sonnet-4-6", max_tokens: 1200, system: SYSTEM,
