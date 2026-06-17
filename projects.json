@@ -549,6 +549,232 @@
         "yt_long": 0.5,
         "pinterest": 5,
         "reddit": 3
+      },
+      "product_catalog": {
+        "languages": [
+          "en",
+          "es",
+          "fr",
+          "de"
+        ],
+        "etsy_shop": "https://www.etsy.com/shop/BloomfocusShop",
+        "site_shop": "https://bloomfocus.org/shop",
+        "categories": {
+          "core": {
+            "label": "Core Essentials #01-10",
+            "products": [
+              {
+                "id": "P01",
+                "name": "Dopamine Menu"
+              },
+              {
+                "id": "P02",
+                "name": "Morning Routine Cards"
+              },
+              {
+                "id": "P03",
+                "name": "ADHD Daily Planner"
+              },
+              {
+                "id": "P04",
+                "name": "Task Decomposer"
+              },
+              {
+                "id": "P05",
+                "name": "Weekly Habit Tracker"
+              },
+              {
+                "id": "P06",
+                "name": "Daily Gratitude"
+              },
+              {
+                "id": "P07",
+                "name": "Weekly Planner"
+              },
+              {
+                "id": "P08",
+                "name": "Monthly Overview"
+              },
+              {
+                "id": "P09",
+                "name": "Brain Dump Journal"
+              },
+              {
+                "id": "P10",
+                "name": "ADHD Meal Planner"
+              }
+            ]
+          },
+          "extensions_a": {
+            "label": "Extensions #11-15",
+            "products": [
+              {
+                "id": "P11",
+                "name": "Cleaning Planner"
+              },
+              {
+                "id": "P12",
+                "name": "Money and Budget Tracker"
+              },
+              {
+                "id": "P13",
+                "name": "Executive Function Planner"
+              },
+              {
+                "id": "P14",
+                "name": "Burnout Recovery",
+                "pages": 2
+              },
+              {
+                "id": "P15",
+                "name": "RSD Toolkit",
+                "pages": 2
+              }
+            ]
+          },
+          "extensions_b": {
+            "label": "Extensions #16-19",
+            "products": [
+              {
+                "id": "P16",
+                "name": "Emotional Regulation"
+              },
+              {
+                "id": "P17",
+                "name": "Sensory Overload Toolkit"
+              },
+              {
+                "id": "P18",
+                "name": "Study and Work Session Planner"
+              },
+              {
+                "id": "P19",
+                "name": "Time Blindness Toolkit",
+                "pages": 2
+              }
+            ]
+          },
+          "trackers": {
+            "label": "Tracker Line #20-24",
+            "products": [
+              {
+                "id": "P20",
+                "name": "Medication Tracker"
+              },
+              {
+                "id": "P21",
+                "name": "Mood and Symptom Tracker"
+              },
+              {
+                "id": "P22",
+                "name": "Sleep and Wind-Down Routine"
+              },
+              {
+                "id": "P23",
+                "name": "Self-Care Tracker"
+              },
+              {
+                "id": "P24",
+                "name": "Cycle and ADHD Tracker",
+                "pages": 2
+              }
+            ]
+          },
+          "emotional": {
+            "label": "Emotional Line #25-30",
+            "products": [
+              {
+                "id": "P25",
+                "name": "Self-Compassion and Inner Critic",
+                "pages": 4
+              },
+              {
+                "id": "P26",
+                "name": "Anxiety and ADHD Toolkit",
+                "pages": 4
+              },
+              {
+                "id": "P27",
+                "name": "Procrastination Decoder"
+              },
+              {
+                "id": "P28",
+                "name": "ADHD at Work Toolkit",
+                "pages": 3
+              },
+              {
+                "id": "P29",
+                "name": "ADHD in Relationships",
+                "pages": 4
+              },
+              {
+                "id": "P30",
+                "name": "Boundaries Workbook",
+                "pages": 4
+              }
+            ]
+          },
+          "special": {
+            "label": "Special Lines #31-34",
+            "products": [
+              {
+                "id": "P31",
+                "name": "ADHD Parent Toolkit",
+                "pages": 6
+              },
+              {
+                "id": "P32",
+                "name": "Kids ADHD Calm and Routine Pack",
+                "pages": 10
+              },
+              {
+                "id": "P33",
+                "name": "Coping Skills Card Deck",
+                "pages": 4
+              },
+              {
+                "id": "P34",
+                "name": "Therapy Worksheets Pack",
+                "pages": 20
+              }
+            ]
+          },
+          "flagship": {
+            "label": "Flagship Workbooks",
+            "products": [
+              {
+                "id": "F01",
+                "name": "The 30-Day ADHD Reset",
+                "pages": 40
+              },
+              {
+                "id": "F02",
+                "name": "The ADHD Year Annual Planner",
+                "pages": 58
+              }
+            ]
+          },
+          "standalone": {
+            "label": "Standalone Products",
+            "products": [
+              {
+                "id": "S01",
+                "name": "Just Diagnosed with ADHD 30-Day Workbook",
+                "pages": 37
+              },
+              {
+                "id": "S02",
+                "name": "Gratitude Journal",
+                "pages": 5
+              },
+              {
+                "id": "S03",
+                "name": "Idea Capture",
+                "pages": 3
+              }
+            ]
+          }
+        }
       }
     },
     "vistela": {
