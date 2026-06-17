@@ -1,0 +1,51 @@
+name: bloom focus — Image Test
+
+on:
+  workflow_dispatch:
+    inputs:
+      week:
+        description: 'Week number'
+        required: true
+        default: '27'
+      limit:
+        description: 'How many images to generate (test)'
+        required: true
+        default: '8'
+      only:
+        description: 'Content type'
+        required: true
+        default: 'video'
+        type: choice
+        options:
+          - video
+          - pinterest
+          - stories
+          - carousels
+
+jobs:
+  generate-images:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Generate text pack (needed for image prompts)
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+        run: node bloom/text-generator.js --week=${{ github.event.inputs.week }}
+
+      - name: Generate test images
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+        run: node bloom/image-generator.js --week=${{ github.event.inputs.week }} --only=${{ github.event.inputs.only }} --limit=${{ github.event.inputs.limit }}
+
+      - name: Upload images as artifact
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: bloom-images-test-week${{ github.event.inputs.week }}
+          path: output/images/
+          retention-days: 7
