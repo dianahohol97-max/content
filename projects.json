@@ -775,6 +775,112 @@
             ]
           }
         }
+      },
+      "app": {
+        "url": "https://bloomfocus.org/app",
+        "description": "Free ADHD productivity web app — 6 tools in one place",
+        "tools": [
+          "Task planner with micro-steps",
+          "Habit tracker with streaks",
+          "Pomodoro timer",
+          "Brain dump",
+          "Dopamine menu",
+          "Dashboard"
+        ],
+        "gamification": [
+          "XP and levels",
+          "Plant that grows as you complete tasks",
+          "Streaks",
+          "Achievements"
+        ],
+        "extras": [
+          "Built-in ADHD quiz",
+          "Email sequence after quiz result"
+        ],
+        "content_angle": "Free tool that builds trust — leads to paid products and email list"
+      },
+      "traffic_strategy": {
+        "streams": [
+          {
+            "destination": "https://bloomfocus.org/app",
+            "type": "free",
+            "goal": "Email capture + quiz funnel",
+            "cta": "Try the free ADHD app",
+            "content_pillars": [
+              1,
+              2,
+              4
+            ]
+          },
+          {
+            "destination": "https://bloomfocus.org/quiz",
+            "type": "free",
+            "goal": "Email capture + segmentation",
+            "cta": "Take the free ADHD quiz",
+            "content_pillars": [
+              4
+            ]
+          },
+          {
+            "destination": "https://www.etsy.com/shop/BloomfocusShop",
+            "type": "paid",
+            "goal": "Direct sales",
+            "cta": "Get it on Etsy",
+            "content_pillars": [
+              3,
+              5
+            ]
+          },
+          {
+            "destination": "https://bloomfocus.org/shop",
+            "type": "paid",
+            "goal": "Direct sales via site",
+            "cta": "Shop the toolkit",
+            "content_pillars": [
+              3,
+              5
+            ]
+          },
+          {
+            "destination": "https://bloomfocus.org/blog",
+            "type": "seo",
+            "goal": "Organic search traffic",
+            "cta": "Read more",
+            "content_pillars": [
+              1
+            ]
+          }
+        ],
+        "pinterest_daily": {
+          "total_pins": 10,
+          "breakdown": [
+            {
+              "count": 2,
+              "destination": "etsy",
+              "type": "product pin"
+            },
+            {
+              "count": 2,
+              "destination": "site_shop",
+              "type": "product pin"
+            },
+            {
+              "count": 2,
+              "destination": "app",
+              "type": "free tool pin"
+            },
+            {
+              "count": 2,
+              "destination": "quiz",
+              "type": "quiz funnel pin"
+            },
+            {
+              "count": 2,
+              "destination": "blog",
+              "type": "educational pin"
+            }
+          ]
+        }
       }
     },
     "vistela": {
