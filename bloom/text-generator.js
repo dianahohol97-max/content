@@ -145,49 +145,67 @@ Return JSON (no apostrophes):
 }
 
 // ─── Generate 10 Pinterest pins for one day ───────────────────────────────────
-async function generateDailyPins(dayIndex, weekNumber, usedProducts) {
-  const product = ALL_PRODUCTS[usedProducts % ALL_PRODUCTS.length];
-  const poster = posters?.series[usedProducts % posters.series.length];
-  const lang = LANGUAGES[dayIndex % LANGUAGES.length];
+async function generatePinBatch(dayIndex, weekNumber, product, lang, batchNum) {
+  // Generate 5 pins at a time to avoid JSON truncation
+  const isFirstBatch = batchNum === 1;
+  const streams = isFirstBatch
+    ? [
+        { num: 1, stream: "etsy_product",  link: catalog.etsy_shop, cta: "Get it on Etsy", product: product.name, lang: "en" },
+        { num: 2, stream: "etsy_product",  link: catalog.etsy_shop, cta: "Get it on Etsy", product: product.name, lang: lang },
+        { num: 3, stream: "site_product",  link: "https://bloomfocus.org/shop", cta: "Shop the toolkit", product: product.name, lang: "en" },
+        { num: 4, stream: "site_product",  link: "https://bloomfocus.org/shop", cta: "Shop the toolkit", product: product.name, lang: lang },
+        { num: 5, stream: "free_app",      link: app?.url ?? "https://bloomfocus.org/app", cta: "Try free", product: "ADHD App", lang: "en" },
+      ]
+    : [
+        { num: 6, stream: "free_app",      link: app?.url ?? "https://bloomfocus.org/app", cta: "Try free", product: "ADHD App", lang: lang },
+        { num: 7, stream: "quiz_funnel",   link: config.quiz_url, cta: "Take the free ADHD quiz", product: "ADHD Quiz", lang: "en" },
+        { num: 8, stream: "quiz_funnel",   link: config.quiz_url, cta: "Take the free ADHD quiz", product: "ADHD Quiz", lang: lang },
+        { num: 9, stream: "blog_edu",      link: "https://bloomfocus.org/blog", cta: "Read more", product: "Blog", lang: "en" },
+        { num: 10, stream: "blog_edu",     link: "https://bloomfocus.org/blog", cta: "Read more", product: "Blog", lang: lang },
+      ];
 
-  const prompt = `Generate exactly 10 Pinterest pins for bloom focus. Day ${dayIndex + 1} of Week ${weekNumber}.
+  const template = streams.map(s =>
+    `{"pin_number":${s.num},"stream":"${s.stream}","title":"SEO title here","description":"2-3 sentences here","link":"${s.link}","cta":"${s.cta}","product":"${s.product}","lang":"${s.lang}","keywords":["kw1","kw2","kw3"]}`
+  ).join(",
+    ");
 
-PIN BREAKDOWN (2 pins each stream):
-1-2: ETSY PRODUCT pins → ${catalog.etsy_shop} — feature product: "${product.name}"
-3-4: SITE SHOP pins → https://bloomfocus.org/shop — feature product: "${product.name}"
-5-6: FREE APP pins → ${app?.url} — feature the free ADHD toolkit app (6 tools, gamification)
-7-8: QUIZ FUNNEL pins → ${config.quiz_url} — lead to free ADHD quiz
-9-10: BLOG/EDU pins → https://bloomfocus.org/blog — educational ADHD content
+  const prompt = `Generate ${streams.length} Pinterest pins for bloom focus. Day ${dayIndex+1}, batch ${batchNum}.
+Product focus: "${product.name}". No apostrophes in values. Evergreen SEO content only.
 
-RULES:
-- Vertical 2:3 format
-- Keyword-rich SEO titles and descriptions
-- Evergreen content only (no dates or week references)
-- No apostrophes in any JSON values
-- Mix languages: some pins in ${LANG_LABELS[lang]}
+Streams: ${streams.map(s => `${s.num}=${s.stream}(${s.lang})`).join(", ")}
 
-Return JSON:
-{
-  "day": ${dayIndex + 1},
-  "pins": [
-    {"pin_number":1,"stream":"etsy_product","title":"...","description":"...","link":"${catalog.etsy_shop}","cta":"Get it on Etsy","product":"${product.name}","lang":"en","keywords":["kw1","kw2"]},
-    {"pin_number":2,"stream":"etsy_product","title":"...","description":"...","link":"${catalog.etsy_shop}","cta":"Get it on Etsy","product":"${product.name}","lang":"${lang}","keywords":["kw1","kw2"]},
-    {"pin_number":3,"stream":"site_product","title":"...","description":"...","link":"https://bloomfocus.org/shop","cta":"Shop the toolkit","product":"${product.name}","lang":"en","keywords":["kw1","kw2"]},
-    {"pin_number":4,"stream":"site_product","title":"...","description":"...","link":"https://bloomfocus.org/shop","cta":"Shop the toolkit","product":"${product.name}","lang":"${lang}","keywords":["kw1","kw2"]},
-    {"pin_number":5,"stream":"free_app","title":"...","description":"...","link":"${app?.url}","cta":"Try free","product":"ADHD App","lang":"en","keywords":["kw1","kw2"]},
-    {"pin_number":6,"stream":"free_app","title":"...","description":"...","link":"${app?.url}","cta":"Try free","product":"ADHD App","lang":"${lang}","keywords":["kw1","kw2"]},
-    {"pin_number":7,"stream":"quiz_funnel","title":"...","description":"...","link":"${config.quiz_url}","cta":"Take the free ADHD quiz","product":"ADHD Quiz","lang":"en","keywords":["kw1","kw2"]},
-    {"pin_number":8,"stream":"quiz_funnel","title":"...","description":"...","link":"${config.quiz_url}","cta":"Take the free ADHD quiz","product":"ADHD Quiz","lang":"${lang}","keywords":["kw1","kw2"]},
-    {"pin_number":9,"stream":"blog_edu","title":"...","description":"...","link":"https://bloomfocus.org/blog","cta":"Read more","product":"Blog","lang":"en","keywords":["kw1","kw2"]},
-    {"pin_number":10,"stream":"blog_edu","title":"...","description":"...","link":"https://bloomfocus.org/blog","cta":"Read more","product":"Blog","lang":"${lang}","keywords":["kw1","kw2"]}
-  ]
-}`;
+Return JSON array only:
+[
+    ${template}
+]`;
 
   const r = await client.messages.create({
-    model: "claude-sonnet-4-6", max_tokens: 2000, system: SYSTEM,
+    model: "claude-sonnet-4-6", max_tokens: 1200, system: SYSTEM,
     messages: [{ role: "user", content: prompt }]
   });
-  return parseJSON(r.content[0].text);
+
+  // Parse array
+  let text = r.content[0].text.replace(/^```(?:json)?\s*/i,"").replace(/\s*```$/,"").trim();
+  const start = text.indexOf("[");
+  const end = text.lastIndexOf("]");
+  if (start !== -1 && end !== -1) text = text.slice(start, end+1);
+  text = text.replace(/[‘’]/g,"'").replace(/[“”]/g,'"').replace(/[–—]/g,"-");
+  return JSON.parse(text);
+}
+
+async function generateDailyPins(dayIndex, weekNumber, usedProducts) {
+  const product = ALL_PRODUCTS[usedProducts % ALL_PRODUCTS.length];
+  const lang = LANGUAGES[dayIndex % LANGUAGES.length];
+
+  const [batch1, batch2] = await Promise.all([
+    generatePinBatch(dayIndex, weekNumber, product, lang, 1),
+    generatePinBatch(dayIndex, weekNumber, product, lang, 2),
+  ]);
+
+  return {
+    day: dayIndex + 1,
+    pins: [...batch1, ...batch2]
+  };
 }
 
 // ─── Generate Stories ─────────────────────────────────────────────────────────
