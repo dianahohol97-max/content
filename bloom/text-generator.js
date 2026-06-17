@@ -272,20 +272,19 @@ Return JSON (no apostrophes): {"carousel_type":"educational","topic":"the main t
 }
 
 // ─── Image prompts ────────────────────────────────────────────────────────────
-const BASE_IMG = `Soft pastel digital illustration. Color palette: lavender #E8DEFF, cream #FFF8F0, sage green #D4E8D4, blush #FFD4E4, sky blue #D4EEFF. Flat vector with soft watercolor texture. No real people. No text or letters in image. Warm, calm, friendly.`;
+const BASE_IMG = `Realistic aesthetic photograph, cozy and warm. Soft natural lighting, muted pastel tones (lavender, cream, sage, blush, soft blue). Shallow depth of field, film-like quality. Minimalist composition. No people, no faces, no hands holding objects. No text, no letters, no words anywhere in the image. Calm, inviting, aspirational lifestyle aesthetic that an adult would save to a mood board.`;
 
 function videoImagePrompts(script) {
-  // Generate 8 frame prompts — one per script segment for a dynamic slideshow
+  // Generate 8 frame prompts — photo-realistic, one per script segment
   const additions = {
-    1: "abstract brain concept — neurons, thought bubbles, metaphorical lightbulb or sparks",
-    2: "cozy comfort scene — warm cup of tea, soft blanket, gently lit desk",
-    3: "organized calm workspace, open planner, simple illustrated elements",
-    4: "interactive feel — checklist, quiz-style layout, Y/N visual",
-    5: `illustrated product on pastel desk: "${script.product}"`
+    1: "a calm desk scene suggesting focus — open notebook, soft light, a single plant, blurred warm background",
+    2: "a comforting cozy moment — a warm cup of coffee or tea on a wooden desk, soft blanket texture, gentle morning light",
+    3: "a tidy organized workspace — a planner open on a clean desk, pen resting beside it, minimal and achievable",
+    4: "a thoughtful flat-lay — a checklist or journal, a few simple objects arranged neatly, inviting curiosity",
+    5: `an aesthetic flat-lay featuring a printed planner or workbook related to "${script.product}" on a styled desk`
   };
   const theme = additions[script.pillar_id] ?? additions[1];
 
-  // Build a scene per segment of the script
   const segments = [
     { seg: "hook", text: script.hook },
     { seg: "bridge", text: script.bridge },
@@ -293,48 +292,46 @@ function videoImagePrompts(script) {
     { seg: "cta", text: script.cta },
   ];
 
-  // Pad to 8 frames if fewer, by adding atmospheric variations
   const atmospheric = [
-    "wide calm establishing scene, soft pastel atmosphere",
-    "close-up detail of a small comforting object, warm tones",
-    "gentle transition scene with soft floating shapes",
+    "a wide cozy desk scene with soft natural window light, warm and calm",
+    "an extreme close-up of a comforting detail — coffee cup rim, plant leaf, paper texture",
+    "a softly blurred aesthetic background, warm bokeh, calming mood",
   ];
   while (segments.length < 8) {
     segments.push({ seg: `extra_${segments.length}`, text: atmospheric[segments.length % atmospheric.length] });
   }
 
-  // Cap at 10
   const finalSegments = segments.slice(0, 10);
 
   return finalSegments.map((s, i) => ({
     frame: i + 1,
     segment: s.seg,
-    prompt: `${BASE_IMG} Theme: ${theme}. Vertical 9:16 format. Frame ${i+1} of ${finalSegments.length} in a sequence — keep consistent style and palette across frames. Scene for this moment: "${s.text}"`,
+    prompt: `${BASE_IMG} Scene direction: ${theme}. This frame should feel cohesive with the others in the set — same lighting, same color mood. Vertical 9:16 portrait orientation, tall format. Atmosphere for this moment: "${s.text}"`,
   }));
 }
 
 function pinterestImagePrompt(pin) {
   const streamAdditions = {
-    etsy_product: `Illustrated product flat-lay: "${pin.product}". Soft desk scene, planner or toolkit.`,
-    site_product: `Clean workspace with illustrated planner or worksheet: "${pin.product}".`,
-    free_app: "Illustrated phone or tablet screen with soft gamified app UI. Plant growing, XP bar.",
-    quiz_funnel: "Curious interactive visual — illustrated quiz cards, question marks, checklist.",
-    blog_edu: "Educational ADHD brain illustration — neurons, thought flow, abstract concept."
+    etsy_product: `An aesthetic flat-lay photograph of a printed planner or workbook related to "${pin.product}" on a styled desk with soft props (coffee, plant, pen).`,
+    site_product: `A clean styled workspace photograph with a printed planner or worksheet related to "${pin.product}", soft natural light.`,
+    free_app: "A realistic photograph of a phone or tablet resting on a cozy desk showing a calm app interface, warm lifestyle setting.",
+    quiz_funnel: "An inviting flat-lay photograph — a notebook with a pen, suggesting a quiz or self-reflection, warm and curious mood.",
+    blog_edu: "A calm aesthetic photograph representing focus and clarity — tidy desk, soft light, plant, journal."
   };
-  return `${BASE_IMG} ${streamAdditions[pin.stream] ?? streamAdditions.blog_edu} Vertical 2:3 Pinterest format.`;
+  return `${BASE_IMG} ${streamAdditions[pin.stream] ?? streamAdditions.blog_edu} Vertical 2:3 portrait orientation, tall Pinterest format.`;
 }
 
 function storyImagePrompt(story) {
   const typeAdditions = {
-    Poll: "Two contrasting abstract elements suggesting a choice. Playful, light energy.",
-    Tip: "Single calm scene suggesting focus or clarity. Minimal, one focal point.",
-    BTS: "Cozy behind-the-scenes feel — soft desk, notebook, warm light.",
-    Quiz: "Curious engaging visual — checklist, question mark motif.",
-    Product: "Illustrated product on soft pastel desk. Warm and inviting.",
-    QA: "Open curious feeling — speech bubble motif, soft warm tones.",
-    Reflection: "Gentle calm scene — evening light, plant, cup of tea. Peaceful."
+    Poll: "A flat-lay photograph suggesting a choice — two objects or two paths, warm and light.",
+    Tip: "A single calm photograph suggesting focus — tidy desk corner, soft light, one focal object.",
+    BTS: "A cozy behind-the-scenes photograph — desk with notebook and coffee, warm natural light.",
+    Quiz: "An inviting photograph — a journal or checklist on a desk, curious and warm mood.",
+    Product: "An aesthetic flat-lay photograph of a printed planner or workbook on a styled desk.",
+    QA: "A warm open photograph — a cup of coffee and notebook, inviting conversation.",
+    Reflection: "A peaceful evening photograph — soft lamp light, plant, a cup of tea, calm and restful."
   };
-  return `${BASE_IMG} ${typeAdditions[story.type] ?? ""} Square 1:1 for Instagram Stories. Scene: "${story.headline}"`;
+  return `${BASE_IMG} ${typeAdditions[story.type] ?? ""} Square 1:1 format for Instagram Stories.`;
 }
 
 // ─── Main runner ──────────────────────────────────────────────────────────────
@@ -409,19 +406,19 @@ async function generateWeeklyPack(weekNumber) {
   process.stdout.write("   Educational... ");
   const c1 = await generateCarousel("educational", weekNumber, 0);
   results.carousels.push(c1);
-  results.image_prompts.carousels.push({ id: "carousel_edu", prompt: `${BASE_IMG} Educational ADHD concept illustration. 4:5 format. Topic: "${c1.topic}"` });
+  results.image_prompts.carousels.push({ id: "carousel_edu", prompt: `${BASE_IMG} A calm aesthetic photograph representing the topic: "${c1.topic}". Tidy desk, soft light. Vertical 4:5 format.` });
   console.log("✓");
 
   process.stdout.write("   Product #1... ");
   const c2 = await generateCarousel("product", weekNumber, 1);
   results.carousels.push(c2);
-  results.image_prompts.carousels.push({ id: "carousel_product_1", prompt: `${BASE_IMG} Illustrated product: "${c2.product}". 4:5 format.` });
+  results.image_prompts.carousels.push({ id: "carousel_product_1", prompt: `${BASE_IMG} An aesthetic flat-lay photograph of a printed planner related to "${c2.product}" on a styled desk. Vertical 4:5 format.` });
   console.log("✓");
 
   process.stdout.write("   Product #2... ");
   const c3 = await generateCarousel("product", weekNumber, 5);
   results.carousels.push(c3);
-  results.image_prompts.carousels.push({ id: "carousel_product_2", prompt: `${BASE_IMG} Illustrated product: "${c3.product}". 4:5 format.` });
+  results.image_prompts.carousels.push({ id: "carousel_product_2", prompt: `${BASE_IMG} An aesthetic flat-lay photograph of a printed planner related to "${c3.product}" on a styled desk. Vertical 4:5 format.` });
   console.log("✓");
 
   // ── Save ─────────────────────────────────────────────────────────────────
