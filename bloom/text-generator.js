@@ -174,18 +174,40 @@ async function generatePinBatch(dayIndex, weekNumber, product, lang, batchNum) {
     "Streams: " + streamList + "\n\n" +
     "Return JSON array only:\n[\n    " + template + "\n]";
 
-  const r = await client.messages.create({
-    model: "claude-sonnet-4-6", max_tokens: 1200, system: SYSTEM,
-    messages: [{ role: "user", content: prompt }]
-  });
+  // Try up to 3 times, then fall back to safe minimal pins
+  for (let attempt = 0; attempt < 3; attempt++) {
+    const strictNote = attempt > 0
+      ? "\n\nCRITICAL: Previous response had invalid JSON. Output ONLY a valid JSON array. Use straight double quotes for all strings. NO apostrophes anywhere — remove them entirely. NO single quotes inside values."
+      : "";
 
-  // Parse array
-  let text = r.content[0].text.replace(/^```(?:json)?\s*/i,"").replace(/\s*```$/,"").trim();
-  const start = text.indexOf("[");
-  const end = text.lastIndexOf("]");
-  if (start !== -1 && end !== -1) text = text.slice(start, end+1);
-  text = text.replace(/[‘’]/g,"'").replace(/[“”]/g,'"').replace(/[–—]/g,"-");
-  return JSON.parse(text);
+    const r = await client.messages.create({
+      model: "claude-sonnet-4-6", max_tokens: 1500, system: SYSTEM,
+      messages: [{ role: "user", content: prompt + strictNote }]
+    });
+
+    let text = r.content[0].text.replace(/^```(?:json)?\s*/i,"").replace(/\s*```$/,"").trim();
+    const start = text.indexOf("[");
+    const end = text.lastIndexOf("]");
+    if (start !== -1 && end !== -1) text = text.slice(start, end+1);
+    text = text
+      .replace(/[‘’]/g,"")
+      .replace(/[“”]/g,'"')
+      .replace(/[–—]/g,"-")
+      .replace(/[\x00-\x1F\x7F]/g," ");
+    try {
+      return JSON.parse(text);
+    } catch(e) {
+      if (attempt === 2) {
+        console.log(`\n   ⚠ Pin batch ${batchNum} fell back to safe pins`);
+        return streams.map(s => ({
+          pin_number: s.num, stream: s.stream,
+          title: "ADHD " + s.product, description: "Tools designed for how ADHD brains actually work.",
+          link: s.link, cta: s.cta, product: s.product, lang: s.lang,
+          keywords: ["ADHD", "neurodivergent", "ADHD tools"]
+        }));
+      }
+    }
+  }
 }
 
 async function generateDailyPins(dayIndex, weekNumber, usedProducts) {
