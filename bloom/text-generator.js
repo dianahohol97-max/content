@@ -81,8 +81,26 @@ const HASHTAGS = [
 
 // ─── Safe JSON parse (strips markdown code fences if present) ────────────────
 function parseJSON(text) {
-  const cleaned = text.replace(/^```(?:json)?\s*/i, "").replace(/\s*```$/, "").trim();
-  return JSON.parse(cleaned);
+  // Strip markdown fences
+  let cleaned = text.replace(/^```(?:json)?\s*/i, "").replace(/\s*```$/, "").trim();
+  // Find JSON object boundaries
+  const start = cleaned.indexOf('{');
+  const end = cleaned.lastIndexOf('}');
+  if (start !== -1 && end !== -1) {
+    cleaned = cleaned.slice(start, end + 1);
+  }
+  // Fix common JSON issues: replace curly quotes with straight quotes
+  cleaned = cleaned
+    .replace(/[\u2018\u2019]/g, "\'")
+    .replace(/[\u201C\u201D]/g, '\"')
+    .replace(/[\u2013\u2014]/g, '-');
+  try {
+    return JSON.parse(cleaned);
+  } catch(e) {
+    // Last resort: remove control characters
+    cleaned = cleaned.replace(/[\x00-\x1F\x7F]/g, ' ');
+    return JSON.parse(cleaned);
+  }
 }
 
 const SYSTEM_PROMPT = `You are the content writer for bloom focus, an ADHD digital products brand.
@@ -105,7 +123,7 @@ RULES:
 - Never use the word "hack"
 - Content is English only
 
-OUTPUT: Return ONLY valid JSON. No markdown, no backticks, no preamble.`;
+OUTPUT: Return ONLY valid JSON. No markdown, no backticks, no preamble. Use only straight double quotes for JSON. No apostrophes in values — replace with spaces or rephrase.`;
 
 // ─── Generate video script ────────────────────────────────────────────────────
 async function generateVideoScript(pillar, weekNumber, videoIndex) {
@@ -245,7 +263,7 @@ WEEK: ${weekNumber}
 Based on these hooks:
 ${scripts.map((s, i) => `${i + 1}. "${s.hook}" (${s.pillar_name})`).join("\n")}
 
-Rules: keyword-rich, SEO-focused, evergreen (no "this week"), 2-3 sentences, link to bloomfocus.org or Etsy
+Rules: keyword-rich, SEO-focused, evergreen, 2-3 sentences, link to bloomfocus.org or Etsy. CRITICAL: Use only plain ASCII text. No apostrophes, no curly quotes, no special characters anywhere in the JSON values.
 
 Return JSON:
 {
