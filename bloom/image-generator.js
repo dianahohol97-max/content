@@ -31,7 +31,7 @@ const args = Object.fromEntries(
 const WEEK = args.week ? parseInt(args.week) : null;
 const ONLY = args.only ?? null;       // video | pinterest | stories | carousels
 const LIMIT = args.limit ? parseInt(args.limit) : null;
-const UPLOAD = !args["no-upload"];    // upload to Drive by default
+const UPLOAD = !!args["upload"];      // Drive upload OFF by default — Make.com handles Drive
 
 // Load Drive root folder from config
 const _cfg = JSON.parse(fs.readFileSync(path.join(__dirname, "../projects.json"), "utf-8"));

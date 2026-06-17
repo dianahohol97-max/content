@@ -2,13 +2,6 @@
 .env
 google-service-account.json
 
-# Output
-output/
-*.mp4
-*.jpg
-*.png
-*.pdf
-
 # Node
 node_modules/
 npm-debug.log
@@ -16,3 +9,8 @@ npm-debug.log
 # OS
 .DS_Store
 Thumbs.db
+
+# Keep output images/videos in repo (Make.com fetches via raw URL)
+# but ignore the large text pack JSON (regenerated each run)
+output/*.json
+output/**/_manifest.json

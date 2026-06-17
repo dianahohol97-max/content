@@ -6,9 +6,9 @@ on:
       week:
         description: 'Week number'
         required: true
-        default: '27'
+        default: '29'
       limit:
-        description: 'How many images to generate (test)'
+        description: 'How many images (test)'
         required: true
         default: '8'
       only:
@@ -22,6 +22,9 @@ on:
           - stories
           - carousels
 
+permissions:
+  contents: write
+
 jobs:
   generate-images:
     runs-on: ubuntu-latest
@@ -32,7 +35,7 @@ jobs:
       - name: Install dependencies
         run: npm install
 
-      - name: Generate text pack (needed for image prompts)
+      - name: Generate text pack
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
         run: node bloom/text-generator.js --week=${{ github.event.inputs.week }}
@@ -40,8 +43,22 @@ jobs:
       - name: Generate test images
         env:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
-          GOOGLE_SERVICE_ACCOUNT_KEY: ${{ secrets.GOOGLE_SERVICE_ACCOUNT_KEY }}
         run: node bloom/image-generator.js --week=${{ github.event.inputs.week }} --only=${{ github.event.inputs.only }} --limit=${{ github.event.inputs.limit }}
+
+      - name: Commit images to repo
+        run: |
+          git config user.name "bloom-bot"
+          git config user.email "bot@bloomfocus.org"
+          git add output/images/ -f
+          git commit -m "test images: week ${{ github.event.inputs.week }} (${{ github.event.inputs.only }})" || echo "nothing to commit"
+          git push
+
+      - name: Print public URLs
+        run: |
+          echo "=== PUBLIC IMAGE URLS (for Make.com) ==="
+          for f in $(find output/images -name "*.png" | sort); do
+            echo "https://raw.githubusercontent.com/dianahohol97-max/content/main/$f"
+          done
 
       - name: Upload images as artifact
         if: always()
