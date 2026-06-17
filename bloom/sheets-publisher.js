@@ -156,29 +156,29 @@ function buildRows(pack) {
     ]);
   }
 
-  // ── Carousels (3) ──
+  // ── Carousels (7, one per day) ──
   for (const carousel of pack.carousels) {
     const slidesSummary = carousel.slides?.map(s => `[${s.slide}] ${s.title}: ${s.body}`).join("\n") ?? "";
-    const img = pack.image_prompts.carousels.find(
-      p => p.id === `carousel_${carousel.carousel_type}` ||
-           p.id === `carousel_${carousel.carousel_type}_1` ||
-           p.id === `carousel_${carousel.carousel_type}_2`
-    );
+    const lastSlide = carousel.slides?.[carousel.slides.length - 1];
+    const img = pack.image_prompts.carousels.find(p => p.day === carousel.day);
     rows.push([
       `W${W}_C${String(id++).padStart(2,'0')}`,
-      "—",
+      carousel.day ? `Day ${carousel.day}` : "—",
       "IG Carousel",
       `Carousel (${carousel.carousel_type})`,
-      carousel.carousel_type === "product" ? "Behind the Product" : "This Is Your Brain",
-      carousel.slides?.[0]?.title ?? "",
+      carousel.carousel_type === "product" ? "Behind the Product"
+        : carousel.carousel_type === "thisorthat" ? "You Are Not Alone"
+        : carousel.carousel_type === "listicle" ? "What Actually Helps"
+        : "This Is Your Brain",
+      carousel.cover_hook ?? carousel.slides?.[0]?.title ?? "",
       slidesSummary,
-      carousel.slides?.[6]?.body ?? "",
+      lastSlide?.body ?? "",
       "", "",
       img?.prompt ?? "",
       "", "",
       "", "", "", "en",
       "pending",
-      carousel.product ? `Product: ${carousel.product}` : carousel.topic ?? "",
+      `${(carousel.carousel_type ?? "").toUpperCase()} — ${carousel.product ? "Product: " + carousel.product : carousel.topic ?? ""}`,
       ""
     ]);
   }

@@ -253,19 +253,47 @@ Return JSON (no apostrophes in values):
 }
 
 // ─── Generate Carousels ───────────────────────────────────────────────────────
-async function generateCarousel(type, weekNumber, productIndex) {
+async function generateCarousel(type, weekNumber, productIndex, pillar) {
   const product = ALL_PRODUCTS[productIndex % ALL_PRODUCTS.length];
 
-  const prompt = type === "product"
-    ? `Generate a 7-slide Instagram carousel for bloom focus product: "${product.name}". FACELESS brand.
-Slides: 1)Problem hook, 2)Why existing solutions fail ADHD, 3)Introduce product, 4-5)How it works, 6)Before/After, 7)Link in bio CTA.
-Return JSON (no apostrophes): {"carousel_type":"product","product":"${product.name}","slides":[{"slide":1,"title":"...","body":"..."},{"slide":2,"title":"...","body":"..."},{"slide":3,"title":"...","body":"..."},{"slide":4,"title":"...","body":"..."},{"slide":5,"title":"...","body":"..."},{"slide":6,"title":"...","body":"..."},{"slide":7,"title":"...","body":"..."}]}`
-    : `Generate a 7-slide educational carousel for bloom focus. Week ${weekNumber}.
-Slides: 1)Bold hook + Save this, 2-6)One concept each, 7)Summary + CTA.
-Return JSON (no apostrophes): {"carousel_type":"educational","topic":"the main topic","slides":[{"slide":1,"title":"...","body":"..."},{"slide":2,"title":"...","body":"..."},{"slide":3,"title":"...","body":"..."},{"slide":4,"title":"...","body":"..."},{"slide":5,"title":"...","body":"..."},{"slide":6,"title":"...","body":"..."},{"slide":7,"title":"...","body":"..."}]}`;
+  // Viral 2026 carousel rules baked into every prompt
+  const VIRAL_RULES = `VIRAL CAROUSEL RULES (Instagram 2026):
+- 9 slides total.
+- Slide 1 (cover): answers "is this for me?" and "what will I get?" in under 10 words. Scroll-stopping.
+- Slide 3: the strongest value (the "value bomb") — most surprising or useful insight goes HERE, not slide 1.
+- EVERY slide must work as a hook on its own (Instagram shows different starting slides to different people).
+- One idea per slide. Body max 2 short sentences.
+- Last slide: clear CTA.
+- No apostrophes in any JSON values.`;
+
+  let prompt;
+
+  if (type === "product") {
+    prompt = `Generate a 9-slide Instagram PRODUCT carousel for bloom focus. FACELESS brand. Product: "${product.name}".
+${VIRAL_RULES}
+Flow: 1)Problem hook cover, 2)Name the real ADHD struggle, 3)The surprising insight about why it happens (value bomb), 4)Why normal solutions fail ADHD, 5)Introduce ${product.name}, 6-7)How it works specifically, 8)Before vs after, 9)CTA link in bio.
+Return JSON: {"carousel_type":"product","product":"${product.name}","cover_hook":"the slide 1 text","slides":[${Array.from({length:9},(_, i)=>`{"slide":${i+1},"title":"...","body":"..."}`).join(",")}]}`;
+  } else if (type === "thisorthat") {
+    prompt = `Generate a 9-slide Instagram "THIS OR THAT" carousel for bloom focus. FACELESS brand. Topic: ADHD experiences related to ${pillar?.name ?? "daily life"}.
+${VIRAL_RULES}
+This format drives DM shares: each middle slide presents two relatable ADHD options and asks which one you are.
+Flow: 1)Cover "Which ADHD ___ are you?", 2-8)Each slide describes 2 contrasting ADHD types/situations and asks to pick, 9)CTA comment your pick + take the quiz ${config.quiz_url}.
+Return JSON: {"carousel_type":"thisorthat","topic":"the theme","cover_hook":"the slide 1 text","slides":[${Array.from({length:9},(_, i)=>`{"slide":${i+1},"title":"...","body":"..."}`).join(",")}]}`;
+  } else if (type === "listicle") {
+    prompt = `Generate a 9-slide Instagram LISTICLE carousel for bloom focus. FACELESS brand. Pillar: ${pillar?.name ?? "What Actually Helps"}.
+${VIRAL_RULES}
+Flow: 1)Cover with a number hook like "7 ADHD ___ that actually work", 2-8)One tip/item per slide (specific, ADHD-science based), 9)Save this + CTA.
+Return JSON: {"carousel_type":"listicle","topic":"the theme","cover_hook":"the slide 1 text","slides":[${Array.from({length:9},(_, i)=>`{"slide":${i+1},"title":"...","body":"..."}`).join(",")}]}`;
+  } else {
+    // educational
+    prompt = `Generate a 9-slide Instagram EDUCATIONAL carousel for bloom focus. FACELESS brand. Pillar: ${pillar?.name ?? "This Is Your Brain"}.
+${VIRAL_RULES}
+Flow: 1)Bold hook cover, 2)Name the experience, 3)The surprising brain-science insight (value bomb), 4-7)One concept each, 8)What this means for you, 9)Save this + CTA.
+Return JSON: {"carousel_type":"educational","topic":"the main topic","cover_hook":"the slide 1 text","slides":[${Array.from({length:9},(_, i)=>`{"slide":${i+1},"title":"...","body":"..."}`).join(",")}]}`;
+  }
 
   const r = await client.messages.create({
-    model: "claude-sonnet-4-6", max_tokens: 1500, system: SYSTEM,
+    model: "claude-sonnet-4-6", max_tokens: 2000, system: SYSTEM,
     messages: [{ role: "user", content: prompt }]
   });
   return parseJSON(r.content[0].text);
@@ -401,25 +429,41 @@ async function generateWeeklyPack(weekNumber) {
   }
   console.log("   ✓ 7 stories + image prompts");
 
-  // ── 4. Carousels — 3 total ───────────────────────────────────────────────
-  console.log("\n🎠 Generating carousels...");
-  process.stdout.write("   Educational... ");
-  const c1 = await generateCarousel("educational", weekNumber, 0);
-  results.carousels.push(c1);
-  results.image_prompts.carousels.push({ id: "carousel_edu", prompt: `${BASE_IMG} A calm aesthetic photograph representing the topic: "${c1.topic}". Tidy desk, soft light. Vertical 4:5 format.` });
-  console.log("✓");
+  // ── 4. Carousels — 7 total (one per day), rotating viral formats ─────────
+  console.log("\n🎠 Generating 7 carousels (1/day, viral formats)...");
 
-  process.stdout.write("   Product #1... ");
-  const c2 = await generateCarousel("product", weekNumber, 1);
-  results.carousels.push(c2);
-  results.image_prompts.carousels.push({ id: "carousel_product_1", prompt: `${BASE_IMG} An aesthetic flat-lay photograph of a printed planner related to "${c2.product}" on a styled desk. Vertical 4:5 format.` });
-  console.log("✓");
+  // Weekly carousel plan: mix of formats proven to drive saves + DM shares
+  // educational (saves), listicle (saves), thisorthat (DM shares), product (conversion)
+  const carouselPlan = [
+    { day: 1, type: "educational", pillar: PILLARS[0] },           // This Is Your Brain
+    { day: 2, type: "listicle",    pillar: PILLARS[2] },           // What Actually Helps
+    { day: 3, type: "thisorthat",  pillar: PILLARS[1] },           // You Are Not Alone (DM shares)
+    { day: 4, type: "product",     pillar: PILLARS[4], prod: 1 },  // Behind the Product
+    { day: 5, type: "educational", pillar: PILLARS[3] },           // Know Your Brain
+    { day: 6, type: "listicle",    pillar: PILLARS[2] },           // What Actually Helps
+    { day: 7, type: "product",     pillar: PILLARS[4], prod: 7 },  // Behind the Product
+  ];
 
-  process.stdout.write("   Product #2... ");
-  const c3 = await generateCarousel("product", weekNumber, 5);
-  results.carousels.push(c3);
-  results.image_prompts.carousels.push({ id: "carousel_product_2", prompt: `${BASE_IMG} An aesthetic flat-lay photograph of a printed planner related to "${c3.product}" on a styled desk. Vertical 4:5 format.` });
-  console.log("✓");
+  let carIdx = 0;
+  for (const plan of carouselPlan) {
+    process.stdout.write(`   Day ${plan.day} [${plan.type}]... `);
+    const car = await generateCarousel(plan.type, weekNumber, plan.prod ?? carIdx, plan.pillar);
+    car.day = plan.day;
+    results.carousels.push(car);
+
+    // Photo cover prompt based on type
+    const coverScene = plan.type === "product"
+      ? `An aesthetic flat-lay photograph of a printed planner related to "${car.product ?? ""}" on a styled desk.`
+      : `A calm aesthetic photograph representing: "${car.topic ?? car.cover_hook ?? ""}". Tidy desk, soft light.`;
+    results.image_prompts.carousels.push({
+      id: `carousel_d${plan.day}_${plan.type}`,
+      day: plan.day,
+      type: plan.type,
+      prompt: `${BASE_IMG} ${coverScene} Vertical 4:5 format.`
+    });
+    carIdx++;
+    console.log("✓");
+  }
 
   // ── Save ─────────────────────────────────────────────────────────────────
   const outputDir = path.join(__dirname, "../output");
