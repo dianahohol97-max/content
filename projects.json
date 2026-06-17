@@ -982,6 +982,42 @@
                 "title": "Los Elementos del TDAH"
               }
             ]
+          },
+          {
+            "id": "S5",
+            "theme": "The ADHD Iceberg",
+            "angle": "illustrated iceberg — visible vs hidden symptoms",
+            "format": "illustrated iceberg"
+          },
+          {
+            "id": "S6",
+            "theme": "ADHD Superpowers",
+            "angle": "reframing traits as strengths",
+            "format": "3x3 grid"
+          },
+          {
+            "id": "S7",
+            "theme": "ADHD Myths vs Reality",
+            "angle": "myth-busting, educational",
+            "format": "two columns"
+          },
+          {
+            "id": "S8",
+            "theme": "What I Wish People Knew",
+            "angle": "validation and awareness",
+            "format": "speech bubbles"
+          },
+          {
+            "id": "S9",
+            "theme": "ADHD Survival Kit",
+            "angle": "practical tools and coping strategies",
+            "format": "flat-lay illustration"
+          },
+          {
+            "id": "S10",
+            "theme": "My ADHD Brain A Timeline",
+            "angle": "relatable daily timeline humor",
+            "format": "vertical timeline"
           }
         ],
         "content_use": [
@@ -989,6 +1025,96 @@
           "Instagram carousel — one series per carousel",
           "TikTok — unboxing or walkthrough video",
           "Traffic destination: Etsy listing per language"
+        ]
+      },
+      "definition_posters": {
+        "style": "black and white minimalism",
+        "items": [
+          {
+            "id": "D1",
+            "title": "ADHD — dictionary definition"
+          },
+          {
+            "id": "D2",
+            "title": "Dopamine — dictionary definition"
+          }
+        ]
+      },
+      "motivational_posters": {
+        "style": "elegant serif typography",
+        "items": [
+          {
+            "id": "M1",
+            "title": "Your Brain Isn't Broken"
+          },
+          {
+            "id": "M2",
+            "title": "Done Is Better Than Perfect"
+          },
+          {
+            "id": "M3",
+            "title": "You Are Not Behind"
+          },
+          {
+            "id": "M4",
+            "title": "Permission Slip List"
+          },
+          {
+            "id": "M5",
+            "title": "Progress Not Perfection"
+          },
+          {
+            "id": "M6",
+            "title": "Crossed Out Words"
+          }
+        ]
+      },
+      "sticker_packs": {
+        "languages": [
+          "en",
+          "de",
+          "fr",
+          "es"
+        ],
+        "stickers_per_pack": 20,
+        "packs": [
+          {
+            "id": "ST1",
+            "theme": "Motivational Phrases",
+            "angle": "gentle encouragement for ADHD brains"
+          },
+          {
+            "id": "ST2",
+            "theme": "ADHD Humor",
+            "angle": "relatable jokes and memes"
+          },
+          {
+            "id": "ST3",
+            "theme": "Planning Stickers",
+            "angle": "planner and journal decoration"
+          },
+          {
+            "id": "ST4",
+            "theme": "Emotional States",
+            "angle": "feelings and moods for ADHD"
+          },
+          {
+            "id": "ST5",
+            "theme": "Affirmations",
+            "angle": "positive self-talk for neurodivergent minds"
+          },
+          {
+            "id": "ST6",
+            "theme": "Blob Characters",
+            "angle": "cute illustrated blob characters with ADHD moments"
+          }
+        ],
+        "total_stickers": 120,
+        "content_use": [
+          "TikTok — sticker pack reveal videos",
+          "Instagram — sticker swatches as carousel",
+          "Pinterest — each pack as a pin",
+          "Traffic: Etsy listing per pack per language"
         ]
       }
     },
