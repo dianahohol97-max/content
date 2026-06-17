@@ -881,6 +881,115 @@
             }
           ]
         }
+      },
+      "posters": {
+        "description": "ADHD awareness and lifestyle poster series — 4 languages each",
+        "languages": [
+          "en",
+          "de",
+          "fr",
+          "es"
+        ],
+        "series": [
+          {
+            "id": "S1",
+            "theme": "ADHD Life Hacks",
+            "angle": "strategies and practical tips",
+            "versions": [
+              {
+                "lang": "en",
+                "title": "ADHD Life Hacks"
+              },
+              {
+                "lang": "de",
+                "title": "ADHS Lifehacks"
+              },
+              {
+                "lang": "fr",
+                "title": "Astuces TDAH"
+              },
+              {
+                "lang": "es",
+                "title": "Trucos TDAH"
+              }
+            ]
+          },
+          {
+            "id": "S2",
+            "theme": "A Day in My ADHD Brain",
+            "angle": "humor and relatable moments",
+            "versions": [
+              {
+                "lang": "en",
+                "title": "A Day in My ADHD Brain"
+              },
+              {
+                "lang": "de",
+                "title": "Ein Tag in meinem ADHS-Gehirn"
+              },
+              {
+                "lang": "fr",
+                "title": "Une Journee dans mon Cerveau TDAH"
+              },
+              {
+                "lang": "es",
+                "title": "Un Dia en mi Cerebro TDAH"
+              }
+            ]
+          },
+          {
+            "id": "S3",
+            "theme": "This is What ADHD Feels Like",
+            "angle": "awareness and validation",
+            "versions": [
+              {
+                "lang": "en",
+                "title": "This is What ADHD Feels Like"
+              },
+              {
+                "lang": "de",
+                "title": "So fuhlt sich ADHS an"
+              },
+              {
+                "lang": "fr",
+                "title": "C est ce que ressent un cerveau TDAH"
+              },
+              {
+                "lang": "es",
+                "title": "Asi se Siente el TDAH"
+              }
+            ]
+          },
+          {
+            "id": "S4",
+            "theme": "The Elements of ADHD",
+            "angle": "reframing ADHD traits as elements",
+            "versions": [
+              {
+                "lang": "en",
+                "title": "The Elements of ADHD"
+              },
+              {
+                "lang": "de",
+                "title": "Die Elemente des ADHS"
+              },
+              {
+                "lang": "fr",
+                "title": "Les Elements du TDAH"
+              },
+              {
+                "lang": "es",
+                "title": "Los Elementos del TDAH"
+              }
+            ]
+          }
+        ],
+        "content_use": [
+          "Pinterest pins — each poster = separate pin per language",
+          "Instagram carousel — one series per carousel",
+          "TikTok — unboxing or walkthrough video",
+          "Traffic destination: Etsy listing per language"
+        ]
       }
     },
     "vistela": {
