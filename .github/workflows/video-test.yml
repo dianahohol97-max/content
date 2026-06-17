@@ -1,0 +1,56 @@
+name: bloom focus — Video Test (Remotion)
+
+on:
+  workflow_dispatch:
+    inputs:
+      week:
+        description: 'Week number'
+        required: true
+        default: '29'
+      limit:
+        description: 'How many videos to render (test)'
+        required: true
+        default: '1'
+
+permissions:
+  contents: write
+
+jobs:
+  render-video:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Install root dependencies
+        run: npm install
+
+      - name: Generate text pack
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+        run: node bloom/text-generator.js --week=${{ github.event.inputs.week }}
+
+      - name: Generate images for first video
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+        run: node bloom/image-generator.js --week=${{ github.event.inputs.week }} --only=video --limit=8
+
+      - name: Install Remotion dependencies
+        working-directory: remotion
+        run: npm install
+
+      - name: Install Chrome for Remotion
+        working-directory: remotion
+        run: npx remotion browser ensure
+
+      - name: Render videos
+        working-directory: remotion
+        run: node render.js --week=${{ github.event.inputs.week }} --limit=${{ github.event.inputs.limit }}
+
+      - name: Upload video as artifact
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: bloom-video-test-week${{ github.event.inputs.week }}
+          path: output/videos/
+          retention-days: 7
