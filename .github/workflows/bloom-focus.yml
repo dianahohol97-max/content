@@ -1,7 +1,6 @@
 name: bloom focus — Content Pipeline
 
 on:
-  # Run manually from GitHub UI
   workflow_dispatch:
     inputs:
       week:
@@ -11,14 +10,13 @@ on:
       step:
         description: 'Which step to run'
         required: true
-        default: 'text-only'
+        default: 'text-and-sheets'
         type: choice
         options:
           - text-only
           - sheets-only
           - text-and-sheets
 
-  # Auto-run every Monday at 9am Kyiv time (UTC+3 = 6am UTC)
   schedule:
     - cron: '0 6 * * 1'
 
@@ -36,7 +34,7 @@ jobs:
           node-version: '20'
 
       - name: Install dependencies
-        run: npm ci
+        run: npm install --no-package-lock
 
       - name: Get week number
         id: week
