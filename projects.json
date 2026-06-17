@@ -1116,6 +1116,13 @@
           "Pinterest — each pack as a pin",
           "Traffic: Etsy listing per pack per language"
         ]
+      },
+      "google_drive": {
+        "root_folder_id": "1uNFSJ6b9CyjnQ6FcKbPMQtK18sEgoMaF",
+        "subfolders": {
+          "images": "auto",
+          "videos": "auto"
+        }
       }
     },
     "vistela": {

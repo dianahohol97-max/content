@@ -19,6 +19,7 @@ import { GoogleGenAI } from "@google/genai";
 import fs from "fs";
 import path from "path";
 import { fileURLToPath } from "url";
+import { ensureWeekFolder, uploadFile, ensureFolder } from "./drive-helper.js";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const ai = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY });
@@ -30,6 +31,12 @@ const args = Object.fromEntries(
 const WEEK = args.week ? parseInt(args.week) : null;
 const ONLY = args.only ?? null;       // video | pinterest | stories | carousels
 const LIMIT = args.limit ? parseInt(args.limit) : null;
+const UPLOAD = !args["no-upload"];    // upload to Drive by default
+
+// Load Drive root folder from config
+const _cfg = JSON.parse(fs.readFileSync(path.join(__dirname, "../projects.json"), "utf-8"));
+const _bf = _cfg.bloom_focus ?? _cfg.projects?.bloom_focus;
+const DRIVE_ROOT = _bf?.google_drive?.root_folder_id ?? null;
 if (!WEEK) { console.error("❌ --week required"); process.exit(1); }
 
 function loadPack(weekNumber) {
@@ -95,29 +102,38 @@ function buildJobList(pack) {
 }
 
 // ─── Generate one image ───────────────────────────────────────────────────────
-async function generateImage(job, baseDir) {
+async function generateImage(job, baseDir, driveFolderId) {
   const dir = path.join(baseDir, job.subfolder);
   if (!fs.existsSync(dir)) fs.mkdirSync(dir, { recursive: true });
 
   const filename = `${job.id}.png`;
   const outPath = path.join(dir, filename);
-  if (fs.existsSync(outPath)) return { id: job.id, status: "skipped", path: outPath };
 
-  const response = await ai.models.generateImages({
-    model: "imagen-3.0-generate-002",
-    prompt: job.prompt,
-    config: {
-      numberOfImages: 1,
-      aspectRatio: mapAspect(job.aspect),
-      personGeneration: "DONT_ALLOW",
-    },
-  });
+  // Generate (skip if local file exists)
+  if (!fs.existsSync(outPath)) {
+    const response = await ai.models.generateImages({
+      model: "imagen-3.0-generate-002",
+      prompt: job.prompt,
+      config: {
+        numberOfImages: 1,
+        aspectRatio: mapAspect(job.aspect),
+        personGeneration: "DONT_ALLOW",
+      },
+    });
+    const imageData = response.generatedImages?.[0]?.image?.imageBytes;
+    if (!imageData) throw new Error("No image returned");
+    fs.writeFileSync(outPath, Buffer.from(imageData, "base64"));
+  }
 
-  const imageData = response.generatedImages?.[0]?.image?.imageBytes;
-  if (!imageData) throw new Error("No image returned");
-  fs.writeFileSync(outPath, Buffer.from(imageData, "base64"));
+  // Upload to Drive
+  let driveLink = null;
+  if (UPLOAD && driveFolderId) {
+    const sub = await ensureFolder(job.subfolder.replace(/\//g, "_"), driveFolderId);
+    const uploaded = await uploadFile(outPath, filename, sub, "image/png");
+    driveLink = uploaded.directLink;
+  }
 
-  return { id: job.id, status: "generated", path: outPath, category: job.category };
+  return { id: job.id, status: "generated", path: outPath, category: job.category, drive_link: driveLink };
 }
 
 // ─── Main ─────────────────────────────────────────────────────────────────────
@@ -132,6 +148,16 @@ async function run(weekNumber) {
   console.log(`📋 ${jobs.length} images to generate`);
   if (ONLY) console.log(`   Filter: ${ONLY} only`);
   if (LIMIT) console.log(`   Limit: first ${LIMIT}`);
+
+  // Set up Drive week folder
+  let driveFolderId = null;
+  if (UPLOAD && DRIVE_ROOT) {
+    process.stdout.write("   Setting up Drive folder... ");
+    driveFolderId = await ensureWeekFolder(DRIVE_ROOT, "images", weekNumber);
+    console.log("✓");
+  } else if (UPLOAD && !DRIVE_ROOT) {
+    console.log("   ⚠ No Drive root folder in config — saving locally only");
+  }
   console.log("");
 
   let generated = 0, skipped = 0, failed = 0;
@@ -141,10 +167,10 @@ async function run(weekNumber) {
     const job = jobs[i];
     process.stdout.write(`   [${i+1}/${jobs.length}] ${job.id} (${job.category})... `);
     try {
-      const res = await generateImage(job, baseDir);
+      const res = await generateImage(job, baseDir, driveFolderId);
       results.push(res);
       if (res.status === "skipped") { skipped++; console.log("⏭"); }
-      else { generated++; console.log("✓"); }
+      else { generated++; console.log(res.drive_link ? "✓ ↑Drive" : "✓"); }
       await new Promise(r => setTimeout(r, 600));
     } catch (err) {
       failed++; console.log(`✗ ${err.message}`);
