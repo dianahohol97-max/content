@@ -58,11 +58,21 @@ jobs:
           if [ -n "${{ github.event.inputs.limit }}" ]; then ARGS="$ARGS --limit=${{ github.event.inputs.limit }}"; fi
           node bloom/pinterest-build-all.js $ARGS
 
+      - name: Commit pins JSON to repo
+        run: |
+          git config user.name "bloom-bot"
+          git config user.email "bot@bloomfocus.org"
+          git pull --no-edit origin main || true
+          git add pinterest_week_*.json -f
+          git commit -m "pinterest text: week ${{ github.event.inputs.week }}" || echo "nothing to commit"
+          git push
+
       - name: Commit pin images to repo
         if: github.event.inputs.images == 'yes'
         run: |
           git config user.name "bloom-bot"
           git config user.email "bot@bloomfocus.org"
+          git pull --no-edit origin main || true
           git add output/pinterest/ -f
           git commit -m "pinterest pins: week ${{ github.event.inputs.week }}" || echo "nothing to commit"
           git push
