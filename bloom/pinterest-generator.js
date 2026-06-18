@@ -18,6 +18,7 @@
 import 'dotenv/config';
 import Anthropic from "@anthropic-ai/sdk";
 import fs from "fs";
+import { BOARD_IDS, DEFAULT_BOARD_ID } from "./board-ids.js";
 
 // ─── Config ──────────────────────────────────────────────────────────────────
 
@@ -363,6 +364,7 @@ async function generateDay(weekNum, dayNum) {
     day: dayNum,
     pinNumber: i + 1,
     ...pin,
+    boardId: BOARD_IDS[pin.board] ?? DEFAULT_BOARD_ID,
     status: "pending",
     postedAt: null,
   }));
