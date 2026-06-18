@@ -8,11 +8,11 @@ on:
         required: true
         default: '29'
       day:
-        description: 'Single day (1-7) or leave empty for full week'
+        description: 'Single day (1-7) or empty for full week'
         required: false
         default: ''
       images:
-        description: 'Also generate pin images with text overlay?'
+        description: 'Also generate pin images?'
         required: true
         default: 'yes'
         type: choice
@@ -20,7 +20,7 @@ on:
           - 'yes'
           - 'no'
       limit:
-        description: 'Limit images (for testing, e.g. 3)'
+        description: 'Limit images (for testing, e.g. 5)'
         required: false
         default: ''
 
@@ -47,16 +47,16 @@ jobs:
             node bloom/pinterest-generator.js --week=${{ github.event.inputs.week }} --day=${{ github.event.inputs.day }}
           fi
 
-      - name: Generate pin images with overlay
+      - name: Build pin images (DALL-E infographics + Gemini photos)
         if: github.event.inputs.images == 'yes'
         env:
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
         run: |
-          if [ -z "${{ github.event.inputs.limit }}" ]; then
-            node bloom/pinterest-image-generator.js --week=${{ github.event.inputs.week }}
-          else
-            node bloom/pinterest-image-generator.js --week=${{ github.event.inputs.week }} --limit=${{ github.event.inputs.limit }}
-          fi
+          ARGS="--week=${{ github.event.inputs.week }}"
+          if [ -n "${{ github.event.inputs.day }}" ]; then ARGS="$ARGS --day=${{ github.event.inputs.day }}"; fi
+          if [ -n "${{ github.event.inputs.limit }}" ]; then ARGS="$ARGS --limit=${{ github.event.inputs.limit }}"; fi
+          node bloom/pinterest-build-all.js $ARGS
 
       - name: Commit pin images to repo
         if: github.event.inputs.images == 'yes'

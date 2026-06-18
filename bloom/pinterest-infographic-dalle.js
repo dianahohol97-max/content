@@ -35,24 +35,28 @@ function loadPins(week) {
 
 // ─── Build the DALL-E prompt for an infographic ──────────────────────────────
 function buildPrompt(pin) {
-  const itemsText = (pin.items ?? []).map((it, i) => `${i + 1}. ${it}`).join("\n");
+  const items = pin.items ?? [];
+  const itemsText = items.map((it, i) => `${i + 1}. ${it}`).join("\n");
+  const count = items.length;
 
   return `A clean, professional Pinterest infographic in a soft pastel aesthetic for an ADHD wellness brand.
 
 TITLE at top (large, bold, friendly rounded font): "${pin.headline}"
 
-A vertical numbered list with these EXACT items, each with a small simple matching icon:
+A vertical numbered list with EXACTLY ${count} items. Each item has a numbered circle badge on the left (numbered 1 through ${count} IN ORDER, no skipped or repeated numbers), the text in the middle, and a small simple matching pastel icon on the right:
 ${itemsText}
+
+CRITICAL: The numbered badges must read 1, 2, 3${count >= 4 ? ", 4" : ""}${count >= 5 ? ", 5" : ""} in perfect sequence from top to bottom. Every item must have its number. Do not skip or duplicate any number.
 
 STYLE:
 - Soft pastel palette: lavender, cream, sage green, blush pink, light blue
 - Cute minimal flat illustrations and small icons next to each list item
-- Rounded friendly sans-serif typography, clearly legible
-- Lots of soft decorative elements (little stars, leaves, hearts) but not cluttered
+- Rounded friendly sans-serif typography, clearly legible, perfect spelling
+- Soft decorative elements (little stars, leaves, hearts) but not cluttered
 - Warm, calm, supportive feeling
-- A small "bloomfocus.org" at the very bottom
+- Small "bloomfocus.org" text at the very bottom center
 - Vertical 2:3 Pinterest format
-- Spelling must be perfect and text must be crisp and readable
+- All text must be crisp, readable, and correctly spelled
 
 The infographic should look like a polished Canva design that an adult woman with ADHD would save and share.`;
 }
