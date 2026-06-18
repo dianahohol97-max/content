@@ -122,6 +122,94 @@ function parseJSON(raw) {
 
 // ─── Pin generator (single batch of 5) ───────────────────────────────────────
 
+// ─── Infographic pin generator (list/steps ON the image) ─────────────────────
+// These carry value directly on the pin → drive saves + authority.
+async function generateInfographicBatch({ funnel, url, theme, weekNum, dayNum, count = 4, attempt = 1 }) {
+  const strictness = attempt === 1 ? "" : attempt === 2
+    ? " CRITICAL: Use only straight ASCII apostrophes never curly quotes."
+    : " ULTRA STRICT: Plain ASCII only. No apostrophes.";
+
+  const funnelCTA = {
+    quiz: "Take the free ADHD quiz at bloomfocus.org/quiz",
+    app:  "Try the free ADHD app at bloomfocus.org/app",
+    etsy: "Shop ADHD tools at etsy.com/shop/BloomfocusShop",
+    blog: "Read the full guide at bloomfocus.org/blog",
+  };
+
+  const prompt = `You are a Pinterest SEO expert for bloom focus, an ADHD digital products brand.
+
+Generate exactly ${count} INFOGRAPHIC-style Pinterest pins for the "${funnel}" funnel.
+Week: ${weekNum}, Day: ${dayNum}. Theme: ${theme}. URL: ${url}
+
+These pins put VALUE directly on the image — a numbered list or steps the user can read and save.
+
+RULES:
+- headline: a number-driven hook, 4-7 words. Examples: "5 ADHD Morning Tricks", "7 Signs of ADHD Burnout", "4 Ways to Start Any Task". Use a number.
+- items: an array of 3-5 SHORT list items (each max 6 words, punchy, actionable, specific to ADHD). No full sentences.
+- title: keyword-rich long-tail SEO title (40-60 chars) for the pin metadata.
+- description: 150-300 chars, keyword-rich, ends with: ${funnelCTA[funnel]}
+- imagePrompt: A REALISTIC but SIMPLE photo background that leaves room for text — mostly empty cozy desk surface, soft pastel tones, lots of negative space at center and top. "Realistic aesthetic photograph, minimalist cozy desk corner, lots of empty space, soft natural light, muted pastel tones, no people, no text. Vertical 2:3."
+- board: one of: ${BOARDS.join(" | ")}
+- Each pin must cover a DIFFERENT angle of the theme.${strictness}
+
+Return ONLY a valid JSON array:
+[
+  {
+    "headline": "...",
+    "items": ["...", "...", "...", "..."],
+    "title": "...",
+    "description": "...",
+    "imagePrompt": "...",
+    "board": "...",
+    "destinationUrl": "${url}",
+    "funnel": "${funnel}",
+    "pinType": "infographic"
+  }
+]`;
+
+  const response = await client.messages.create({
+    model: "claude-sonnet-4-6",
+    max_tokens: 2000,
+    messages: [{ role: "user", content: prompt }],
+  });
+
+  return parseJSON(response.content[0].text);
+}
+
+async function generateInfographicWithRetry(params) {
+  const funnelCTA = {
+    quiz: "Take the free ADHD quiz at bloomfocus.org/quiz",
+    app:  "Try the free ADHD app at bloomfocus.org/app",
+    etsy: "Shop ADHD tools at etsy.com/shop/BloomfocusShop",
+    blog: "Read the full guide at bloomfocus.org/blog",
+  };
+  for (let attempt = 1; attempt <= 3; attempt++) {
+    try {
+      const pins = await generateInfographicBatch({ ...params, attempt });
+      if (!Array.isArray(pins) || pins.length === 0) throw new Error("Empty array");
+      console.log(`    ✓ infographic batch (${params.funnel}) — ${pins.length} pins`);
+      return pins;
+    } catch (err) {
+      console.warn(`    ✗ infographic attempt ${attempt} failed: ${err.message}`);
+      if (attempt === 3) {
+        console.warn(`    ⚠ using fallback infographic for ${params.funnel}`);
+        return Array.from({ length: params.count ?? 4 }, (_, i) => ({
+          headline: `${i + 3} ADHD Focus Tips`,
+          items: ["Start with 2 minute tasks", "Use body doubling", "Set visible timers", "Reward small wins"],
+          title: `ADHD tips for ${params.theme}`,
+          description: `Practical ADHD strategies for ${params.theme}. ${funnelCTA[params.funnel]}`,
+          imagePrompt: "Realistic aesthetic photograph, minimalist cozy desk corner with lots of empty space, soft natural light, muted pastel tones, no people, no text. Vertical 2:3.",
+          board: BOARDS[0],
+          destinationUrl: params.url,
+          funnel: params.funnel,
+          pinType: "infographic",
+        }));
+      }
+      await new Promise((r) => setTimeout(r, 1000 * attempt));
+    }
+  }
+}
+
 async function generatePinBatch({ funnel, url, theme, weekNum, dayNum, batchIndex, count = 5, attempt = 1 }) {
   const strictness = attempt === 1 ? "" : attempt === 2
     ? " CRITICAL: Use only straight ASCII apostrophes (') never curly quotes. No special characters."
@@ -220,42 +308,53 @@ async function generatePinBatchWithRetry(params) {
 
 // ─── Generate one day (10 pins) ───────────────────────────────────────────────
 //
-// Distribution: 4 quiz + 3 app + 2 etsy + 1 blog
-// Split into batches of 5 to avoid JSON issues:
-//   Batch 1: 3 quiz + 2 app
-//   Batch 2: 1 quiz + 1 app + 2 etsy + 1 blog
+// New mix (data-driven for saves + clicks + sales):
+//   4 hook pins   → quiz/app   (short text on photo, drives clicks)
+//   4 infographic → quiz/app/blog (list on image, drives saves + authority)
+//   2 product     → etsy       (photo + benefit, drives sales)
 
 async function generateDay(weekNum, dayNum) {
   const theme = DAY_THEMES[dayNum] ?? "ADHD productivity and focus";
   console.log(`\n📅 Day ${dayNum} — theme: ${theme}`);
 
-  // Batch 1: 3 quiz + 2 printable (5 pins)
-  const batch1a = await generatePinBatchWithRetry({
+  // ── 4 HOOK pins (short text on photo) ──
+  console.log(`  📌 Hook pins...`);
+  const hookQuiz = await generatePinBatchWithRetry({
     funnel: "quiz", url: URLS.quiz, theme, weekNum, dayNum, batchIndex: 1, count: 3,
   });
-
-  const batch1b = await generatePinBatchWithRetry({
-    funnel: "app", url: URLS.app, theme, weekNum, dayNum, batchIndex: 1, count: 2,
+  const hookApp = await generatePinBatchWithRetry({
+    funnel: "app", url: URLS.app, theme, weekNum, dayNum, batchIndex: 1, count: 1,
   });
 
-  // Batch 2: 1 quiz + 1 printable + 2 etsy + 1 blog (5 pins)
-  const batch2a = await generatePinBatchWithRetry({
-    funnel: "quiz", url: URLS.quiz, theme, weekNum, dayNum, batchIndex: 2, count: 1,
+  // ── 4 INFOGRAPHIC pins (list/value on image) ──
+  console.log(`  📊 Infographic pins...`);
+  const infoQuiz = await generateInfographicWithRetry({
+    funnel: "quiz", url: URLS.quiz, theme, weekNum, dayNum, count: 1,
+  });
+  const infoApp = await generateInfographicWithRetry({
+    funnel: "app", url: URLS.app, theme, weekNum, dayNum, count: 1,
+  });
+  const infoBlog = await generateInfographicWithRetry({
+    funnel: "blog", url: URLS.blog, theme, weekNum, dayNum, count: 2,
   });
 
-  const batch2b = await generatePinBatchWithRetry({
-    funnel: "app", url: URLS.app, theme, weekNum, dayNum, batchIndex: 2, count: 1,
-  });
-
-  const batch2c = await generatePinBatchWithRetry({
+  // ── 2 PRODUCT pins (photo + benefit) ──
+  console.log(`  🛒 Product pins...`);
+  const product = await generatePinBatchWithRetry({
     funnel: "etsy", url: URLS.etsy, theme, weekNum, dayNum, batchIndex: 1, count: 2,
   });
 
-  const batch2d = await generatePinBatchWithRetry({
-    funnel: "blog", url: URLS.blog, theme, weekNum, dayNum, batchIndex: 1, count: 1,
-  });
+  // Tag hook/product pins with pinType for the image generator
+  const tagHook = (arr) => arr.map((p) => ({ ...p, pinType: p.pinType ?? "hook" }));
 
-  const allPins = [...batch1a, ...batch1b, ...batch2a, ...batch2b, ...batch2c, ...batch2d];
+  const allPins = [
+    ...tagHook(hookQuiz),
+    ...tagHook(hookApp),
+    ...infoQuiz,
+    ...infoApp,
+    ...infoBlog,
+    ...tagHook(product),
+  ];
 
   // Add metadata
   return allPins.map((pin, i) => ({

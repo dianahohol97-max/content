@@ -115,6 +115,70 @@ function buildOverlay(overlayTitle, cta) {
 </svg>`);
 }
 
+// ─── Build INFOGRAPHIC overlay (headline + numbered list) ────────────────────
+function buildInfographicOverlay(headline, items, cta) {
+  const headLines = wrapText(headline, 16);
+  const headLH = 88;
+  const headBlockH = headLines.length * headLH + 50;
+
+  const headTspans = headLines.map((ln, i) =>
+    `<tspan x="${W/2}" dy="${i === 0 ? 0 : headLH}">${esc(ln)}</tspan>`
+  ).join("");
+
+  // List items as rows with numbered chips
+  const listStartY = 120 + headBlockH + 60;
+  const rowH = 130;
+  const safeItems = (items ?? []).slice(0, 5);
+
+  const itemRows = safeItems.map((item, i) => {
+    const y = listStartY + i * rowH;
+    const itemLines = wrapText(item, 24);
+    const itemTspans = itemLines.map((ln, j) =>
+      `<tspan x="210" dy="${j === 0 ? 0 : 46}">${esc(ln)}</tspan>`
+    ).join("");
+    return `
+      <circle cx="135" cy="${y - 14}" r="38" fill="#9B7FD4"/>
+      <text x="135" y="${y}" font-family="Georgia, serif" font-size="44" font-weight="700"
+            fill="#ffffff" text-anchor="middle">${i + 1}</text>
+      <text x="210" y="${y - 8}" font-family="Helvetica, Arial, sans-serif" font-size="40" font-weight="600"
+            fill="#2a2438">${itemTspans}</text>`;
+  }).join("");
+
+  const panelH = listStartY + safeItems.length * rowH - 40;
+
+  return Buffer.from(`
+<svg width="${W}" height="${H}" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="botfade" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="rgba(40,30,50,0)"/>
+      <stop offset="100%" stop-color="rgba(40,30,50,0.5)"/>
+    </linearGradient>
+  </defs>
+
+  <!-- semi-transparent panel for the list -->
+  <rect x="50" y="70" width="${W-100}" height="${panelH}" rx="32" fill="rgba(255,248,240,0.93)"/>
+
+  <!-- headline -->
+  <text x="${W/2}" y="${150 + headLH*0.3}" font-family="Georgia, serif" font-size="68" font-weight="700"
+        fill="#3d2c6e" text-anchor="middle" style="letter-spacing:-1px;">
+    ${headTspans}
+  </text>
+
+  <!-- divider -->
+  <rect x="${W/2 - 60}" y="${130 + headBlockH}" width="120" height="5" rx="3" fill="#9B7FD4"/>
+
+  <!-- list items -->
+  ${itemRows}
+
+  <!-- CTA bottom -->
+  <rect x="0" y="${H-200}" width="${W}" height="200" fill="url(#botfade)"/>
+  <text x="${W/2}" y="${H-120}" font-family="Helvetica, Arial, sans-serif" font-size="40" font-weight="600"
+        fill="#ffffff" text-anchor="middle">${esc(cta)}</text>
+  <text x="${W/2}" y="${H-70}" font-family="Helvetica, Arial, sans-serif" font-size="32" font-weight="500"
+        fill="rgba(255,255,255,0.9)" text-anchor="middle">bloomfocus.org</text>
+</svg>`);
+}
+
 // ─── Compose one finished pin ────────────────────────────────────────────────
 async function buildPin(pin, outDir) {
   const filename = `${pin.id}.png`;
@@ -126,8 +190,15 @@ async function buildPin(pin, outDir) {
   // 2. Resize/crop to exactly 1000x1500
   const bg = await sharp(bgBuffer).resize(W, H, { fit: "cover", position: "centre" }).toBuffer();
 
-  // 3. Overlay text
-  const overlay = buildOverlay(pin.overlayTitle ?? pin.title, pin.cta ?? "Learn more");
+  // 3. Overlay — infographic (list) or hook (headline) depending on type
+  const shortCta = { quiz: "Take the free quiz", app: "Try the free app", etsy: "Shop on Etsy", blog: "Read more" }[pin.funnel] ?? "Learn more";
+
+  let overlay;
+  if (pin.pinType === "infographic" && Array.isArray(pin.items)) {
+    overlay = buildInfographicOverlay(pin.headline ?? pin.title, pin.items, shortCta);
+  } else {
+    overlay = buildOverlay(pin.overlayTitle ?? pin.title, shortCta);
+  }
 
   await sharp(bg)
     .composite([{ input: overlay, top: 0, left: 0 }])
@@ -152,7 +223,8 @@ async function main() {
   let done = 0, failed = 0;
   for (let i = 0; i < pins.length; i++) {
     const pin = pins[i];
-    process.stdout.write(`   [${i+1}/${pins.length}] ${pin.id} (${pin.funnel}) "${pin.overlayTitle}"... `);
+    const label = pin.pinType === "infographic" ? (pin.headline ?? pin.title) : (pin.overlayTitle ?? pin.title);
+    process.stdout.write(`   [${i+1}/${pins.length}] ${pin.id} (${pin.funnel}/${pin.pinType ?? "hook"}) "${label}"... `);
     try {
       await buildPin(pin, outDir);
       done++;
