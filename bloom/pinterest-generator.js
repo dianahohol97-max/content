@@ -4,7 +4,7 @@
  *
  * Distribution per day (4+3+2+1 funnel strategy):
  *   4 pins → bloomfocus.org/quiz     (cold — ADHD test)
- *   3 pins → bloomfocus.org          (warm — free printables / lead magnet)
+ *   3 pins → bloomfocus.org/app      (warm — free ADHD app with gamification)
  *   2 pins → etsy.com/shop/BloomfocusShop  (hot — product)
  *   1 pin  → bloomfocus.org/blog     (education / SEO authority)
  *
@@ -26,10 +26,10 @@ const DAY_ONLY = process.argv.find((a) => a.startsWith("--day="))?.split("=")[1]
 const DAYS = DAY_ONLY ? [parseInt(DAY_ONLY)] : [1, 2, 3, 4, 5, 6, 7];
 
 const URLS = {
-  quiz:      "https://bloomfocus.org/quiz",
-  printable: "https://bloomfocus.org",
-  etsy:      "https://etsy.com/shop/BloomfocusShop",
-  blog:      "https://bloomfocus.org/blog",
+  quiz: "https://bloomfocus.org/quiz",
+  app:  "https://bloomfocus.org/app",
+  etsy: "https://etsy.com/shop/BloomfocusShop",
+  blog: "https://bloomfocus.org/blog",
 };
 
 const BOARDS = [
@@ -131,9 +131,10 @@ async function generatePinBatch({ funnel, url, theme, weekNum, dayNum, batchInde
 Hook style: "9 signs of ADHD in adult women", "Why you can't start tasks (ADHD quiz inside)", "Is this ADHD or just stress? Take the free test".
 CTA in description: "Take the free ADHD quiz at bloomfocus.org/quiz"`,
 
-    printable: `Goal: warm traffic. The user suspects/knows they have ADHD and wants tools.
-Hook style: "Free ADHD habit tracker (download now)", "The ADHD planner that finally works — free printable", "ADHD morning routine checklist — free PDF".
-CTA in description: "Get your free ADHD printable at bloomfocus.org"`,
+    app: `Goal: warm traffic. The user suspects/knows they have ADHD and is looking for free tools.
+Hook style: "Free ADHD app that gamifies your focus", "The free ADHD app that actually makes tasks feel doable", "Free ADHD productivity app with gamification (no credit card)".
+Key angle: the app is FREE, has gamification, helps with focus and task management. It is a web app at bloomfocus.org/app.
+CTA in description: "Try the free ADHD app at bloomfocus.org/app"`,
 
     etsy: `Goal: hot traffic. The user is ready to buy a solution.
 Hook style: "ADHD Dopamine Menu — finally a planner that works", "The ADHD planner designed by an ADHD brain", "Task Initiation Kit for ADHD — get unstuck fast".
@@ -215,10 +216,10 @@ async function generatePinBatchWithRetry(params) {
 
 // ─── Generate one day (10 pins) ───────────────────────────────────────────────
 //
-// Distribution: 4 quiz + 3 printable + 2 etsy + 1 blog
+// Distribution: 4 quiz + 3 app + 2 etsy + 1 blog
 // Split into batches of 5 to avoid JSON issues:
-//   Batch 1: 3 quiz + 2 printable
-//   Batch 2: 1 quiz + 1 printable + 2 etsy + 1 blog
+//   Batch 1: 3 quiz + 2 app
+//   Batch 2: 1 quiz + 1 app + 2 etsy + 1 blog
 
 async function generateDay(weekNum, dayNum) {
   const theme = DAY_THEMES[dayNum] ?? "ADHD productivity and focus";
@@ -230,7 +231,7 @@ async function generateDay(weekNum, dayNum) {
   });
 
   const batch1b = await generatePinBatchWithRetry({
-    funnel: "printable", url: URLS.printable, theme, weekNum, dayNum, batchIndex: 1, count: 2,
+    funnel: "app", url: URLS.app, theme, weekNum, dayNum, batchIndex: 1, count: 2,
   });
 
   // Batch 2: 1 quiz + 1 printable + 2 etsy + 1 blog (5 pins)
@@ -239,7 +240,7 @@ async function generateDay(weekNum, dayNum) {
   });
 
   const batch2b = await generatePinBatchWithRetry({
-    funnel: "printable", url: URLS.printable, theme, weekNum, dayNum, batchIndex: 2, count: 1,
+    funnel: "app", url: URLS.app, theme, weekNum, dayNum, batchIndex: 2, count: 1,
   });
 
   const batch2c = await generatePinBatchWithRetry({
@@ -298,10 +299,4 @@ async function main() {
   console.log(`   Output: ${outputFile}`);
   console.log(`\nNext step: run sheets-publisher.js to push to Google Sheets`);
 
-  return allPins;
-}
-
-main().catch((err) => {
-  console.error("Fatal error:", err);
-  process.exit(1);
-});
+  return allPin
