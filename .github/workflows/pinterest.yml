@@ -1,0 +1,41 @@
+name: bloom focus — Pinterest
+
+on:
+  workflow_dispatch:
+    inputs:
+      week:
+        description: 'Week number'
+        required: true
+        default: '29'
+      day:
+        description: 'Single day (1-7) or leave empty for full week'
+        required: false
+        default: ''
+
+jobs:
+  pinterest:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Generate Pinterest pins
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+        run: |
+          if [ -z "${{ github.event.inputs.day }}" ]; then
+            node bloom/pinterest-generator.js --week=${{ github.event.inputs.week }}
+          else
+            node bloom/pinterest-generator.js --week=${{ github.event.inputs.week }} --day=${{ github.event.inputs.day }}
+          fi
+
+      - name: Upload pins JSON as artifact
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: bloom-pinterest-week${{ github.event.inputs.week }}
+          path: pinterest_week_*.json
+          retention-days: 7

@@ -15,6 +15,7 @@
  *   node pinterest-generator.js --week=25 --day=1   (generate only 1 day)
  */
 
+import 'dotenv/config';
 import Anthropic from "@anthropic-ai/sdk";
 import fs from "fs";
 
@@ -28,7 +29,7 @@ const DAYS = DAY_ONLY ? [parseInt(DAY_ONLY)] : [1, 2, 3, 4, 5, 6, 7];
 const URLS = {
   quiz: "https://bloomfocus.org/quiz",
   app:  "https://bloomfocus.org/app",
-  etsy: "https://etsy.com/shop/BloomfocusShop",
+  etsy: "https://www.etsy.com/shop/BloomfocusShop",
   blog: "https://bloomfocus.org/blog",
 };
 
@@ -161,7 +162,8 @@ PINTEREST RULES:
   BAD: "ADHD tips"
   GOOD: "ADHD morning routine when you can't get out of bed"
 - Description: 150-300 chars, 3-5 relevant keywords naturally embedded, end with destination URL
-- imagePrompt: Detailed prompt for DALL-E. Style: "Soft pastel digital illustration, flat vector with watercolor texture. Palette: lavender #E8DEFF, cream #FFF8F0, sage green #D4E8D4, blush #FFD4E4. No real people, no text in image. Vertical 2:3 format." Add scene detail relevant to pin topic.
+- imagePrompt: Detailed prompt for a REALISTIC PHOTO (not illustration). Style: "Realistic aesthetic photograph, cozy desk flat-lay, soft natural lighting, muted pastel tones (lavender, cream, sage, blush). Shallow depth of field, film-like. No people, no faces, no text. Vertical 2:3 portrait (1000x1500)." Add scene detail relevant to the pin topic (planner, coffee, plant, journal, phone showing an app, etc).
+- overlayTitle: A SHORT punchy version of the title (max 6 words) to render as text OVERLAY on top of the photo. This is what stops the scroll.
 - board: Choose the most relevant from: ${BOARDS.join(" | ")}
 - Each pin must have a DIFFERENT title, angle, and imagePrompt (not just paraphrases of the same idea)
 - Pins ${batchIndex > 1 ? "in this second batch" : "in this first batch"} must be on different sub-topics within the theme${strictness}
@@ -170,6 +172,7 @@ Return ONLY a valid JSON array, no markdown, no explanation:
 [
   {
     "title": "...",
+    "overlayTitle": "...",
     "description": "...",
     "imagePrompt": "...",
     "board": "...",
@@ -202,8 +205,9 @@ async function generatePinBatchWithRetry(params) {
         console.warn(`    ⚠ using fallback for ${params.funnel} batch ${params.batchIndex}`);
         return Array.from({ length: params.count ?? 5 }, (_, i) => ({
           title: `ADHD ${params.funnel} tip ${params.batchIndex}-${i + 1}`,
+          overlayTitle: "ADHD support",
           description: `Helpful ADHD content for ${params.theme}. Visit ${params.url}`,
-          imagePrompt: "Soft pastel digital illustration of a cozy desk with planners and plants. Lavender and cream palette. No text. Vertical 2:3 format.",
+          imagePrompt: "Realistic aesthetic photograph of a cozy desk with a planner, coffee cup and small plant. Soft natural light, muted pastel tones. No people, no text. Vertical 2:3 portrait (1000x1500).",
           board: BOARDS[0],
           destinationUrl: params.url,
           funnel: params.funnel,
@@ -299,4 +303,10 @@ async function main() {
   console.log(`   Output: ${outputFile}`);
   console.log(`\nNext step: run sheets-publisher.js to push to Google Sheets`);
 
-  return allPin
+  return allPins;
+}
+
+main().catch((err) => {
+  console.error("\n❌ pinterest-generator failed:", err.message);
+  process.exit(1);
+});
