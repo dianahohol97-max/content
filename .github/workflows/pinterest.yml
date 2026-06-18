@@ -11,6 +11,21 @@ on:
         description: 'Single day (1-7) or leave empty for full week'
         required: false
         default: ''
+      images:
+        description: 'Also generate pin images with text overlay?'
+        required: true
+        default: 'yes'
+        type: choice
+        options:
+          - 'yes'
+          - 'no'
+      limit:
+        description: 'Limit images (for testing, e.g. 3)'
+        required: false
+        default: ''
+
+permissions:
+  contents: write
 
 jobs:
   pinterest:
@@ -22,7 +37,7 @@ jobs:
       - name: Install dependencies
         run: npm install
 
-      - name: Generate Pinterest pins
+      - name: Generate Pinterest pins (text)
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
         run: |
@@ -32,10 +47,40 @@ jobs:
             node bloom/pinterest-generator.js --week=${{ github.event.inputs.week }} --day=${{ github.event.inputs.day }}
           fi
 
-      - name: Upload pins JSON as artifact
+      - name: Generate pin images with overlay
+        if: github.event.inputs.images == 'yes'
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+        run: |
+          if [ -z "${{ github.event.inputs.limit }}" ]; then
+            node bloom/pinterest-image-generator.js --week=${{ github.event.inputs.week }}
+          else
+            node bloom/pinterest-image-generator.js --week=${{ github.event.inputs.week }} --limit=${{ github.event.inputs.limit }}
+          fi
+
+      - name: Commit pin images to repo
+        if: github.event.inputs.images == 'yes'
+        run: |
+          git config user.name "bloom-bot"
+          git config user.email "bot@bloomfocus.org"
+          git add output/pinterest/ -f
+          git commit -m "pinterest pins: week ${{ github.event.inputs.week }}" || echo "nothing to commit"
+          git push
+
+      - name: Print public image URLs
+        if: github.event.inputs.images == 'yes'
+        run: |
+          echo "=== PUBLIC PIN IMAGE URLS (for Make.com) ==="
+          for f in $(find output/pinterest/week_${{ github.event.inputs.week }} -name "*.png" 2>/dev/null | sort); do
+            echo "https://raw.githubusercontent.com/dianahohol97-max/content/main/$f"
+          done
+
+      - name: Upload artifacts
         if: always()
         uses: actions/upload-artifact@v4
         with:
           name: bloom-pinterest-week${{ github.event.inputs.week }}
-          path: pinterest_week_*.json
+          path: |
+            pinterest_week_*.json
+            output/pinterest/
           retention-days: 7
