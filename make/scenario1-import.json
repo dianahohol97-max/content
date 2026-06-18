@@ -1,0 +1,150 @@
+{
+  "name": "bloom focus — Pinterest Import (GitHub → Drive → Sheets)",
+  "flow": [
+    {
+      "id": 1,
+      "module": "http:ActionGetFile",
+      "version": 3,
+      "parameters": {},
+      "mapper": {
+        "url": "https://raw.githubusercontent.com/dianahohol97-max/content/main/pinterest_week_29.json",
+        "serializeUrl": false,
+        "method": "get",
+        "headers": [],
+        "qs": [],
+        "bodyType": "",
+        "parseResponse": false,
+        "followRedirect": true,
+        "useQuerystring": false,
+        "gzip": true,
+        "showHeaders": false,
+        "ca": "",
+        "rejectUnauthorized": true,
+        "followAllRedirects": false
+      },
+      "metadata": {
+        "designer": { "x": -300, "y": 0 },
+        "restore": {},
+        "expect": [
+          { "name": "method", "type": "select", "label": "Method" },
+          { "name": "headers", "type": "array", "label": "Headers" },
+          { "name": "qs", "type": "array", "label": "Query String" }
+        ]
+      }
+    },
+    {
+      "id": 2,
+      "module": "json:ParseJSON",
+      "version": 1,
+      "parameters": { "type": "" },
+      "mapper": { "json": "{{1.data}}" },
+      "metadata": {
+        "designer": { "x": 0, "y": 0 },
+        "restore": {}
+      }
+    },
+    {
+      "id": 3,
+      "module": "builtin:BasicFeeder",
+      "version": 1,
+      "parameters": {},
+      "mapper": { "array": "{{2.array}}" },
+      "metadata": {
+        "designer": { "x": 300, "y": 0 },
+        "restore": {}
+      }
+    },
+    {
+      "id": 4,
+      "module": "http:ActionGetFile",
+      "version": 3,
+      "parameters": {},
+      "mapper": {
+        "url": "{{3.imageUrl}}",
+        "serializeUrl": false,
+        "method": "get",
+        "headers": [],
+        "qs": [],
+        "bodyType": "",
+        "parseResponse": false,
+        "followRedirect": true,
+        "useQuerystring": false,
+        "gzip": true,
+        "showHeaders": false,
+        "rejectUnauthorized": true,
+        "followAllRedirects": false
+      },
+      "metadata": {
+        "designer": { "x": 600, "y": 0 },
+        "restore": {}
+      }
+    },
+    {
+      "id": 5,
+      "module": "google-drive:uploadAFile",
+      "version": 4,
+      "parameters": { "__IMTCONN__": 13180049 },
+      "mapper": {
+        "data": "{{4.data}}",
+        "filename": "{{3.id}}.png",
+        "destination": "drive",
+        "driveId": "drive",
+        "folder": { "mode": "root" },
+        "convertToGDocs": false
+      },
+      "metadata": {
+        "designer": { "x": 900, "y": 0 },
+        "restore": {}
+      }
+    },
+    {
+      "id": 6,
+      "module": "google-sheets:addRow",
+      "version": 2,
+      "parameters": { "__IMTCONN__": 13180049 },
+      "mapper": {
+        "from": "drive",
+        "mode": "select",
+        "spreadsheetId": "1Z3WFPHYjZz5AfHVrHcHJ-H7aN5f4vHcXsyELRsYYmZg",
+        "sheetId": "Sheet1",
+        "includesHeaders": true,
+        "insertDataOption": "INSERT_ROWS",
+        "valueInputOption": "USER_ENTERED",
+        "values": {
+          "0": "{{3.id}}",
+          "1": "{{3.day}}",
+          "2": "{{3.pinType}}",
+          "3": "{{3.funnel}}",
+          "4": "{{3.title}}",
+          "5": "{{3.description}}",
+          "6": "{{3.board}}",
+          "7": "{{3.imageUrl}}",
+          "8": "{{5.webContentLink}}",
+          "9": "{{3.destinationUrl}}",
+          "10": "pending",
+          "11": "",
+          "12": "{{3.boardId}}"
+        }
+      },
+      "metadata": {
+        "designer": { "x": 1200, "y": 0 },
+        "restore": {}
+      }
+    }
+  ],
+  "metadata": {
+    "instant": false,
+    "version": 1,
+    "scenario": {
+      "roundtrips": 1,
+      "maxErrors": 3,
+      "autoCommit": true,
+      "autoCommitTriggerLast": true,
+      "sequential": false,
+      "confidential": false,
+      "dataloss": false,
+      "dlq": false
+    },
+    "designer": { "orphans": [] }
+  }
+}
