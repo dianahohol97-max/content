@@ -108,12 +108,13 @@ function buildRows(pack) {
       const img = pack.image_prompts.pinterest.find(
         p => p.day === day.day && p.pin_number === pin.pin_number
       );
+      const levelLabel = { cold: "❄️ Cold/Quiz", warm: "🌊 Warm/App", hot: "🔥 Hot/Etsy", seo: "📚 SEO/Blog" }[pin.level] ?? pin.stream;
       rows.push([
         `W${W}_P${String(id++).padStart(2,'0')}`,
         `Day ${day.day}`,
         "Pinterest",
-        `Pin (${pin.stream})`,
-        pin.stream,
+        `Pin (${levelLabel})`,
+        `${day.theme ?? ""} — ${pin.stream}`,
         pin.title,
         "",
         pin.cta,
@@ -123,9 +124,9 @@ function buildRows(pack) {
         pin.title,
         pin.description,
         pin.link,
-        pin.lang ?? "en",
+        "en",
         "pending",
-        `Keywords: ${(pin.keywords ?? []).join(", ")}`,
+        `${levelLabel} | Keywords: ${(pin.keywords ?? []).join(", ")}`,
         ""
       ]);
     }

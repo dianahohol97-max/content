@@ -58,13 +58,23 @@ const PILLARS = Object.values(config.content_pillars).map((p, i) => ({
   id: i + 1, name: p.label, type: p.type, goal: p.goal
 }));
 
-// ─── Pinterest traffic streams ────────────────────────────────────────────────
+// ─── Pinterest v2 strategy: 4 quiz / 3 app / 2 etsy / 1 blog ──────────────────
 const PIN_STREAMS = [
-  { type: "etsy_product",  destination: catalog.etsy_shop,        cta: "Get it on Etsy",          count: 2 },
-  { type: "site_product",  destination: "https://bloomfocus.org/shop", cta: "Shop the toolkit",   count: 2 },
-  { type: "free_app",      destination: app?.url ?? "https://bloomfocus.org/app", cta: "Try free", count: 2 },
-  { type: "quiz_funnel",   destination: config.quiz_url,          cta: "Take the free ADHD quiz", count: 2 },
-  { type: "blog_edu",      destination: "https://bloomfocus.org/blog", cta: "Read more",          count: 2 },
+  { type: "quiz_funnel", destination: config.quiz_url,                    cta: "Take the free ADHD quiz", count: 4, level: "cold" },
+  { type: "free_app",    destination: app?.url ?? "https://bloomfocus.org/app", cta: "Try the free app", count: 3, level: "warm" },
+  { type: "etsy_product",destination: catalog.etsy_shop,                  cta: "Get it on Etsy",          count: 2, level: "hot"  },
+  { type: "blog_edu",    destination: "https://bloomfocus.org/blog",      cta: "Read more",               count: 1, level: "seo"  },
+];
+
+// ─── Daily themes (from Pinterest strategy v2) ────────────────────────────────
+const PIN_DAILY_THEMES = [
+  "ADHD morning routines",                    // Mon
+  "Focus and task initiation",                // Tue
+  "Emotions and overwhelm",                   // Wed
+  "Organization and planners",                // Thu
+  "Dopamine and motivation",                  // Fri
+  "The science of the ADHD brain",            // Sat
+  "Self-compassion and ADHD identity",        // Sun
 ];
 
 // ─── Safe JSON parser ─────────────────────────────────────────────────────────
@@ -144,44 +154,64 @@ Return JSON (no apostrophes):
   return parseJSON(r.content[0].text);
 }
 
-// ─── Generate 10 Pinterest pins for one day ───────────────────────────────────
-async function generatePinBatch(dayIndex, weekNumber, product, lang, batchNum) {
-  // Generate 5 pins at a time to avoid JSON truncation
-  const isFirstBatch = batchNum === 1;
-  const streams = isFirstBatch
+// ─── Generate Pinterest pins for one day (v2 strategy) ───────────────────────
+// Distribution: 4 quiz / 3 app / 2 etsy / 1 blog = 10 pins
+// Built as 2-3 ideas x 3-5 design variants for the same daily theme.
+async function generatePinBatch(dayIndex, weekNumber, product, batchNum) {
+  const theme = PIN_DAILY_THEMES[dayIndex % 7];
+
+  // Split 10 pins into two batches of 5 to keep JSON small and reliable
+  const streams = batchNum === 1
     ? [
-        { num: 1, stream: "etsy_product",  link: catalog.etsy_shop, cta: "Get it on Etsy", product: product.name, lang: "en" },
-        { num: 2, stream: "etsy_product",  link: catalog.etsy_shop, cta: "Get it on Etsy", product: product.name, lang: lang },
-        { num: 3, stream: "site_product",  link: "https://bloomfocus.org/shop", cta: "Shop the toolkit", product: product.name, lang: "en" },
-        { num: 4, stream: "site_product",  link: "https://bloomfocus.org/shop", cta: "Shop the toolkit", product: product.name, lang: lang },
-        { num: 5, stream: "free_app",      link: app?.url ?? "https://bloomfocus.org/app", cta: "Try free", product: "ADHD App", lang: "en" },
+        { num: 1, stream: "quiz_funnel", link: config.quiz_url, cta: "Take the free ADHD quiz", product: "ADHD Quiz", level: "cold" },
+        { num: 2, stream: "quiz_funnel", link: config.quiz_url, cta: "Take the free ADHD quiz", product: "ADHD Quiz", level: "cold" },
+        { num: 3, stream: "quiz_funnel", link: config.quiz_url, cta: "Take the free ADHD quiz", product: "ADHD Quiz", level: "cold" },
+        { num: 4, stream: "quiz_funnel", link: config.quiz_url, cta: "Take the free ADHD quiz", product: "ADHD Quiz", level: "cold" },
+        { num: 5, stream: "free_app",    link: app?.url ?? "https://bloomfocus.org/app", cta: "Try the free app", product: "ADHD App", level: "warm" },
       ]
     : [
-        { num: 6, stream: "free_app",      link: app?.url ?? "https://bloomfocus.org/app", cta: "Try free", product: "ADHD App", lang: lang },
-        { num: 7, stream: "quiz_funnel",   link: config.quiz_url, cta: "Take the free ADHD quiz", product: "ADHD Quiz", lang: "en" },
-        { num: 8, stream: "quiz_funnel",   link: config.quiz_url, cta: "Take the free ADHD quiz", product: "ADHD Quiz", lang: lang },
-        { num: 9, stream: "blog_edu",      link: "https://bloomfocus.org/blog", cta: "Read more", product: "Blog", lang: "en" },
-        { num: 10, stream: "blog_edu",     link: "https://bloomfocus.org/blog", cta: "Read more", product: "Blog", lang: lang },
+        { num: 6,  stream: "free_app",     link: app?.url ?? "https://bloomfocus.org/app", cta: "Try the free app", product: "ADHD App", level: "warm" },
+        { num: 7,  stream: "free_app",     link: app?.url ?? "https://bloomfocus.org/app", cta: "Try the free app", product: "ADHD App", level: "warm" },
+        { num: 8,  stream: "etsy_product", link: catalog.etsy_shop, cta: "Get it on Etsy", product: product.name, level: "hot" },
+        { num: 9,  stream: "etsy_product", link: catalog.etsy_shop, cta: "Get it on Etsy", product: product.name, level: "hot" },
+        { num: 10, stream: "blog_edu",     link: "https://bloomfocus.org/blog", cta: "Read more", product: "Blog", level: "seo" },
       ];
 
-  const streamList = streams.map(s => s.num + "=" + s.stream + "(" + s.lang + ")").join(", ");
+  const levelGuide = {
+    cold: "COLD audience (does not know they have ADHD yet). Hook with recognition: signs, symptoms, am-I-ADHD questions. Lead to the free quiz.",
+    warm: "WARM audience (suspects or knows ADHD, wants free help). Hook with the free gamified ADHD web app — no download, no credit card.",
+    hot:  `HOT audience (ready to buy). Feature the product "${product.name}" as the solution.`,
+    seo:  "SEO authority. Educational ADHD brain science. Long-tail keyword title.",
+  };
+
   const template = streams.map(s =>
-    '{"pin_number":' + s.num + ',"stream":"' + s.stream + '","title":"SEO title here","description":"2-3 sentences here","link":"' + s.link + '","cta":"' + s.cta + '","product":"' + s.product + '","lang":"' + s.lang + '","keywords":["kw1","kw2","kw3"]}'
+    '{"pin_number":' + s.num + ',"stream":"' + s.stream + '","title":"specific long-tail keyword title","description":"2-3 keyword-rich sentences, max 500 chars","link":"' + s.link + '","cta":"' + s.cta + '","product":"' + s.product + '","lang":"en","level":"' + s.level + '","keywords":["long tail kw1","kw2","kw3","kw4"]}'
   ).join(",\n    ");
 
-  const prompt = "Generate " + streams.length + " Pinterest pins for bloom focus. Day " + (dayIndex+1) + ", batch " + batchNum + ".\n" +
-    "Product focus: \"" + product.name + "\". No apostrophes in values. Evergreen SEO content only.\n\n" +
-    "Streams: " + streamList + "\n\n" +
-    "Return JSON array only:\n[\n    " + template + "\n]";
+  const streamGuide = streams.map(s => `Pin ${s.num} (${s.level}): ${levelGuide[s.level]}`).join("\n");
 
-  // Try up to 3 times, then fall back to safe minimal pins
+  const prompt = `Generate ${streams.length} Pinterest pins for bloom focus. English only.
+TODAY THEME: "${theme}". All pins relate to this theme from different angles.
+
+${streamGuide}
+
+CRITICAL TITLE RULE — be SPECIFIC, not generic:
+- BAD: "ADHD tips", "Focus app", "ADHD planner"
+- GOOD: "ADHD morning routine when you cannot get out of bed", "Free ADHD app that gamifies focus with no install", "Why your ADHD brain cannot start tasks and the 2 minute fix"
+Each title must be a long-tail keyword phrase someone would actually search.
+
+No apostrophes in any values. Evergreen only (no dates). Return JSON array only:
+[
+    ${template}
+]`;
+
   for (let attempt = 0; attempt < 3; attempt++) {
     const strictNote = attempt > 0
-      ? "\n\nCRITICAL: Previous response had invalid JSON. Output ONLY a valid JSON array. Use straight double quotes for all strings. NO apostrophes anywhere — remove them entirely. NO single quotes inside values."
+      ? "\n\nCRITICAL: Previous response had invalid JSON. Output ONLY a valid JSON array. Straight double quotes only. NO apostrophes anywhere."
       : "";
 
     const r = await client.messages.create({
-      model: "claude-sonnet-4-6", max_tokens: 1500, system: SYSTEM,
+      model: "claude-sonnet-4-6", max_tokens: 1800, system: SYSTEM,
       messages: [{ role: "user", content: prompt + strictNote }]
     });
 
@@ -201,8 +231,8 @@ async function generatePinBatch(dayIndex, weekNumber, product, lang, batchNum) {
         console.log(`\n   ⚠ Pin batch ${batchNum} fell back to safe pins`);
         return streams.map(s => ({
           pin_number: s.num, stream: s.stream,
-          title: "ADHD " + s.product, description: "Tools designed for how ADHD brains actually work.",
-          link: s.link, cta: s.cta, product: s.product, lang: s.lang,
+          title: theme, description: "Tools designed for how ADHD brains actually work.",
+          link: s.link, cta: s.cta, product: s.product, lang: "en", level: s.level,
           keywords: ["ADHD", "neurodivergent", "ADHD tools"]
         }));
       }
@@ -212,15 +242,15 @@ async function generatePinBatch(dayIndex, weekNumber, product, lang, batchNum) {
 
 async function generateDailyPins(dayIndex, weekNumber, usedProducts) {
   const product = ALL_PRODUCTS[usedProducts % ALL_PRODUCTS.length];
-  const lang = LANGUAGES[dayIndex % LANGUAGES.length];
 
   const [batch1, batch2] = await Promise.all([
-    generatePinBatch(dayIndex, weekNumber, product, lang, 1),
-    generatePinBatch(dayIndex, weekNumber, product, lang, 2),
+    generatePinBatch(dayIndex, weekNumber, product, 1),
+    generatePinBatch(dayIndex, weekNumber, product, 2),
   ]);
 
   return {
     day: dayIndex + 1,
+    theme: PIN_DAILY_THEMES[dayIndex % 7],
     pins: [...batch1, ...batch2]
   };
 }
