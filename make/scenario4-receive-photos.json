@@ -1,0 +1,151 @@
+{
+  "name": "bloom focus — Receive Infographics",
+  "flow": [
+    {
+      "id": 1,
+      "module": "telegram:WatchUpdates",
+      "version": 1,
+      "parameters": {},
+      "mapper": {},
+      "metadata": {
+        "designer": { "x": 0, "y": 0 },
+        "restore": { "parameters": { "__IMTHOOK__": { "label": "newsformebot webhook" } } },
+        "parameters": [ { "name": "__IMTHOOK__", "type": "hook:telegramapi", "label": "Webhook", "required": true } ]
+      }
+    },
+    {
+      "id": 2,
+      "module": "telegram:DownloadFile",
+      "version": 1,
+      "parameters": {},
+      "filter": {
+        "name": "has photo/document",
+        "conditions": [[{ "a": "{{1.message.attachment.file_id}}", "o": "exist" }]]
+      },
+      "mapper": { "fileId": "{{1.message.attachment.file_id}}" },
+      "metadata": {
+        "designer": { "x": 300, "y": 0 },
+        "restore": { "parameters": { "__IMTCONN__": { "label": "newsformebot" } } },
+        "parameters": [ { "name": "__IMTCONN__", "type": "account:telegram", "label": "Connection", "required": true } ]
+      }
+    },
+    {
+      "id": 3,
+      "module": "dropbox:uploadLargeFile",
+      "version": 5,
+      "parameters": { "__IMTCONN__": 13071988 },
+      "mapper": {
+        "data": "{{2.fileOutput}}",
+        "path": "/bloom-focus-pinterest",
+        "filename": "{{2.fileName}}",
+        "overwrite": true
+      },
+      "metadata": {
+        "designer": { "x": 600, "y": 0 },
+        "restore": {
+          "expect": { "path": { "mode": "chose" }, "overwrite": { "mode": "chose" } },
+          "parameters": { "__IMTCONN__": { "label": "gogolka16 Dropbox" } }
+        },
+        "parameters": [ { "name": "__IMTCONN__", "type": "account:dropbox", "label": "Connection", "required": true } ]
+      }
+    },
+    {
+      "id": 4,
+      "module": "dropbox:createShareLink",
+      "version": 5,
+      "parameters": { "__IMTCONN__": 13071988 },
+      "mapper": {
+        "path": "{{3.path_display}}",
+        "select": "map",
+        "settings": { "access": "max", "requested_visibility": "public" }
+      },
+      "metadata": {
+        "designer": { "x": 900, "y": 0 },
+        "restore": { "parameters": { "__IMTCONN__": { "label": "gogolka16 Dropbox" } } },
+        "parameters": [ { "name": "__IMTCONN__", "type": "account:dropbox", "label": "Connection", "required": true } ]
+      }
+    },
+    {
+      "id": 5,
+      "module": "http:ActionGetFile",
+      "version": 3,
+      "parameters": {},
+      "mapper": {
+        "url": "https://raw.githubusercontent.com/dianahohol97-max/content/main/pinterest_current.json",
+        "method": "get", "headers": [], "qs": [], "followRedirect": true, "gzip": true
+      },
+      "metadata": { "designer": { "x": 1200, "y": 0 }, "restore": {} }
+    },
+    {
+      "id": 6,
+      "module": "json:ParseJSON",
+      "version": 1,
+      "parameters": { "type": "" },
+      "mapper": { "json": "{{5.data}}" },
+      "metadata": { "designer": { "x": 1500, "y": 0 }, "restore": {} }
+    },
+    {
+      "id": 7,
+      "module": "builtin:BasicFeeder",
+      "version": 1,
+      "parameters": {},
+      "mapper": { "array": "{{6.array}}" },
+      "metadata": { "designer": { "x": 1800, "y": 0 }, "restore": {} }
+    },
+    {
+      "id": 8,
+      "module": "google-sheets:addRow",
+      "version": 2,
+      "parameters": { "__IMTCONN__": 13180049 },
+      "filter": {
+        "name": "match headline = caption",
+        "conditions": [[{ "a": "{{7.headline}}", "b": "{{1.message.caption}}", "o": "text:equal:ci" }]]
+      },
+      "mapper": {
+        "from": "drive",
+        "mode": "select",
+        "spreadsheetId": "1G3mSPkLiRDg2LZEaDks3ubLzR3QIX18PtWH_uD4mFXk",
+        "sheetId": "Sheet1",
+        "includesHeaders": true,
+        "insertDataOption": "INSERT_ROWS",
+        "valueInputOption": "USER_ENTERED",
+        "values": {
+          "0": "{{7.id}}", "1": "{{7.day}}", "2": "{{7.pinType}}", "3": "{{7.funnel}}",
+          "4": "{{7.title}}", "5": "{{7.description}}", "6": "{{7.board}}",
+          "7": "{{4.link}}", "8": "{{4.link}}", "9": "{{7.destinationUrl}}",
+          "10": "{{7.boardId}}", "11": "pending", "12": "", "13": ""
+        }
+      },
+      "metadata": {
+        "designer": { "x": 2100, "y": 0 },
+        "restore": { "parameters": { "__IMTCONN__": { "label": "gogolka16 Google" } } },
+        "parameters": [ { "name": "__IMTCONN__", "type": "account:google", "label": "Connection", "required": true } ]
+      }
+    },
+    {
+      "id": 9,
+      "module": "telegram:SendReplyMessage",
+      "version": 1,
+      "parameters": { "__IMTCONN__": 13266086 },
+      "mapper": {
+        "chatId": "{{1.message.chat.id}}",
+        "parseMode": "",
+        "text": "✅ Додано в чергу: {{1.message.caption}}\nНадсилай наступну 📤"
+      },
+      "metadata": {
+        "designer": { "x": 2400, "y": 0 },
+        "restore": { "parameters": { "__IMTCONN__": { "label": "newsformebot" } } },
+        "parameters": [ { "name": "__IMTCONN__", "type": "account:telegram", "label": "Connection", "required": true } ]
+      }
+    }
+  ],
+  "metadata": {
+    "instant": true,
+    "version": 1,
+    "scenario": {
+      "roundtrips": 1, "maxErrors": 3, "autoCommit": true, "autoCommitTriggerLast": true,
+      "sequential": false, "confidential": false, "dataloss": false, "dlq": false
+    },
+    "designer": { "orphans": [] }
+  }
+}

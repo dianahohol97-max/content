@@ -1,0 +1,93 @@
+{
+  "name": "bloom focus — Send Infographic Prompts",
+  "flow": [
+    {
+      "id": 1,
+      "module": "telegram:WatchUpdates",
+      "version": 1,
+      "parameters": {},
+      "mapper": {},
+      "metadata": {
+        "designer": { "x": 0, "y": 0 },
+        "restore": {
+          "parameters": {
+            "__IMTHOOK__": { "label": "newsformebot webhook" }
+          }
+        },
+        "parameters": [
+          { "name": "__IMTHOOK__", "type": "hook:telegramapi", "label": "Webhook", "required": true }
+        ]
+      }
+    },
+    {
+      "id": 2,
+      "module": "http:ActionGetFile",
+      "version": 3,
+      "parameters": {},
+      "filter": {
+        "name": "is /prompts command",
+        "conditions": [[{ "a": "{{1.message.text}}", "b": "/prompts", "o": "text:equal" }]]
+      },
+      "mapper": {
+        "url": "https://raw.githubusercontent.com/dianahohol97-max/content/main/pinterest_current.json",
+        "method": "get",
+        "headers": [],
+        "qs": [],
+        "followRedirect": true,
+        "gzip": true
+      },
+      "metadata": { "designer": { "x": 300, "y": 0 }, "restore": {} }
+    },
+    {
+      "id": 3,
+      "module": "json:ParseJSON",
+      "version": 1,
+      "parameters": { "type": "" },
+      "mapper": { "json": "{{2.data}}" },
+      "metadata": { "designer": { "x": 600, "y": 0 }, "restore": {} }
+    },
+    {
+      "id": 4,
+      "module": "builtin:BasicFeeder",
+      "version": 1,
+      "parameters": {},
+      "mapper": { "array": "{{3.array}}" },
+      "metadata": { "designer": { "x": 900, "y": 0 }, "restore": {} }
+    },
+    {
+      "id": 5,
+      "module": "telegram:SendReplyMessage",
+      "version": 1,
+      "parameters": {},
+      "filter": {
+        "name": "infographic only",
+        "conditions": [[{ "a": "{{4.pinType}}", "b": "infographic", "o": "text:equal" }]]
+      },
+      "mapper": {
+        "chatId": "{{1.message.chat.id}}",
+        "parseMode": "",
+        "text": "📌 {{4.id}}\n\nЗаголовок (скопіюй у підпис до картинки):\n{{4.headline}}\n\n— — —\nПромпт для ChatGPT:\n{{4.chatgptPrompt}}"
+      },
+      "metadata": {
+        "designer": { "x": 1200, "y": 0 },
+        "restore": {
+          "parameters": {
+            "__IMTCONN__": { "label": "newsformebot" }
+          }
+        },
+        "parameters": [
+          { "name": "__IMTCONN__", "type": "account:telegram", "label": "Connection", "required": true }
+        ]
+      }
+    }
+  ],
+  "metadata": {
+    "instant": true,
+    "version": 1,
+    "scenario": {
+      "roundtrips": 1, "maxErrors": 3, "autoCommit": true, "autoCommitTriggerLast": true,
+      "sequential": false, "confidential": false, "dataloss": false, "dlq": false
+    },
+    "designer": { "orphans": [] }
+  }
+}
