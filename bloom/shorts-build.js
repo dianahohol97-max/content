@@ -132,29 +132,88 @@ async function buildSceneImage(scene, outPath) {
   return outPath;
 }
 
+// ─── Quiz-test 2x2 grid image (4 options + question + numbers) ───────────────
+async function buildQuizGrid(short, outPath) {
+  // generate 4 tiles
+  const tileW = Math.floor(W / 2);          // 540
+  const tileH = Math.floor((H - 520) / 2);  // leave room for question top + CTA bottom
+  const gridTop = 360;                       // question area above
+  const tiles = [];
+  for (let i = 0; i < 4; i++) {
+    const opt = short.options[i];
+    const raw = await geminiBackground(opt.imagePrompt);
+    const tile = await sharp(raw).resize(tileW, tileH, { fit: "cover", position: "centre" }).toBuffer();
+    // number + label badge on each tile
+    const badge = Buffer.from(`
+<svg width="${tileW}" height="${tileH}" xmlns="http://www.w3.org/2000/svg">
+  <circle cx="64" cy="64" r="46" fill="rgba(61,44,110,0.92)"/>
+  <text x="64" y="84" font-family="Arial, sans-serif" font-size="56" font-weight="800" fill="#fff" text-anchor="middle">${i + 1}</text>
+  <rect x="0" y="${tileH-72}" width="${tileW}" height="72" fill="rgba(40,30,50,0.5)"/>
+  <text x="${tileW/2}" y="${tileH-26}" font-family="Arial, sans-serif" font-size="36" font-weight="700" fill="#fff" text-anchor="middle">${esc(opt.label || "")}</text>
+</svg>`);
+    tiles.push(await sharp(tile).composite([{ input: badge, top: 0, left: 0 }]).png().toBuffer());
+  }
+
+  // question banner + CTA banner
+  const qLines = wrapText(short.question, 20);
+  const qFont = 72, qLH = qFont * 1.2;
+  const qSpans = qLines.map((ln, i) => `<tspan x="${W/2}" dy="${i === 0 ? 0 : qLH}">${esc(ln)}</tspan>`).join("");
+  const banner = Buffer.from(`
+<svg width="${W}" height="${H}" xmlns="http://www.w3.org/2000/svg">
+  <rect x="0" y="0" width="${W}" height="${H}" fill="#FFF8F0"/>
+  <text x="${W/2}" y="${160}" font-family="Georgia, serif" font-size="${qFont}" font-weight="800"
+        fill="#3d2c6e" text-anchor="middle">${qSpans}</text>
+  <text x="${W/2}" y="${H-150}" font-family="Arial, sans-serif" font-size="48" font-weight="800"
+        fill="#3d2c6e" text-anchor="middle">Answer in the description ↓</text>
+  <text x="${W/2}" y="${H-80}" font-family="Arial, sans-serif" font-size="40" font-weight="600"
+        fill="#7c6bb0" text-anchor="middle">Take the free ADHD test — bloomfocus.org</text>
+</svg>`);
+
+  await sharp(banner)
+    .composite([
+      { input: tiles[0], top: gridTop, left: 0 },
+      { input: tiles[1], top: gridTop, left: tileW },
+      { input: tiles[2], top: gridTop + tileH, left: 0 },
+      { input: tiles[3], top: gridTop + tileH, left: tileW },
+    ])
+    .png().toFile(outPath);
+  return outPath;
+}
+
 // ─── FFmpeg assembly ────────────────────────────────────────────────────────
 function ffmpegAvailable() {
   try { execSync("ffmpeg -version", { stdio: "ignore" }); return true; } catch { return false; }
 }
 
-function buildVideo(scenePaths, durations, voicePath, outPath) {
+function buildVideo(scenePaths, durations, voicePath, outPath, matchVoice = false) {
   const tmp = path.dirname(outPath);
-  // Build a concat input list with per-image durations
+  const hasMusic = fs.existsSync(MUSIC_PATH);
+  const vf = `scale=${W}:${H}:force_original_aspect_ratio=increase,crop=${W}:${H},fps=30,format=yuv420p`;
+
+  // ── quiztest: single still image, length = voiceover ──
+  if (matchVoice) {
+    const still = scenePaths[0];
+    let cmd;
+    if (hasMusic) {
+      cmd = `ffmpeg -y -loop 1 -i "${still}" -i "${voicePath}" -stream_loop -1 -i "${MUSIC_PATH}" ` +
+        `-filter_complex "[0:v]${vf}[v];[2:a]volume=0.12[m];[1:a][m]amix=inputs=2:duration=first:dropout_transition=2[a]" ` +
+        `-map "[v]" -map "[a]" -shortest -c:v libx264 -preset medium -crf 22 -c:a aac -b:a 192k -pix_fmt yuv420p "${outPath}"`;
+    } else {
+      cmd = `ffmpeg -y -loop 1 -i "${still}" -i "${voicePath}" ` +
+        `-filter_complex "[0:v]${vf}[v]" -map "[v]" -map 1:a -shortest ` +
+        `-c:v libx264 -preset medium -crf 22 -c:a aac -b:a 192k -pix_fmt yuv420p "${outPath}"`;
+    }
+    execSync(cmd, { stdio: "inherit" });
+    return outPath;
+  }
+
+  // ── voiced shorts: slideshow of scenes via concat demuxer ──
   const listFile = path.join(tmp, "scenes.txt");
   let list = "";
-  scenePaths.forEach((p, i) => {
-    list += `file '${p}'\nduration ${durations[i]}\n`;
-  });
-  // last image must be repeated for concat demuxer to honor final duration
+  scenePaths.forEach((p, i) => { list += `file '${p}'\nduration ${durations[i]}\n`; });
   list += `file '${scenePaths[scenePaths.length - 1]}'\n`;
   fs.writeFileSync(listFile, list);
-
-  const hasMusic = fs.existsSync(MUSIC_PATH);
   const totalDur = durations.reduce((a, b) => a + b, 0);
-
-  // Inputs: 0 = slideshow (concat), 1 = voiceover, [2 = music]
-  // Slideshow → scale, pad to 1080x1920, 30fps
-  const vf = `scale=${W}:${H}:force_original_aspect_ratio=increase,crop=${W}:${H},fps=30,format=yuv420p`;
 
   let cmd;
   if (hasMusic) {
@@ -206,22 +265,33 @@ async function main() {
       await makeVoiceover(short.voiceover, voicePath);
       console.log("✓");
 
-      // 2+3. scene images with captions
       const scenePaths = [];
       const durations = [];
-      for (let i = 0; i < short.scenes.length; i++) {
-        process.stdout.write(`   🖼  scene ${i + 1}/${short.scenes.length}... `);
-        const sp = path.join(workDir, `scene_${String(i + 1).padStart(2, "0")}.png`);
-        await buildSceneImage(short.scenes[i], sp);
-        scenePaths.push(sp);
-        durations.push(Number(short.scenes[i].seconds) || 6);
+
+      if (short.shortType === "quiztest") {
+        // single 2x2 grid image held for the whole voiceover
+        process.stdout.write("   🧩 quiz grid (4 tiles)... ");
+        const gp = path.join(workDir, "grid.png");
+        await buildQuizGrid(short, gp);
+        scenePaths.push(gp);
+        durations.push(18); // grid holds ~18s; ffmpeg trims to voiceover length via -shortest fallback
         console.log("✓");
-        await new Promise((r) => setTimeout(r, 600));
+      } else {
+        // 2+3. scene images with captions
+        for (let i = 0; i < short.scenes.length; i++) {
+          process.stdout.write(`   🖼  scene ${i + 1}/${short.scenes.length}... `);
+          const sp = path.join(workDir, `scene_${String(i + 1).padStart(2, "0")}.png`);
+          await buildSceneImage(short.scenes[i], sp);
+          scenePaths.push(sp);
+          durations.push(Number(short.scenes[i].seconds) || 6);
+          console.log("✓");
+          await new Promise((r) => setTimeout(r, 600));
+        }
       }
 
       // 4. assemble
       process.stdout.write("   🎞  ffmpeg assemble... ");
-      buildVideo(scenePaths, durations, voicePath, mp4Path);
+      buildVideo(scenePaths, durations, voicePath, mp4Path, short.shortType === "quiztest");
       console.log("✓");
 
       short.videoUrl = `${REPO_RAW}/output/shorts/week_${WEEK}/${short.id}.mp4`;

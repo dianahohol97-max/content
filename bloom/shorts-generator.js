@@ -92,57 +92,56 @@ function parseJSON(text) {
   return JSON.parse(t);
 }
 
-async function generateShorts(weekNum, count) {
-  // Pick `count` topics for the week, rotating by week number
-  const startIdx = ((weekNum - 1) * count) % TOPICS.length;
-  const weekTopics = Array.from({ length: count }, (_, i) => TOPICS[(startIdx + i) % TOPICS.length]);
-
-  const prompt = `You are a YouTube Shorts scriptwriter for bloom focus, a faceless ADHD education brand.
-
-Voice/tone: warm, direct, science-backed but simple — "a friend with a neuroscience degree who also lost their keys this morning". Validating, never patronizing. Never say "just try harder" or "ADHD is a superpower".
+const SHARED_VOICE = `Voice/tone: warm, direct, science-backed but simple — "a friend with a neuroscience degree who also lost their keys this morning". Validating, never patronizing. Never say "just try harder" or "ADHD is a superpower".
 
 IMPORTANT — what makes these perform (from real ADHD short-form data):
 - Lead with RECOGNITION: the first line should make the viewer think "wait, that's me". Specific lived moments beat clinical definitions.
-- Be relatable AND accurate. Most viral ADHD content is misleading; bloom focus wins trust by being correct. Don't present normal-for-everyone experiences as ADHD-exclusive — frame as "common in ADHD" not "if you do this you have ADHD".
-- Where relevant, gently note these can overlap with other things and the quiz/professional help is the next step (no fear-mongering, no fake certainty).
+- Be relatable AND accurate. Most viral ADHD content is misleading; bloom focus wins trust by being correct. Frame as "common in ADHD" not "if you do this you have ADHD".
+- The quiz/professional help is the next step (no fear-mongering, no fake certainty).`;
 
-Write exactly ${count} YouTube Shorts (30-45 seconds each, faceless, voiced narration over changing aesthetic background shots).
+const SCENE_SPEC = `    - caption: SHORT on-screen text (max 6 words) — the key phrase of that moment, big and readable. NOT the full sentence.
+    - imagePrompt: a detailed prompt for a REALISTIC aesthetic vertical photo background (Gemini). Style: "Realistic aesthetic photograph, soft pastel tones (lavender, cream, sage, blush), cozy minimal scene, soft natural light, shallow depth of field, film-like. No people, no faces, no text. Vertical 9:16 (1080x1920)." Add a scene detail relevant to that moment (desk, coffee, plant, bed, window light, journal, phone, clock).
+    - seconds: how long this scene shows (number, total ≈ voiceover length, usually 5-8 each).`;
+
+// ── Educational + pain-point shorts (voiced, changing scenes) ──
+async function generateVoicedShorts(weekTopics, kind) {
+  const count = weekTopics.length;
+  const kindGuide = kind === "painpoint"
+    ? `These are PAIN-POINT shorts. Each opens by naming a frustrating, relatable ADHD struggle as a direct hook that hits home ("Your home is always a mess and no matter how hard you try, you can't keep it tidy?"), validates it's not a character flaw, briefly explains the ADHD reason, then sends them to the free ADHD test. Keep it emotional and validating, short on theory.`
+    : `These are EDUCATIONAL shorts. Each teaches the topic simply with recognition + one practical takeaway.`;
+
+  const prompt = `You are a YouTube Shorts scriptwriter for bloom focus, a faceless ADHD education brand.
+
+${SHARED_VOICE}
+
+${kindGuide}
+
+Write exactly ${count} YouTube Shorts (30-45s, faceless, voiced narration over changing aesthetic backgrounds).
 
 Topics (one Short each):
 ${weekTopics.map((t, i) => `${i + 1}. ${t}`).join("\n")}
 
-STRUCTURE of each Short:
-- HOOK (0-3s): a scroll-stopping line that creates instant recognition or curiosity. No "hey guys", no intro.
-- BODY (3-38s): explain the idea simply, validate the experience, give ONE practical takeaway. Broken into 4-6 short scenes.
-- CTA (last 3s): "Take the free ADHD quiz — link below" (or for some, "the free app" — vary it).
+STRUCTURE:
+- HOOK (0-3s): scroll-stopping, instant recognition. No "hey guys".
+- BODY (3-38s): ${kind === "painpoint" ? "validate + brief ADHD reason" : "explain simply + one takeaway"}. 4-6 short scenes.
+- CTA (last 3s): "Take the free ADHD quiz — link below".
 
 For EACH Short return:
-- voiceover: the FULL narration as one flowing text (what ElevenLabs will speak). Natural, spoken rhythm, ~85-110 words for ~35s. This is the spine.
-- scenes: an array of 5-7 scenes. Each scene = a moment of the voiceover with its own on-screen caption + background visual. Each scene:
-    - caption: SHORT on-screen text (max 6 words) — the key phrase of that moment, big and readable. NOT the full sentence.
-    - imagePrompt: a detailed prompt for a REALISTIC aesthetic vertical photo background (Gemini). Style: "Realistic aesthetic photograph, soft pastel tones (lavender, cream, sage, blush), cozy minimal scene, soft natural light, shallow depth of field, film-like. No people, no faces, no text. Vertical 9:16 (1080x1920)." Add a scene detail relevant to that moment (desk, coffee, plant, bed, window light, journal, phone, clock).
-    - seconds: how long this scene shows (number, total across scenes ≈ voiceover length, usually 5-8 each).
-- title: YouTube Shorts title, 40-70 chars, search-friendly, ends with #Shorts. e.g. "Why ADHD brains can't 'just start' tasks #Shorts"
+- voiceover: FULL narration as one flowing text (~85-110 words for ~35s). Natural spoken rhythm.
+- scenes: array of 5-7 scenes. Each:
+${SCENE_SPEC}
+- title: 40-70 chars, search-friendly, ends with #Shorts.
 - description: 2-3 sentences with keywords, then the CTA URL on its own line.
-- tags: array of 8-12 YouTube tags (ADHD, neurodivergent, etc).
-- funnel: "quiz" for most, occasionally "app".
-- destinationUrl: ${URLS.quiz} (or ${URLS.app} for app ones).
+- tags: 8-12 YouTube tags.
+- funnel: "quiz".
+- shortType: "${kind}".
+- destinationUrl: ${URLS.quiz}.
 
-Use ONLY straight ASCII apostrophes ('), no curly quotes, no special characters.
+Use ONLY straight ASCII apostrophes ('). No curly quotes, no special characters.
 
 Return ONLY a valid JSON array, no markdown:
 [
-  {
-    "voiceover": "...",
-    "scenes": [
-      { "caption": "...", "imagePrompt": "...", "seconds": 6 }
-    ],
-    "title": "... #Shorts",
-    "description": "...",
-    "tags": ["...", "..."],
-    "funnel": "quiz",
-    "destinationUrl": "${URLS.quiz}"
-  }
+  { "voiceover": "...", "scenes": [{ "caption": "...", "imagePrompt": "...", "seconds": 6 }], "title": "... #Shorts", "description": "...", "tags": ["..."], "funnel": "quiz", "shortType": "${kind}", "destinationUrl": "${URLS.quiz}" }
 ]`;
 
   const response = await client.messages.create({
@@ -150,8 +149,74 @@ Return ONLY a valid JSON array, no markdown:
     max_tokens: 4000,
     messages: [{ role: "user", content: prompt }],
   });
+  return parseJSON(response.content[0].text).map((s) => ({ ...s, shortType: kind }));
+}
 
-  return parseJSON(response.content[0].text);
+// ── Interactive quiz-test shorts (2x2 image grid, answer in description) ──
+async function generateQuizTestShorts(count) {
+  const prompt = `You are a YouTube Shorts creator for bloom focus, a faceless ADHD brand.
+
+${SHARED_VOICE}
+
+Create exactly ${count} INTERACTIVE TEST shorts. Format: a question with FOUR image options shown as a 2x2 grid, viewer picks one, and the ANSWER / meaning is revealed in the video description (classic "pick one → answer in description" engagement format). High shareability, drives comments and quiz clicks.
+
+Good test concepts:
+- "Which of these 4 mornings is yours?" (4 morning scenes) → each reveals an ADHD pattern
+- "Pick the desk that looks most like yours" → reveals a focus type
+- "What do you see first?" (4 ambiguous calming images) → playful ADHD-style result
+- "Which mess stresses you least?" → reveals overwhelm style
+
+For EACH test short return:
+- question: the on-screen question (max 8 words), shown at the top.
+- options: an array of EXACTLY 4 options, each:
+    - label: short label shown on the tile (max 3 words), e.g. "Option 1" or "The pile".
+    - imagePrompt: realistic aesthetic vertical photo for this tile (same pastel style: "Realistic aesthetic photograph, soft pastel tones lavender cream sage blush, cozy minimal, soft natural light, shallow depth of field. No people, no text. Square-ish framing works."). Each of the 4 must be visually distinct.
+- voiceover: short narration (~40-60 words): read the question, tease "your answer says something about your ADHD brain — check the description", invite a comment, end with "take the free ADHD quiz to really find out".
+- answerKey: the text that goes in the DESCRIPTION revealing what each choice means. Format as "1) ... \\n2) ... \\n3) ... \\n4) ...". Keep each playful, validating, ADHD-relevant, accurate (not fake-clinical).
+- title: 40-70 chars, ends with #Shorts. e.g. "Which morning is yours? (ADHD test) #Shorts"
+- description: 1-2 sentence intro + the answerKey + the quiz URL on its own line.
+- tags: 8-12 tags.
+- funnel: "quiz".
+- shortType: "quiztest".
+- destinationUrl: ${URLS.quiz}.
+
+Use ONLY straight ASCII apostrophes ('). No curly quotes.
+
+Return ONLY a valid JSON array, no markdown:
+[
+  { "question": "...", "options": [{ "label": "...", "imagePrompt": "..." }, { "label": "...", "imagePrompt": "..." }, { "label": "...", "imagePrompt": "..." }, { "label": "...", "imagePrompt": "..." }], "voiceover": "...", "answerKey": "1) ...\\n2) ...\\n3) ...\\n4) ...", "title": "... #Shorts", "description": "...", "tags": ["..."], "funnel": "quiz", "shortType": "quiztest", "destinationUrl": "${URLS.quiz}" }
+]`;
+
+  const response = await client.messages.create({
+    model: "claude-sonnet-4-6",
+    max_tokens: 4000,
+    messages: [{ role: "user", content: prompt }],
+  });
+  return parseJSON(response.content[0].text).map((s) => ({ ...s, shortType: "quiztest" }));
+}
+
+async function generateShorts(weekNum, count) {
+  // Mix: ~6 educational, ~4 pain-point, ~4 quiz-test (scaled to count)
+  const nEdu = Math.max(1, Math.round(count * 6 / 14));
+  const nPain = Math.max(1, Math.round(count * 4 / 14));
+  const nTest = Math.max(1, count - nEdu - nPain);
+
+  // rotate topics by week for educational + painpoint (they share the topic pool)
+  const startIdx = ((weekNum - 1) * count) % TOPICS.length;
+  const topicsFor = (n, offset) =>
+    Array.from({ length: n }, (_, i) => TOPICS[(startIdx + offset + i) % TOPICS.length]);
+
+  console.log(`  mix → ${nEdu} educational, ${nPain} pain-point, ${nTest} quiz-test`);
+
+  const all = [];
+  console.log("  ✏️  educational...");
+  all.push(...await generateVoicedShorts(topicsFor(nEdu, 0), "educational"));
+  console.log("  💢 pain-point...");
+  all.push(...await generateVoicedShorts(topicsFor(nPain, nEdu), "painpoint"));
+  console.log("  🧩 quiz-test...");
+  all.push(...await generateQuizTestShorts(nTest));
+
+  return all;
 }
 
 async function main() {
@@ -187,7 +252,10 @@ async function main() {
   fs.writeFileSync(path.join(REPO_ROOT, "shorts_current.json"), JSON.stringify(shorts, null, 2));
 
   console.log(`\n✅ ${shorts.length} shorts → shorts_week_${WEEK}.json`);
-  shorts.forEach((s) => console.log(`   ${s.id}: ${s.title} (${s.scenes.length} scenes)`));
+  shorts.forEach((s) => {
+    const parts = s.shortType === "quiztest" ? `${s.options?.length ?? 0} options` : `${s.scenes?.length ?? 0} scenes`;
+    console.log(`   ${s.id} [${s.shortType}]: ${s.title} (${parts})`);
+  });
 }
 
 main().catch((e) => { console.error("❌", e.message); process.exit(1); });
