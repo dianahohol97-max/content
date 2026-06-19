@@ -1,0 +1,60 @@
+name: bloom focus — YouTube Shorts
+
+on:
+  workflow_dispatch:
+    inputs:
+      week:
+        description: "Week number"
+        required: true
+        default: "29"
+      count:
+        description: "How many shorts to generate (text step)"
+        required: false
+        default: "3"
+      mode:
+        description: "full = script+video | video-only = build from existing JSON | script-only"
+        required: false
+        default: "full"
+      limit:
+        description: "Limit how many videos to build (blank = all)"
+        required: false
+        default: ""
+
+jobs:
+  shorts:
+    runs-on: ubuntu-latest
+    timeout-minutes: 50
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Install ffmpeg
+        run: sudo apt-get update && sudo apt-get install -y ffmpeg
+
+      - name: Install deps
+        run: npm install
+
+      - name: Generate scripts
+        if: ${{ inputs.mode == 'full' || inputs.mode == 'script-only' }}
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+        run: node bloom/shorts-generator.js --week=${{ inputs.week }} --count=${{ inputs.count }}
+
+      - name: Build videos
+        if: ${{ inputs.mode == 'full' || inputs.mode == 'video-only' }}
+        env:
+          ELEVENLABS_API_KEY: ${{ secrets.ELEVENLABS_API_KEY }}
+          ELEVENLABS_VOICE_ID: ${{ secrets.ELEVENLABS_VOICE_ID }}
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+        run: node bloom/shorts-build.js --week=${{ inputs.week }} ${{ inputs.limit != '' && format('--limit={0}', inputs.limit) || '' }}
+
+      - name: Commit results
+        run: |
+          git config user.name "github-actions"
+          git config user.email "actions@github.com"
+          git add shorts_week_${{ inputs.week }}.json shorts_current.json output/shorts/ || true
+          git commit -m "shorts: week ${{ inputs.week }} (mode=${{ inputs.mode }})" || echo "nothing to commit"
+          git push || echo "nothing to push"
