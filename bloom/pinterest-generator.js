@@ -252,7 +252,14 @@ PINTEREST RULES:
   GOOD: "ADHD morning routine when you can't get out of bed"
 - Description: 150-300 chars, 3-5 relevant keywords naturally embedded, end with destination URL
 - imagePrompt: Detailed prompt for a REALISTIC PHOTO (not illustration). Style: "Realistic aesthetic photograph, cozy desk flat-lay, soft natural lighting, muted pastel tones (lavender, cream, sage, blush). Shallow depth of field, film-like. No people, no faces, no text. Vertical 2:3 portrait (1000x1500)." Add scene detail relevant to the pin topic (planner, coffee, plant, journal, phone showing an app, etc).
-- overlayTitle: A SHORT punchy version of the title (max 6 words) to render as text OVERLAY on top of the photo. This is what stops the scroll.
+- overlayTitle: The text shown ON the photo — this is what stops the scroll. 3-6 words. It MUST be a complete, self-explanatory hook, NOT a cut-off phrase.
+  It must be ONE of these types:
+    (a) A question that creates recognition: "Why can't I start tasks?", "ADHD or just tired?"
+    (b) A clear benefit/promise: "Make mornings finally work", "Focus without forcing it"
+    (c) A relatable statement: "Mornings feel impossible. Here's why."
+  BAD (incomplete, confusing): "Start mornings with ADHD", "ADHD focus app", "ADHD support"
+  GOOD (complete hook): "Can't get out of bed?", "The app for ADHD mornings", "Mornings shouldn't feel this hard"
+  Read it aloud — if it sounds cut off or like a fragment, rewrite it as a full thought.
 - board: Choose the most relevant from: ${BOARDS.join(" | ")}
 - Each pin must have a DIFFERENT title, angle, and imagePrompt (not just paraphrases of the same idea)
 - Pins ${batchIndex > 1 ? "in this second batch" : "in this first batch"} must be on different sub-topics within the theme${strictness}
