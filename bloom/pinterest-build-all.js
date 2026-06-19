@@ -147,6 +147,8 @@ async function main() {
   const infoCount = pins.filter((p) => p.pinType === "infographic").length;
   console.log(`📋 ${pins.length} pins (${infoCount} infographic→DALL-E, ${pins.length - infoCount} photo→Gemini)\n`);
 
+  const REPO_RAW = "https://raw.githubusercontent.com/dianahohol97-max/content/main";
+
   let done = 0, failed = 0;
   for (let i = 0; i < pins.length; i++) {
     const pin = pins[i];
@@ -156,6 +158,8 @@ async function main() {
     try {
       if (pin.pinType === "infographic") await buildInfographic(pin, outDir);
       else await buildHookOrProduct(pin, outDir);
+      // Record the public GitHub raw URL of the finished image into the pin
+      pin.imageUrl = `${REPO_RAW}/output/pinterest/week_${WEEK}/${pin.id}.png`;
       done++;
       console.log("✓");
       await new Promise((r) => setTimeout(r, 800));
@@ -164,6 +168,16 @@ async function main() {
       console.log(`✗ ${err.message}`);
     }
   }
+
+  // Rewrite the full week JSON with imageUrl fields filled in
+  const allPins = loadPins(WEEK);
+  const builtById = Object.fromEntries(pins.filter(p => p.imageUrl).map(p => [p.id, p.imageUrl]));
+  for (const p of allPins) {
+    if (builtById[p.id]) p.imageUrl = builtById[p.id];
+  }
+  const jsonPath = path.join(REPO_ROOT, `pinterest_week_${WEEK}.json`);
+  fs.writeFileSync(jsonPath, JSON.stringify(allPins, null, 2), "utf8");
+  console.log(`   📝 Updated ${jsonPath} with image URLs`);
 
   console.log(`\n${"━".repeat(50)}`);
   console.log(`✅ Built: ${done}, Failed: ${failed}`);

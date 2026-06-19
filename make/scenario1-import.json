@@ -1,5 +1,5 @@
 {
-  "name": "bloom focus — Pinterest Import (GitHub → Drive → Sheets)",
+  "name": "bloom focus — Pinterest Import (GitHub → Sheets)",
   "flow": [
     {
       "id": 1,
@@ -7,29 +7,17 @@
       "version": 3,
       "parameters": {},
       "mapper": {
-        "url": "https://raw.githubusercontent.com/dianahohol97-max/content/main/pinterest_week_29.json",
-        "serializeUrl": false,
+        "url": "https://raw.githubusercontent.com/dianahohol97-max/content/main/pinterest_current.json",
         "method": "get",
         "headers": [],
         "qs": [],
-        "bodyType": "",
-        "parseResponse": false,
         "followRedirect": true,
-        "useQuerystring": false,
         "gzip": true,
-        "showHeaders": false,
-        "ca": "",
-        "rejectUnauthorized": true,
-        "followAllRedirects": false
+        "rejectUnauthorized": true
       },
       "metadata": {
-        "designer": { "x": -300, "y": 0 },
-        "restore": {},
-        "expect": [
-          { "name": "method", "type": "select", "label": "Method" },
-          { "name": "headers", "type": "array", "label": "Headers" },
-          { "name": "qs", "type": "array", "label": "Query String" }
-        ]
+        "designer": { "x": 0, "y": 0 },
+        "restore": {}
       }
     },
     {
@@ -39,7 +27,7 @@
       "parameters": { "type": "" },
       "mapper": { "json": "{{1.data}}" },
       "metadata": {
-        "designer": { "x": 0, "y": 0 },
+        "designer": { "x": 300, "y": 0 },
         "restore": {}
       }
     },
@@ -50,55 +38,12 @@
       "parameters": {},
       "mapper": { "array": "{{2.array}}" },
       "metadata": {
-        "designer": { "x": 300, "y": 0 },
-        "restore": {}
-      }
-    },
-    {
-      "id": 4,
-      "module": "http:ActionGetFile",
-      "version": 3,
-      "parameters": {},
-      "mapper": {
-        "url": "{{3.imageUrl}}",
-        "serializeUrl": false,
-        "method": "get",
-        "headers": [],
-        "qs": [],
-        "bodyType": "",
-        "parseResponse": false,
-        "followRedirect": true,
-        "useQuerystring": false,
-        "gzip": true,
-        "showHeaders": false,
-        "rejectUnauthorized": true,
-        "followAllRedirects": false
-      },
-      "metadata": {
         "designer": { "x": 600, "y": 0 },
         "restore": {}
       }
     },
     {
-      "id": 5,
-      "module": "google-drive:uploadAFile",
-      "version": 4,
-      "parameters": { "__IMTCONN__": 13180049 },
-      "mapper": {
-        "data": "{{4.data}}",
-        "filename": "{{3.id}}.png",
-        "destination": "drive",
-        "driveId": "drive",
-        "folder": { "mode": "root" },
-        "convertToGDocs": false
-      },
-      "metadata": {
-        "designer": { "x": 900, "y": 0 },
-        "restore": {}
-      }
-    },
-    {
-      "id": 6,
+      "id": 4,
       "module": "google-sheets:addRow",
       "version": 2,
       "parameters": { "__IMTCONN__": 13180049 },
@@ -119,7 +64,7 @@
           "5": "{{3.description}}",
           "6": "{{3.board}}",
           "7": "{{3.imageUrl}}",
-          "8": "{{5.webContentLink}}",
+          "8": "",
           "9": "{{3.destinationUrl}}",
           "10": "{{3.boardId}}",
           "11": "pending",
@@ -128,7 +73,7 @@
         }
       },
       "metadata": {
-        "designer": { "x": 1200, "y": 0 },
+        "designer": { "x": 900, "y": 0 },
         "restore": {}
       }
     }

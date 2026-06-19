@@ -63,7 +63,8 @@ jobs:
           git config user.name "bloom-bot"
           git config user.email "bot@bloomfocus.org"
           git pull --no-edit origin main || true
-          git add pinterest_week_*.json -f
+          cp pinterest_week_${{ github.event.inputs.week }}.json pinterest_current.json
+          git add pinterest_week_*.json pinterest_current.json -f
           git commit -m "pinterest text: week ${{ github.event.inputs.week }}" || echo "nothing to commit"
           git push
 
@@ -73,8 +74,9 @@ jobs:
           git config user.name "bloom-bot"
           git config user.email "bot@bloomfocus.org"
           git pull --no-edit origin main || true
-          git add output/pinterest/ -f
-          git commit -m "pinterest pins: week ${{ github.event.inputs.week }}" || echo "nothing to commit"
+          cp pinterest_week_${{ github.event.inputs.week }}.json pinterest_current.json
+          git add output/pinterest/ pinterest_week_*.json pinterest_current.json -f
+          git commit -m "pinterest pins+urls: week ${{ github.event.inputs.week }}" || echo "nothing to commit"
           git push
 
       - name: Print public image URLs
