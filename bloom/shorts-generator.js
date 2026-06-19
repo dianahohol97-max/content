@@ -40,41 +40,47 @@ const URLS = {
   site: "https://bloomfocus.org",
 };
 
-// Rotating topics for ADHD Shorts (education + relatable + practical)
+// Topics chosen from what actually performs on ADHD short-form (2026 research):
+// - "X signs" symptom lists (highest reach + self-recognition)
+// - women's/late-diagnosis ADHD (underserved, viral, drives quiz traffic)
+// - lesser-known symptoms presented as "didn't know that was ADHD"
+// - relatable daily-struggle hooks (sleep, brain fog, time, mess)
+// bloom focus angle: relatable AND accurate (most viral ADHD content is not).
 const TOPICS = [
-  // — Core education (the brain) —
-  "why ADHD brains can't 'just start' tasks (dopamine explained)",
-  "task paralysis is not laziness — what's actually happening",
-  "the ADHD time blindness problem and one way to fix it",
-  "why you can focus 6 hours on a game but not 20 min on work",
-  "the 3am racing thoughts and why ADHD brains do this",
-  "why ADHD medication isn't the only answer (and what helps)",
-  "the ADHD 'wall of awful' and how to climb it",
-  "object permanence and ADHD: out of sight, out of mind",
-  "rejection sensitive dysphoria explained in 60 seconds",
-  "why ADHD brains crave novelty (and how to use it)",
-  "the science of hyperfocus: gift and trap",
-  "why transitions between tasks are so hard with ADHD",
-  "emotional dysregulation in ADHD — it's not 'too sensitive'",
-  "working memory and ADHD: why you forget mid-sentence",
-  "ADHD and the 'now vs not now' sense of time",
-  // — Practical tools —
-  "dopamine menus: how to trick an ADHD brain into starting",
-  "body doubling — the weird trick that actually works for ADHD",
-  "the 2-minute rule for ADHD task initiation",
-  "how to build an ADHD morning routine that survives real life",
-  "externalize everything: the ADHD memory hack",
-  "the 'launch pad' trick so you stop losing your keys",
-  "habit stacking for ADHD brains (without rigid schedules)",
-  "body-based resets when your ADHD brain is stuck",
-  "how to make boring tasks dopamine-friendly",
-  // — Relatable / validation —
+  // — "Signs" lists (cold traffic → quiz) —
+  "7 signs of ADHD in women that get dismissed as personality",
+  "5 ADHD symptoms you didn't know were ADHD",
+  "signs you have inattentive ADHD (the quiet kind)",
+  "ADHD in adults: 6 signs everyone misses",
+  "why high-achieving women often have undiagnosed ADHD",
+  "8 things that feel normal but are actually ADHD",
+  "ADHD or anxiety? how to tell the difference",
+  "late-diagnosed ADHD: signs you grew up masking it",
+  "signs your 'laziness' is actually ADHD executive dysfunction",
+  "ADHD and people-pleasing: the connection no one talks about",
+  // — Lesser-known symptoms (recognition → quiz) —
+  "ADHD time blindness: why you're always late (and the fix)",
+  "ADHD paralysis: when you can't start even easy tasks",
+  "why ADHD brains can't 'just start' — dopamine explained",
+  "rejection sensitive dysphoria: the ADHD symptom that hurts most",
+  "ADHD and brain fog: why your mind feels full of static",
+  "why ADHD makes you forget mid-sentence (working memory)",
+  "the ADHD sleep problem: revenge bedtime procrastination",
+  "ADHD emotional dysregulation: it's not being 'too sensitive'",
+  "why ADHD brains struggle with object permanence",
+  "ADHD and the 'now vs not now' way of seeing time",
+  // — Practical tools (warm → app) —
+  "the dopamine menu trick to start tasks with ADHD",
+  "body doubling: the ADHD focus hack that actually works",
+  "the 2-minute rule for ADHD task paralysis",
+  "how to build an ADHD routine that survives real life",
+  "the launch-pad trick so ADHD brains stop losing keys",
+  "how to make boring tasks dopamine-friendly for ADHD",
+  // — Relatable / shareable —
   "things neurotypical productivity advice gets wrong about ADHD",
+  "why your ADHD brain starts 5 things and finishes none",
   "the ADHD tax: what executive dysfunction really costs you",
   "'I'll do it in 5 minutes' — the ADHD time lie",
-  "why your ADHD brain starts 5 things and finishes none",
-  "the doom pile and why ADHD brains create it",
-  "why 'just try harder' is the worst ADHD advice",
 ];
 
 function parseJSON(text) {
@@ -94,6 +100,11 @@ async function generateShorts(weekNum, count) {
   const prompt = `You are a YouTube Shorts scriptwriter for bloom focus, a faceless ADHD education brand.
 
 Voice/tone: warm, direct, science-backed but simple — "a friend with a neuroscience degree who also lost their keys this morning". Validating, never patronizing. Never say "just try harder" or "ADHD is a superpower".
+
+IMPORTANT — what makes these perform (from real ADHD short-form data):
+- Lead with RECOGNITION: the first line should make the viewer think "wait, that's me". Specific lived moments beat clinical definitions.
+- Be relatable AND accurate. Most viral ADHD content is misleading; bloom focus wins trust by being correct. Don't present normal-for-everyone experiences as ADHD-exclusive — frame as "common in ADHD" not "if you do this you have ADHD".
+- Where relevant, gently note these can overlap with other things and the quiz/professional help is the next step (no fear-mongering, no fake certainty).
 
 Write exactly ${count} YouTube Shorts (30-45 seconds each, faceless, voiced narration over changing aesthetic background shots).
 
