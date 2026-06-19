@@ -62,7 +62,6 @@ jobs:
 
       - name: Build pin images
         env:
-          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
         run: |
           ARGS="--week=${{ github.event.inputs.week }}"

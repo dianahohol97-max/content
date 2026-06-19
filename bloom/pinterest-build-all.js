@@ -1,7 +1,7 @@
 /**
  * bloom focus — pinterest-build-all.js
  * Master Pinterest image builder. Routes each pin to the right engine:
- *   - infographic pins → DALL-E (gpt-image-1) — needs crisp text
+ *   - infographic pins → Gemini (full image with list + text)
  *   - hook + product pins → Gemini Nano Banana photo + text overlay — cheaper
  *
  * Usage:
@@ -11,7 +11,6 @@
  */
 
 import 'dotenv/config';
-import OpenAI from "openai";
 import { GoogleGenAI } from "@google/genai";
 import sharp from "sharp";
 import fs from "fs";
@@ -20,7 +19,6 @@ import { fileURLToPath } from "url";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const REPO_ROOT = path.join(__dirname, "..");
-const openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
 const gemini = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY });
 
 const args = Object.fromEntries(
@@ -41,35 +39,35 @@ function loadPins(week) {
   return JSON.parse(fs.readFileSync(p, "utf-8"));
 }
 
-// ═══ DALL-E infographic ═══════════════════════════════════════════════════════
+// ═══ Gemini infographic (full image with text + list) ═══════════════════════
 function buildInfographicPrompt(pin) {
   const items = pin.items ?? [];
   const itemsText = items.map((it, i) => `${i + 1}. ${it}`).join("\n");
   const count = items.length;
-  return `A clean professional Pinterest infographic, soft pastel aesthetic, for an ADHD wellness brand.
+  return `Create a clean, professional Pinterest infographic in a soft pastel aesthetic for an ADHD wellness brand.
 
-TITLE at top (large bold friendly rounded font): "${pin.headline}"
+TITLE at top (large, bold, friendly rounded font): "${pin.headline}"
 
-A vertical numbered list with EXACTLY ${count} items. Each has a numbered circle badge on the left (numbered 1 through ${count} IN ORDER), text in the middle, and a small pastel icon on the right:
+A vertical numbered list with EXACTLY ${count} items, each with a numbered circle badge (1 through ${count} in order) and a small matching pastel icon:
 ${itemsText}
 
-CRITICAL: badges read 1, 2, 3${count>=4?", 4":""}${count>=5?", 5":""} in perfect sequence. Every item numbered, none skipped or repeated.
-
-STYLE: soft pastel palette (lavender, cream, sage, blush, light blue), cute flat icons, rounded legible sans-serif, perfect spelling, soft decor (stars, leaves), warm supportive feeling, small "bloomfocus.org" at bottom center, vertical 2:3, all text crisp and correctly spelled. Polished Canva-style design an adult ADHD woman would save.`;
+STYLE: soft pastel palette (lavender, cream, sage green, blush pink, light blue), cute minimal flat icons, rounded friendly legible sans-serif, perfect spelling, soft decorative elements (stars, leaves, hearts), warm supportive feeling, small "bloomfocus.org" at bottom center. Vertical 2:3 portrait. All text must be crisp, readable, correctly spelled.`;
 }
 
 async function buildInfographic(pin, outDir) {
   const outPath = path.join(outDir, `${pin.id}.png`);
-  const result = await openai.images.generate({
-    model: "gpt-image-1",
-    prompt: buildInfographicPrompt(pin),
-    size: "1024x1536",
-    quality: "high",
+  const response = await gemini.models.generateContent({
+    model: "gemini-2.5-flash-image",
+    contents: buildInfographicPrompt(pin) + "\n\nVertical 2:3 portrait aspect ratio (1000x1500).",
   });
-  const b64 = result.data[0].b64_json;
-  if (!b64) throw new Error("No DALL-E image");
-  fs.writeFileSync(outPath, Buffer.from(b64, "base64"));
-  return outPath;
+  const parts = response.candidates?.[0]?.content?.parts ?? [];
+  for (const part of parts) {
+    if (part.inlineData?.data) {
+      fs.writeFileSync(outPath, Buffer.from(part.inlineData.data, "base64"));
+      return outPath;
+    }
+  }
+  throw new Error("No Gemini infographic image");
 }
 
 // ═══ Gemini photo + overlay (hooks & products) ═══════════════════════════════
@@ -146,18 +144,18 @@ async function main() {
   if (!fs.existsSync(outDir)) fs.mkdirSync(outDir, { recursive: true });
 
   const infoCount = pins.filter((p) => p.pinType === "infographic").length;
-  console.log(`📋 ${pins.length} pins (${infoCount} infographic→DALL-E, ${pins.length - infoCount} photo→Gemini)\n`);
+  console.log(`📋 ${pins.length} pins (${infoCount} infographic + ${pins.length - infoCount} hook/product, all via Gemini)\n`);
 
   const REPO_RAW = "https://raw.githubusercontent.com/dianahohol97-max/content/main";
 
   let done = 0, failed = 0, skipped = 0;
   for (let i = 0; i < pins.length; i++) {
     const pin = pins[i];
-    const engine = pin.pinType === "infographic" ? "DALL-E" : "Gemini";
+    const engine = pin.pinType === "infographic" ? "Gemini-info" : "Gemini-photo";
     const label = pin.pinType === "infographic" ? pin.headline : pin.overlayTitle;
     const imgPath = path.join(outDir, `${pin.id}.png`);
 
-    // Skip if image already exists and is non-empty (avoids re-paying for DALL-E)
+    // Skip if image already exists and is non-empty
     if (SKIP_EXISTING && fs.existsSync(imgPath) && fs.statSync(imgPath).size > 1000) {
       pin.imageUrl = `${REPO_RAW}/output/pinterest/week_${WEEK}/${pin.id}.png`;
       skipped++;
