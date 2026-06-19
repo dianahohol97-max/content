@@ -97,12 +97,21 @@ function wrapText(text, maxChars) {
   return lines;
 }
 
-function buildHookOverlay(overlayTitle, cta) {
+function buildHookOverlay(overlayTitle, subtitle, cta) {
   const titleLines = wrapText(overlayTitle, 18);
   const lineHeight = 92;
   const titleBlockH = titleLines.length * lineHeight + 60;
   const titleTspans = titleLines.map((ln, i) =>
     `<tspan x="${W/2}" dy="${i === 0 ? 0 : lineHeight}">${esc(ln)}</tspan>`).join("");
+
+  // Subtitle teaser pill, sits just under the title block
+  const subY = 80 + titleBlockH + 36;
+  const subBlock = subtitle
+    ? `<rect x="140" y="${subY}" width="${W-280}" height="84" rx="42" fill="rgba(61,44,110,0.92)"/>
+       <text x="${W/2}" y="${subY + 55}" font-family="Helvetica, Arial, sans-serif" font-size="40" font-weight="700"
+             fill="#ffffff" text-anchor="middle">${esc(subtitle)}</text>`
+    : "";
+
   return Buffer.from(`
 <svg width="${W}" height="${H}" xmlns="http://www.w3.org/2000/svg">
   <defs>
@@ -115,6 +124,7 @@ function buildHookOverlay(overlayTitle, cta) {
   <rect x="70" y="80" width="${W-140}" height="${titleBlockH}" rx="24" fill="rgba(255,248,240,0.94)"/>
   <text x="${W/2}" y="${150 + lineHeight*0.3}" font-family="Georgia, serif" font-size="72" font-weight="700"
         fill="#3d2c6e" text-anchor="middle" style="letter-spacing:-1px;">${titleTspans}</text>
+  ${subBlock}
   <text x="${W/2}" y="${H-150}" font-family="Helvetica, Arial, sans-serif" font-size="44" font-weight="600"
         fill="#ffffff" text-anchor="middle">${esc(cta)}</text>
   <text x="${W/2}" y="${H-90}" font-family="Helvetica, Arial, sans-serif" font-size="34" font-weight="500"
@@ -127,7 +137,7 @@ async function buildHookOrProduct(pin, outDir) {
   const bgBuffer = await geminiBackground(pin.imagePrompt);
   const bg = await sharp(bgBuffer).resize(W, H, { fit: "cover", position: "centre" }).toBuffer();
   const shortCta = { quiz: "Take the free quiz", app: "Try the free app", etsy: "Shop on Etsy", blog: "Read more" }[pin.funnel] ?? "Learn more";
-  const overlay = buildHookOverlay(pin.overlayTitle ?? pin.title, shortCta);
+  const overlay = buildHookOverlay(pin.overlayTitle ?? pin.title, pin.overlaySubtitle, shortCta);
   await sharp(bg).composite([{ input: overlay, top: 0, left: 0 }]).png().toFile(outPath);
   return outPath;
 }
