@@ -30,6 +30,7 @@ const args = Object.fromEntries(
 const WEEK = args.week ? parseInt(args.week) : null;
 const DAY = args.day ? parseInt(args.day) : null;
 const LIMIT = args.limit ? parseInt(args.limit) : null;
+const SKIP_EXISTING = args["skip-existing"] === true || args["skip-existing"] === "true";
 if (!WEEK) { console.error("❌ --week required"); process.exit(1); }
 
 const W = 1000, H = 1500;
@@ -149,11 +150,21 @@ async function main() {
 
   const REPO_RAW = "https://raw.githubusercontent.com/dianahohol97-max/content/main";
 
-  let done = 0, failed = 0;
+  let done = 0, failed = 0, skipped = 0;
   for (let i = 0; i < pins.length; i++) {
     const pin = pins[i];
     const engine = pin.pinType === "infographic" ? "DALL-E" : "Gemini";
     const label = pin.pinType === "infographic" ? pin.headline : pin.overlayTitle;
+    const imgPath = path.join(outDir, `${pin.id}.png`);
+
+    // Skip if image already exists and is non-empty (avoids re-paying for DALL-E)
+    if (SKIP_EXISTING && fs.existsSync(imgPath) && fs.statSync(imgPath).size > 1000) {
+      pin.imageUrl = `${REPO_RAW}/output/pinterest/week_${WEEK}/${pin.id}.png`;
+      skipped++;
+      console.log(`   [${i+1}/${pins.length}] ${pin.id} — already exists, skipped`);
+      continue;
+    }
+
     process.stdout.write(`   [${i+1}/${pins.length}] ${pin.id} (${engine}) "${label}"... `);
     try {
       if (pin.pinType === "infographic") await buildInfographic(pin, outDir);
@@ -180,7 +191,7 @@ async function main() {
   console.log(`   📝 Updated ${jsonPath} with image URLs`);
 
   console.log(`\n${"━".repeat(50)}`);
-  console.log(`✅ Built: ${done}, Failed: ${failed}`);
+  console.log(`✅ Built: ${done}, Skipped: ${skipped}, Failed: ${failed}`);
   console.log(`   📁 output/pinterest/week_${WEEK}/`);
   console.log(`${"━".repeat(50)}\n`);
 }

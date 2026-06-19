@@ -11,14 +11,15 @@ on:
         description: 'Single day (1-7) or empty for full week'
         required: false
         default: ''
-      images:
-        description: 'Also generate pin images?'
+      mode:
+        description: 'What to run'
         required: true
-        default: 'yes'
+        default: 'full'
         type: choice
         options:
-          - 'yes'
-          - 'no'
+          - 'full'              # generate text + all images
+          - 'images-only'       # keep existing JSON, generate images
+          - 'resume'            # keep JSON, generate ONLY missing images
       limit:
         description: 'Limit images (for testing, e.g. 5)'
         required: false
@@ -38,6 +39,7 @@ jobs:
         run: npm install
 
       - name: Generate Pinterest pins (text)
+        if: github.event.inputs.mode == 'full'
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
         run: |
@@ -47,18 +49,8 @@ jobs:
             node bloom/pinterest-generator.js --week=${{ github.event.inputs.week }} --day=${{ github.event.inputs.day }}
           fi
 
-      - name: Build pin images (DALL-E infographics + Gemini photos)
-        if: github.event.inputs.images == 'yes'
-        env:
-          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
-          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
-        run: |
-          ARGS="--week=${{ github.event.inputs.week }}"
-          if [ -n "${{ github.event.inputs.day }}" ]; then ARGS="$ARGS --day=${{ github.event.inputs.day }}"; fi
-          if [ -n "${{ github.event.inputs.limit }}" ]; then ARGS="$ARGS --limit=${{ github.event.inputs.limit }}"; fi
-          node bloom/pinterest-build-all.js $ARGS
-
       - name: Commit pins JSON to repo
+        if: github.event.inputs.mode == 'full'
         run: |
           git config user.name "bloom-bot"
           git config user.email "bot@bloomfocus.org"
@@ -68,21 +60,30 @@ jobs:
           git commit -m "pinterest text: week ${{ github.event.inputs.week }}" || echo "nothing to commit"
           git push
 
-      - name: Commit pin images to repo
-        if: github.event.inputs.images == 'yes'
+      - name: Build pin images
+        env:
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+        run: |
+          ARGS="--week=${{ github.event.inputs.week }}"
+          if [ -n "${{ github.event.inputs.day }}" ]; then ARGS="$ARGS --day=${{ github.event.inputs.day }}"; fi
+          if [ -n "${{ github.event.inputs.limit }}" ]; then ARGS="$ARGS --limit=${{ github.event.inputs.limit }}"; fi
+          if [ "${{ github.event.inputs.mode }}" = "resume" ]; then ARGS="$ARGS --skip-existing=true"; fi
+          node bloom/pinterest-build-all.js $ARGS
+
+      - name: Commit images + updated JSON
         run: |
           git config user.name "bloom-bot"
           git config user.email "bot@bloomfocus.org"
           git pull --no-edit origin main || true
           cp pinterest_week_${{ github.event.inputs.week }}.json pinterest_current.json
           git add output/pinterest/ pinterest_week_*.json pinterest_current.json -f
-          git commit -m "pinterest pins+urls: week ${{ github.event.inputs.week }}" || echo "nothing to commit"
+          git commit -m "pinterest images: week ${{ github.event.inputs.week }} (${{ github.event.inputs.mode }})" || echo "nothing to commit"
           git push
 
       - name: Print public image URLs
-        if: github.event.inputs.images == 'yes'
         run: |
-          echo "=== PUBLIC PIN IMAGE URLS (for Make.com) ==="
+          echo "=== PUBLIC PIN IMAGE URLS ==="
           for f in $(find output/pinterest/week_${{ github.event.inputs.week }} -name "*.png" 2>/dev/null | sort); do
             echo "https://raw.githubusercontent.com/dianahohol97-max/content/main/$f"
           done
