@@ -30,7 +30,7 @@ const args = Object.fromEntries(
   })
 );
 const WEEK = args.week ? parseInt(args.week) : 29;
-const COUNT = args.count ? parseInt(args.count) : 3;
+const COUNT = args.count ? parseInt(args.count) : 14;
 
 const client = new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY });
 
@@ -42,18 +42,39 @@ const URLS = {
 
 // Rotating topics for ADHD Shorts (education + relatable + practical)
 const TOPICS = [
+  // — Core education (the brain) —
   "why ADHD brains can't 'just start' tasks (dopamine explained)",
   "task paralysis is not laziness — what's actually happening",
   "the ADHD time blindness problem and one way to fix it",
   "why you can focus 6 hours on a game but not 20 min on work",
   "the 3am racing thoughts and why ADHD brains do this",
   "why ADHD medication isn't the only answer (and what helps)",
-  "dopamine menus: how to trick an ADHD brain into starting",
-  "body doubling — the weird trick that actually works for ADHD",
-  "why neurotypical productivity advice fails ADHD brains",
   "the ADHD 'wall of awful' and how to climb it",
   "object permanence and ADHD: out of sight, out of mind",
   "rejection sensitive dysphoria explained in 60 seconds",
+  "why ADHD brains crave novelty (and how to use it)",
+  "the science of hyperfocus: gift and trap",
+  "why transitions between tasks are so hard with ADHD",
+  "emotional dysregulation in ADHD — it's not 'too sensitive'",
+  "working memory and ADHD: why you forget mid-sentence",
+  "ADHD and the 'now vs not now' sense of time",
+  // — Practical tools —
+  "dopamine menus: how to trick an ADHD brain into starting",
+  "body doubling — the weird trick that actually works for ADHD",
+  "the 2-minute rule for ADHD task initiation",
+  "how to build an ADHD morning routine that survives real life",
+  "externalize everything: the ADHD memory hack",
+  "the 'launch pad' trick so you stop losing your keys",
+  "habit stacking for ADHD brains (without rigid schedules)",
+  "body-based resets when your ADHD brain is stuck",
+  "how to make boring tasks dopamine-friendly",
+  // — Relatable / validation —
+  "things neurotypical productivity advice gets wrong about ADHD",
+  "the ADHD tax: what executive dysfunction really costs you",
+  "'I'll do it in 5 minutes' — the ADHD time lie",
+  "why your ADHD brain starts 5 things and finishes none",
+  "the doom pile and why ADHD brains create it",
+  "why 'just try harder' is the worst ADHD advice",
 ];
 
 function parseJSON(text) {

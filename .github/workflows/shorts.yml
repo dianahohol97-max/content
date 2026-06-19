@@ -10,7 +10,7 @@ on:
       count:
         description: "How many shorts to generate (text step)"
         required: false
-        default: "3"
+        default: "14"
       mode:
         description: "full = script+video | video-only = build from existing JSON | script-only"
         required: false
