@@ -358,16 +358,34 @@ async function generateDay(weekNum, dayNum) {
   ];
 
   // Add metadata
-  return allPins.map((pin, i) => ({
-    id: `W${weekNum}_D${dayNum}_${String(i + 1).padStart(2, "0")}`,
-    week: weekNum,
-    day: dayNum,
-    pinNumber: i + 1,
-    ...pin,
-    boardId: BOARD_IDS[pin.board] ?? DEFAULT_BOARD_ID,
-    status: "pending",
-    postedAt: null,
-  }));
+  return allPins.map((pin, i) => {
+    const base = {
+      id: `W${weekNum}_D${dayNum}_${String(i + 1).padStart(2, "0")}`,
+      week: weekNum,
+      day: dayNum,
+      pinNumber: i + 1,
+      ...pin,
+      boardId: BOARD_IDS[pin.board] ?? DEFAULT_BOARD_ID,
+      status: "pending",
+      postedAt: null,
+    };
+
+    // For infographics, build a ready-to-paste ChatGPT prompt
+    if (pin.pinType === "infographic" && Array.isArray(pin.items)) {
+      const itemsList = pin.items.map((it, n) => `${n + 1}. ${it}`).join("\n");
+      base.chatgptPrompt =
+`Create a clean Pinterest infographic (vertical 2:3, 1000x1500) for an ADHD wellness brand "bloom focus".
+
+TITLE (large, bold, friendly rounded font at top): "${pin.headline}"
+
+Numbered list with a small matching pastel icon next to each item:
+${itemsList}
+
+Style: soft pastel palette (lavender, cream, sage green, blush pink, light blue), cute flat illustrations, rounded legible sans-serif, soft decorative elements (stars, leaves, hearts), warm supportive feeling. Add "bloomfocus.org" small at the bottom center. Make sure all text is spelled perfectly and the numbers run 1 to ${pin.items.length} in order.`;
+    }
+
+    return base;
+  });
 }
 
 // ─── Main ─────────────────────────────────────────────────────────────────────
