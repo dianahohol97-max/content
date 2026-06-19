@@ -135,6 +135,41 @@ function buildHookOverlay(overlayTitle, signs, cta) {
 </svg>`);
 }
 
+function buildMemeOverlay(memeText) {
+  // memeText may contain \n for setup/punchline. Wrap each line to width.
+  const rawLines = String(memeText).split("\n");
+  const lines = [];
+  for (const rl of rawLines) {
+    for (const w of wrapText(rl, 22)) lines.push(w);
+  }
+  const fontSize = lines.length > 4 ? 64 : 76;
+  const lineHeight = fontSize * 1.25;
+  const blockH = lines.length * lineHeight;
+  const startY = (H - blockH) / 2 + fontSize * 0.7;
+  const tspans = lines.map((ln, i) =>
+    `<tspan x="${W/2}" dy="${i === 0 ? 0 : lineHeight}">${esc(ln)}</tspan>`).join("");
+  // soft panel behind text for readability
+  const panelY = startY - fontSize - 30;
+  const panelH = blockH + 90;
+  return Buffer.from(`
+<svg width="${W}" height="${H}" xmlns="http://www.w3.org/2000/svg">
+  <rect x="60" y="${panelY}" width="${W-120}" height="${panelH}" rx="32" fill="rgba(255,248,240,0.9)"/>
+  <text x="${W/2}" y="${startY}" font-family="Georgia, serif" font-size="${fontSize}" font-weight="700"
+        fill="#3d2c6e" text-anchor="middle" style="letter-spacing:-0.5px;">${tspans}</text>
+  <text x="${W/2}" y="${H-80}" font-family="Helvetica, Arial, sans-serif" font-size="34" font-weight="600"
+        fill="#7c6bb0" text-anchor="middle">bloomfocus.org</text>
+</svg>`);
+}
+
+async function buildMeme(pin, outDir) {
+  const outPath = path.join(outDir, `${pin.id}.png`);
+  const bgBuffer = await geminiBackground(pin.imagePrompt);
+  const bg = await sharp(bgBuffer).resize(W, H, { fit: "cover", position: "centre" }).toBuffer();
+  const overlay = buildMemeOverlay(pin.memeText ?? pin.overlayTitle ?? pin.title);
+  await sharp(bg).composite([{ input: overlay, top: 0, left: 0 }]).png().toFile(outPath);
+  return outPath;
+}
+
 async function buildHookOrProduct(pin, outDir) {
   const outPath = path.join(outDir, `${pin.id}.png`);
   const bgBuffer = await geminiBackground(pin.imagePrompt);
@@ -165,7 +200,9 @@ async function main() {
   for (let i = 0; i < pins.length; i++) {
     const pin = pins[i];
     const engine = pin.pinType === "infographic" ? "Gemini-info" : "Gemini-photo";
-    const label = pin.pinType === "infographic" ? pin.headline : pin.overlayTitle;
+    const label = pin.pinType === "infographic" ? pin.headline
+      : pin.pinType === "meme" ? pin.memeText?.replace(/\n/g, " ")
+      : pin.overlayTitle;
     const imgPath = path.join(outDir, `${pin.id}.png`);
 
     // Skip if image already exists and is non-empty
@@ -179,6 +216,7 @@ async function main() {
     process.stdout.write(`   [${i+1}/${pins.length}] ${pin.id} (${engine}) "${label}"... `);
     try {
       if (pin.pinType === "infographic") await buildInfographic(pin, outDir);
+      else if (pin.pinType === "meme") await buildMeme(pin, outDir);
       else await buildHookOrProduct(pin, outDir);
       // Record the public GitHub raw URL of the finished image into the pin
       pin.imageUrl = `${REPO_RAW}/output/pinterest/week_${WEEK}/${pin.id}.png`;

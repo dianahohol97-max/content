@@ -32,6 +32,7 @@ const URLS = {
   app:  "https://bloomfocus.org/app",
   etsy: "https://www.etsy.com/shop/BloomfocusShop",
   blog: "https://bloomfocus.org/blog",
+  site: "https://bloomfocus.org",
 };
 
 const BOARDS = [
@@ -327,12 +328,93 @@ async function generatePinBatchWithRetry(params) {
   }
 }
 
-// ─── Generate one day (10 pins) ───────────────────────────────────────────────
+// ─── Generate meme pins (relatable ADHD humor) ────────────────────────────────
+
+async function generateMemeBatch({ theme, weekNum, dayNum, count = 2, attempt = 1 }) {
+  const strictness = attempt === 1 ? "" :
+    " CRITICAL: Use only straight ASCII apostrophes ('), never curly quotes. No special characters.";
+
+  const prompt = `You are a social media creator for bloom focus, an ADHD brand.
+
+Generate exactly ${count} relatable ADHD MEME pins. Week ${weekNum}, Day ${dayNum}. Theme: ${theme}.
+
+WHAT A MEME PIN IS:
+A short, funny, instantly relatable ADHD moment that makes people think "this is SO me" and tag a friend. Humor WITH the ADHD experience, never mocking it. Warm and self-aware, like an inside joke among people who get it.
+
+GOOD meme topics: racing thoughts at 3am, task paralysis on tiny tasks, hyperfocus on the wrong thing, time blindness, starting 5 things finishing 0, "I'll do it in 5 minutes" (3 hours pass), rejection sensitivity, the doom pile, object permanence ("out of sight out of mind").
+
+TONE: like a friend who has ADHD and lost their keys this morning. Funny, kind, never "ADHD is a superpower", never cruel.
+
+For each meme:
+- memeText: The meme line(s). Max 14 words. Can use a setup/punchline format with a line break (\\n). This is the star — make it genuinely funny and relatable.
+  GOOD: "My brain at 3am: remember that embarrassing thing from 2014?"
+  GOOD: "Me: I'll start in 5 minutes\\nAlso me: *3 hours later*"
+  GOOD: "Made a to-do list. Lost the list. Made a new list to find it."
+- title: Pinterest SEO title 40-60 chars (keyword-rich, e.g. "Relatable ADHD memes that are too real")
+- description: 150-250 chars, relatable, 2-3 ADHD keywords, ends with "More at bloomfocus.org"
+- imagePrompt: Cozy aesthetic photo background, soft and minimal so text reads clearly. "Realistic aesthetic photograph, soft pastel tones (lavender, cream, blush, sage), cozy minimal scene, lots of empty space, soft natural light, shallow depth of field. No people, no text. Vertical 2:3 (1000x1500)." Add a calm relevant scene (messy cozy desk, unmade bed with soft light, coffee going cold, sticky notes).
+- board: Choose from: ${BOARDS.join(" | ")}${strictness}
+
+Return ONLY a valid JSON array, no markdown:
+[
+  {
+    "memeText": "...",
+    "title": "...",
+    "description": "...",
+    "imagePrompt": "...",
+    "board": "...",
+    "destinationUrl": "${URLS.site ?? "https://bloomfocus.org"}",
+    "funnel": "site",
+    "pinType": "meme"
+  }
+]`;
+
+  const response = await client.messages.create({
+    model: "claude-sonnet-4-6",
+    max_tokens: 1500,
+    messages: [{ role: "user", content: prompt }],
+  });
+
+  return parseJSON(response.content[0].text);
+}
+
+async function generateMemeWithRetry(params) {
+  for (let attempt = 1; attempt <= 3; attempt++) {
+    try {
+      const pins = await generateMemeBatch({ ...params, attempt });
+      if (!Array.isArray(pins) || pins.length === 0) throw new Error("Empty array");
+      console.log(`    ✓ meme batch — ${pins.length} pins`);
+      return pins.map((p) => ({ ...p, pinType: "meme" }));
+    } catch (err) {
+      console.warn(`    ✗ meme attempt ${attempt} failed: ${err.message}`);
+      if (attempt === 3) {
+        console.warn(`    ⚠ using fallback memes`);
+        return Array.from({ length: params.count ?? 2 }, (_, i) => ({
+          memeText: i === 0
+            ? "My brain at 3am:\nremember that thing from 2014?"
+            : "Me: I'll start in 5 minutes\nAlso me: *3 hours later*",
+          title: "Relatable ADHD memes that are too real",
+          description: "When your ADHD brain has a mind of its own. Relatable ADHD moments, neurodivergent humor. More at bloomfocus.org",
+          imagePrompt: "Realistic aesthetic photograph, soft pastel tones lavender cream blush, cozy minimal unmade bed with soft morning light, lots of empty space, shallow depth of field. No people, no text. Vertical 2:3 portrait (1000x1500).",
+          board: BOARDS[0],
+          destinationUrl: URLS.site ?? "https://bloomfocus.org",
+          funnel: "site",
+          pinType: "meme",
+        }));
+      }
+      await new Promise((r) => setTimeout(r, 1000 * attempt));
+    }
+  }
+}
+
+// ─── Generate one day ─────────────────────────────────────────────────────────
 //
 // New mix (data-driven for saves + clicks + sales):
 //   4 hook pins   → quiz/app   (short text on photo, drives clicks)
 //   4 infographic → quiz/app/blog (list on image, drives saves + authority)
 //   2 product     → etsy       (photo + benefit, drives sales)
+//   2 meme        → site       (relatable ADHD humor, drives shares + reach)
+//   = 12 pins/day
 
 async function generateDay(weekNum, dayNum) {
   const theme = DAY_THEMES[dayNum] ?? "ADHD productivity and focus";
@@ -365,6 +447,12 @@ async function generateDay(weekNum, dayNum) {
     funnel: "etsy", url: URLS.etsy, theme, weekNum, dayNum, batchIndex: 1, count: 2,
   });
 
+  // ── 2 MEME pins (relatable ADHD humor → site) ──
+  console.log(`  😄 Meme pins...`);
+  const memes = await generateMemeWithRetry({
+    theme, weekNum, dayNum, count: 2,
+  });
+
   // Tag hook/product pins with pinType for the image generator
   const tagHook = (arr) => arr.map((p) => ({ ...p, pinType: p.pinType ?? "hook" }));
 
@@ -375,6 +463,7 @@ async function generateDay(weekNum, dayNum) {
     ...infoApp,
     ...infoBlog,
     ...tagHook(product),
+    ...memes,
   ];
 
   // Add metadata
