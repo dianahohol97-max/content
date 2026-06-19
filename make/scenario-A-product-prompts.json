@@ -1,0 +1,101 @@
+{
+  "name": "bloom focus — Product Prompts (Telegram /products)",
+  "flow": [
+    {
+      "id": 1,
+      "module": "telegram:WatchUpdates",
+      "version": 1,
+      "parameters": {},
+      "mapper": {},
+      "metadata": {
+        "designer": { "x": 0, "y": 0 },
+        "restore": { "parameters": { "__IMTHOOK__": { "label": "newsformebot" } } },
+        "parameters": [ { "name": "__IMTHOOK__", "type": "hook:telegramapi", "label": "Webhook", "required": true } ]
+      }
+    },
+    {
+      "id": 2,
+      "module": "dropbox:listFolder",
+      "version": 5,
+      "parameters": { "__IMTCONN__": 13678768 },
+      "filter": {
+        "name": "is /products command",
+        "conditions": [[{ "a": "{{1.message.text}}", "b": "/products", "o": "text:equal" }]]
+      },
+      "mapper": {
+        "path": "/bloom-products",
+        "recursive": false,
+        "limit": "100"
+      },
+      "metadata": {
+        "designer": { "x": 300, "y": 0 },
+        "restore": { "parameters": { "__IMTCONN__": { "label": "Dropbox (dianahoholsmm)" } } },
+        "parameters": [ { "name": "__IMTCONN__", "type": "account:dropbox", "label": "Connection", "required": true } ]
+      }
+    },
+    {
+      "id": 3,
+      "module": "dropbox:getTemporaryLink",
+      "version": 5,
+      "parameters": { "__IMTCONN__": 13678768 },
+      "filter": {
+        "name": "only image files",
+        "conditions": [[{ "a": "{{2.name}}", "b": "(?i)\\.(png|jpg|jpeg)$", "o": "text:regex" }]]
+      },
+      "mapper": { "path": "{{2.path_lower}}" },
+      "metadata": {
+        "designer": { "x": 600, "y": 0 },
+        "restore": { "parameters": { "__IMTCONN__": { "label": "Dropbox (dianahoholsmm)" } } },
+        "parameters": [ { "name": "__IMTCONN__", "type": "account:dropbox", "label": "Connection", "required": true } ]
+      }
+    },
+    {
+      "id": 4,
+      "module": "openai-gpt-3:createModelResponse",
+      "version": 1,
+      "parameters": { "__IMTCONN__": 9196583 },
+      "mapper": {
+        "model": "gpt-5-chat-latest",
+        "inputContentType": "text",
+        "createConversation": true,
+        "store": true,
+        "truncation": "auto",
+        "background": false,
+        "parallel_tool_calls": true,
+        "reasoning": {},
+        "format": {},
+        "input": "You generate Pinterest content for a digital ADHD products brand (bloom focus). The product file is named: {{2.name}}\n\nThe filename starts with a language prefix: DE=German, EN=English, ES=Spanish, FR=French. Detect the language from the prefix and write ALL text fields in that language.\n\nThe product name is the filename without the prefix and extension.\n\nReturn EXACTLY in this format, nothing else, no markdown:\n\nLANG: <DE|EN|ES|FR>\nPRODUCT: <clean product name>\nPINTITLE: <Pinterest pin title in the product language, max 90 chars>\nPINDESC: <Pinterest description in the product language, 150-300 chars, warm, ADHD-friendly, no hashtags>\nPINTAGS: <8-12 comma-separated keywords in the product language>\nPROMPT1: \"<product name>\" poster framed on a white plaster wall, pastel peach and lavender bedroom, natural morning light, succulent on a wooden shelf, no cork board, no people, ultra realistic, --ar 2:3 --style raw\nPROMPT2: \"<product name>\" poster flat lay on a light oak desk, dotted notebook, fine-liner pen, glass of water, pastel sticky notes, top-down view, soft daylight, no people, ultra realistic, --ar 2:3 --style raw\nPROMPT3: \"<product name>\" framed poster on a cozy pastel home-office wall, warm lamp light, plant in a ceramic pot, minimal aesthetic, no people, ultra realistic, --ar 2:3 --style raw\nPROMPT4: \"<product name>\" printable on a clipboard held over a soft blanket, calm neutral tones, morning coffee cup, no people, ultra realistic, --ar 2:3 --style raw\nPROMPT5: \"<product name>\" poster on an easel in a bright pastel room, soft natural light, decorative dried flowers, no people, ultra realistic, --ar 2:3 --style raw\nPROMPT6: \"<product name>\" flat lay on a marble surface, pastel stationery, eucalyptus sprig, top-down, soft shadows, no people, ultra realistic, --ar 2:3 --style raw\nPROMPT7: \"<product name>\" poster taped on a pastel wall above a wooden desk, fairy lights, cozy aesthetic, no people, ultra realistic, --ar 2:3 --style raw"
+      },
+      "metadata": {
+        "designer": { "x": 900, "y": 0 },
+        "restore": { "parameters": { "__IMTCONN__": { "label": "Touch content" } } },
+        "parameters": [ { "name": "__IMTCONN__", "type": "account:openai-gpt-3", "label": "Connection", "required": true } ]
+      }
+    },
+    {
+      "id": 5,
+      "module": "telegram:SendPhoto",
+      "version": 1,
+      "parameters": { "__IMTCONN__": 13266086 },
+      "mapper": {
+        "chatId": "{{1.message.chat.id}}",
+        "photo": "{{3.link}}",
+        "caption": "🛍 {{2.name}}\n\n— — —\nКонтент + промпти (скопіюй):\n\n{{4.output[].content[].text}}"
+      },
+      "metadata": {
+        "designer": { "x": 1200, "y": 0 },
+        "restore": { "parameters": { "__IMTCONN__": { "label": "newsformebot" } } },
+        "parameters": [ { "name": "__IMTCONN__", "type": "account:telegram", "label": "Connection", "required": true } ]
+      }
+    }
+  ],
+  "metadata": {
+    "instant": true,
+    "version": 1,
+    "scenario": {
+      "roundtrips": 1, "maxErrors": 3, "autoCommit": true, "autoCommitTriggerLast": true,
+      "sequential": false, "confidential": false, "dataloss": false, "dlq": false
+    },
+    "designer": { "orphans": [] }
+  }
+}

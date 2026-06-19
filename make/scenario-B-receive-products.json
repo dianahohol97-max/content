@@ -1,0 +1,121 @@
+{
+  "name": "bloom focus — Receive Product Photos (Telegram)",
+  "flow": [
+    {
+      "id": 1,
+      "module": "telegram:WatchUpdates",
+      "version": 1,
+      "parameters": {},
+      "mapper": {},
+      "metadata": {
+        "designer": { "x": 0, "y": 0 },
+        "restore": { "parameters": { "__IMTHOOK__": { "label": "newsformebot" } } },
+        "parameters": [ { "name": "__IMTHOOK__", "type": "hook:telegramapi", "label": "Webhook", "required": true } ]
+      }
+    },
+    {
+      "id": 2,
+      "module": "telegram:DownloadFile",
+      "version": 1,
+      "parameters": { "__IMTCONN__": 13266086 },
+      "filter": {
+        "name": "has photo + caption",
+        "conditions": [[{ "a": "{{1.message.photo}}", "o": "exist" }, { "a": "{{1.message.caption}}", "o": "exist" }]]
+      },
+      "mapper": { "fileId": "{{first(reverse(1.message.photo)).file_id}}" },
+      "metadata": {
+        "designer": { "x": 300, "y": 0 },
+        "restore": { "parameters": { "__IMTCONN__": { "label": "newsformebot" } } },
+        "parameters": [ { "name": "__IMTCONN__", "type": "account:telegram", "label": "Connection", "required": true } ]
+      }
+    },
+    {
+      "id": 3,
+      "module": "dropbox:uploadAFile",
+      "version": 5,
+      "parameters": { "__IMTCONN__": 13678768 },
+      "mapper": {
+        "folder": "/bloom-ready",
+        "filename": "{{1.message.caption}}_{{formatDate(now; \"YYYYMMDD_HHmmss\")}}.png",
+        "data": "{{2.data}}"
+      },
+      "metadata": {
+        "designer": { "x": 600, "y": 0 },
+        "restore": { "parameters": { "__IMTCONN__": { "label": "Dropbox (dianahoholsmm)" } } },
+        "parameters": [ { "name": "__IMTCONN__", "type": "account:dropbox", "label": "Connection", "required": true } ]
+      }
+    },
+    {
+      "id": 4,
+      "module": "dropbox:createSharedLink",
+      "version": 5,
+      "parameters": { "__IMTCONN__": 13678768 },
+      "mapper": { "path": "{{3.path_lower}}", "short_url": false },
+      "metadata": {
+        "designer": { "x": 900, "y": 0 },
+        "restore": { "parameters": { "__IMTCONN__": { "label": "Dropbox (dianahoholsmm)" } } },
+        "parameters": [ { "name": "__IMTCONN__", "type": "account:dropbox", "label": "Connection", "required": true } ]
+      }
+    },
+    {
+      "id": 5,
+      "module": "google-sheets:addRow",
+      "version": 2,
+      "parameters": { "__IMTCONN__": 13180049 },
+      "mapper": {
+        "from": "drive",
+        "mode": "select",
+        "spreadsheetId": "1b0smeJjQicVvSQiWF47TXS-RoNuHN_4iD0434VKngCw",
+        "sheetId": "Sheet1",
+        "includesHeaders": true,
+        "insertDataOption": "INSERT_ROWS",
+        "valueInputOption": "USER_ENTERED",
+        "values": {
+          "0": "{{1.message.caption}}",
+          "1": "{{1.message.caption}}",
+          "2": "https://www.etsy.com/shop/BloomfocusShop",
+          "3": "",
+          "4": "",
+          "5": "{{replace(4.url; \"?dl=0\"; \"?raw=1\")}}",
+          "6": "{{1.message.caption}}",
+          "7": "{{1.message.caption}} — bloom focus ADHD printable. Shop on Etsy.",
+          "8": "ADHD, printable, planner, neurodivergent, focus",
+          "9": "1143562599072621941",
+          "10": "pending",
+          "11": "",
+          "12": "",
+          "13": ""
+        }
+      },
+      "metadata": {
+        "designer": { "x": 1200, "y": 0 },
+        "restore": { "parameters": { "__IMTCONN__": { "label": "gogolka16 Google" } } },
+        "parameters": [ { "name": "__IMTCONN__", "type": "account:google", "label": "Connection", "required": true } ]
+      }
+    },
+    {
+      "id": 6,
+      "module": "telegram:SendReplyMessage",
+      "version": 1,
+      "parameters": { "__IMTCONN__": 13266086 },
+      "mapper": {
+        "chatId": "{{1.message.chat.id}}",
+        "text": "✅ Додано в чергу Etsy: {{1.message.caption}}\nНадсилай наступне фото 📤"
+      },
+      "metadata": {
+        "designer": { "x": 1500, "y": 0 },
+        "restore": { "parameters": { "__IMTCONN__": { "label": "newsformebot" } } },
+        "parameters": [ { "name": "__IMTCONN__", "type": "account:telegram", "label": "Connection", "required": true } ]
+      }
+    }
+  ],
+  "metadata": {
+    "instant": true,
+    "version": 1,
+    "scenario": {
+      "roundtrips": 1, "maxErrors": 3, "autoCommit": true, "autoCommitTriggerLast": true,
+      "sequential": false, "confidential": false, "dataloss": false, "dlq": false
+    },
+    "designer": { "orphans": [] }
+  }
+}
