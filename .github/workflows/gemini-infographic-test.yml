@@ -1,0 +1,39 @@
+name: bloom focus — Gemini Infographic Test
+
+on:
+  workflow_dispatch:
+    inputs:
+      week:
+        description: 'Week number'
+        required: true
+        default: '29'
+      limit:
+        description: 'How many infographics (test)'
+        required: true
+        default: '3'
+
+permissions:
+  contents: write
+
+jobs:
+  gemini-infographic:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Generate Gemini infographics
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+        run: node bloom/pinterest-infographic-gemini.js --week=${{ github.event.inputs.week }} --limit=${{ github.event.inputs.limit }}
+
+      - name: Upload infographics as artifact
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: bloom-gemini-infographics-week${{ github.event.inputs.week }}
+          path: output/pinterest-gemini/
+          retention-days: 7
