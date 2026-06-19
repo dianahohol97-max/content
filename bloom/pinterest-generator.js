@@ -260,13 +260,13 @@ PINTEREST RULES:
   BAD (incomplete, confusing): "Start mornings with ADHD", "ADHD focus app", "ADHD support"
   GOOD (complete hook): "Can't get out of bed?", "The app for ADHD mornings", "Mornings shouldn't feel this hard"
   Read it aloud — if it sounds cut off or like a fragment, rewrite it as a full thought.
-- overlaySubtitle: A SHORT teaser line shown under the hook that gives the viewer a REASON to click — what they'll learn or recognize. Max 6 words. Make it specific and intriguing, not generic.
-  Examples by funnel:
-    quiz: "3 signs it's ADHD →", "Which type are you?", "Take the 60-second test →"
-    app: "The tool that finally helps →", "Built for ADHD brains →"
-    etsy: "The planner that works →", "Designed for ADHD →"
-    blog: "Here's the real reason →", "5 fixes that work →"
-  It should pair with the hook so the card makes sense at a glance in a busy feed. Match the type of the overlayTitle (if the title is a question, the subtitle hints at the answer).
+- overlaySigns: An array of 2-3 SHORT recognition signs (max 4 words each) that make the viewer think "that's literally me". These are relatable ADHD experiences tied to the hook — NOT promises of article content, but moments of self-recognition. They make the card resonate and naturally lead to "what's my type? → take the quiz".
+  The signs must genuinely relate to the overlayTitle's topic.
+  Example for "Why can't I just start my day?":
+    ["Frozen by small tasks", "Better under pressure", "Lose track of time"]
+  Example for "ADHD or just tired?":
+    ["Can't switch off at night", "Exhausted but wired", "Forget why you walked in"]
+  Keep each sign concrete and instantly recognizable. No generic filler.
 - board: Choose the most relevant from: ${BOARDS.join(" | ")}
 - Each pin must have a DIFFERENT title, angle, and imagePrompt (not just paraphrases of the same idea)
 - Pins ${batchIndex > 1 ? "in this second batch" : "in this first batch"} must be on different sub-topics within the theme${strictness}
@@ -276,7 +276,7 @@ Return ONLY a valid JSON array, no markdown, no explanation:
   {
     "title": "...",
     "overlayTitle": "...",
-    "overlaySubtitle": "...",
+    "overlaySigns": ["...", "...", "..."],
     "description": "...",
     "imagePrompt": "...",
     "board": "...",
@@ -310,7 +310,7 @@ async function generatePinBatchWithRetry(params) {
         return Array.from({ length: params.count ?? 5 }, (_, i) => ({
           title: `ADHD ${params.funnel} tip ${params.batchIndex}-${i + 1}`,
           overlayTitle: "Can't focus today?",
-          overlaySubtitle: "Find out why →",
+          overlaySigns: ["Mind keeps wandering", "Tasks feel huge", "Time slips away"],
           description: `Helpful ADHD content for ${params.theme}. Visit ${params.url}`,
           imagePrompt: "Realistic aesthetic photograph of a cozy desk with a planner, coffee cup and small plant. Soft natural light, muted pastel tones. No people, no text. Vertical 2:3 portrait (1000x1500).",
           board: BOARDS[0],

@@ -97,35 +97,38 @@ function wrapText(text, maxChars) {
   return lines;
 }
 
-function buildHookOverlay(overlayTitle, subtitle, cta) {
+function buildHookOverlay(overlayTitle, signs, cta) {
   const titleLines = wrapText(overlayTitle, 18);
   const lineHeight = 92;
   const titleBlockH = titleLines.length * lineHeight + 60;
   const titleTspans = titleLines.map((ln, i) =>
     `<tspan x="${W/2}" dy="${i === 0 ? 0 : lineHeight}">${esc(ln)}</tspan>`).join("");
 
-  // Subtitle teaser pill, sits just under the title block
-  const subY = 80 + titleBlockH + 36;
-  const subBlock = subtitle
-    ? `<rect x="140" y="${subY}" width="${W-280}" height="84" rx="42" fill="rgba(61,44,110,0.92)"/>
-       <text x="${W/2}" y="${subY + 55}" font-family="Helvetica, Arial, sans-serif" font-size="40" font-weight="700"
-             fill="#ffffff" text-anchor="middle">${esc(subtitle)}</text>`
-    : "";
+  // Recognition signs — checkmark list under the title, each in its own pill
+  const signList = Array.isArray(signs) ? signs.slice(0, 3) : [];
+  const signStartY = 80 + titleBlockH + 40;
+  const signGap = 96;
+  const signBlocks = signList.map((s, i) => {
+    const y = signStartY + i * signGap;
+    return `<rect x="120" y="${y}" width="${W-240}" height="76" rx="38" fill="rgba(255,248,240,0.92)"/>
+      <text x="172" y="${y + 52}" font-family="Helvetica, Arial, sans-serif" font-size="42" font-weight="700" fill="#7c6bb0" text-anchor="start">✓</text>
+      <text x="226" y="${y + 51}" font-family="Helvetica, Arial, sans-serif" font-size="40" font-weight="600" fill="#3d2c6e" text-anchor="start">${esc(s)}</text>`;
+  }).join("");
 
   return Buffer.from(`
 <svg width="${W}" height="${H}" xmlns="http://www.w3.org/2000/svg">
   <defs>
     <linearGradient id="botfade" x1="0" y1="0" x2="0" y2="1">
       <stop offset="0%" stop-color="rgba(40,30,50,0)"/>
-      <stop offset="100%" stop-color="rgba(40,30,50,0.55)"/>
+      <stop offset="100%" stop-color="rgba(40,30,50,0.6)"/>
     </linearGradient>
   </defs>
   <rect x="0" y="${H-360}" width="${W}" height="360" fill="url(#botfade)"/>
   <rect x="70" y="80" width="${W-140}" height="${titleBlockH}" rx="24" fill="rgba(255,248,240,0.94)"/>
   <text x="${W/2}" y="${150 + lineHeight*0.3}" font-family="Georgia, serif" font-size="72" font-weight="700"
         fill="#3d2c6e" text-anchor="middle" style="letter-spacing:-1px;">${titleTspans}</text>
-  ${subBlock}
-  <text x="${W/2}" y="${H-150}" font-family="Helvetica, Arial, sans-serif" font-size="44" font-weight="600"
+  ${signBlocks}
+  <text x="${W/2}" y="${H-150}" font-family="Helvetica, Arial, sans-serif" font-size="46" font-weight="700"
         fill="#ffffff" text-anchor="middle">${esc(cta)}</text>
   <text x="${W/2}" y="${H-90}" font-family="Helvetica, Arial, sans-serif" font-size="34" font-weight="500"
         fill="rgba(255,255,255,0.9)" text-anchor="middle">bloomfocus.org</text>
@@ -137,7 +140,7 @@ async function buildHookOrProduct(pin, outDir) {
   const bgBuffer = await geminiBackground(pin.imagePrompt);
   const bg = await sharp(bgBuffer).resize(W, H, { fit: "cover", position: "centre" }).toBuffer();
   const shortCta = { quiz: "Take the free quiz", app: "Try the free app", etsy: "Shop on Etsy", blog: "Read more" }[pin.funnel] ?? "Learn more";
-  const overlay = buildHookOverlay(pin.overlayTitle ?? pin.title, pin.overlaySubtitle, shortCta);
+  const overlay = buildHookOverlay(pin.overlayTitle ?? pin.title, pin.overlaySigns, shortCta);
   await sharp(bg).composite([{ input: overlay, top: 0, left: 0 }]).png().toFile(outPath);
   return outPath;
 }
