@@ -139,7 +139,7 @@ async function buildHookOrProduct(pin, outDir) {
   const outPath = path.join(outDir, `${pin.id}.png`);
   const bgBuffer = await geminiBackground(pin.imagePrompt);
   const bg = await sharp(bgBuffer).resize(W, H, { fit: "cover", position: "centre" }).toBuffer();
-  const shortCta = { quiz: "Take the free quiz", app: "Try the free app", etsy: "Shop on Etsy", blog: "Read more" }[pin.funnel] ?? "Learn more";
+  const shortCta = { quiz: "Take the ADHD test →", app: "Try the free app →", etsy: "Shop on Etsy →", blog: "Read more →" }[pin.funnel] ?? "Learn more →";
   const overlay = buildHookOverlay(pin.overlayTitle ?? pin.title, pin.overlaySigns, shortCta);
   await sharp(bg).composite([{ input: overlay, top: 0, left: 0 }]).png().toFile(outPath);
   return outPath;

@@ -252,20 +252,24 @@ PINTEREST RULES:
   GOOD: "ADHD morning routine when you can't get out of bed"
 - Description: 150-300 chars, 3-5 relevant keywords naturally embedded, end with destination URL
 - imagePrompt: Detailed prompt for a REALISTIC PHOTO (not illustration). Style: "Realistic aesthetic photograph, cozy desk flat-lay, soft natural lighting, muted pastel tones (lavender, cream, sage, blush). Shallow depth of field, film-like. No people, no faces, no text. Vertical 2:3 portrait (1000x1500)." Add scene detail relevant to the pin topic (planner, coffee, plant, journal, phone showing an app, etc).
-- overlayTitle: The text shown ON the photo — this is what stops the scroll. 3-6 words. It MUST be a complete, self-explanatory hook, NOT a cut-off phrase.
-  It must be ONE of these types:
+- overlayTitle: The text shown ON the photo — this is what stops the scroll. 3-7 words. It MUST be a complete, self-explanatory hook, NOT a cut-off phrase.
+  ${funnel === "quiz"
+    ? `For THIS quiz pin, make it a PAIN-POINT question that lands directly on a felt ADHD experience — the reader should feel "that's exactly me". Sharp and emotional, not abstract.
+  GOOD pain-point hooks: "A million thoughts you can't keep up with?", "Start 10 tasks, finish none?", "Brain won't shut off at night?", "Can't start until the last minute?"
+  Avoid soft/vague hooks like "ADHD support" or "About focus".`
+    : `It must be ONE of these types:
     (a) A question that creates recognition: "Why can't I start tasks?", "ADHD or just tired?"
     (b) A clear benefit/promise: "Make mornings finally work", "Focus without forcing it"
     (c) A relatable statement: "Mornings feel impossible. Here's why."
   BAD (incomplete, confusing): "Start mornings with ADHD", "ADHD focus app", "ADHD support"
-  GOOD (complete hook): "Can't get out of bed?", "The app for ADHD mornings", "Mornings shouldn't feel this hard"
+  GOOD (complete hook): "Can't get out of bed?", "The app for ADHD mornings", "Mornings shouldn't feel this hard"`}
   Read it aloud — if it sounds cut off or like a fragment, rewrite it as a full thought.
-- overlaySigns: An array of 2-3 SHORT recognition signs (max 4 words each) that make the viewer think "that's literally me". These are relatable ADHD experiences tied to the hook — NOT promises of article content, but moments of self-recognition. They make the card resonate and naturally lead to "what's my type? → take the quiz".
-  The signs must genuinely relate to the overlayTitle's topic.
-  Example for "Why can't I just start my day?":
-    ["Frozen by small tasks", "Better under pressure", "Lose track of time"]
-  Example for "ADHD or just tired?":
-    ["Can't switch off at night", "Exhausted but wired", "Forget why you walked in"]
+- overlaySigns: An array of 2-3 SHORT recognition signs (max 4 words each) that make the viewer think "that's literally me". These are relatable ADHD experiences tied to the hook — NOT promises of article content, but moments of self-recognition. They make the card resonate and naturally lead to "what's my type? → take the test".
+  The signs must genuinely relate to the overlayTitle's pain point.
+  Example for "A million thoughts you can't keep up with?":
+    ["Racing mind, no off switch", "Forget mid-sentence", "Can't finish a thought"]
+  Example for "Start 10 tasks, finish none?":
+    ["Frozen by small tasks", "Jump between things", "Better under pressure"]
   Keep each sign concrete and instantly recognizable. No generic filler.
 - board: Choose the most relevant from: ${BOARDS.join(" | ")}
 - Each pin must have a DIFFERENT title, angle, and imagePrompt (not just paraphrases of the same idea)
