@@ -24,7 +24,7 @@ import { execSync } from "child_process";
 import { fileURLToPath } from "url";
 import sharp from "sharp";
 import { makeVoiceover, elevenLabsWithTimestamps } from "./tts.js";
-import { getOrCreate, normalizeTag, libraryStats } from "./image-library.js";
+import { getOrCreate, normalizeTag, libraryStats, writeLibraryManifest } from "./image-library.js";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const REPO_ROOT = path.resolve(__dirname, "..");
@@ -562,6 +562,9 @@ async function main() {
   for (const s of full) if (byId[s.id]) s.videoUrl = byId[s.id];
   fs.writeFileSync(path.join(REPO_ROOT, `shorts_week_${WEEK}.json`), JSON.stringify(full, null, 2));
   fs.writeFileSync(path.join(REPO_ROOT, "shorts_current.json"), JSON.stringify(full, null, 2));
+
+  try { const n = writeLibraryManifest(); console.log(`   🗂  library manifest: ${n} images`); } catch {}
+  try { const s = libraryStats("vertical"); console.log(`   📚 vertical library: ${s.total} images across ${Object.keys(s.tags).length} tags`); } catch {}
 
   console.log(`\n${"━".repeat(50)}\n✅ done ${done} · skipped ${skipped} · failed ${failed}`);
 }

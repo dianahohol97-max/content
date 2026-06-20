@@ -84,3 +84,20 @@ export function libraryStats(aspect) {
   }
   return { total: files.length, tags };
 }
+
+// Write a manifest of all library images as an array of {id, url}, so a Make
+// scenario can read it and archive the photos to Dropbox (backgrounds for
+// Stories / carousels). Written to output/library/manifest.json.
+const REPO_RAW = "https://raw.githubusercontent.com/dianahohol97-max/content/main";
+export function writeLibraryManifest() {
+  const all = [];
+  for (const aspect of ["vertical", "wide"]) {
+    const dir = libDir(aspect);
+    for (const f of fs.readdirSync(dir).filter((x) => x.endsWith(".png"))) {
+      all.push({ id: `${aspect}_${f}`, aspect, filename: f, url: `${REPO_RAW}/output/library/${aspect}/${f}` });
+    }
+  }
+  const out = path.join(REPO_ROOT, "output", "library", "manifest.json");
+  fs.writeFileSync(out, JSON.stringify(all, null, 2));
+  return all.length;
+}
