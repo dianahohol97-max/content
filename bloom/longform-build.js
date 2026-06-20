@@ -128,6 +128,57 @@ async function buildSceneImage(scene, outPath) {
   return outPath;
 }
 
+// ─── Thumbnail (1280x720) — pastel bg + big punchy text, accent word colored ──
+// Renders a clickable YouTube thumbnail in the bloom brand style. Reuses the
+// first chapter's first-scene illustration (library) so it matches the video.
+async function buildThumbnail(vid, outPath) {
+  const TW = 1280, TH = 720;
+  // pick a background: reuse the video's first scene tag from the library
+  const firstScene = vid.chapters?.[0]?.scenes?.[0] || { tag: "brain", imagePrompt: "Hand-drawn soft pastel illustration, abstract brain of soft clouds and sparkles, lavender cream sage blush, watercolor, no text" };
+  const tag = firstScene.tag || "brain";
+  const bgTmp = outPath + ".bg.png";
+  await getOrCreate(tag, "wide", async () => {
+    const bg = await geminiBackground(firstScene.imagePrompt || "Hand-drawn soft pastel illustration, lavender cream sage, watercolor, no text");
+    return await sharp(bg).resize(W, H, { fit: "cover", position: "centre" }).png().toBuffer();
+  }, bgTmp);
+  const base = await sharp(bgTmp).resize(TW, TH, { fit: "cover", position: "centre" })
+    .modulate({ brightness: 1.04 }).toBuffer();
+
+  // text: big, bold, with one accent word in coral. Wrap to <=2-3 lines.
+  const text = (vid.thumbnailText || vid.title || "ADHD").toString();
+  const accent = (vid.thumbnailAccent || "").toString().trim();
+  const lines = wrapText(text, 16);
+  const fontSize = lines.length >= 3 ? 92 : 110;
+  const lineH = fontSize * 1.12;
+  const blockH = lines.length * lineH;
+  const startY = (TH - blockH) / 2 + fontSize * 0.78;
+
+  // build tspans, coloring the accent word coral
+  const lineSpans = lines.map((ln, i) => {
+    const words = ln.split(" ").map((w) => {
+      const clean = w.replace(/[.,!?]/g, "");
+      const isAccent = accent && clean.toUpperCase() === accent.toUpperCase();
+      return isAccent ? `<tspan fill="#e8746b">${esc(w)}</tspan>` : esc(w);
+    }).join(" ");
+    return `<tspan x="${TW/2}" dy="${i === 0 ? 0 : lineH}">${words}</tspan>`;
+  }).join("");
+
+  // soft card behind text for readability
+  const cardH = blockH + 90;
+  const cardY = (TH - cardH) / 2;
+  const overlay = Buffer.from(`
+<svg width="${TW}" height="${TH}" xmlns="http://www.w3.org/2000/svg">
+  <rect x="70" y="${cardY}" width="${TW-140}" height="${cardH}" rx="40" fill="rgba(255,248,240,0.90)"/>
+  <text x="${TW/2}" y="${startY}" font-family="Arial, sans-serif" font-size="${fontSize}" font-weight="900"
+        fill="#3d2c6e" text-anchor="middle" style="letter-spacing:-1px;">${lineSpans}</text>
+  <text x="${TW/2}" y="${TH-44}" font-family="Arial, sans-serif" font-size="40" font-weight="800"
+        fill="#ffffff" text-anchor="middle" stroke="#3d2c6e" stroke-width="2" paint-order="stroke">bloom focus 🌿</text>
+</svg>`);
+  await sharp(base).composite([{ input: overlay, top: 0, left: 0 }]).jpeg({ quality: 90 }).toFile(outPath);
+  try { fs.rmSync(bgTmp, { force: true }); } catch {}
+  return outPath;
+}
+
 // ─── Subtitles synced to narration (same approach as Shorts) ────────────────
 function splitIntoSubtitles(text, maxWords = 9) {
   const words = String(text).replace(/\s+/g, " ").trim().split(" ");
@@ -296,6 +347,15 @@ async function main() {
       vid.description = `${vid.description}\n\n${chaptersBlock}\n\n${vid.destinationUrl}`;
       vid.videoUrl = `${REPO_RAW}/output/longform/week_${WEEK}/${vid.id}.mp4`;
       vid.durationSec = Math.round(runningTime);
+
+      // thumbnail (1280x720, brand style)
+      try {
+        process.stdout.write("   🖼  thumbnail... ");
+        const thumbPath = path.join(outDir, `${vid.id}_thumb.jpg`);
+        await buildThumbnail(vid, thumbPath);
+        vid.thumbnailUrl = `${REPO_RAW}/output/longform/week_${WEEK}/${vid.id}_thumb.jpg`;
+        console.log("✓");
+      } catch (e) { console.log(`✗ thumbnail skipped (${e.message.slice(0, 40)})`); }
 
       done++;
       console.log(`   ✅ ${fmtTime(runningTime)} total`);

@@ -103,6 +103,8 @@ Chapter 1 must HOOK in the first 15 seconds (55% of viewers leave in the first m
 
 Also return:
 - title: YouTube title, 50-70 chars, search-intent first (e.g. "ADHD Task Paralysis: Why It Happens and How to Break It")
+- thumbnailText: 3-5 words for the thumbnail — punchy, curiosity/pain driven, NOT the title. e.g. "Why tasks feel IMPOSSIBLE" or "It's NOT laziness" or "All day. Did nothing."
+- thumbnailAccent: ONE word from thumbnailText to highlight in a different color (the most emotional/punchy word), e.g. "IMPOSSIBLE" or "NOT" or "NOTHING".
 - description: 3-4 sentence summary with keywords. Then a blank line, then "Chapters:" — DO NOT compute timecodes (the builder fills them).
 - tags: 10-15 YouTube tags.
 - funnel: "follow".
@@ -113,6 +115,8 @@ Return ONLY a valid JSON array with ONE object, no markdown:
 [
   {
     "title": "...",
+    "thumbnailText": "...",
+    "thumbnailAccent": "...",
     "description": "...",
     "tags": ["..."],
     "chapters": [
