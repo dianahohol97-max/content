@@ -37,6 +37,8 @@ export async function ensureFolder(name, parentId) {
     q: `name='${name}' and '${parentId}' in parents and mimeType='application/vnd.google-apps.folder' and trashed=false`,
     fields: "files(id, name)",
     spaces: "drive",
+    supportsAllDrives: true,
+    includeItemsFromAllDrives: true,
   });
 
   if (res.data.files.length > 0) {
@@ -52,23 +54,26 @@ export async function ensureFolder(name, parentId) {
       parents: [parentId],
     },
     fields: "id",
+    supportsAllDrives: true,
   });
   _folderCache[cacheKey] = folder.data.id;
   return folder.data.id;
 }
 
-/** Upload a local file to a Drive folder, return shareable link */
+/** Upload a local file to a Drive folder, return shareable link.
+ *  Supports Shared Drives via supportsAllDrives. */
 export async function uploadFile(localPath, fileName, folderId, mimeType = "image/png") {
   const file = await drive().files.create({
     requestBody: { name: fileName, parents: [folderId] },
     media: { mimeType, body: fs.createReadStream(localPath) },
     fields: "id, webViewLink, webContentLink",
+    supportsAllDrives: true,
   });
 
-  // Make it accessible via link (anyone with link can view)
   await drive().permissions.create({
     fileId: file.data.id,
     requestBody: { role: "reader", type: "anyone" },
+    supportsAllDrives: true,
   });
 
   return {

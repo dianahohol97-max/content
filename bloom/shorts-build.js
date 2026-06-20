@@ -416,12 +416,14 @@ async function main() {
       console.log("✓");
 
       short.videoUrl = `${REPO_RAW}/output/shorts/week_${WEEK}/${short.id}.mp4`;
-      // cleanup work dir to keep repo light
-      fs.rmSync(workDir, { recursive: true, force: true });
       done++;
     } catch (err) {
       failed++;
       console.log(`   ✗ ${err.message}`);
+    } finally {
+      // Always clean the work dir (even on failure) so temp files never commit.
+      const wd = path.join(outDir, `_work_${short.id}`);
+      try { fs.rmSync(wd, { recursive: true, force: true }); } catch {}
     }
   }
 

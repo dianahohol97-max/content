@@ -14,3 +14,10 @@ Thumbs.db
 # but ignore the large text pack JSON (regenerated each run)
 output/*.json
 output/**/_manifest.json
+
+# Intermediate render work dirs (never commit — only final MP4s)
+output/**/_work_*/
+**/_work_*/
+*.srt
+scenes.txt
+audio.txt

@@ -216,31 +216,35 @@ async function main() {
       fs.writeFileSync(audioList,
         vid.chapters.map((_, ci) => `file 'voice_${ci}.mp3'`).join("\n"));
       const fullVoice = path.join(workDir, "voice_full.mp3");
-      execSync(`ffmpeg -y -f concat -safe 0 -i "${audioList}" -c copy "${fullVoice}"`, { stdio: "ignore" });
+      execSync(`ffmpeg -y -f concat -safe 0 -i audio.txt -c copy voice_full.mp3`, { stdio: "ignore", cwd: workDir });
       console.log("✓");
 
-      // slideshow
+      // slideshow — scene list uses bare filenames (ffmpeg runs with cwd=workDir)
       process.stdout.write("   🎞  assemble... ");
       const sceneList = path.join(workDir, "scenes.txt");
       let sl = "";
-      allScenePaths.forEach((p, i) => { sl += `file '${p}'\nduration ${allDurations[i].toFixed(3)}\n`; });
-      sl += `file '${allScenePaths[allScenePaths.length - 1]}'\n`;
+      allScenePaths.forEach((p, i) => { sl += `file '${path.basename(p)}'\nduration ${allDurations[i].toFixed(3)}\n`; });
+      sl += `file '${path.basename(allScenePaths[allScenePaths.length - 1])}'\n`;
       fs.writeFileSync(sceneList, sl);
 
       const vf = `scale=${W}:${H}:force_original_aspect_ratio=increase,crop=${W}:${H},fps=30,format=yuv420p`;
-      const subFilter = `,subtitles='${srtPath}':force_style='Fontname=Arial,Fontsize=18,Bold=1,PrimaryColour=&H00FFFFFF,OutlineColour=&H803D2C6E,BorderStyle=1,Outline=3,Shadow=0,Alignment=2,MarginV=60'`;
+      // libass chokes on absolute paths with slashes/colons inside filtergraph.
+      // Run ffmpeg with cwd=workDir and reference the .srt by bare filename.
+      const subFilter = `,subtitles=subs.srt:force_style='Fontname=Arial,Fontsize=18,Bold=1,PrimaryColour=&H00FFFFFF,OutlineColour=&H803D2C6E,BorderStyle=1,Outline=3,Shadow=0,Alignment=2,MarginV=60'`;
       const hasMusic = fs.existsSync(MUSIC_PATH);
+      const sceneListName = path.basename(sceneList);
+      const fullVoiceName = path.basename(fullVoice);
       let cmd;
       if (hasMusic) {
-        cmd = `ffmpeg -y -f concat -safe 0 -i "${sceneList}" -i "${fullVoice}" -stream_loop -1 -i "${MUSIC_PATH}" ` +
+        cmd = `ffmpeg -y -f concat -safe 0 -i "${sceneListName}" -i "${fullVoiceName}" -stream_loop -1 -i "${MUSIC_PATH}" ` +
           `-filter_complex "[0:v]${vf}${subFilter}[v];[2:a]volume=0.1[m];[1:a][m]amix=inputs=2:duration=first:dropout_transition=2[a]" ` +
-          `-map "[v]" -map "[a]" -shortest -c:v libx264 -preset medium -crf 22 -c:a aac -b:a 192k -pix_fmt yuv420p "${mp4Path}"`;
+          `-map "[v]" -map "[a]" -shortest -c:v libx264 -preset veryfast -crf 23 -c:a aac -b:a 192k -pix_fmt yuv420p "${mp4Path}"`;
       } else {
-        cmd = `ffmpeg -y -f concat -safe 0 -i "${sceneList}" -i "${fullVoice}" ` +
+        cmd = `ffmpeg -y -f concat -safe 0 -i "${sceneListName}" -i "${fullVoiceName}" ` +
           `-filter_complex "[0:v]${vf}${subFilter}[v]" -map "[v]" -map 1:a -shortest ` +
-          `-c:v libx264 -preset medium -crf 22 -c:a aac -b:a 192k -pix_fmt yuv420p "${mp4Path}"`;
+          `-c:v libx264 -preset veryfast -crf 23 -c:a aac -b:a 192k -pix_fmt yuv420p "${mp4Path}"`;
       }
-      execSync(cmd, { stdio: "inherit" });
+      execSync(cmd, { stdio: "inherit", cwd: workDir });
       console.log("✓");
 
       // build description with real chapter timecodes
@@ -250,12 +254,16 @@ async function main() {
       vid.videoUrl = `${REPO_RAW}/output/longform/week_${WEEK}/${vid.id}.mp4`;
       vid.durationSec = Math.round(runningTime);
 
-      fs.rmSync(workDir, { recursive: true, force: true });
       done++;
       console.log(`   ✅ ${fmtTime(runningTime)} total`);
     } catch (err) {
       failed++;
       console.log(`   ✗ ${err.message}`);
+    } finally {
+      // Always remove the intermediate work dir — even if assembly failed —
+      // so heavy temp files (PNGs, chapter MP3s) never get committed.
+      const wd = path.join(outDir, `_work_${vid.id}`);
+      try { fs.rmSync(wd, { recursive: true, force: true }); } catch {}
     }
   }
 
