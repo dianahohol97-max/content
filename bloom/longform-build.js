@@ -71,15 +71,30 @@ async function makeVoiceover(text, outPath) {
 async function geminiBackground(prompt) {
   if (!GEMINI_KEY) throw new Error("GEMINI_API_KEY missing");
   const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-image:generateContent?key=${GEMINI_KEY}`;
-  const res = await fetch(url, {
-    method: "POST", headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ contents: [{ parts: [{ text: prompt + " Wide landscape 16:9 composition." }] }] }),
-  });
-  if (!res.ok) throw new Error(`Gemini ${res.status}: ${(await res.text()).slice(0, 200)}`);
-  const data = await res.json();
-  const img = (data.candidates?.[0]?.content?.parts ?? []).find((p) => p.inlineData)?.inlineData?.data;
-  if (!img) throw new Error("Gemini returned no image");
-  return Buffer.from(img, "base64");
+  const body = JSON.stringify({ contents: [{ parts: [{ text: prompt + " Wide landscape 16:9 composition." }] }] });
+  // Gemini image gen is flaky: transient 429/500/503 + "no image" 200s. Retry.
+  const maxAttempts = 5;
+  for (let attempt = 1; attempt <= maxAttempts; attempt++) {
+    let res;
+    try {
+      res = await fetch(url, { method: "POST", headers: { "Content-Type": "application/json" }, body });
+    } catch (netErr) {
+      if (attempt === maxAttempts) throw new Error(`Gemini image network error: ${netErr.message}`);
+      await new Promise((r) => setTimeout(r, 3000 * attempt));
+      continue;
+    }
+    if (res.ok) {
+      const data = await res.json();
+      const img = (data.candidates?.[0]?.content?.parts ?? []).find((p) => p.inlineData)?.inlineData?.data;
+      if (img) return Buffer.from(img, "base64");
+      // 200 but no image → transient, retry
+    }
+    const status = res.ok ? "no-image" : res.status;
+    const transient = res.ok || [429, 500, 502, 503, 504].includes(res.status);
+    if (!transient) throw new Error(`Gemini ${res.status}: ${(await res.text()).slice(0, 160)}`);
+    if (attempt === maxAttempts) throw new Error(`Gemini image failed after ${maxAttempts} attempts (last: ${status})`);
+    await new Promise((r) => setTimeout(r, 3000 * attempt));
+  }
 }
 
 // Soft bottom scrim so white subtitles stay readable (landscape).
@@ -190,17 +205,32 @@ async function main() {
 
         runningTime += chDur;
 
-        // scenes for chapter — distribute chapter duration across its scenes
+        // scenes for chapter — distribute chapter duration across its scenes.
+        // If one image ultimately fails, skip just that scene (don't kill the
+        // whole video); remaining scenes simply hold a bit longer.
         const scenes = ch.scenes ?? [];
-        const perScene = chDur / Math.max(1, scenes.length);
+        const builtThisChapter = [];
         for (let si = 0; si < scenes.length; si++) {
           process.stdout.write(`      🖼  scene ${si + 1}/${scenes.length}... `);
           const sp = path.join(workDir, `ch${ci}_s${si}.png`);
-          await buildSceneImage(scenes[si], sp);
+          try {
+            await buildSceneImage(scenes[si], sp);
+            builtThisChapter.push(sp);
+            console.log("✓");
+          } catch (e) {
+            console.log(`✗ skipped (${e.message.slice(0, 40)})`);
+          }
+          await new Promise((r) => setTimeout(r, 500));
+        }
+        // fallback: if a chapter produced NO images at all, reuse the last good
+        // image we have so the chapter still has visuals.
+        if (builtThisChapter.length === 0 && allScenePaths.length > 0) {
+          builtThisChapter.push(allScenePaths[allScenePaths.length - 1]);
+        }
+        const perScene = chDur / Math.max(1, builtThisChapter.length);
+        for (const sp of builtThisChapter) {
           allScenePaths.push(sp);
           allDurations.push(perScene);
-          console.log("✓");
-          await new Promise((r) => setTimeout(r, 500));
         }
       }
 

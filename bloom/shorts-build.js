@@ -64,17 +64,28 @@ function wrapText(text, maxChars) {
 async function geminiBackground(prompt) {
   if (!GEMINI_KEY) throw new Error("GEMINI_API_KEY missing");
   const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-image:generateContent?key=${GEMINI_KEY}`;
-  const res = await fetch(url, {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ contents: [{ parts: [{ text: prompt }] }] }),
-  });
-  if (!res.ok) throw new Error(`Gemini ${res.status}: ${(await res.text()).slice(0, 200)}`);
-  const data = await res.json();
-  const parts = data.candidates?.[0]?.content?.parts ?? [];
-  const img = parts.find((p) => p.inlineData)?.inlineData?.data;
-  if (!img) throw new Error("Gemini returned no image");
-  return Buffer.from(img, "base64");
+  const body = JSON.stringify({ contents: [{ parts: [{ text: prompt }] }] });
+  const maxAttempts = 5;
+  for (let attempt = 1; attempt <= maxAttempts; attempt++) {
+    let res;
+    try {
+      res = await fetch(url, { method: "POST", headers: { "Content-Type": "application/json" }, body });
+    } catch (netErr) {
+      if (attempt === maxAttempts) throw new Error(`Gemini image network error: ${netErr.message}`);
+      await new Promise((r) => setTimeout(r, 3000 * attempt));
+      continue;
+    }
+    if (res.ok) {
+      const data = await res.json();
+      const img = (data.candidates?.[0]?.content?.parts ?? []).find((p) => p.inlineData)?.inlineData?.data;
+      if (img) return Buffer.from(img, "base64");
+    }
+    const status = res.ok ? "no-image" : res.status;
+    const transient = res.ok || [429, 500, 502, 503, 504].includes(res.status);
+    if (!transient) throw new Error(`Gemini ${res.status}: ${(await res.text()).slice(0, 160)}`);
+    if (attempt === maxAttempts) throw new Error(`Gemini image failed after ${maxAttempts} attempts (last: ${status})`);
+    await new Promise((r) => setTimeout(r, 3000 * attempt));
+  }
 }
 
 // ─── Caption overlay (big readable text, lower third) ───────────────────────
