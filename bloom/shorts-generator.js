@@ -30,7 +30,7 @@ const args = Object.fromEntries(
   })
 );
 const WEEK = args.week ? parseInt(args.week) : 29;
-const COUNT = args.count ? parseInt(args.count) : 14;
+const COUNT = args.count ? parseInt(args.count) : 18;
 
 const client = new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY });
 
@@ -97,6 +97,20 @@ const PRACTICAL_TOPICS = [
   "habit stacking: attach new habits to ones you already do",
 ];
 
+// Deeper, meatier topics for flagship shorts (45-60s)
+const FLAGSHIP_TOPICS = [
+  "the ADHD wall of awful: why the things you care about are hardest to start",
+  "ADHD working memory: why you forget what you were just about to do",
+  "task paralysis fully explained: why you freeze and 3 ways to break it",
+  "the ADHD dopamine system: why motivation works backwards for you",
+  "rejection sensitive dysphoria: why criticism physically hurts with ADHD",
+  "ADHD time blindness: why now and not-now are your only two times",
+  "emotional dysregulation in ADHD: why feelings hit twice as hard",
+  "the ADHD burnout cycle: why you crash after pushing too hard",
+  "interest-based nervous system: why you can't focus on command",
+  "executive dysfunction: the real reason simple tasks feel impossible",
+];
+
 function parseJSON(text) {
   let t = text.trim();
   if (t.startsWith("```")) t = t.replace(/^```(json)?/i, "").replace(/```$/, "").trim();
@@ -108,56 +122,69 @@ function parseJSON(text) {
 
 const SHARED_VOICE = `Voice/tone: warm, direct, science-backed but simple — "a friend with a neuroscience degree who also lost their keys this morning". Validating, never patronizing. Never say "just try harder" or "ADHD is a superpower".
 
-IMPORTANT — what makes these perform (from real ADHD short-form data):
-- Lead with RECOGNITION: the first line should make the viewer think "wait, that's me". Specific lived moments beat clinical definitions.
-- Be relatable AND accurate. Most viral ADHD content is misleading; bloom focus wins trust by being correct. Frame as "common in ADHD" not "if you do this you have ADHD".
-- The quiz/professional help is the next step (no fear-mongering, no fake certainty).`;
+THE HOOK IS EVERYTHING. The first line is the whole video's job. It must HIT in one second — a sharp punch of recognition, a painful paradox, or an instant "that's literally me". Examples of the bar to clear:
+- "You can game for 6 hours but can't read one email. Here's why."
+- "You don't have a motivation problem. You have a dopamine problem."
+- "'I'll do it in 5 minutes.' It's now 3 hours later."
+- "The things you care about most are the ones you can't start. That's not random."
+NEVER open with a slow wind-up ("You meant to pay that bill for three weeks"). Open mid-punch.
+
+IMPORTANT — what makes these perform:
+- Lead with RECOGNITION + a sting. Specific lived moments beat clinical definitions.
+- Relatable AND accurate. bloom focus wins trust by being correct. "common in ADHD" not "if you do this you have ADHD".`;
+
+// Single fixed illustration style across ALL scenes — hand-drawn warm pastel.
+const ART_STYLE = `Hand-drawn illustration in soft pastel colors, cozy and warm style. Soft watercolor texture, gentle hand-painted lines, flat illustration. Palette: lavender, cream, sage green, blush pink. Calm, friendly, approachable, non-judgmental mood. No people, no faces, no text, no letters. Vertical 9:16 composition.`;
 
 const SCENE_SPEC = `    - caption: SHORT on-screen text (max 6 words) — the key phrase of that moment, big and readable. NOT the full sentence.
-    - imagePrompt: a detailed prompt for a REALISTIC aesthetic vertical photo background (Gemini). Style: "Realistic aesthetic photograph, soft pastel tones (lavender, cream, sage, blush), cozy minimal scene, soft natural light, shallow depth of field, film-like. No people, no faces, no text. Vertical 9:16 (1080x1920)." Add a scene detail relevant to that moment (desk, coffee, plant, bed, window light, journal, phone, clock).
-    - seconds: how long this scene shows (number, total ≈ voiceover length, usually 5-8 each).`;
+    - imagePrompt: ALWAYS begin with exactly this style: "${ART_STYLE}" Then add ONE simple scene detail relevant to the moment (a desk with coffee and a notebook; an abstract brain of soft clouds and sparks; a gently messy cozy room; a window with morning light and a mug; a soft surreal melting clock; a plant; a journal). Keep every scene in this SAME hand-drawn pastel style for visual consistency.
+    - seconds: leave as 0 (timing is computed automatically from caption length).`;
+
+const CTA_LINE = `"Follow for daily ADHD content."`;
 
 // ── Educational + pain-point shorts (voiced, changing scenes) ──
 async function generateVoicedShorts(weekTopics, kind) {
   const count = weekTopics.length;
   const kindGuide = kind === "painpoint"
-    ? `These are PAIN-POINT shorts. Each opens by naming a frustrating, relatable ADHD struggle as a direct hook that hits home ("Your home is always a mess and no matter how hard you try, you can't keep it tidy?"), validates it's not a character flaw, briefly explains the ADHD reason, then sends them to the free ADHD test. Keep it emotional and validating, short on theory.`
+    ? `These are PAIN-POINT shorts. Each opens by naming a frustrating, relatable ADHD struggle as a SHARP hook that hits home ("Your home is always a mess — no matter how hard you try"), validates it's not a character flaw, briefly explains the ADHD reason. Emotional and validating, short on theory. End by gently asking if this is them ("Sound familiar every single day?").`
     : kind === "practical"
-    ? `These are PRACTICAL HOW-TO shorts. Each teaches ONE concrete ADHD-friendly technique the viewer can use today (e.g. dopamine menu, body doubling, the 2-minute rule, launch pad). Structure: name the struggle briefly, then walk through the method in clear simple steps, end with encouragement + the free quiz. Actionable and specific, not theory-heavy.`
-    : `These are EDUCATIONAL shorts. Each teaches the topic simply with recognition + one practical takeaway.`;
+    ? `These are PRACTICAL HOW-TO shorts. Each teaches ONE concrete ADHD-friendly technique (dopamine menu, body doubling, 2-minute rule, launch pad...). Hook with the struggle sharply ("Your brain won't start? Stop forcing it. Bribe it."), then walk through the method in clear simple steps. Actionable and specific.`
+    : kind === "flagship"
+    ? `These are FLAGSHIP shorts — longer (45-60s) and deeper. Same sharp hook, but richer: explain the underlying ADHD science AND give concrete practical steps. More substance, more scenes, still tight (no padding). Cover meatier concepts (wall of awful, working memory, full task-paralysis breakdown).`
+    : `These are EDUCATIONAL shorts. Sharp hook, then explain the concept simply with recognition + one practical takeaway.`;
 
+  const isFlag = kind === "flagship";
   const prompt = `You are a YouTube Shorts scriptwriter for bloom focus, a faceless ADHD education brand.
 
 ${SHARED_VOICE}
 
 ${kindGuide}
 
-Write exactly ${count} YouTube Shorts (30-45s, faceless, voiced narration over changing aesthetic backgrounds).
+Write exactly ${count} YouTube Shorts (${isFlag ? "45-60s, deeper" : "30-40s"}, faceless, voiced narration over changing hand-drawn pastel illustrations).
 
 Topics (one Short each):
 ${weekTopics.map((t, i) => `${i + 1}. ${t}`).join("\n")}
 
 STRUCTURE:
-- HOOK (0-3s): scroll-stopping, instant recognition. No "hey guys".
-- BODY (3-38s): ${kind === "painpoint" ? "validate + brief ADHD reason" : "explain simply + one takeaway"}. 4-6 short scenes.
-- CTA (last 3s): "Take the free ADHD quiz — link below".
+- HOOK (0-2s): the sharp punch (see voice rules). This is the most important line.
+- BODY: ${isFlag ? "science + concrete steps, broken into 7-9 scenes" : kind === "painpoint" ? "validate + brief ADHD reason, 5-6 scenes" : "explain + one takeaway, 5-6 scenes"}.
+- CTA (last 2s): ${CTA_LINE} — NO links, NO "quiz". Just invite them to follow.
 
 For EACH Short return:
-- voiceover: FULL narration as one flowing text (~85-110 words for ~35s). Natural spoken rhythm.
-- scenes: array of 5-7 scenes. Each:
+- voiceover: FULL narration as one flowing text (${isFlag ? "~130-160 words for ~50s" : "~80-100 words for ~33s"}). Natural spoken rhythm. End with: Follow for daily ADHD content.
+- scenes: array of ${isFlag ? "8-10" : "5-7"} scenes. Each:
 ${SCENE_SPEC}
 - title: 40-70 chars, search-friendly, ends with #Shorts.
-- description: 2-3 sentences with keywords, then the CTA URL on its own line.
+- description: 2-3 sentences with keywords. Then on its own line: "Follow for daily ADHD content."
 - tags: 8-12 YouTube tags.
-- funnel: "quiz".
+- funnel: "follow".
 - shortType: "${kind}".
-- destinationUrl: ${URLS.quiz}.
 
 Use ONLY straight ASCII apostrophes ('). No curly quotes, no special characters.
 
 Return ONLY a valid JSON array, no markdown:
 [
-  { "voiceover": "...", "scenes": [{ "caption": "...", "imagePrompt": "...", "seconds": 6 }], "title": "... #Shorts", "description": "...", "tags": ["..."], "funnel": "quiz", "shortType": "${kind}", "destinationUrl": "${URLS.quiz}" }
+  { "voiceover": "...", "scenes": [{ "caption": "...", "imagePrompt": "...", "seconds": 0 }], "title": "... #Shorts", "description": "...", "tags": ["..."], "funnel": "follow", "shortType": "${kind}" }
 ]`;
 
   const response = await client.messages.create({
@@ -186,21 +213,20 @@ For EACH test short return:
 - question: the on-screen question (max 8 words), shown at the top.
 - options: an array of EXACTLY 4 options, each:
     - label: short label shown on the tile (max 3 words), e.g. "Option 1" or "The pile".
-    - imagePrompt: realistic aesthetic vertical photo for this tile (same pastel style: "Realistic aesthetic photograph, soft pastel tones lavender cream sage blush, cozy minimal, soft natural light, shallow depth of field. No people, no text. Square-ish framing works."). Each of the 4 must be visually distinct.
-- voiceover: short narration (~40-60 words): read the question, tease "your answer says something about your ADHD brain — check the description", invite a comment, end with "take the free ADHD quiz to really find out".
+    - imagePrompt: ALWAYS begin with exactly this style: "${ART_STYLE}" Then add one simple distinct scene for this tile (a messy desk; a tidy minimal desk; a cozy cluttered corner; an empty desk with just a phone). All 4 in the SAME hand-drawn pastel style, just different scenes.
+- voiceover: short narration (~40-55 words): read the question, tease "your answer says something about how your ADHD brain handles focus", invite a comment ("comment your number"), end with: Follow for daily ADHD content.
 - answerKey: the text that goes in the DESCRIPTION revealing what each choice means. Format as "1) ... \\n2) ... \\n3) ... \\n4) ...". Keep each playful, validating, ADHD-relevant, accurate (not fake-clinical).
 - title: 40-70 chars, ends with #Shorts. e.g. "Which morning is yours? (ADHD test) #Shorts"
-- description: 1-2 sentence intro + the answerKey + the quiz URL on its own line.
+- description: 1-2 sentence intro + the answerKey, then on its own line: "Follow for daily ADHD content."
 - tags: 8-12 tags.
-- funnel: "quiz".
+- funnel: "follow".
 - shortType: "quiztest".
-- destinationUrl: ${URLS.quiz}.
 
 Use ONLY straight ASCII apostrophes ('). No curly quotes.
 
 Return ONLY a valid JSON array, no markdown:
 [
-  { "question": "...", "options": [{ "label": "...", "imagePrompt": "..." }, { "label": "...", "imagePrompt": "..." }, { "label": "...", "imagePrompt": "..." }, { "label": "...", "imagePrompt": "..." }], "voiceover": "...", "answerKey": "1) ...\\n2) ...\\n3) ...\\n4) ...", "title": "... #Shorts", "description": "...", "tags": ["..."], "funnel": "quiz", "shortType": "quiztest", "destinationUrl": "${URLS.quiz}" }
+  { "question": "...", "options": [{ "label": "...", "imagePrompt": "..." }, { "label": "...", "imagePrompt": "..." }, { "label": "...", "imagePrompt": "..." }, { "label": "...", "imagePrompt": "..." }], "voiceover": "...", "answerKey": "1) ...\\n2) ...\\n3) ...\\n4) ...", "title": "... #Shorts", "description": "...", "tags": ["..."], "funnel": "follow", "shortType": "quiztest" }
 ]`;
 
   const response = await client.messages.create({
@@ -212,18 +238,21 @@ Return ONLY a valid JSON array, no markdown:
 }
 
 async function generateShorts(weekNum, count) {
-  // Mix (scaled to count): ~4 educational, ~3 practical, ~3 pain-point, ~4 quiz-test
-  const nEdu = Math.max(1, Math.round(count * 4 / 14));
-  const nPrac = Math.max(1, Math.round(count * 3 / 14));
-  const nPain = Math.max(1, Math.round(count * 3 / 14));
-  const nTest = Math.max(1, count - nEdu - nPrac - nPain);
+  // Mix (scaled to count=18): 4 educational, 3 practical, 3 pain-point, 4 quiz-test, 4 flagship
+  const nEdu = Math.max(1, Math.round(count * 4 / 18));
+  const nPrac = Math.max(1, Math.round(count * 3 / 18));
+  const nPain = Math.max(1, Math.round(count * 3 / 18));
+  const nFlag = Math.max(1, Math.round(count * 4 / 18));
+  const nTest = Math.max(1, count - nEdu - nPrac - nPain - nFlag);
 
   // rotate topics by week
   const startIdx = ((weekNum - 1) * count) % TOPICS.length;
   const topicsFor = (n, offset) =>
     Array.from({ length: n }, (_, i) => TOPICS[(startIdx + offset + i) % TOPICS.length]);
+  const flagStart = ((weekNum - 1) * nFlag) % FLAGSHIP_TOPICS.length;
+  const flagTopics = Array.from({ length: nFlag }, (_, i) => FLAGSHIP_TOPICS[(flagStart + i) % FLAGSHIP_TOPICS.length]);
 
-  console.log(`  mix → ${nEdu} educational, ${nPrac} practical, ${nPain} pain-point, ${nTest} quiz-test`);
+  console.log(`  mix → ${nEdu} edu, ${nPrac} practical, ${nPain} pain-point, ${nTest} quiz-test, ${nFlag} flagship`);
 
   const all = [];
   console.log("  ✏️  educational...");
@@ -234,6 +263,8 @@ async function generateShorts(weekNum, count) {
   all.push(...await generateVoicedShorts(topicsFor(nPain, nEdu), "painpoint"));
   console.log("  🧩 quiz-test...");
   all.push(...await generateQuizTestShorts(nTest));
+  console.log("  ⭐ flagship...");
+  all.push(...await generateVoicedShorts(flagTopics, "flagship"));
 
   return all;
 }

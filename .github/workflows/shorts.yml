@@ -10,7 +10,7 @@ on:
       count:
         description: "How many shorts to generate (text step)"
         required: false
-        default: "14"
+        default: "18"
       mode:
         description: "full = script+video | video-only = build from existing JSON | script-only"
         required: false
@@ -22,7 +22,7 @@ on:
       voice_engine:
         description: "Voice: elevenlabs (best) or gemini (free)"
         required: false
-        default: "elevenlabs"
+        default: "gemini"
 
 permissions:
   contents: write

@@ -53,7 +53,7 @@ async function geminiTTS(text, outPath) {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({
-      contents: [{ parts: [{ text: `Read aloud in a warm, calm, friendly voice: ${text}` }] }],
+      contents: [{ parts: [{ text: `Say this warmly and conversationally, like a kind friend explaining something — natural pace, gentle, not robotic, with a little emphasis on the key phrases:\n\n${text}` }] }],
       generationConfig: {
         responseModalities: ["AUDIO"],
         speechConfig: { voiceConfig: { prebuiltVoiceConfig: { voiceName: GEMINI_VOICE } } },

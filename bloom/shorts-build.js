@@ -163,6 +163,13 @@ function ffmpegAvailable() {
   try { execSync("ffmpeg -version", { stdio: "ignore" }); return true; } catch { return false; }
 }
 
+function ffprobeDuration(file) {
+  try {
+    const out = execSync(`ffprobe -v error -show_entries format=duration -of csv=p=0 "${file}"`).toString().trim();
+    return parseFloat(out) || 30;
+  } catch { return 30; }
+}
+
 function buildVideo(scenePaths, durations, voicePath, outPath, matchVoice = false) {
   const tmp = path.dirname(outPath);
   const hasMusic = fs.existsSync(MUSIC_PATH);
@@ -261,9 +268,18 @@ async function main() {
           const sp = path.join(workDir, `scene_${String(i + 1).padStart(2, "0")}.png`);
           await buildSceneImage(short.scenes[i], sp);
           scenePaths.push(sp);
-          durations.push(Number(short.scenes[i].seconds) || 6);
           console.log("✓");
           await new Promise((r) => setTimeout(r, 600));
+        }
+        // Dynamic timing: split the REAL voiceover length across scenes,
+        // weighted by caption word count (longer captions = more time), so
+        // captions never linger after the narration has moved on.
+        const voiceDur = ffprobeDuration(voicePath);
+        const weights = short.scenes.map((sc) =>
+          Math.max(2, String(sc.caption || "").split(/\s+/).length));
+        const wSum = weights.reduce((a, b) => a + b, 0);
+        for (let i = 0; i < short.scenes.length; i++) {
+          durations.push((voiceDur * weights[i]) / wSum);
         }
       }
 
