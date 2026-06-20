@@ -201,7 +201,7 @@ async function generateQuizTestShorts(count) {
 
 ${SHARED_VOICE}
 
-Create exactly ${count} INTERACTIVE TEST shorts. Format: a question with FOUR image options shown as a 2x2 grid, viewer picks one, and the ANSWER / meaning is revealed in the video description (classic "pick one → answer in description" engagement format). High shareability, drives comments and quiz clicks.
+Create exactly ${count} INTERACTIVE TEST shorts. Format: a question with FOUR image options shown as a 2x2 grid, viewer picks one — then the video REVEALS what each choice means, ONE option at a time, on screen (NOT hidden in the description). High shareability, drives comments.
 
 Good test concepts:
 - "Which of these 4 mornings is yours?" (4 morning scenes) → each reveals an ADHD pattern
@@ -212,12 +212,13 @@ Good test concepts:
 For EACH test short return:
 - question: the on-screen question (max 8 words), shown at the top.
 - options: an array of EXACTLY 4 options, each:
-    - label: short label shown on the tile (max 3 words), e.g. "Option 1" or "The pile".
-    - imagePrompt: ALWAYS begin with exactly this style: "${ART_STYLE}" Then add one simple distinct scene for this tile (a messy desk; a tidy minimal desk; a cozy cluttered corner; an empty desk with just a phone). All 4 in the SAME hand-drawn pastel style, just different scenes.
-- voiceover: short narration (~40-55 words): read the question, tease "your answer says something about how your ADHD brain handles focus", invite a comment ("comment your number"), end with: Follow for daily ADHD content.
-- answerKey: the text that goes in the DESCRIPTION revealing what each choice means. Format as "1) ... \\n2) ... \\n3) ... \\n4) ...". Keep each playful, validating, ADHD-relevant, accurate (not fake-clinical).
-- title: 40-70 chars, ends with #Shorts. e.g. "Which morning is yours? (ADHD test) #Shorts"
-- description: 1-2 sentence intro + the answerKey, then on its own line: "Follow for daily ADHD content."
+    - label: short label shown on the tile (max 3 words), e.g. "The avalanche".
+    - imagePrompt: ALWAYS begin with exactly this style: "${ART_STYLE}" Then add one simple distinct scene for this tile. All 4 in the SAME hand-drawn pastel style, just different scenes.
+    - result: ONE short sentence (max 16 words) revealing what picking this option says about the viewer's ADHD brain. Playful, validating, accurate (not fake-clinical). e.g. "You thrive in visible chaos - out of sight really is out of mind for you."
+- introVoiceover: short narration (~20-30 words) for the GRID phase: read the question, tease "your pick says something about how your ADHD brain works - let's see", invite a comment.
+- outroVoiceover: short closing line (~10-15 words) after the reveals, ending with: Follow for daily ADHD content.
+- title: 40-70 chars, ends with #Shorts. e.g. "Which desk is yours? (ADHD test) #Shorts"
+- description: 1-2 sentence intro (do NOT reveal answers - they're in the video), then on its own line: "Follow for daily ADHD content."
 - tags: 8-12 tags.
 - funnel: "follow".
 - shortType: "quiztest".
@@ -226,7 +227,7 @@ Use ONLY straight ASCII apostrophes ('). No curly quotes.
 
 Return ONLY a valid JSON array, no markdown:
 [
-  { "question": "...", "options": [{ "label": "...", "imagePrompt": "..." }, { "label": "...", "imagePrompt": "..." }, { "label": "...", "imagePrompt": "..." }, { "label": "...", "imagePrompt": "..." }], "voiceover": "...", "answerKey": "1) ...\\n2) ...\\n3) ...\\n4) ...", "title": "... #Shorts", "description": "...", "tags": ["..."], "funnel": "follow", "shortType": "quiztest" }
+  { "question": "...", "options": [{ "label": "...", "imagePrompt": "...", "result": "..." }, { "label": "...", "imagePrompt": "...", "result": "..." }, { "label": "...", "imagePrompt": "...", "result": "..." }, { "label": "...", "imagePrompt": "...", "result": "..." }], "introVoiceover": "...", "outroVoiceover": "...", "title": "... #Shorts", "description": "...", "tags": ["..."], "funnel": "follow", "shortType": "quiztest" }
 ]`;
 
   const response = await client.messages.create({

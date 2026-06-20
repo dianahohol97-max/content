@@ -259,39 +259,38 @@ function writeSRT(chunks, totalDur, outPath, voicePath = null) {
 
 // ─── Quiz-test 2x2 grid image (4 options + question + numbers) ───────────────
 async function buildQuizGrid(short, outPath) {
-  // generate 4 tiles
-  const tileW = Math.floor(W / 2);          // 540
-  const tileH = Math.floor((H - 520) / 2);  // leave room for question top + CTA bottom
-  const gridTop = 360;                       // question area above
+  // Layout: question (top) + 2x2 grid (middle) + CTA (bottom), no overlap.
+  const gridTop = 340;
+  const bottomReserve = 240;                          // space for bottom text
+  const tileW = Math.floor(W / 2);                    // 540
+  const tileH = Math.floor((H - gridTop - bottomReserve) / 2);
   const tiles = [];
   for (let i = 0; i < 4; i++) {
     const opt = short.options[i];
     const raw = await geminiBackground(opt.imagePrompt);
     const tile = await sharp(raw).resize(tileW, tileH, { fit: "cover", position: "centre" }).toBuffer();
-    // number + label badge on each tile
     const badge = Buffer.from(`
 <svg width="${tileW}" height="${tileH}" xmlns="http://www.w3.org/2000/svg">
-  <circle cx="64" cy="64" r="46" fill="rgba(61,44,110,0.92)"/>
-  <text x="64" y="84" font-family="Arial, sans-serif" font-size="56" font-weight="800" fill="#fff" text-anchor="middle">${i + 1}</text>
-  <rect x="0" y="${tileH-72}" width="${tileW}" height="72" fill="rgba(40,30,50,0.5)"/>
-  <text x="${tileW/2}" y="${tileH-26}" font-family="Arial, sans-serif" font-size="36" font-weight="700" fill="#fff" text-anchor="middle">${esc(opt.label || "")}</text>
+  <circle cx="58" cy="58" r="42" fill="rgba(61,44,110,0.92)"/>
+  <text x="58" y="76" font-family="Arial, sans-serif" font-size="50" font-weight="800" fill="#fff" text-anchor="middle">${i + 1}</text>
+  <rect x="0" y="${tileH-64}" width="${tileW}" height="64" fill="rgba(40,30,50,0.55)"/>
+  <text x="${tileW/2}" y="${tileH-22}" font-family="Arial, sans-serif" font-size="32" font-weight="700" fill="#fff" text-anchor="middle">${esc(opt.label || "")}</text>
 </svg>`);
     tiles.push(await sharp(tile).composite([{ input: badge, top: 0, left: 0 }]).png().toBuffer());
   }
 
-  // question banner + CTA banner
-  const qLines = wrapText(short.question, 20);
-  const qFont = 72, qLH = qFont * 1.2;
+  const qLines = wrapText(short.question, 18);
+  const qFont = 66, qLH = qFont * 1.18;
   const qSpans = qLines.map((ln, i) => `<tspan x="${W/2}" dy="${i === 0 ? 0 : qLH}">${esc(ln)}</tspan>`).join("");
   const banner = Buffer.from(`
 <svg width="${W}" height="${H}" xmlns="http://www.w3.org/2000/svg">
   <rect x="0" y="0" width="${W}" height="${H}" fill="#FFF8F0"/>
-  <text x="${W/2}" y="${160}" font-family="Georgia, serif" font-size="${qFont}" font-weight="800"
+  <text x="${W/2}" y="150" font-family="Georgia, serif" font-size="${qFont}" font-weight="800"
         fill="#3d2c6e" text-anchor="middle">${qSpans}</text>
-  <text x="${W/2}" y="${H-150}" font-family="Arial, sans-serif" font-size="48" font-weight="800"
-        fill="#3d2c6e" text-anchor="middle">Answer in the description ↓</text>
-  <text x="${W/2}" y="${H-80}" font-family="Arial, sans-serif" font-size="40" font-weight="600"
-        fill="#7c6bb0" text-anchor="middle">Take the free ADHD test — bloomfocus.org</text>
+  <text x="${W/2}" y="${H-130}" font-family="Arial, sans-serif" font-size="44" font-weight="800"
+        fill="#3d2c6e" text-anchor="middle">Pick yours - watch for your result</text>
+  <text x="${W/2}" y="${H-70}" font-family="Arial, sans-serif" font-size="38" font-weight="600"
+        fill="#7c6bb0" text-anchor="middle">Free ADHD test - bloomfocus.org</text>
 </svg>`);
 
   await sharp(banner)
@@ -302,6 +301,26 @@ async function buildQuizGrid(short, outPath) {
       { input: tiles[3], top: gridTop + tileH, left: tileW },
     ])
     .png().toFile(outPath);
+  return outPath;
+}
+
+// Result reveal image for one option: its illustration full-bleed + a big
+// number badge + the label, with a bottom scrim (the result text is burned as
+// a synced subtitle, like other shorts).
+async function buildResultImage(opt, number, outPath) {
+  const raw = await geminiBackground(opt.imagePrompt);
+  const base = await sharp(raw).resize(W, H, { fit: "cover", position: "centre" }).toBuffer();
+  const badge = Buffer.from(`
+<svg width="${W}" height="${H}" xmlns="http://www.w3.org/2000/svg">
+  <defs><linearGradient id="f" x1="0" y1="0" x2="0" y2="1">
+    <stop offset="0%" stop-color="rgba(40,30,50,0)"/><stop offset="100%" stop-color="rgba(40,30,50,0.6)"/>
+  </linearGradient></defs>
+  <rect x="0" y="${H-650}" width="${W}" height="650" fill="url(#f)"/>
+  <circle cx="${W/2}" cy="150" r="70" fill="rgba(61,44,110,0.92)"/>
+  <text x="${W/2}" y="178" font-family="Arial, sans-serif" font-size="80" font-weight="800" fill="#fff" text-anchor="middle">${number}</text>
+  <text x="${W/2}" y="285" font-family="Georgia, serif" font-size="56" font-weight="800" fill="#3d2c6e" text-anchor="middle" stroke="#FFF8F0" stroke-width="2" paint-order="stroke">${esc(opt.label || "")}</text>
+</svg>`);
+  await sharp(base).composite([{ input: badge, top: 0, left: 0 }]).png().toFile(outPath);
   return outPath;
 }
 
@@ -322,20 +341,24 @@ function buildVideo(scenePaths, durations, voicePath, outPath, matchVoice = fals
   const hasMusic = fs.existsSync(MUSIC_PATH);
   const vf = `scale=${W}:${H}:force_original_aspect_ratio=increase,crop=${W}:${H},fps=30,format=yuv420p`;
 
-  // ── quiztest: single still image, length = voiceover ──
+  // ── single still image, length = voiceover (quiztest segments) ──
   if (matchVoice) {
-    const still = scenePaths[0];
+    const still = path.basename(scenePaths[0]);
+    const voiceName = path.basename(voicePath);
+    const sub = srtPath
+      ? `,subtitles=${path.basename(srtPath)}:force_style='Fontname=Arial,Fontsize=13,Bold=1,PrimaryColour=&H00FFFFFF,OutlineColour=&H803D2C6E,BorderStyle=1,Outline=3,Shadow=0,Alignment=2,MarginV=320,MarginL=90,MarginR=90'`
+      : "";
     let cmd;
     if (hasMusic) {
-      cmd = `ffmpeg -y -loop 1 -i "${still}" -i "${voicePath}" -stream_loop -1 -i "${MUSIC_PATH}" ` +
-        `-filter_complex "[0:v]${vf}[v];[2:a]volume=0.12[m];[1:a][m]amix=inputs=2:duration=first:dropout_transition=2[a]" ` +
-        `-map "[v]" -map "[a]" -shortest -c:v libx264 -preset medium -crf 22 -c:a aac -b:a 192k -pix_fmt yuv420p "${outPath}"`;
+      cmd = `ffmpeg -y -loop 1 -i "${still}" -i "${voiceName}" -stream_loop -1 -i "${MUSIC_PATH}" ` +
+        `-filter_complex "[0:v]${vf}${sub}[v];[2:a]volume=0.12[m];[1:a][m]amix=inputs=2:duration=first:dropout_transition=2[a]" ` +
+        `-map "[v]" -map "[a]" -shortest -c:v libx264 -preset veryfast -crf 23 -c:a aac -b:a 192k -pix_fmt yuv420p "${path.basename(outPath)}"`;
     } else {
-      cmd = `ffmpeg -y -loop 1 -i "${still}" -i "${voicePath}" ` +
-        `-filter_complex "[0:v]${vf}[v]" -map "[v]" -map 1:a -shortest ` +
-        `-c:v libx264 -preset medium -crf 22 -c:a aac -b:a 192k -pix_fmt yuv420p "${outPath}"`;
+      cmd = `ffmpeg -y -loop 1 -i "${still}" -i "${voiceName}" ` +
+        `-filter_complex "[0:v]${vf}${sub}[v]" -map "[v]" -map 1:a -shortest ` +
+        `-c:v libx264 -preset veryfast -crf 23 -c:a aac -b:a 192k -pix_fmt yuv420p "${path.basename(outPath)}"`;
     }
-    execSync(cmd, { stdio: "inherit" });
+    execSync(cmd, { stdio: "inherit", cwd: tmp });
     return outPath;
   }
 
@@ -400,20 +423,20 @@ async function main() {
       const workDir = path.join(outDir, `_work_${short.id}`);
       fs.mkdirSync(workDir, { recursive: true });
 
-      // 1. voiceover
-      process.stdout.write("   🎤 voiceover... ");
-      const voicePath = path.join(workDir, "voice.mp3");
-      // Voiceover. Prefer ElevenLabs WITH timestamps (perfect subtitle sync);
-      // if unavailable, fall back to the normal engine + silence-based timing.
+      // 1. voiceover (skip for quiztest — it builds per-segment audio below)
       let wordTimings = null;
-      const engine = process.env.VOICE_ENGINE || "gemini";
-      if (engine === "elevenlabs") {
-        const r = await elevenLabsWithTimestamps(short.voiceover, voicePath);
-        if (r.ok && r.words && r.words.length) { wordTimings = r.words; console.log("✓ (timestamped)"); }
-        else { await makeVoiceover(short.voiceover, voicePath, "gemini"); console.log("✓ (gemini fallback)"); }
-      } else {
-        await makeVoiceover(short.voiceover, voicePath, engine);
-        console.log("✓");
+      const voicePath = path.join(workDir, "voice.mp3");
+      if (short.shortType !== "quiztest") {
+        process.stdout.write("   🎤 voiceover... ");
+        const engine = process.env.VOICE_ENGINE || "gemini";
+        if (engine === "elevenlabs") {
+          const r = await elevenLabsWithTimestamps(short.voiceover, voicePath);
+          if (r.ok && r.words && r.words.length) { wordTimings = r.words; console.log("✓ (timestamped)"); }
+          else { await makeVoiceover(short.voiceover, voicePath, "gemini"); console.log("✓ (gemini fallback)"); }
+        } else {
+          await makeVoiceover(short.voiceover, voicePath, engine);
+          console.log("✓");
+        }
       }
 
       const scenePaths = [];
@@ -421,12 +444,66 @@ async function main() {
       let srtPath = null;
 
       if (short.shortType === "quiztest") {
-        // single 2x2 grid image held for the whole voiceover
-        process.stdout.write("   🧩 quiz grid (4 tiles)... ");
+        // NEW quiz-test flow: grid (intro) → each option revealed full-screen
+        // with its result as a synced subtitle. Built as segments, concatenated.
+        const engine2 = process.env.VOICE_ENGINE || "gemini";
+        const segVideos = [];   // per-segment mp4 paths
+        const opts = (short.options || []).slice(0, 4);
+
+        // helper to render one segment (image + its own voiceover + subtitle)
+        const buildSegment = async (img, voText, idx) => {
+          const segVoice = path.join(workDir, `seg_${idx}.mp3`);
+          let words = null;
+          if (engine2 === "elevenlabs") {
+            const r = await elevenLabsWithTimestamps(voText, segVoice);
+            if (r.ok && r.words?.length) words = r.words;
+            else await makeVoiceover(voText, segVoice, "gemini");
+          } else {
+            await makeVoiceover(voText, segVoice, engine2);
+          }
+          const segDur = ffprobeDuration(segVoice);
+          const segSrt = path.join(workDir, `seg_${idx}.srt`);
+          if (words) writeSRTfromWords(words, segSrt, 5);
+          else writeSRT(splitIntoSubtitles(voText, 5), segDur, segSrt, segVoice);
+          const segMp4 = path.join(workDir, `seg_${idx}.mp4`);
+          buildVideo([img], [segDur], segVoice, segMp4, true, segSrt);
+          segVideos.push(segMp4);
+        };
+
+        // intro segment: the grid + intro voiceover
+        process.stdout.write("   🧩 grid + intro... ");
         const gp = path.join(workDir, "grid.png");
         await buildQuizGrid(short, gp);
-        scenePaths.push(gp);
-        durations.push(18); // grid holds ~18s; ffmpeg trims to voiceover length via -shortest fallback
+        await buildSegment(gp, short.introVoiceover || short.voiceover || "Which one is you?", 0);
+        console.log("✓");
+
+        // reveal segments: one per option (image + its result as subtitle)
+        for (let i = 0; i < opts.length; i++) {
+          process.stdout.write(`   🔎 reveal ${i + 1}/4... `);
+          const rImg = path.join(workDir, `result_${i}.png`);
+          await buildResultImage(opts[i], i + 1, rImg);
+          const rText = `Number ${i + 1}. ${opts[i].result || ""}`;
+          await buildSegment(rImg, rText, i + 1);
+          console.log("✓");
+          await new Promise((r) => setTimeout(r, 400));
+        }
+
+        // outro segment (last reveal image reused as bg)
+        if (short.outroVoiceover) {
+          process.stdout.write("   👋 outro... ");
+          const oImg = path.join(workDir, `result_${opts.length - 1}.png`);
+          await buildSegment(oImg, short.outroVoiceover, opts.length + 1);
+          console.log("✓");
+        }
+
+        // concat all segments into the final quiztest video
+        process.stdout.write("   🎞  assemble... ");
+        const concatList = path.join(workDir, "segments.txt");
+        fs.writeFileSync(concatList, segVideos.map((p) => `file '${path.basename(p)}'`).join("\n"));
+        execSync(
+          `ffmpeg -y -f concat -safe 0 -i segments.txt -c:v libx264 -preset veryfast -crf 23 -c:a aac -b:a 192k -pix_fmt yuv420p "${mp4Path}"`,
+          { stdio: "inherit", cwd: workDir }
+        );
         console.log("✓");
       } else {
         // scene background images (NO baked text — subtitles are a synced layer)
@@ -453,12 +530,12 @@ async function main() {
           writeSRT(chunks, voiceDur, srtPath, voicePath);
           console.log(`   💬 ${chunks.length} subtitle cues (estimated)`);
         }
-      }
 
-      // 4. assemble
-      process.stdout.write("   🎞  ffmpeg assemble... ");
-      buildVideo(scenePaths, durations, voicePath, mp4Path, short.shortType === "quiztest", srtPath);
-      console.log("✓");
+        // assemble (non-quiztest)
+        process.stdout.write("   🎞  ffmpeg assemble... ");
+        buildVideo(scenePaths, durations, voicePath, mp4Path, false, srtPath);
+        console.log("✓");
+      }
 
       short.videoUrl = `${REPO_RAW}/output/shorts/week_${WEEK}/${short.id}.mp4`;
       done++;
