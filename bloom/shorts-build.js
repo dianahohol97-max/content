@@ -126,14 +126,16 @@ async function buildSceneImage(scene, outPath) {
 // Split the full narration into short subtitle chunks (4-7 words), then time
 // each chunk proportionally to its length across the measured voiceover.
 function splitIntoSubtitles(text, maxWords = 6) {
-  // split on sentence punctuation first, then pack into <= maxWords chunks
+  // Prefer breaking at natural pauses (commas, clause/sentence ends) so cues
+  // read naturally, while keeping each cue <= maxWords.
   const words = String(text).replace(/\s+/g, " ").trim().split(" ");
   const chunks = [];
   let cur = [];
   for (const w of words) {
     cur.push(w);
-    const endsClause = /[.,!?;:]$/.test(w);
-    if (cur.length >= maxWords || (endsClause && cur.length >= 3)) {
+    const hardBreak = /[.!?;:]$/.test(w);   // strong pause → break
+    const softBreak = /,$/.test(w);          // comma → break if cue is decent length
+    if (cur.length >= maxWords || (hardBreak && cur.length >= 2) || (softBreak && cur.length >= 3)) {
       chunks.push(cur.join(" "));
       cur = [];
     }
@@ -151,18 +153,23 @@ function srtTime(sec) {
   return `${p(h)}:${p(m)}:${p(s)},${p(ms, 3)}`;
 }
 
-// Write an .srt timed proportionally to chunk character length.
+// Write an .srt timed by WORD COUNT (closer to speech pace than char count),
+// and hold each cue until the next one starts so subtitles never run AHEAD of
+// the narration (a small bias toward lingering rather than racing).
 function writeSRT(chunks, totalDur, outPath) {
-  const lens = chunks.map((c) => Math.max(8, c.length));
-  const sum = lens.reduce((a, b) => a + b, 0);
+  const wordCounts = chunks.map((c) => Math.max(1, c.trim().split(/\s+/).length));
+  const sum = wordCounts.reduce((a, b) => a + b, 0);
+  // start times are cumulative; each cue ends right where the next begins
+  const starts = [];
   let t = 0;
+  for (let i = 0; i < chunks.length; i++) {
+    starts.push(t);
+    t += (totalDur * wordCounts[i]) / sum;
+  }
+  starts.push(totalDur); // sentinel end
   let srt = "";
   chunks.forEach((c, i) => {
-    const dur = (totalDur * lens[i]) / sum;
-    const start = t;
-    const end = t + dur;
-    t = end;
-    srt += `${i + 1}\n${srtTime(start)} --> ${srtTime(end)}\n${c}\n\n`;
+    srt += `${i + 1}\n${srtTime(starts[i])} --> ${srtTime(starts[i + 1])}\n${c}\n\n`;
   });
   fs.writeFileSync(outPath, srt);
   return outPath;

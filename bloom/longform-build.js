@@ -179,7 +179,7 @@ async function main() {
 
         // subtitles for this chapter, timed within [runningTime, runningTime+chDur]
         const chunks = splitIntoSubtitles(ch.voiceover, 9);
-        const lens = chunks.map((c) => Math.max(10, c.length));
+        const lens = chunks.map((c) => Math.max(1, c.trim().split(/\s+/).length));
         const sum = lens.reduce((a, b) => a + b, 0);
         let local = runningTime;
         chunks.forEach((c, i) => {
