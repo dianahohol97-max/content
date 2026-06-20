@@ -108,7 +108,7 @@ async function buildSlide(slide, idx, total, outPath, workDir) {
   <text x="${W/2}" y="${H-50}" font-family="Arial, sans-serif" font-size="30" font-weight="600" fill="rgba(61,44,110,0.55)" text-anchor="middle">${idx + 1} / ${total}   ·   bloomfocus.org</text>
   ${idx === 0 ? `<text x="${W/2}" y="${cardY-30}" font-family="Arial, sans-serif" font-size="38" font-weight="700" fill="#ffffff" text-anchor="middle" stroke="#3d2c6e" stroke-width="1" paint-order="stroke">Save this 🔖</text>` : ""}
 </svg>`);
-  await sharp(base).composite([{ input: overlay, top: 0, left: 0 }]).png().toFile(outPath);
+  await sharp(base).composite([{ input: overlay, top: 0, left: 0 }]).jpeg({ quality: 90 }).toFile(outPath);
   return outPath;
 }
 
@@ -131,9 +131,9 @@ async function main() {
       const urls = [];
       for (let i = 0; i < c.slides.length; i++) {
         process.stdout.write(`   🖼  slide ${i + 1}/${c.slides.length}... `);
-        const sp = path.join(outDir, `${c.id}_${String(i + 1).padStart(2, "0")}.png`);
+        const sp = path.join(outDir, `${c.id}_${String(i + 1).padStart(2, "0")}.jpg`);
         await buildSlide(c.slides[i], i, c.slides.length, sp, workDir);
-        urls.push(`${REPO_RAW}/output/carousels/week_${WEEK}/${c.id}_${String(i + 1).padStart(2, "0")}.png`);
+        urls.push(`${REPO_RAW}/output/carousels/week_${WEEK}/${c.id}_${String(i + 1).padStart(2, "0")}.jpg`);
         console.log("✓");
         await new Promise(r => setTimeout(r, 400));
       }
