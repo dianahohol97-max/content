@@ -20,6 +20,7 @@ import path from "path";
 import { execSync } from "child_process";
 import { fileURLToPath } from "url";
 import sharp from "sharp";
+import { makeVoiceover as _makeVoiceover } from "./tts.js";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const REPO_ROOT = path.resolve(__dirname, "..");
@@ -60,19 +61,11 @@ function fmtTime(sec) {
   return `${m}:${String(s).padStart(2, "0")}`;
 }
 
+// Long-form is huge (~8000 chars each) — default to free Gemini TTS so it
+// doesn't drain ElevenLabs. Override per-run with VOICE_ENGINE=elevenlabs.
 async function makeVoiceover(text, outPath) {
-  if (!ELEVEN_KEY) throw new Error("ELEVENLABS_API_KEY missing");
-  const res = await fetch(`https://api.elevenlabs.io/v1/text-to-speech/${VOICE_ID}`, {
-    method: "POST",
-    headers: { "xi-api-key": ELEVEN_KEY, "Content-Type": "application/json", "Accept": "audio/mpeg" },
-    body: JSON.stringify({
-      text, model_id: "eleven_multilingual_v2",
-      voice_settings: { stability: 0.5, similarity_boost: 0.75, style: 0.0, use_speaker_boost: true },
-    }),
-  });
-  if (!res.ok) throw new Error(`ElevenLabs ${res.status}: ${(await res.text()).slice(0, 200)}`);
-  fs.writeFileSync(outPath, Buffer.from(await res.arrayBuffer()));
-  return outPath;
+  const engine = process.env.VOICE_ENGINE || "gemini";
+  return _makeVoiceover(text, outPath, engine);
 }
 
 async function geminiBackground(prompt) {

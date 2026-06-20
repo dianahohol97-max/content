@@ -23,6 +23,7 @@ import path from "path";
 import { execSync } from "child_process";
 import { fileURLToPath } from "url";
 import sharp from "sharp";
+import { makeVoiceover } from "./tts.js";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const REPO_ROOT = path.resolve(__dirname, "..");
@@ -38,10 +39,7 @@ const LIMIT = args.limit ? parseInt(args.limit) : null;
 const SKIP_EXISTING = !!args["skip-existing"];
 
 const W = 1080, H = 1920;
-const ELEVEN_KEY = process.env.ELEVENLABS_API_KEY;
 const GEMINI_KEY = process.env.GEMINI_API_KEY;
-// Default ElevenLabs voice — warm female ("Rachel"). Override with VOICE_ID env.
-const VOICE_ID = process.env.ELEVENLABS_VOICE_ID || "21m00Tcm4TlvDq8ikWAM";
 const MUSIC_PATH = path.join(REPO_ROOT, "bloom/assets/music-calm.mp3");
 
 // ─── helpers ──────────────────────────────────────────────────────────────────
@@ -60,27 +58,7 @@ function wrapText(text, maxChars) {
   return lines;
 }
 
-// ─── ElevenLabs voiceover ───────────────────────────────────────────────────
-async function makeVoiceover(text, outPath) {
-  if (!ELEVEN_KEY) throw new Error("ELEVENLABS_API_KEY missing");
-  const res = await fetch(`https://api.elevenlabs.io/v1/text-to-speech/${VOICE_ID}`, {
-    method: "POST",
-    headers: {
-      "xi-api-key": ELEVEN_KEY,
-      "Content-Type": "application/json",
-      "Accept": "audio/mpeg",
-    },
-    body: JSON.stringify({
-      text,
-      model_id: "eleven_multilingual_v2",
-      voice_settings: { stability: 0.5, similarity_boost: 0.75, style: 0.0, use_speaker_boost: true },
-    }),
-  });
-  if (!res.ok) throw new Error(`ElevenLabs ${res.status}: ${(await res.text()).slice(0, 200)}`);
-  const buf = Buffer.from(await res.arrayBuffer());
-  fs.writeFileSync(outPath, buf);
-  return outPath;
-}
+// ─── Voiceover via shared engine (ElevenLabs or Gemini, see tts.js) ─────────
 
 // ─── Gemini background ──────────────────────────────────────────────────────
 async function geminiBackground(prompt) {

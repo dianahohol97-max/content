@@ -19,6 +19,10 @@ on:
         description: "Limit how many videos to build (blank = all)"
         required: false
         default: ""
+      voice_engine:
+        description: "Voice: elevenlabs (best) or gemini (free)"
+        required: false
+        default: "elevenlabs"
 
 jobs:
   shorts:
@@ -49,6 +53,7 @@ jobs:
           ELEVENLABS_API_KEY: ${{ secrets.ELEVENLABS_API_KEY }}
           ELEVENLABS_VOICE_ID: ${{ secrets.ELEVENLABS_VOICE_ID }}
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          VOICE_ENGINE: ${{ inputs.voice_engine }}
         run: node bloom/shorts-build.js --week=${{ inputs.week }} ${{ inputs.limit != '' && format('--limit={0}', inputs.limit) || '' }}
 
       - name: Commit results
