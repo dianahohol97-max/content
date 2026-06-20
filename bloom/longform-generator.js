@@ -59,31 +59,43 @@ function parseJSON(text) {
 }
 
 async function generateOne(topic) {
+  const ART_STYLE = "Hand-drawn illustration in soft pastel colors, cozy and warm style. Soft watercolor texture, gentle hand-painted lines, flat illustration. Palette: lavender, cream, sage green, blush pink. Calm, friendly, approachable, non-judgmental mood. No people, no faces, no text, no letters. Wide landscape 16:9 composition.";
+
   const prompt = `You are a long-form YouTube scriptwriter for bloom focus, a faceless ADHD education brand.
 
 Voice/tone: warm, direct, science-backed but simple — "a friend with a neuroscience degree who also lost their keys this morning". Validating, never patronizing. Clinically ACCURATE (this is a trust brand — unlike most viral ADHD content). Never "just try harder" or "ADHD is a superpower".
 
-Write ONE 8-10 minute documentary-style video on:
+Write ONE genuinely 8-10 minute documentary-style video on:
 "${topic}"
 
-This is faceless: a voiceover plays over changing aesthetic background shots with short on-screen captions. It must EARN its length with dense, specific, genuinely useful content — no padding, no fluff (padding kills retention).
+CRITICAL — LENGTH AND DEPTH:
+This must be a REAL 8-10 minute video. At ~140 words/minute spoken, that means
+the voiceover across all chapters MUST total 1300-1500 words. This is long —
+do not write a short script. BUT every sentence must earn its place: depth, not
+padding (padding kills retention). Hit the length by going DEEPER, not by repeating.
 
-STRUCTURE — 5 to 6 CHAPTERS. Each chapter has:
-- title: short chapter title (for timecodes in the description)
-- voiceover: the full narration for this chapter (~150-200 words each — together all chapters should total ~1300-1600 words ≈ 8-10 min spoken).
-- scenes: 3-5 scenes for this chapter. Each scene:
-    - caption: short on-screen text (max 6 words), the key phrase of that beat.
-    - imagePrompt: realistic aesthetic vertical/wide-friendly photo bg. Style: "Realistic aesthetic photograph, soft pastel tones (lavender, cream, sage, blush), cozy minimal scene, soft natural light, shallow depth of field, film-like. No people, no faces, no text." Add a relevant detail (desk, window, plant, clock, journal, coffee, bed, path, books).
-    - seconds: 6-10 each.
+To reach real depth, EACH chapter must include several of:
+- a concrete, vivid example of what this looks like in real daily life ("It's Tuesday morning. The email has been open for 40 minutes...")
+- the actual underlying neuroscience, explained simply (dopamine, prefrontal cortex, executive function — what's really happening, not hand-waving)
+- WHY common advice fails for this specific thing
+- a specific, actionable strategy walked through step by step (not just named)
+- validation that reframes shame into understanding
 
-Chapter 1 must HOOK in the first 15 seconds (55% of viewers leave in the first minute) — open with recognition or a compelling question, state what the video will give them, then deliver. The final chapter ends with a warm CTA to the free ADHD quiz.
+STRUCTURE — 6 CHAPTERS. Each chapter:
+- title: short chapter title (for description timecodes)
+- voiceover: the FULL narration for this chapter. Each chapter must be 200-260 words (NOT less — this is what makes the video 8-10 min). Rich, specific, flowing naturally as spoken word.
+- scenes: 4-6 scenes for this chapter. Each scene:
+    - caption: ignore, leave as "" (on-screen text is generated as synced subtitles from the voiceover, not captions).
+    - imagePrompt: ALWAYS begin with exactly this style: "${ART_STYLE}" Then add ONE simple scene detail relevant to the moment (a desk with coffee and a notebook; an abstract brain of soft clouds and sparks; a gently messy cozy room; a window with morning light; a soft surreal melting clock; a winding path; stacked books; a single chair). Keep EVERY scene in this SAME hand-drawn pastel style.
+    - seconds: leave as 0 (timing is computed automatically).
+
+Chapter 1 must HOOK in the first 15 seconds (55% of viewers leave in the first minute) — open mid-punch with sharp recognition, state what the video will give them, then deliver. The final chapter ends warmly with: "Follow for daily ADHD content."
 
 Also return:
 - title: YouTube title, 50-70 chars, search-intent first (e.g. "ADHD Task Paralysis: Why It Happens and How to Break It")
-- description: 3-4 sentence summary with keywords. Then a blank line, then "Chapters:" — but DO NOT compute timecodes (the builder fills them). Then the quiz URL.
+- description: 3-4 sentence summary with keywords. Then a blank line, then "Chapters:" — DO NOT compute timecodes (the builder fills them).
 - tags: 10-15 YouTube tags.
-- funnel: "quiz".
-- destinationUrl: ${URLS.quiz}.
+- funnel: "follow".
 
 Use ONLY straight ASCII apostrophes ('). No curly quotes or special characters.
 
@@ -94,16 +106,15 @@ Return ONLY a valid JSON array with ONE object, no markdown:
     "description": "...",
     "tags": ["..."],
     "chapters": [
-      { "title": "...", "voiceover": "...", "scenes": [ { "caption": "...", "imagePrompt": "...", "seconds": 8 } ] }
+      { "title": "...", "voiceover": "...", "scenes": [ { "caption": "", "imagePrompt": "...", "seconds": 0 } ] }
     ],
-    "funnel": "quiz",
-    "destinationUrl": "${URLS.quiz}"
+    "funnel": "follow"
   }
 ]`;
 
   const response = await client.messages.create({
     model: "claude-sonnet-4-6",
-    max_tokens: 8000,
+    max_tokens: 16000,
     messages: [{ role: "user", content: prompt }],
   });
   const arr = parseJSON(response.content[0].text);
