@@ -30,15 +30,19 @@ const W = 1080, H = 1350;
 function esc(s) {
   return String(s || "").replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#39;");
 }
-function wrapText(text, max) {
-  const words = String(text || "").split(/\s+/);
+function wrapLine(text, max) {
+  const words = String(text || "").split(/\s+/).filter(Boolean);
   const lines = []; let cur = "";
   for (const w of words) {
     if ((cur + " " + w).trim().length > max) { if (cur) lines.push(cur); cur = w; }
     else cur = (cur + " " + w).trim();
   }
   if (cur) lines.push(cur);
-  return lines;
+  return lines.length ? lines : [""];
+}
+// Respect explicit \n (symptom-list bodies), wrapping each line to width.
+function wrapText(text, max) {
+  return String(text || "").split(/\r?\n/).flatMap((ln) => ln.trim() === "" ? [""] : wrapLine(ln, max));
 }
 
 async function geminiBackground(prompt) {
@@ -81,30 +85,38 @@ async function buildSlide(slide, idx, total, outPath, workDir) {
   const headline = slide.headline || "";
   const body = slide.body || "";
   const hLines = wrapText(headline, 20);
-  const bLines = body ? wrapText(body, 34) : [];
+  // body font shrinks as content grows so long symptom lists still fit 1080x1350
+  let bFont = 40;
+  let bLines = body ? wrapText(body, 34) : [];
+  if (bLines.length > 12) { bFont = 30; bLines = body ? wrapText(body, 46) : []; }
+  else if (bLines.length > 8) { bFont = 34; bLines = body ? wrapText(body, 40) : []; }
 
-  const hFont = hLines.length > 2 ? 64 : 76;
+  const hFont = hLines.length > 2 ? 60 : 74;
   const hLH = hFont * 1.2;
-  const bFont = 40, bLH = bFont * 1.35;
+  const bLH = bFont * 1.34;
   const hBlock = hLines.length * hLH;
   const bBlock = bLines.length * bLH;
   const gap = bLines.length ? 40 : 0;
   const totalBlock = hBlock + gap + bBlock;
-  const cardPad = 70;
-  const cardH = totalBlock + cardPad * 2;
+  const cardPad = 64;
+  const cardH = Math.min(totalBlock + cardPad * 2, H - 80);
   const cardY = (H - cardH) / 2;
 
   let hStartY = cardY + cardPad + hFont * 0.8;
   const hSpans = hLines.map((ln, i) => `<tspan x="${W/2}" dy="${i === 0 ? 0 : hLH}">${esc(ln)}</tspan>`).join("");
   let bStartY = cardY + cardPad + hBlock + gap + bFont * 0.8;
-  const bSpans = bLines.map((ln, i) => `<tspan x="${W/2}" dy="${i === 0 ? 0 : bLH}">${esc(ln)}</tspan>`).join("");
+  // multi-line (symptom-list) bodies read better left-aligned; short bodies centered
+  const leftAlign = bLines.length > 3;
+  const bX = leftAlign ? 110 : W / 2;
+  const bAnchor = leftAlign ? "start" : "middle";
+  const bSpans = bLines.map((ln, i) => `<tspan x="${bX}" dy="${i === 0 ? 0 : bLH}">${esc(ln)}</tspan>`).join("");
 
   const overlay = Buffer.from(`
 <svg width="${W}" height="${H}" xmlns="http://www.w3.org/2000/svg">
   <rect x="60" y="${cardY}" width="${W-120}" height="${cardH}" rx="40" fill="rgba(255,248,240,0.94)"/>
   <text x="${W/2}" y="${hStartY}" font-family="Georgia, serif" font-size="${hFont}" font-weight="800"
         fill="#3d2c6e" text-anchor="middle" style="letter-spacing:-0.5px;">${hSpans}</text>
-  ${bLines.length ? `<text x="${W/2}" y="${bStartY}" font-family="Arial, sans-serif" font-size="${bFont}" font-weight="500" fill="#5a4a8a" text-anchor="middle">${bSpans}</text>` : ""}
+  ${bLines.length ? `<text x="${bX}" y="${bStartY}" font-family="Arial, sans-serif" font-size="${bFont}" font-weight="500" fill="#5a4a8a" text-anchor="${bAnchor}">${bSpans}</text>` : ""}
   <text x="${W/2}" y="${H-50}" font-family="Arial, sans-serif" font-size="30" font-weight="600" fill="rgba(61,44,110,0.55)" text-anchor="middle">${idx + 1} / ${total}   ·   bloomfocus.org</text>
   ${idx === 0 ? `<text x="${W/2}" y="${cardY-30}" font-family="Arial, sans-serif" font-size="38" font-weight="700" fill="#ffffff" text-anchor="middle" stroke="#3d2c6e" stroke-width="1" paint-order="stroke">Save this 🔖</text>` : ""}
 </svg>`);

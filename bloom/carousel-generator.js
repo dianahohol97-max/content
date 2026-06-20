@@ -46,6 +46,64 @@ const TOPICS = [
   "why 'just try harder' is the worst ADHD advice",
 ];
 
+// "Symptom list" carousels — the proven save-heavy format: a named ADHD pattern
+// + "What it might look like" with concrete relatable examples. One pattern per
+// slide (each slide = one pattern), so the whole carousel is a set of patterns.
+const PATTERN_SETS = [
+  { theme: "ADHD traits you thought were personality flaws", patterns: ["Object Permanence", "Low Interoception", "Rejection Masking", "Time Blindness", "Emotional Permanence"] },
+  { theme: "Hidden ADHD struggles no one talks about", patterns: ["Waiting Mode", "Decision Paralysis", "Auditory Processing Lag", "The Wall of Awful", "Hyperfixation Crash"] },
+  { theme: "Why ADHD makes everyday life harder", patterns: ["Task Switching Cost", "Working Memory Gaps", "Sensory Overload", "Demand Avoidance", "Revenge Bedtime Procrastination"] },
+  { theme: "ADHD signs that hide in plain sight", patterns: ["Justice Sensitivity", "Stimulation Seeking", "Object Permanence", "Emotional Dysregulation", "Time Agnosia"] },
+];
+
+async function generatePatternCarousel(set) {
+  const prompt = `You are an Instagram carousel writer for bloom focus, a faceless ADHD education brand.
+
+Voice/tone: warm, direct, science-backed but simple — "a friend with a neuroscience degree who also lost their keys this morning". Validating, never patronizing. Clinically ACCURATE. Never "just try harder" or "ADHD is a superpower".
+
+Write ONE highly save-worthy Instagram carousel in the "named pattern + What it might look like" format (this format gets huge saves because people recognize themselves).
+
+Carousel theme: "${set.theme}"
+Patterns to cover (ONE per content slide, in this order): ${set.patterns.map((p, i) => `${i + 1}. ${p}`).join("  ")}
+
+STRUCTURE (${set.patterns.length + 2} slides total):
+- Slide 1 (HOOK): bold title = the theme, made scroll-stopping. Add a subtle "save this 🔖" feel. body can tease "you'll recognize yourself."
+- Slides 2-${set.patterns.length + 1} (ONE PATTERN EACH): 
+    - headline: the pattern name (e.g. "Object Permanence").
+    - body: structured as a SHORT 1-2 sentence plain-language explanation of the pattern, THEN a line "What it might look like:" THEN 3 concrete relatable examples each on its own line starting with a relevant emoji. Keep examples specific and real ("You forget laundry in the machine until it smells"), not abstract. Use \\n for line breaks inside body.
+- Final slide (CTA): warm validating wrap-up ("You're not broken — your brain just works differently") + "Save this and follow @bloomfocus for more."
+
+For EACH slide also return:
+- tag: a SHORT reusable image slug (lowercase, underscores) from: brain, desk_messy, desk_tidy, coffee, journal, window_light, clock, plant, books, path, sparks, cozy_room, sky, phone, bed. Same subject shares a tag.
+- imagePrompt: ALWAYS begin with exactly: "${ART_STYLE}" then add one simple scene detail matching the tag.
+
+Also return:
+- title: internal title (for filenames).
+- caption: IG caption — hook + 2-3 sentences + a question to drive comments ("Which one surprised you most?") + "Save this and follow for daily ADHD content."
+- hashtags: 8-12 hashtags.
+- funnel: "follow".
+
+Use ONLY straight ASCII apostrophes ('). No curly quotes.
+
+Return ONLY a valid JSON array with ONE object, no markdown:
+[
+  {
+    "title": "...",
+    "slides": [ { "headline": "...", "body": "...", "tag": "brain", "imagePrompt": "..." } ],
+    "caption": "...",
+    "hashtags": ["..."],
+    "funnel": "follow"
+  }
+]`;
+
+  const r = await client.messages.create({
+    model: "claude-sonnet-4-6",
+    max_tokens: 8000,
+    messages: [{ role: "user", content: prompt }],
+  });
+  return parseJSON(r.content[0].text)[0];
+}
+
 async function generateOne(topic) {
   const prompt = `You are an Instagram carousel writer for bloom focus, a faceless ADHD education brand.
 
@@ -117,11 +175,28 @@ async function main() {
 
   const startIdx = ((WEEK - 1) * COUNT) % TOPICS.length;
   const weekTopics = Array.from({ length: COUNT }, (_, i) => TOPICS[(startIdx + i) % TOPICS.length]);
+  const patStart = ((WEEK - 1) * COUNT) % PATTERN_SETS.length;
 
   const out = [];
-  for (let i = 0; i < weekTopics.length; i++) {
-    console.log(`  [${i + 1}/${COUNT}] ${weekTopics[i]}`);
-    const c = await retry(() => generateOne(weekTopics[i]), "carousel");
+  let patCount = 0, eduCount = 0;
+  for (let i = 0; i < COUNT; i++) {
+    // alternate: even slots = proven "pattern + what it might look like" format,
+    // odd slots = standard educational carousel. Pattern format drives saves.
+    const usePattern = i % 2 === 0;
+    let c;
+    if (usePattern) {
+      const set = PATTERN_SETS[(patStart + patCount) % PATTERN_SETS.length];
+      console.log(`  [${i + 1}/${COUNT}] (pattern) ${set.theme}`);
+      c = await retry(() => generatePatternCarousel(set), "pattern carousel");
+      c.format = "pattern";
+      patCount++;
+    } else {
+      const topic = weekTopics[eduCount % weekTopics.length];
+      console.log(`  [${i + 1}/${COUNT}] (educational) ${topic}`);
+      c = await retry(() => generateOne(topic), "carousel");
+      c.format = "educational";
+      eduCount++;
+    }
     c.id = `CR_W${WEEK}_${String(i + 1).padStart(2, "0")}`;
     c.week = WEEK;
     c.status = "pending";
@@ -131,7 +206,7 @@ async function main() {
   }
 
   fs.writeFileSync(path.join(REPO_ROOT, `carousel_week_${WEEK}.json`), JSON.stringify(out, null, 2));
-  console.log(`\n✅ ${out.length} carousels → carousel_week_${WEEK}.json`);
+  console.log(`\n✅ ${out.length} carousels (${patCount} pattern + ${eduCount} educational) → carousel_week_${WEEK}.json`);
 }
 
 main().catch((e) => { console.error("✗", e); process.exit(1); });
