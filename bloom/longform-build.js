@@ -82,27 +82,42 @@ async function geminiBackground(prompt) {
   return Buffer.from(img, "base64");
 }
 
-function captionOverlay(caption) {
-  const lines = wrapText(caption, 28);
-  const fontSize = 64, lineHeight = fontSize * 1.2;
-  const tspans = lines.map((ln, i) => `<tspan x="80" dy="${i === 0 ? 0 : lineHeight}">${esc(ln)}</tspan>`).join("");
-  const baseY = H - 120 - (lines.length - 1) * lineHeight;
+// Soft bottom scrim so white subtitles stay readable (landscape).
+function bottomScrim() {
   return Buffer.from(`
 <svg width="${W}" height="${H}" xmlns="http://www.w3.org/2000/svg">
   <defs><linearGradient id="f" x1="0" y1="0" x2="0" y2="1">
-    <stop offset="0%" stop-color="rgba(40,30,50,0)"/><stop offset="100%" stop-color="rgba(40,30,50,0.7)"/>
+    <stop offset="0%" stop-color="rgba(40,30,50,0)"/><stop offset="100%" stop-color="rgba(40,30,50,0.6)"/>
   </linearGradient></defs>
-  <rect x="0" y="${H-360}" width="${W}" height="360" fill="url(#f)"/>
-  <text x="80" y="${baseY}" font-family="Arial, sans-serif" font-size="${fontSize}" font-weight="800"
-        fill="#ffffff" text-anchor="start" stroke="#3d2c6e" stroke-width="2" paint-order="stroke">${tspans}</text>
+  <rect x="0" y="${H-320}" width="${W}" height="320" fill="url(#f)"/>
 </svg>`);
 }
 
 async function buildSceneImage(scene, outPath) {
   const bg = await geminiBackground(scene.imagePrompt);
   const base = await sharp(bg).resize(W, H, { fit: "cover", position: "centre" }).toBuffer();
-  await sharp(base).composite([{ input: captionOverlay(scene.caption), top: 0, left: 0 }]).png().toFile(outPath);
+  await sharp(base).composite([{ input: bottomScrim(), top: 0, left: 0 }]).png().toFile(outPath);
   return outPath;
+}
+
+// ─── Subtitles synced to narration (same approach as Shorts) ────────────────
+function splitIntoSubtitles(text, maxWords = 9) {
+  const words = String(text).replace(/\s+/g, " ").trim().split(" ");
+  const chunks = []; let cur = [];
+  for (const w of words) {
+    cur.push(w);
+    const endsClause = /[.,!?;:]$/.test(w);
+    if (cur.length >= maxWords || (endsClause && cur.length >= 4)) { chunks.push(cur.join(" ")); cur = []; }
+  }
+  if (cur.length) chunks.push(cur.join(" "));
+  return chunks;
+}
+
+function srtTime(sec) {
+  const h = Math.floor(sec / 3600), m = Math.floor((sec % 3600) / 60), s = Math.floor(sec % 60);
+  const ms = Math.round((sec - Math.floor(sec)) * 1000);
+  const p = (n, l = 2) => String(n).padStart(l, "0");
+  return `${p(h)}:${p(m)}:${p(s)},${p(ms, 3)}`;
 }
 
 function ffprobeDuration(file) {
@@ -145,9 +160,10 @@ async function main() {
       const allScenePaths = [];
       const allDurations = [];
       const chapterTimecodes = [];
+      const srtCues = []; // { start, end, text } across the whole video
       let runningTime = 0;
 
-      // Process each chapter: voiceover (measure), scenes
+      // Process each chapter: voiceover (measure), scenes, subtitles
       for (let ci = 0; ci < vid.chapters.length; ci++) {
         const ch = vid.chapters[ci];
         console.log(`   📖 ch ${ci + 1}/${vid.chapters.length}: ${ch.title}`);
@@ -160,6 +176,18 @@ async function main() {
         console.log(`✓ ${chDur.toFixed(1)}s`);
 
         chapterTimecodes.push({ title: ch.title, t: runningTime });
+
+        // subtitles for this chapter, timed within [runningTime, runningTime+chDur]
+        const chunks = splitIntoSubtitles(ch.voiceover, 9);
+        const lens = chunks.map((c) => Math.max(10, c.length));
+        const sum = lens.reduce((a, b) => a + b, 0);
+        let local = runningTime;
+        chunks.forEach((c, i) => {
+          const dur = (chDur * lens[i]) / sum;
+          srtCues.push({ start: local, end: local + dur, text: c });
+          local += dur;
+        });
+
         runningTime += chDur;
 
         // scenes for chapter — distribute chapter duration across its scenes
@@ -175,6 +203,12 @@ async function main() {
           await new Promise((r) => setTimeout(r, 500));
         }
       }
+
+      // write full-video subtitle track
+      const srtPath = path.join(workDir, "subs.srt");
+      fs.writeFileSync(srtPath,
+        srtCues.map((c, i) => `${i + 1}\n${srtTime(c.start)} --> ${srtTime(c.end)}\n${c.text}\n`).join("\n"));
+      console.log(`   💬 ${srtCues.length} subtitle cues`);
 
       // concat chapter audios into one voiceover track
       process.stdout.write("   🔉 concat audio... ");
@@ -194,15 +228,16 @@ async function main() {
       fs.writeFileSync(sceneList, sl);
 
       const vf = `scale=${W}:${H}:force_original_aspect_ratio=increase,crop=${W}:${H},fps=30,format=yuv420p`;
+      const subFilter = `,subtitles='${srtPath}':force_style='Fontname=Arial,Fontsize=18,Bold=1,PrimaryColour=&H00FFFFFF,OutlineColour=&H803D2C6E,BorderStyle=1,Outline=3,Shadow=0,Alignment=2,MarginV=60'`;
       const hasMusic = fs.existsSync(MUSIC_PATH);
       let cmd;
       if (hasMusic) {
         cmd = `ffmpeg -y -f concat -safe 0 -i "${sceneList}" -i "${fullVoice}" -stream_loop -1 -i "${MUSIC_PATH}" ` +
-          `-filter_complex "[0:v]${vf}[v];[2:a]volume=0.1[m];[1:a][m]amix=inputs=2:duration=first:dropout_transition=2[a]" ` +
+          `-filter_complex "[0:v]${vf}${subFilter}[v];[2:a]volume=0.1[m];[1:a][m]amix=inputs=2:duration=first:dropout_transition=2[a]" ` +
           `-map "[v]" -map "[a]" -shortest -c:v libx264 -preset medium -crf 22 -c:a aac -b:a 192k -pix_fmt yuv420p "${mp4Path}"`;
       } else {
         cmd = `ffmpeg -y -f concat -safe 0 -i "${sceneList}" -i "${fullVoice}" ` +
-          `-filter_complex "[0:v]${vf}[v]" -map "[v]" -map 1:a -shortest ` +
+          `-filter_complex "[0:v]${vf}${subFilter}[v]" -map "[v]" -map 1:a -shortest ` +
           `-c:v libx264 -preset medium -crf 22 -c:a aac -b:a 192k -pix_fmt yuv420p "${mp4Path}"`;
       }
       execSync(cmd, { stdio: "inherit" });
