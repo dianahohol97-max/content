@@ -24,7 +24,7 @@ const REPO_ROOT = path.resolve(__dirname, "..");
 export const MAX_VARIANTS = 5;
 
 function libDir(aspect) {
-  // aspect: "vertical" (9:16 shorts/stories) or "wide" (16:9 longform)
+  // aspect: "vertical" (9:16 shorts/stories) | "wide" (16:9 longform) | "square" (1:1 carousels)
   const d = path.join(REPO_ROOT, "output", "library", aspect);
   fs.mkdirSync(d, { recursive: true });
   return d;
@@ -91,7 +91,7 @@ export function libraryStats(aspect) {
 const REPO_RAW = "https://raw.githubusercontent.com/dianahohol97-max/content/main";
 export function writeLibraryManifest() {
   const all = [];
-  for (const aspect of ["vertical", "wide"]) {
+  for (const aspect of ["vertical", "wide", "square"]) {
     const dir = libDir(aspect);
     for (const f of fs.readdirSync(dir).filter((x) => x.endsWith(".png"))) {
       all.push({ id: `${aspect}_${f}`, aspect, filename: f, url: `${REPO_RAW}/output/library/${aspect}/${f}` });
