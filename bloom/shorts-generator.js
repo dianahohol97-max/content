@@ -83,6 +83,20 @@ const TOPICS = [
   "'I'll do it in 5 minutes' — the ADHD time lie",
 ];
 
+// Concrete how-to techniques for practical shorts
+const PRACTICAL_TOPICS = [
+  "how to use a dopamine menu to start hard tasks",
+  "body doubling: how to focus by working alongside someone",
+  "the 2-minute rule to beat ADHD task paralysis",
+  "the launch pad method so you stop losing keys and phone",
+  "how to body-double with a video when you're alone",
+  "task batching for ADHD: group similar tasks to save focus",
+  "the 'eat the frog' tweak that actually works for ADHD",
+  "how to use timers and visual countdowns for time blindness",
+  "the brain dump method to quiet a racing ADHD mind",
+  "habit stacking: attach new habits to ones you already do",
+];
+
 function parseJSON(text) {
   let t = text.trim();
   if (t.startsWith("```")) t = t.replace(/^```(json)?/i, "").replace(/```$/, "").trim();
@@ -108,6 +122,8 @@ async function generateVoicedShorts(weekTopics, kind) {
   const count = weekTopics.length;
   const kindGuide = kind === "painpoint"
     ? `These are PAIN-POINT shorts. Each opens by naming a frustrating, relatable ADHD struggle as a direct hook that hits home ("Your home is always a mess and no matter how hard you try, you can't keep it tidy?"), validates it's not a character flaw, briefly explains the ADHD reason, then sends them to the free ADHD test. Keep it emotional and validating, short on theory.`
+    : kind === "practical"
+    ? `These are PRACTICAL HOW-TO shorts. Each teaches ONE concrete ADHD-friendly technique the viewer can use today (e.g. dopamine menu, body doubling, the 2-minute rule, launch pad). Structure: name the struggle briefly, then walk through the method in clear simple steps, end with encouragement + the free quiz. Actionable and specific, not theory-heavy.`
     : `These are EDUCATIONAL shorts. Each teaches the topic simply with recognition + one practical takeaway.`;
 
   const prompt = `You are a YouTube Shorts scriptwriter for bloom focus, a faceless ADHD education brand.
@@ -196,21 +212,24 @@ Return ONLY a valid JSON array, no markdown:
 }
 
 async function generateShorts(weekNum, count) {
-  // Mix: ~6 educational, ~4 pain-point, ~4 quiz-test (scaled to count)
-  const nEdu = Math.max(1, Math.round(count * 6 / 14));
-  const nPain = Math.max(1, Math.round(count * 4 / 14));
-  const nTest = Math.max(1, count - nEdu - nPain);
+  // Mix (scaled to count): ~4 educational, ~3 practical, ~3 pain-point, ~4 quiz-test
+  const nEdu = Math.max(1, Math.round(count * 4 / 14));
+  const nPrac = Math.max(1, Math.round(count * 3 / 14));
+  const nPain = Math.max(1, Math.round(count * 3 / 14));
+  const nTest = Math.max(1, count - nEdu - nPrac - nPain);
 
-  // rotate topics by week for educational + painpoint (they share the topic pool)
+  // rotate topics by week
   const startIdx = ((weekNum - 1) * count) % TOPICS.length;
   const topicsFor = (n, offset) =>
     Array.from({ length: n }, (_, i) => TOPICS[(startIdx + offset + i) % TOPICS.length]);
 
-  console.log(`  mix → ${nEdu} educational, ${nPain} pain-point, ${nTest} quiz-test`);
+  console.log(`  mix → ${nEdu} educational, ${nPrac} practical, ${nPain} pain-point, ${nTest} quiz-test`);
 
   const all = [];
   console.log("  ✏️  educational...");
   all.push(...await generateVoicedShorts(topicsFor(nEdu, 0), "educational"));
+  console.log("  🔧 practical...");
+  all.push(...await generateVoicedShorts(PRACTICAL_TOPICS.slice(0, nPrac), "practical"));
   console.log("  💢 pain-point...");
   all.push(...await generateVoicedShorts(topicsFor(nPain, nEdu), "painpoint"));
   console.log("  🧩 quiz-test...");
