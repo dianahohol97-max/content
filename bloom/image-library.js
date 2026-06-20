@@ -91,7 +91,7 @@ export function libraryStats(aspect) {
 const REPO_RAW = "https://raw.githubusercontent.com/dianahohol97-max/content/main";
 export function writeLibraryManifest() {
   const all = [];
-  for (const aspect of ["vertical", "wide", "square"]) {
+  for (const aspect of ["vertical", "wide", "square", "portrait"]) {
     const dir = libDir(aspect);
     for (const f of fs.readdirSync(dir).filter((x) => x.endsWith(".png"))) {
       all.push({ id: `${aspect}_${f}`, aspect, filename: f, url: `${REPO_RAW}/output/library/${aspect}/${f}` });

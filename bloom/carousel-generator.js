@@ -24,7 +24,7 @@ const COUNT = args.count ? parseInt(args.count) : 4;
 
 const client = new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY });
 
-const ART_STYLE = "Hand-drawn illustration in soft pastel colors, cozy and warm style. Soft watercolor texture, gentle hand-painted lines, flat illustration. Palette: lavender, cream, sage green, blush pink. Calm, friendly, approachable, non-judgmental mood. No people, no faces, no text, no letters. Square 1:1 composition.";
+const ART_STYLE = "Hand-drawn illustration in soft pastel colors, cozy and warm style. Soft watercolor texture, gentle hand-painted lines, flat illustration. Palette: lavender, cream, sage green, blush pink. Calm, friendly, approachable, non-judgmental mood. No people, no faces, no text, no letters. Portrait 4:5 composition.";
 
 // Carousel topics (educational, save-worthy ADHD concepts)
 const TOPICS = [

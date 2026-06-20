@@ -1,6 +1,6 @@
 /**
  * bloom focus — carousel-build.js
- * Renders 1080x1080 carousel slides from carousel_week_X.json.
+ * Renders 1080x1350 (4:5) carousel slides from carousel_week_X.json.
  * Each slide: library-backed pastel background + headline + body on a soft card.
  * Output: output/carousels/week_X/CR_..._01.png ... (committed; Make reads raw)
  *
@@ -25,7 +25,7 @@ const args = Object.fromEntries(process.argv.slice(2).map((a) => {
 const WEEK = parseInt(args.week) || 29;
 const LIMIT = args.limit ? parseInt(args.limit) : null;
 
-const W = 1080, H = 1080;
+const W = 1080, H = 1350;
 
 function esc(s) {
   return String(s || "").replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#39;");
@@ -44,7 +44,7 @@ function wrapText(text, max) {
 async function geminiBackground(prompt) {
   if (!GEMINI_KEY) throw new Error("GEMINI_API_KEY missing");
   const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-image:generateContent?key=${GEMINI_KEY}`;
-  const body = JSON.stringify({ contents: [{ parts: [{ text: prompt + " Square 1:1 composition." }] }] });
+  const body = JSON.stringify({ contents: [{ parts: [{ text: prompt + "" }] }] });
   const maxAttempts = 5;
   for (let attempt = 1; attempt <= maxAttempts; attempt++) {
     let res;
@@ -65,7 +65,7 @@ async function geminiBackground(prompt) {
 // Background for a slide tag — library-backed (reuse/cache, square aspect).
 async function slideBackground(scene, dest) {
   const tag = scene.tag || normalizeTag((scene.imagePrompt || "scene").slice(0, 30));
-  await getOrCreate(tag, "square", async () => {
+  await getOrCreate(tag, "portrait", async () => {
     const bg = await geminiBackground(scene.imagePrompt);
     return await sharp(bg).resize(W, H, { fit: "cover", position: "centre" }).png().toBuffer();
   }, dest);
@@ -157,7 +157,7 @@ async function main() {
   fs.writeFileSync(path.join(REPO_ROOT, "carousel_current.json"), JSON.stringify(full, null, 2));
 
   try { writeLibraryManifest(); } catch {}
-  try { const s = libraryStats("square"); console.log(`   📚 square library: ${s.total} images across ${Object.keys(s.tags).length} tags`); } catch {}
+  try { const s = libraryStats("portrait"); console.log(`   📚 portrait library: ${s.total} images across ${Object.keys(s.tags).length} tags`); } catch {}
 
   console.log(`\n${"━".repeat(50)}\n✅ done ${done} · failed ${failed}`);
 }
