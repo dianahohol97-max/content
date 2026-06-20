@@ -1,0 +1,244 @@
+/**
+ * bloom focus — longform-build.js
+ * Assembles 8-10 min documentary YouTube videos from longform_week_X.json.
+ *
+ * Per video:
+ *   1. ElevenLabs → one voiceover MP3 per chapter (measured for real timecodes)
+ *   2. Gemini     → bg per scene; sharp burns caption
+ *   3. FFmpeg     → concat all scenes (timed), concat chapter audios, mix quiet music
+ *                   → 1920x1080 landscape MP4 (long-form is horizontal)
+ *   4. Computes real chapter timecodes → injects into description as Chapters list
+ *
+ * Output: output/longform/week_X/LF_..._.mp4
+ * Env: ELEVENLABS_API_KEY, GEMINI_API_KEY
+ * Usage: node bloom/longform-build.js --week=29 --limit=1 [--skip-existing]
+ */
+
+import "dotenv/config";
+import fs from "fs";
+import path from "path";
+import { execSync } from "child_process";
+import { fileURLToPath } from "url";
+import sharp from "sharp";
+
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
+const REPO_ROOT = path.resolve(__dirname, "..");
+
+const args = Object.fromEntries(
+  process.argv.slice(2).filter((a) => a.startsWith("--")).map((a) => {
+    const [k, v] = a.slice(2).split("=");
+    return [k, v ?? true];
+  })
+);
+const WEEK = args.week ? parseInt(args.week) : 29;
+const LIMIT = args.limit ? parseInt(args.limit) : null;
+const SKIP_EXISTING = !!args["skip-existing"];
+
+const W = 1920, H = 1080; // long-form is landscape
+const ELEVEN_KEY = process.env.ELEVENLABS_API_KEY;
+const GEMINI_KEY = process.env.GEMINI_API_KEY;
+const VOICE_ID = process.env.ELEVENLABS_VOICE_ID || "21m00Tcm4TlvDq8ikWAM";
+const MUSIC_PATH = path.join(REPO_ROOT, "bloom/assets/music-calm.mp3");
+const REPO_RAW = "https://raw.githubusercontent.com/dianahohol97-max/content/main";
+
+function esc(s) {
+  return String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
+}
+function wrapText(text, maxChars) {
+  const words = String(text).split(/\s+/);
+  const lines = []; let line = "";
+  for (const w of words) {
+    if ((line + " " + w).trim().length > maxChars) { if (line) lines.push(line); line = w; }
+    else line = (line + " " + w).trim();
+  }
+  if (line) lines.push(line);
+  return lines;
+}
+function fmtTime(sec) {
+  const m = Math.floor(sec / 60);
+  const s = Math.floor(sec % 60);
+  return `${m}:${String(s).padStart(2, "0")}`;
+}
+
+async function makeVoiceover(text, outPath) {
+  if (!ELEVEN_KEY) throw new Error("ELEVENLABS_API_KEY missing");
+  const res = await fetch(`https://api.elevenlabs.io/v1/text-to-speech/${VOICE_ID}`, {
+    method: "POST",
+    headers: { "xi-api-key": ELEVEN_KEY, "Content-Type": "application/json", "Accept": "audio/mpeg" },
+    body: JSON.stringify({
+      text, model_id: "eleven_multilingual_v2",
+      voice_settings: { stability: 0.5, similarity_boost: 0.75, style: 0.0, use_speaker_boost: true },
+    }),
+  });
+  if (!res.ok) throw new Error(`ElevenLabs ${res.status}: ${(await res.text()).slice(0, 200)}`);
+  fs.writeFileSync(outPath, Buffer.from(await res.arrayBuffer()));
+  return outPath;
+}
+
+async function geminiBackground(prompt) {
+  if (!GEMINI_KEY) throw new Error("GEMINI_API_KEY missing");
+  const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-image:generateContent?key=${GEMINI_KEY}`;
+  const res = await fetch(url, {
+    method: "POST", headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ contents: [{ parts: [{ text: prompt + " Wide landscape 16:9 composition." }] }] }),
+  });
+  if (!res.ok) throw new Error(`Gemini ${res.status}: ${(await res.text()).slice(0, 200)}`);
+  const data = await res.json();
+  const img = (data.candidates?.[0]?.content?.parts ?? []).find((p) => p.inlineData)?.inlineData?.data;
+  if (!img) throw new Error("Gemini returned no image");
+  return Buffer.from(img, "base64");
+}
+
+function captionOverlay(caption) {
+  const lines = wrapText(caption, 28);
+  const fontSize = 64, lineHeight = fontSize * 1.2;
+  const tspans = lines.map((ln, i) => `<tspan x="80" dy="${i === 0 ? 0 : lineHeight}">${esc(ln)}</tspan>`).join("");
+  const baseY = H - 120 - (lines.length - 1) * lineHeight;
+  return Buffer.from(`
+<svg width="${W}" height="${H}" xmlns="http://www.w3.org/2000/svg">
+  <defs><linearGradient id="f" x1="0" y1="0" x2="0" y2="1">
+    <stop offset="0%" stop-color="rgba(40,30,50,0)"/><stop offset="100%" stop-color="rgba(40,30,50,0.7)"/>
+  </linearGradient></defs>
+  <rect x="0" y="${H-360}" width="${W}" height="360" fill="url(#f)"/>
+  <text x="80" y="${baseY}" font-family="Arial, sans-serif" font-size="${fontSize}" font-weight="800"
+        fill="#ffffff" text-anchor="start" stroke="#3d2c6e" stroke-width="2" paint-order="stroke">${tspans}</text>
+</svg>`);
+}
+
+async function buildSceneImage(scene, outPath) {
+  const bg = await geminiBackground(scene.imagePrompt);
+  const base = await sharp(bg).resize(W, H, { fit: "cover", position: "centre" }).toBuffer();
+  await sharp(base).composite([{ input: captionOverlay(scene.caption), top: 0, left: 0 }]).png().toFile(outPath);
+  return outPath;
+}
+
+function ffprobeDuration(file) {
+  const out = execSync(`ffprobe -v error -show_entries format=duration -of csv=p=0 "${file}"`).toString().trim();
+  return parseFloat(out) || 0;
+}
+
+function ffmpegAvailable() {
+  try { execSync("ffmpeg -version", { stdio: "ignore" }); return true; } catch { return false; }
+}
+
+function loadVideos(week) {
+  const p = path.join(REPO_ROOT, `longform_week_${week}.json`);
+  if (!fs.existsSync(p)) throw new Error(`${p} not found — run longform-generator.js first`);
+  return JSON.parse(fs.readFileSync(p, "utf8"));
+}
+
+async function main() {
+  console.log(`\n🎥 bloom focus — Long-form build — Week ${WEEK}\n${"━".repeat(50)}`);
+  if (!ffmpegAvailable()) throw new Error("ffmpeg not found");
+
+  let videos = loadVideos(WEEK);
+  if (LIMIT) videos = videos.slice(0, LIMIT);
+
+  const outDir = path.join(REPO_ROOT, `output/longform/week_${WEEK}`);
+  fs.mkdirSync(outDir, { recursive: true });
+
+  let done = 0, failed = 0, skipped = 0;
+  for (const vid of videos) {
+    const mp4Path = path.join(outDir, `${vid.id}.mp4`);
+    if (SKIP_EXISTING && fs.existsSync(mp4Path) && fs.statSync(mp4Path).size > 50000) {
+      vid.videoUrl = `${REPO_RAW}/output/longform/week_${WEEK}/${vid.id}.mp4`;
+      skipped++; console.log(`   ${vid.id} — exists, skip`); continue;
+    }
+    console.log(`\n▶ ${vid.id}: ${vid.title}`);
+    try {
+      const workDir = path.join(outDir, `_work_${vid.id}`);
+      fs.mkdirSync(workDir, { recursive: true });
+
+      const allScenePaths = [];
+      const allDurations = [];
+      const chapterTimecodes = [];
+      let runningTime = 0;
+
+      // Process each chapter: voiceover (measure), scenes
+      for (let ci = 0; ci < vid.chapters.length; ci++) {
+        const ch = vid.chapters[ci];
+        console.log(`   📖 ch ${ci + 1}/${vid.chapters.length}: ${ch.title}`);
+
+        // voiceover for chapter → measure its real duration
+        process.stdout.write("      🎤 voiceover... ");
+        const chVoice = path.join(workDir, `voice_${ci}.mp3`);
+        await makeVoiceover(ch.voiceover, chVoice);
+        const chDur = ffprobeDuration(chVoice);
+        console.log(`✓ ${chDur.toFixed(1)}s`);
+
+        chapterTimecodes.push({ title: ch.title, t: runningTime });
+        runningTime += chDur;
+
+        // scenes for chapter — distribute chapter duration across its scenes
+        const scenes = ch.scenes ?? [];
+        const perScene = chDur / Math.max(1, scenes.length);
+        for (let si = 0; si < scenes.length; si++) {
+          process.stdout.write(`      🖼  scene ${si + 1}/${scenes.length}... `);
+          const sp = path.join(workDir, `ch${ci}_s${si}.png`);
+          await buildSceneImage(scenes[si], sp);
+          allScenePaths.push(sp);
+          allDurations.push(perScene);
+          console.log("✓");
+          await new Promise((r) => setTimeout(r, 500));
+        }
+      }
+
+      // concat chapter audios into one voiceover track
+      process.stdout.write("   🔉 concat audio... ");
+      const audioList = path.join(workDir, "audio.txt");
+      fs.writeFileSync(audioList,
+        vid.chapters.map((_, ci) => `file 'voice_${ci}.mp3'`).join("\n"));
+      const fullVoice = path.join(workDir, "voice_full.mp3");
+      execSync(`ffmpeg -y -f concat -safe 0 -i "${audioList}" -c copy "${fullVoice}"`, { stdio: "ignore" });
+      console.log("✓");
+
+      // slideshow
+      process.stdout.write("   🎞  assemble... ");
+      const sceneList = path.join(workDir, "scenes.txt");
+      let sl = "";
+      allScenePaths.forEach((p, i) => { sl += `file '${p}'\nduration ${allDurations[i].toFixed(3)}\n`; });
+      sl += `file '${allScenePaths[allScenePaths.length - 1]}'\n`;
+      fs.writeFileSync(sceneList, sl);
+
+      const vf = `scale=${W}:${H}:force_original_aspect_ratio=increase,crop=${W}:${H},fps=30,format=yuv420p`;
+      const hasMusic = fs.existsSync(MUSIC_PATH);
+      let cmd;
+      if (hasMusic) {
+        cmd = `ffmpeg -y -f concat -safe 0 -i "${sceneList}" -i "${fullVoice}" -stream_loop -1 -i "${MUSIC_PATH}" ` +
+          `-filter_complex "[0:v]${vf}[v];[2:a]volume=0.1[m];[1:a][m]amix=inputs=2:duration=first:dropout_transition=2[a]" ` +
+          `-map "[v]" -map "[a]" -shortest -c:v libx264 -preset medium -crf 22 -c:a aac -b:a 192k -pix_fmt yuv420p "${mp4Path}"`;
+      } else {
+        cmd = `ffmpeg -y -f concat -safe 0 -i "${sceneList}" -i "${fullVoice}" ` +
+          `-filter_complex "[0:v]${vf}[v]" -map "[v]" -map 1:a -shortest ` +
+          `-c:v libx264 -preset medium -crf 22 -c:a aac -b:a 192k -pix_fmt yuv420p "${mp4Path}"`;
+      }
+      execSync(cmd, { stdio: "inherit" });
+      console.log("✓");
+
+      // build description with real chapter timecodes
+      const chaptersBlock = "Chapters:\n" +
+        chapterTimecodes.map((c) => `${fmtTime(c.t)} ${c.title}`).join("\n");
+      vid.description = `${vid.description}\n\n${chaptersBlock}\n\n${vid.destinationUrl}`;
+      vid.videoUrl = `${REPO_RAW}/output/longform/week_${WEEK}/${vid.id}.mp4`;
+      vid.durationSec = Math.round(runningTime);
+
+      fs.rmSync(workDir, { recursive: true, force: true });
+      done++;
+      console.log(`   ✅ ${fmtTime(runningTime)} total`);
+    } catch (err) {
+      failed++;
+      console.log(`   ✗ ${err.message}`);
+    }
+  }
+
+  // rewrite JSON
+  const full = loadVideos(WEEK);
+  const byId = Object.fromEntries(videos.map((v) => [v.id, v]));
+  for (let i = 0; i < full.length; i++) if (byId[full[i].id]) full[i] = byId[full[i].id];
+  fs.writeFileSync(path.join(REPO_ROOT, `longform_week_${WEEK}.json`), JSON.stringify(full, null, 2));
+  fs.writeFileSync(path.join(REPO_ROOT, "longform_current.json"), JSON.stringify(full, null, 2));
+
+  console.log(`\n${"━".repeat(50)}\n✅ done ${done} · skipped ${skipped} · failed ${failed}`);
+}
+
+main().catch((e) => { console.error("❌", e.message); process.exit(1); });
