@@ -60,9 +60,19 @@ async function geminiTTS(text, outPath) {
   // Gemini TTS occasionally returns transient 500/503/429. Retry with backoff
   // so a single hiccup doesn't kill an entire long-form render.
   let part = null;
-  const maxAttempts = 5;
+  const maxAttempts = 6;
   for (let attempt = 1; attempt <= maxAttempts; attempt++) {
-    const res = await fetch(url, { method: "POST", headers: { "Content-Type": "application/json" }, body });
+    let res;
+    try {
+      res = await fetch(url, { method: "POST", headers: { "Content-Type": "application/json" }, body });
+    } catch (netErr) {
+      // network blip → treat as transient
+      if (attempt === maxAttempts) throw new Error(`Gemini TTS network error after ${maxAttempts} attempts: ${netErr.message}`);
+      const wait = 3000 * attempt;
+      console.warn(`      ⚠ Gemini TTS network error — retry ${attempt}/${maxAttempts - 1} in ${wait / 1000}s`);
+      await new Promise((r) => setTimeout(r, wait));
+      continue;
+    }
     if (res.ok) {
       const data = await res.json();
       part = (data.candidates?.[0]?.content?.parts ?? []).find((p) => p.inlineData) || null;
@@ -73,7 +83,7 @@ async function geminiTTS(text, outPath) {
     const transient = res.ok || [429, 500, 502, 503, 504].includes(res.status);
     if (!transient) throw new Error(`Gemini TTS ${res.status}: ${(await res.text()).slice(0, 160)}`);
     if (attempt === maxAttempts) throw new Error(`Gemini TTS failed after ${maxAttempts} attempts (last: ${status})`);
-    const wait = 2000 * attempt; // 2s, 4s, 6s, 8s
+    const wait = 3000 * attempt; // 3s, 6s, 9s, 12s, 15s
     console.warn(`      ⚠ Gemini TTS ${status} — retry ${attempt}/${maxAttempts - 1} in ${wait / 1000}s`);
     await new Promise((r) => setTimeout(r, wait));
   }
