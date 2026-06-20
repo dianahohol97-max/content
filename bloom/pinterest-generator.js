@@ -135,7 +135,16 @@ function parseJSON(raw) {
 
 // ─── Infographic pin generator (list/steps ON the image) ─────────────────────
 // These carry value directly on the pin → drive saves + authority.
-async function generateInfographicBatch({ funnel, url, theme, weekNum, dayNum, count = 4, attempt = 1 }) {
+// Named ADHD patterns for "pattern infographic" pins (each pin = one pattern,
+// keyword-rich for Pinterest search; the pattern name IS a search term).
+const PIN_PATTERNS = [
+  "ADHD Object Permanence", "ADHD Time Blindness", "ADHD Rejection Sensitive Dysphoria",
+  "ADHD Low Interoception", "ADHD Waiting Mode", "ADHD Demand Avoidance",
+  "ADHD Emotional Dysregulation", "ADHD Task Paralysis", "ADHD Working Memory",
+  "ADHD Hyperfixation", "ADHD Wall of Awful", "ADHD Executive Dysfunction",
+];
+
+async function generateInfographicBatch({ funnel, url, theme, weekNum, dayNum, count = 4, attempt = 1, patternMode = false, patterns = [] }) {
   const strictness = attempt === 1 ? "" : attempt === 2
     ? " CRITICAL: Use only straight ASCII apostrophes never curly quotes."
     : " ULTRA STRICT: Plain ASCII only. No apostrophes.";
@@ -147,21 +156,29 @@ async function generateInfographicBatch({ funnel, url, theme, weekNum, dayNum, c
     blog: "Read the full guide at bloomfocus.org/blog",
   };
 
+  const patternGuide = patternMode ? `
+SPECIAL FORMAT — "named pattern" pins (great for Pinterest search, since the pattern name is itself a search term):
+Each pin covers ONE named ADHD pattern from this list (one per pin, in order): ${patterns.join(", ")}.
+- headline: the pattern name as a searchable hook, e.g. "ADHD Object Permanence" or "Object Permanence in ADHD". Keep the exact pattern term in it.
+- items: 3-4 SHORT "what it looks like" signs (each max 6 words), concrete and relatable. e.g. "Out of sight, out of mind", "Forget food until you crash", "Lose things in plain sight".
+- title/description MUST include the pattern name as a keyword (people search these exact terms).` : "";
+
   const prompt = `You are a Pinterest SEO expert for bloom focus, an ADHD digital products brand.
 
 Generate exactly ${count} INFOGRAPHIC-style Pinterest pins for the "${funnel}" funnel.
 Week: ${weekNum}, Day: ${dayNum}. Theme: ${theme}. URL: ${url}
 
 These pins put VALUE directly on the image — a numbered list or steps the user can read and save.
+${patternGuide}
 
 RULES:
-- headline: a number-driven hook, 4-7 words. Examples: "5 ADHD Morning Tricks", "7 Signs of ADHD Burnout", "4 Ways to Start Any Task". Use a number.
-- items: an array of 3-5 SHORT list items (each max 6 words, punchy, actionable, specific to ADHD). No full sentences.
-- title: keyword-rich long-tail SEO title (40-60 chars) for the pin metadata.
+- headline: ${patternMode ? "the pattern name as a searchable hook (keep the exact term)" : 'a number-driven hook, 4-7 words. Examples: "5 ADHD Morning Tricks", "7 Signs of ADHD Burnout", "4 Ways to Start Any Task". Use a number.'}
+- items: an array of 3-5 SHORT list items (each max 6 words, punchy, ${patternMode ? '"what it looks like" signs' : "actionable"}, specific to ADHD). No full sentences.
+- title: keyword-rich long-tail SEO title (40-60 chars) for the pin metadata.${patternMode ? " Include the pattern name." : ""}
 - description: 150-300 chars, keyword-rich, ends with: ${funnelCTA[funnel]}
 - imagePrompt: A REALISTIC but SIMPLE photo background that leaves room for text — mostly empty cozy desk surface, soft pastel tones, lots of negative space at center and top. "Realistic aesthetic photograph, minimalist cozy desk corner, lots of empty space, soft natural light, muted pastel tones, no people, no text. Vertical 2:3."
 - board: one of: ${BOARDS.join(" | ")}
-- Each pin must cover a DIFFERENT angle of the theme.${strictness}
+- Each pin must cover a DIFFERENT ${patternMode ? "pattern" : "angle of the theme"}.${strictness}
 
 Return ONLY a valid JSON array:
 [
@@ -447,7 +464,15 @@ async function generateDay(weekNum, dayNum) {
     funnel: "app", url: URLS.app, theme, weekNum, dayNum, count: 1,
   });
   const infoBlog = await generateInfographicWithRetry({
-    funnel: "blog", url: URLS.blog, theme, weekNum, dayNum, count: 2,
+    funnel: "blog", url: URLS.blog, theme, weekNum, dayNum, count: 1,
+  });
+  // one "named pattern" infographic per day — the pattern name is a Pinterest
+  // search term, so these pins pull steady search traffic.
+  const patStart = ((weekNum - 1) * 7 + (dayNum - 1)) % PIN_PATTERNS.length;
+  const dayPatterns = [PIN_PATTERNS[patStart], PIN_PATTERNS[(patStart + 1) % PIN_PATTERNS.length]];
+  const infoPattern = await generateInfographicWithRetry({
+    funnel: "quiz", url: URLS.quiz, theme, weekNum, dayNum, count: 1,
+    patternMode: true, patterns: dayPatterns,
   });
 
   // ── 2 PRODUCT pins (photo + benefit) ──
@@ -471,6 +496,7 @@ async function generateDay(weekNum, dayNum) {
     ...infoQuiz,
     ...infoApp,
     ...infoBlog,
+    ...infoPattern,
     ...tagHook(product),
     ...memes,
   ];
