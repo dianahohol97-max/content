@@ -22,7 +22,16 @@ import { BOARD_IDS, DEFAULT_BOARD_ID } from "./board-ids.js";
 
 // ─── Config ──────────────────────────────────────────────────────────────────
 
-const WEEK = parseInt(process.argv.find((a) => a.startsWith("--week="))?.split("=")[1] ?? "1");
+function isoWeek(d = new Date()) {
+  const date = new Date(Date.UTC(d.getFullYear(), d.getMonth(), d.getDate()));
+  const day = (date.getUTCDay() + 6) % 7;
+  date.setUTCDate(date.getUTCDate() - day + 3);
+  const firstThursday = new Date(Date.UTC(date.getUTCFullYear(), 0, 4));
+  const fday = (firstThursday.getUTCDay() + 6) % 7;
+  firstThursday.setUTCDate(firstThursday.getUTCDate() - fday + 3);
+  return 1 + Math.round((date - firstThursday) / (7 * 24 * 3600 * 1000));
+}
+const WEEK = parseInt(process.argv.find((a) => a.startsWith("--week="))?.split("=")[1] ?? String(isoWeek()));
 const DAY_ONLY = process.argv.find((a) => a.startsWith("--day="))?.split("=")[1];
 
 const DAYS = DAY_ONLY ? [parseInt(DAY_ONLY)] : [1, 2, 3, 4, 5, 6, 7];

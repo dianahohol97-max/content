@@ -35,7 +35,16 @@ const args = Object.fromEntries(
     return [k, v ?? true];
   })
 );
-const WEEK = args.week ? parseInt(args.week) : 29;
+function isoWeek(d = new Date()) {
+  const date = new Date(Date.UTC(d.getFullYear(), d.getMonth(), d.getDate()));
+  const day = (date.getUTCDay() + 6) % 7;
+  date.setUTCDate(date.getUTCDate() - day + 3);
+  const firstThursday = new Date(Date.UTC(date.getUTCFullYear(), 0, 4));
+  const fday = (firstThursday.getUTCDay() + 6) % 7;
+  firstThursday.setUTCDate(firstThursday.getUTCDate() - fday + 3);
+  return 1 + Math.round((date - firstThursday) / (7 * 24 * 3600 * 1000));
+}
+const WEEK = args.week ? parseInt(args.week) : isoWeek();
 const LIMIT = args.limit ? parseInt(args.limit) : null;
 const SKIP_EXISTING = !!args["skip-existing"];
 
