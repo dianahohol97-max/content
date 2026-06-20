@@ -24,6 +24,9 @@ on:
         required: false
         default: "gemini"
 
+permissions:
+  contents: write
+
 jobs:
   longform:
     runs-on: ubuntu-latest

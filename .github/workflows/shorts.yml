@@ -24,6 +24,9 @@ on:
         required: false
         default: "elevenlabs"
 
+permissions:
+  contents: write
+
 jobs:
   shorts:
     runs-on: ubuntu-latest

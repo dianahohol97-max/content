@@ -16,6 +16,9 @@ on:
         required: false
         default: ""
 
+permissions:
+  contents: write
+
 jobs:
   stories:
     runs-on: ubuntu-latest
