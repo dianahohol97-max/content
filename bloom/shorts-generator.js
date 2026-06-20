@@ -120,6 +120,18 @@ const FLAGSHIP_TOPICS = [
   "executive dysfunction: the real reason simple tasks feel impossible",
 ];
 
+// Named ADHD patterns for "pattern" shorts (name + what it looks like + examples)
+const PATTERN_TOPICS = [
+  "Object Permanence: out of sight, out of mind",
+  "Low Interoception: not noticing your body's signals",
+  "Rejection Masking: hiding who you are to avoid being disliked",
+  "Time Blindness: now and not-now are your only two times",
+  "Waiting Mode: one task ahead freezes your whole day",
+  "Emotional Permanence: forgetting people still care when they're gone",
+  "Demand Avoidance: even things you WANT to do feel impossible once they're expected",
+  "Hyperfixation Crash: the obsession that suddenly switches off",
+];
+
 function parseJSON(text) {
   let t = text.trim();
   if (t.startsWith("```")) t = t.replace(/^```(json)?/i, "").replace(/```$/, "").trim();
@@ -154,7 +166,9 @@ const CTA_LINE = `"Follow for daily ADHD content."`;
 // ── Educational + pain-point shorts (voiced, changing scenes) ──
 async function generateVoicedShorts(weekTopics, kind) {
   const count = weekTopics.length;
-  const kindGuide = kind === "painpoint"
+  const kindGuide = kind === "pattern"
+    ? `These are PATTERN shorts — the high-save "named ADHD pattern + what it looks like" format. Each opens by naming a specific ADHD pattern as the hook (the topic gives the name + a one-line meaning, e.g. "Object Permanence — out of sight, out of mind"). Briefly explain it in plain language (1 sentence), then say "Here's what it looks like:" and give 3 SHORT, very concrete, relatable examples ("You ignore a text for days — it just vanished from your brain. You forget laundry in the machine until it smells. You lose things in plain sight."). Validating, specific, makes people go "that's literally me". End by gently asking if this is them, then the follow CTA.`
+    : kind === "painpoint"
     ? `These are PAIN-POINT shorts. Each opens by naming a frustrating, relatable ADHD struggle as a SHARP hook that hits home ("Your home is always a mess — no matter how hard you try"), validates it's not a character flaw, briefly explains the ADHD reason. Emotional and validating, short on theory. End by gently asking if this is them ("Sound familiar every single day?").`
     : kind === "practical"
     ? `These are PRACTICAL HOW-TO shorts. Each teaches ONE concrete ADHD-friendly technique (dopamine menu, body doubling, 2-minute rule, launch pad...). Hook with the struggle sharply ("Your brain won't start? Stop forcing it. Bribe it."), then walk through the method in clear simple steps. Actionable and specific.`
@@ -248,12 +262,13 @@ Return ONLY a valid JSON array, no markdown:
 }
 
 async function generateShorts(weekNum, count) {
-  // Mix (scaled to count=18): 4 educational, 3 practical, 3 pain-point, 4 quiz-test, 4 flagship
-  const nEdu = Math.max(1, Math.round(count * 4 / 18));
+  // Mix (scaled to count=18): 3 educational, 3 practical, 2 pain-point, 3 pattern, 3 quiz-test, 4 flagship
+  const nEdu = Math.max(1, Math.round(count * 3 / 18));
   const nPrac = Math.max(1, Math.round(count * 3 / 18));
-  const nPain = Math.max(1, Math.round(count * 3 / 18));
+  const nPain = Math.max(1, Math.round(count * 2 / 18));
+  const nPat = Math.max(1, Math.round(count * 3 / 18));
   const nFlag = Math.max(1, Math.round(count * 4 / 18));
-  const nTest = Math.max(1, count - nEdu - nPrac - nPain - nFlag);
+  const nTest = Math.max(1, count - nEdu - nPrac - nPain - nPat - nFlag);
 
   // rotate topics by week
   const startIdx = ((weekNum - 1) * count) % TOPICS.length;
@@ -261,8 +276,10 @@ async function generateShorts(weekNum, count) {
     Array.from({ length: n }, (_, i) => TOPICS[(startIdx + offset + i) % TOPICS.length]);
   const flagStart = ((weekNum - 1) * nFlag) % FLAGSHIP_TOPICS.length;
   const flagTopics = Array.from({ length: nFlag }, (_, i) => FLAGSHIP_TOPICS[(flagStart + i) % FLAGSHIP_TOPICS.length]);
+  const patStart = ((weekNum - 1) * nPat) % PATTERN_TOPICS.length;
+  const patTopics = Array.from({ length: nPat }, (_, i) => PATTERN_TOPICS[(patStart + i) % PATTERN_TOPICS.length]);
 
-  console.log(`  mix → ${nEdu} edu, ${nPrac} practical, ${nPain} pain-point, ${nTest} quiz-test, ${nFlag} flagship`);
+  console.log(`  mix → ${nEdu} edu, ${nPrac} practical, ${nPain} pain-point, ${nPat} pattern, ${nTest} quiz-test, ${nFlag} flagship`);
 
   const all = [];
   console.log("  ✏️  educational...");
@@ -271,6 +288,8 @@ async function generateShorts(weekNum, count) {
   all.push(...await generateVoicedShorts(PRACTICAL_TOPICS.slice(0, nPrac), "practical"));
   console.log("  💢 pain-point...");
   all.push(...await generateVoicedShorts(topicsFor(nPain, nEdu), "painpoint"));
+  console.log("  🧠 pattern...");
+  all.push(...await generateVoicedShorts(patTopics, "pattern"));
   console.log("  🧩 quiz-test...");
   all.push(...await generateQuizTestShorts(nTest));
   console.log("  ⭐ flagship...");
