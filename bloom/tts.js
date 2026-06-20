@@ -49,21 +49,34 @@ async function elevenLabs(text, outPath) {
 async function geminiTTS(text, outPath) {
   if (!GEMINI_KEY) throw new Error("GEMINI_API_KEY missing");
   const url = `https://generativelanguage.googleapis.com/v1beta/models/${GEMINI_TTS_MODEL}:generateContent?key=${GEMINI_KEY}`;
-  const res = await fetch(url, {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({
-      contents: [{ parts: [{ text: `Say this warmly and conversationally, like a kind friend explaining something — natural pace, gentle, not robotic, with a little emphasis on the key phrases:\n\n${text}` }] }],
-      generationConfig: {
-        responseModalities: ["AUDIO"],
-        speechConfig: { voiceConfig: { prebuiltVoiceConfig: { voiceName: GEMINI_VOICE } } },
-      },
-    }),
+  const body = JSON.stringify({
+    contents: [{ parts: [{ text: `Say this warmly and conversationally, like a kind friend explaining something — natural pace, gentle, not robotic, with a little emphasis on the key phrases:\n\n${text}` }] }],
+    generationConfig: {
+      responseModalities: ["AUDIO"],
+      speechConfig: { voiceConfig: { prebuiltVoiceConfig: { voiceName: GEMINI_VOICE } } },
+    },
   });
-  if (!res.ok) throw new Error(`Gemini TTS ${res.status}: ${(await res.text()).slice(0, 160)}`);
-  const data = await res.json();
-  const part = (data.candidates?.[0]?.content?.parts ?? []).find((p) => p.inlineData);
-  if (!part) throw new Error("Gemini TTS returned no audio");
+
+  // Gemini TTS occasionally returns transient 500/503/429. Retry with backoff
+  // so a single hiccup doesn't kill an entire long-form render.
+  let part = null;
+  const maxAttempts = 5;
+  for (let attempt = 1; attempt <= maxAttempts; attempt++) {
+    const res = await fetch(url, { method: "POST", headers: { "Content-Type": "application/json" }, body });
+    if (res.ok) {
+      const data = await res.json();
+      part = (data.candidates?.[0]?.content?.parts ?? []).find((p) => p.inlineData) || null;
+      if (part) break;
+      // 200 but no audio → treat as transient and retry
+    }
+    const status = res.ok ? "no-audio" : res.status;
+    const transient = res.ok || [429, 500, 502, 503, 504].includes(res.status);
+    if (!transient) throw new Error(`Gemini TTS ${res.status}: ${(await res.text()).slice(0, 160)}`);
+    if (attempt === maxAttempts) throw new Error(`Gemini TTS failed after ${maxAttempts} attempts (last: ${status})`);
+    const wait = 2000 * attempt; // 2s, 4s, 6s, 8s
+    console.warn(`      ⚠ Gemini TTS ${status} — retry ${attempt}/${maxAttempts - 1} in ${wait / 1000}s`);
+    await new Promise((r) => setTimeout(r, wait));
+  }
 
   // Gemini returns raw PCM (24kHz, 16-bit, mono) base64. Wrap as WAV, then → MP3.
   const pcm = Buffer.from(part.inlineData.data, "base64");
