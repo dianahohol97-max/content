@@ -313,28 +313,31 @@ function buildVideo(scenePaths, durations, voicePath, outPath, matchVoice = fals
   // ── voiced shorts: slideshow of scenes via concat demuxer + synced subtitles ──
   const listFile = path.join(tmp, "scenes.txt");
   let list = "";
-  scenePaths.forEach((p, i) => { list += `file '${p}'\nduration ${durations[i]}\n`; });
-  list += `file '${scenePaths[scenePaths.length - 1]}'\n`;
+  scenePaths.forEach((p, i) => { list += `file '${path.basename(p)}'\nduration ${durations[i]}\n`; });
+  list += `file '${path.basename(scenePaths[scenePaths.length - 1])}'\n`;
   fs.writeFileSync(listFile, list);
   const totalDur = durations.reduce((a, b) => a + b, 0);
 
-  // subtitle filter (burned in, synced via .srt). Styled: white, bold, outline,
-  // lower-third, readable without sound. force_style uses libass.
+  // subtitle filter (burned in, synced via .srt). libass needs a bare filename
+  // (absolute paths with slashes/colons break the filtergraph), so we run
+  // ffmpeg with cwd=tmp and reference subs.srt / scenes.txt by basename.
   const subFilter = srtPath
-    ? `,subtitles='${srtPath}':force_style='Fontname=Arial,Fontsize=15,Bold=1,PrimaryColour=&H00FFFFFF,OutlineColour=&H803D2C6E,BorderStyle=1,Outline=3,Shadow=0,Alignment=2,MarginV=120'`
+    ? `,subtitles=${path.basename(srtPath)}:force_style='Fontname=Arial,Fontsize=15,Bold=1,PrimaryColour=&H00FFFFFF,OutlineColour=&H803D2C6E,BorderStyle=1,Outline=3,Shadow=0,Alignment=2,MarginV=120'`
     : "";
+  const listName = path.basename(listFile);
+  const voiceName = path.basename(voicePath);
 
   let cmd;
   if (hasMusic) {
-    cmd = `ffmpeg -y -f concat -safe 0 -i "${listFile}" -i "${voicePath}" -stream_loop -1 -i "${MUSIC_PATH}" ` +
+    cmd = `ffmpeg -y -f concat -safe 0 -i "${listName}" -i "${voiceName}" -stream_loop -1 -i "${MUSIC_PATH}" ` +
       `-filter_complex "[0:v]${vf}${subFilter}[v];[2:a]volume=0.12[m];[1:a][m]amix=inputs=2:duration=first:dropout_transition=2[a]" ` +
-      `-map "[v]" -map "[a]" -t ${totalDur} -c:v libx264 -preset medium -crf 22 -c:a aac -b:a 192k -pix_fmt yuv420p "${outPath}"`;
+      `-map "[v]" -map "[a]" -t ${totalDur} -c:v libx264 -preset veryfast -crf 23 -c:a aac -b:a 192k -pix_fmt yuv420p "${outPath}"`;
   } else {
-    cmd = `ffmpeg -y -f concat -safe 0 -i "${listFile}" -i "${voicePath}" ` +
+    cmd = `ffmpeg -y -f concat -safe 0 -i "${listName}" -i "${voiceName}" ` +
       `-filter_complex "[0:v]${vf}${subFilter}[v]" ` +
-      `-map "[v]" -map 1:a -t ${totalDur} -c:v libx264 -preset medium -crf 22 -c:a aac -b:a 192k -pix_fmt yuv420p "${outPath}"`;
+      `-map "[v]" -map 1:a -t ${totalDur} -c:v libx264 -preset veryfast -crf 23 -c:a aac -b:a 192k -pix_fmt yuv420p "${outPath}"`;
   }
-  execSync(cmd, { stdio: "inherit" });
+  execSync(cmd, { stdio: "inherit", cwd: tmp });
   return outPath;
 }
 
