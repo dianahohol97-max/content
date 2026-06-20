@@ -138,6 +138,7 @@ async function main() {
         await new Promise(r => setTimeout(r, 400));
       }
       c.slideImageURLs = urls;
+      c.files = urls.map((u) => ({ media_type: "IMAGE", image_url: u }));
       done++;
       console.log(`   ✅ ${urls.length} slides`);
     } catch (err) {
@@ -150,8 +151,8 @@ async function main() {
 
   // write back URLs + current pointer
   const full = JSON.parse(fs.readFileSync(jsonPath, "utf8"));
-  const byId = Object.fromEntries(carousels.filter(c => c.slideImageURLs?.length).map(c => [c.id, c.slideImageURLs]));
-  for (const c of full) if (byId[c.id]) c.slideImageURLs = byId[c.id];
+  const byId = Object.fromEntries(carousels.filter(c => c.slideImageURLs?.length).map(c => [c.id, c]));
+  for (const c of full) if (byId[c.id]) { c.slideImageURLs = byId[c.id].slideImageURLs; c.files = byId[c.id].files; }
   fs.writeFileSync(jsonPath, JSON.stringify(full, null, 2));
   fs.writeFileSync(path.join(REPO_ROOT, "carousel_current.json"), JSON.stringify(full, null, 2));
 
