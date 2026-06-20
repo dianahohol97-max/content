@@ -22,7 +22,7 @@ on:
       voice_engine:
         description: "Voice: elevenlabs (best) or gemini (free)"
         required: false
-        default: "gemini"
+        default: "elevenlabs"
 
 permissions:
   contents: write

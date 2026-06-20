@@ -23,7 +23,7 @@ import path from "path";
 import { execSync } from "child_process";
 import { fileURLToPath } from "url";
 import sharp from "sharp";
-import { makeVoiceover } from "./tts.js";
+import { makeVoiceover, elevenLabsWithTimestamps } from "./tts.js";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const REPO_ROOT = path.resolve(__dirname, "..");
@@ -162,6 +162,24 @@ function srtTime(sec) {
   const ms = Math.round((sec - Math.floor(sec)) * 1000);
   const p = (n, l = 2) => String(n).padStart(l, "0");
   return `${p(h)}:${p(m)}:${p(s)},${p(ms, 3)}`;
+}
+
+// Build an .srt from real per-word timestamps (ElevenLabs) — perfect sync.
+function writeSRTfromWords(words, outPath, maxWords = 5) {
+  const cues = [];
+  let cur = [];
+  for (const w of words) {
+    cur.push(w);
+    const endsClause = /[.!?;:,]$/.test(w.word);
+    if (cur.length >= maxWords || (endsClause && cur.length >= 2)) { cues.push(cur); cur = []; }
+  }
+  if (cur.length) cues.push(cur);
+  let srt = "";
+  cues.forEach((group, i) => {
+    srt += `${i + 1}\n${srtTime(group[0].start)} --> ${srtTime(group[group.length - 1].end)}\n${group.map((g) => g.word).join(" ")}\n\n`;
+  });
+  fs.writeFileSync(outPath, srt);
+  return outPath;
 }
 
 // Detect real speech segments by finding silence gaps in the audio. Returns
@@ -333,7 +351,7 @@ function buildVideo(scenePaths, durations, voicePath, outPath, matchVoice = fals
   // (absolute paths with slashes/colons break the filtergraph), so we run
   // ffmpeg with cwd=tmp and reference subs.srt / scenes.txt by basename.
   const subFilter = srtPath
-    ? `,subtitles=${path.basename(srtPath)}:force_style='Fontname=Arial,Fontsize=15,Bold=1,PrimaryColour=&H00FFFFFF,OutlineColour=&H803D2C6E,BorderStyle=1,Outline=3,Shadow=0,Alignment=2,MarginV=120'`
+    ? `,subtitles=${path.basename(srtPath)}:force_style='Fontname=Arial,Fontsize=13,Bold=1,PrimaryColour=&H00FFFFFF,OutlineColour=&H803D2C6E,BorderStyle=1,Outline=3,Shadow=0,Alignment=2,MarginV=320,MarginL=90,MarginR=90'`
     : "";
   const listName = path.basename(listFile);
   const voiceName = path.basename(voicePath);
@@ -385,8 +403,18 @@ async function main() {
       // 1. voiceover
       process.stdout.write("   🎤 voiceover... ");
       const voicePath = path.join(workDir, "voice.mp3");
-      await makeVoiceover(short.voiceover, voicePath);
-      console.log("✓");
+      // Voiceover. Prefer ElevenLabs WITH timestamps (perfect subtitle sync);
+      // if unavailable, fall back to the normal engine + silence-based timing.
+      let wordTimings = null;
+      const engine = process.env.VOICE_ENGINE || "gemini";
+      if (engine === "elevenlabs") {
+        const r = await elevenLabsWithTimestamps(short.voiceover, voicePath);
+        if (r.ok && r.words && r.words.length) { wordTimings = r.words; console.log("✓ (timestamped)"); }
+        else { await makeVoiceover(short.voiceover, voicePath, "gemini"); console.log("✓ (gemini fallback)"); }
+      } else {
+        await makeVoiceover(short.voiceover, voicePath, engine);
+        console.log("✓");
+      }
 
       const scenePaths = [];
       const durations = [];
@@ -410,18 +438,21 @@ async function main() {
           console.log("✓");
           await new Promise((r) => setTimeout(r, 600));
         }
-        // Backgrounds change slowly: split the real voiceover length EVENLY
-        // across the scene images (each holds a few subtitles).
         const voiceDur = ffprobeDuration(voicePath);
         const per = voiceDur / short.scenes.length;
         for (let i = 0; i < short.scenes.length; i++) durations.push(per);
 
-        // Subtitles: split the FULL voiceover into short chunks and time them
-        // proportionally across the same voiceDur → synced, readable w/o sound.
-        const chunks = splitIntoSubtitles(short.voiceover, 6);
+        // Subtitles: use real word timestamps if we have them (perfect sync),
+        // else split text + align to detected speech segments.
         srtPath = path.join(workDir, "subs.srt");
-        writeSRT(chunks, voiceDur, srtPath, voicePath);
-        console.log(`   💬 ${chunks.length} subtitle cues`);
+        if (wordTimings) {
+          writeSRTfromWords(wordTimings, srtPath, 5);
+          console.log(`   💬 ${wordTimings.length} words → timestamped subtitles`);
+        } else {
+          const chunks = splitIntoSubtitles(short.voiceover, 5);
+          writeSRT(chunks, voiceDur, srtPath, voicePath);
+          console.log(`   💬 ${chunks.length} subtitle cues (estimated)`);
+        }
       }
 
       // 4. assemble

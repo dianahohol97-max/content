@@ -193,7 +193,7 @@ async function main() {
         chapterTimecodes.push({ title: ch.title, t: runningTime });
 
         // subtitles for this chapter, timed within [runningTime, runningTime+chDur]
-        const chunks = splitIntoSubtitles(ch.voiceover, 9);
+        const chunks = splitIntoSubtitles(ch.voiceover, 7);
         const lens = chunks.map((c) => Math.max(1, c.trim().split(/\s+/).length));
         const sum = lens.reduce((a, b) => a + b, 0);
         let local = runningTime;
@@ -260,7 +260,7 @@ async function main() {
       const vf = `scale=${W}:${H}:force_original_aspect_ratio=increase,crop=${W}:${H},fps=30,format=yuv420p`;
       // libass chokes on absolute paths with slashes/colons inside filtergraph.
       // Run ffmpeg with cwd=workDir and reference the .srt by bare filename.
-      const subFilter = `,subtitles=subs.srt:force_style='Fontname=Arial,Fontsize=18,Bold=1,PrimaryColour=&H00FFFFFF,OutlineColour=&H803D2C6E,BorderStyle=1,Outline=3,Shadow=0,Alignment=2,MarginV=60'`;
+      const subFilter = `,subtitles=subs.srt:force_style='Fontname=Arial,Fontsize=16,Bold=1,PrimaryColour=&H00FFFFFF,OutlineColour=&H803D2C6E,BorderStyle=1,Outline=3,Shadow=0,Alignment=2,MarginV=70,MarginL=240,MarginR=240'`;
       const hasMusic = fs.existsSync(MUSIC_PATH);
       const sceneListName = path.basename(sceneList);
       const fullVoiceName = path.basename(fullVoice);

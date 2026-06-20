@@ -45,6 +45,49 @@ async function elevenLabs(text, outPath) {
   return outPath;
 }
 
+// ElevenLabs with character-level timestamps → perfect subtitle sync.
+// Returns { ok, words: [{word, start, end}] } or { ok:false } to fall back.
+export async function elevenLabsWithTimestamps(text, outPath) {
+  if (!ELEVEN_KEY) return { ok: false };
+  const model = process.env.ELEVENLABS_MODEL || "eleven_flash_v2_5";
+  try {
+    const res = await fetch(`https://api.elevenlabs.io/v1/text-to-speech/${ELEVEN_VOICE}/with-timestamps`, {
+      method: "POST",
+      headers: { "xi-api-key": ELEVEN_KEY, "Content-Type": "application/json" },
+      body: JSON.stringify({
+        text, model_id: model,
+        voice_settings: { stability: 0.5, similarity_boost: 0.75, style: 0.0, use_speaker_boost: true },
+      }),
+    });
+    if (!res.ok) { console.warn(`   ⚠ ElevenLabs timestamps ${res.status} — fallback`); return { ok: false }; }
+    const data = await res.json();
+    // audio is base64 mp3; alignment has per-character start/end times
+    fs.writeFileSync(outPath, Buffer.from(data.audio_base64, "base64"));
+    const a = data.alignment || data.normalized_alignment;
+    if (!a) return { ok: true, words: null };
+    // rebuild word-level timings from character alignment
+    const chars = a.characters;
+    const starts = a.character_start_times_seconds;
+    const ends = a.character_end_times_seconds;
+    const words = [];
+    let cur = "", wStart = null, wEnd = 0;
+    for (let i = 0; i < chars.length; i++) {
+      const c = chars[i];
+      if (/\s/.test(c)) {
+        if (cur) { words.push({ word: cur, start: wStart, end: wEnd }); cur = ""; wStart = null; }
+      } else {
+        if (wStart === null) wStart = starts[i];
+        cur += c; wEnd = ends[i];
+      }
+    }
+    if (cur) words.push({ word: cur, start: wStart, end: wEnd });
+    return { ok: true, words };
+  } catch (e) {
+    console.warn(`   ⚠ ElevenLabs timestamps error (${e.message}) — fallback`);
+    return { ok: false };
+  }
+}
+
 // ── Gemini TTS (returns PCM/WAV → we transcode to MP3 with ffmpeg) ─────────────
 async function geminiTTS(text, outPath) {
   if (!GEMINI_KEY) throw new Error("GEMINI_API_KEY missing");
