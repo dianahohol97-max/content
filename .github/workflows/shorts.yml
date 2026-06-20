@@ -63,7 +63,7 @@ jobs:
         run: |
           git config user.name "github-actions"
           git config user.email "actions@github.com"
-          git add shorts_week_${{ inputs.week }}.json shorts_current.json output/shorts/ || true
+          git add shorts_week_${{ inputs.week }}.json shorts_current.json output/shorts/ output/library/ || true
           git commit -m "shorts: week ${{ inputs.week }} (mode=${{ inputs.mode }})" || echo "nothing to commit"
           git pull --rebase origin main || true
           git push origin HEAD:main || (git pull --rebase origin main && git push origin HEAD:main) || echo "push failed"

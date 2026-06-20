@@ -85,8 +85,9 @@ STRUCTURE — 6 CHAPTERS. Each chapter:
 - title: short chapter title (for description timecodes)
 - voiceover: the FULL narration for this chapter. Each chapter must be 200-260 words (NOT less — this is what makes the video 8-10 min). Rich, specific, flowing naturally as spoken word.
 - scenes: 4-6 scenes for this chapter. Each scene:
-    - caption: ignore, leave as "" (on-screen text is generated as synced subtitles from the voiceover, not captions).
-    - imagePrompt: ALWAYS begin with exactly this style: "${ART_STYLE}" Then add ONE simple scene detail relevant to the moment (a desk with coffee and a notebook; an abstract brain of soft clouds and sparks; a gently messy cozy room; a window with morning light; a soft surreal melting clock; a winding path; stacked books; a single chair). Keep EVERY scene in this SAME hand-drawn pastel style.
+    - tag: a SHORT category slug for this scene's main subject (lowercase, underscores) from a reusable vocabulary so images cache/reuse. Prefer ONE of: brain, desk_messy, desk_tidy, desk_empty, coffee, journal, window_light, bed, clock, plant, books, phone, path, lamp, calendar, sparks, cozy_room, sky, chair. If none fit, make a simple slug. Same subject MUST share the same tag.
+    - caption: leave "" (on-screen text is synced subtitles from the voiceover).
+    - imagePrompt: ALWAYS begin with exactly this style: "${ART_STYLE}" Then add ONE simple scene detail matching the tag (a desk with coffee and a notebook; an abstract brain of soft clouds and sparks; a gently messy cozy room; a window with morning light; a soft surreal melting clock; a winding path; stacked books; a single chair). Keep EVERY scene in this SAME hand-drawn pastel style.
     - seconds: leave as 0 (timing is computed automatically).
 
 Chapter 1 must HOOK in the first 15 seconds (55% of viewers leave in the first minute) — open mid-punch with sharp recognition, state what the video will give them, then deliver. The final chapter ends warmly with: "Follow for daily ADHD content."
@@ -106,7 +107,7 @@ Return ONLY a valid JSON array with ONE object, no markdown:
     "description": "...",
     "tags": ["..."],
     "chapters": [
-      { "title": "...", "voiceover": "...", "scenes": [ { "caption": "", "imagePrompt": "...", "seconds": 0 } ] }
+      { "title": "...", "voiceover": "...", "scenes": [ { "tag": "brain", "caption": "", "imagePrompt": "..." } ] }
     ],
     "funnel": "follow"
   }

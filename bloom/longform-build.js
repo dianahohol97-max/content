@@ -21,6 +21,7 @@ import { execSync } from "child_process";
 import { fileURLToPath } from "url";
 import sharp from "sharp";
 import { makeVoiceover as _makeVoiceover } from "./tts.js";
+import { getOrCreate, normalizeTag } from "./image-library.js";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const REPO_ROOT = path.resolve(__dirname, "..");
@@ -109,9 +110,12 @@ function bottomScrim() {
 }
 
 async function buildSceneImage(scene, outPath) {
-  const bg = await geminiBackground(scene.imagePrompt);
-  const base = await sharp(bg).resize(W, H, { fit: "cover", position: "centre" }).toBuffer();
-  await sharp(base).composite([{ input: bottomScrim(), top: 0, left: 0 }]).png().toFile(outPath);
+  const tag = scene.tag || normalizeTag((scene.imagePrompt || "scene").slice(0, 30));
+  await getOrCreate(tag, "wide", async () => {
+    const bg = await geminiBackground(scene.imagePrompt);
+    const base = await sharp(bg).resize(W, H, { fit: "cover", position: "centre" }).toBuffer();
+    return await sharp(base).composite([{ input: bottomScrim(), top: 0, left: 0 }]).png().toBuffer();
+  }, outPath);
   return outPath;
 }
 

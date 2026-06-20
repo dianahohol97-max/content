@@ -136,9 +136,9 @@ IMPORTANT — what makes these perform:
 // Single fixed illustration style across ALL scenes — hand-drawn warm pastel.
 const ART_STYLE = `Hand-drawn illustration in soft pastel colors, cozy and warm style. Soft watercolor texture, gentle hand-painted lines, flat illustration. Palette: lavender, cream, sage green, blush pink. Calm, friendly, approachable, non-judgmental mood. No people, no faces, no text, no letters. Vertical 9:16 composition.`;
 
-const SCENE_SPEC = `    - caption: SHORT on-screen text (max 6 words) — the key phrase of that moment, big and readable. NOT the full sentence.
-    - imagePrompt: ALWAYS begin with exactly this style: "${ART_STYLE}" Then add ONE simple scene detail relevant to the moment (a desk with coffee and a notebook; an abstract brain of soft clouds and sparks; a gently messy cozy room; a window with morning light and a mug; a soft surreal melting clock; a plant; a journal). Keep every scene in this SAME hand-drawn pastel style for visual consistency.
-    - seconds: leave as 0 (timing is computed automatically from caption length).`;
+const SCENE_SPEC = `    - tag: a SHORT category slug for this scene's main subject (lowercase, underscores) from a small reusable vocabulary so images can be cached/reused. Prefer ONE of: brain, desk_messy, desk_tidy, desk_empty, coffee, journal, window_light, bed, clock, plant, books, phone, path, lamp, calendar, sparks, cozy_room, sky. If none fit, make a simple 1-2 word slug. Scenes about the same thing MUST share the same tag.
+    - imagePrompt: ALWAYS begin with exactly this style: "${ART_STYLE}" Then add ONE simple scene detail matching the tag (a desk with coffee and a notebook; an abstract brain of soft clouds and sparks; a gently messy cozy room; a window with morning light and a mug; a soft surreal melting clock; a plant; a journal). Keep every scene in this SAME hand-drawn pastel style.
+    - caption: leave "" (on-screen text comes from synced subtitles).`;
 
 const CTA_LINE = `"Follow for daily ADHD content."`;
 
@@ -184,7 +184,7 @@ Use ONLY straight ASCII apostrophes ('). No curly quotes, no special characters.
 
 Return ONLY a valid JSON array, no markdown:
 [
-  { "voiceover": "...", "scenes": [{ "caption": "...", "imagePrompt": "...", "seconds": 0 }], "title": "... #Shorts", "description": "...", "tags": ["..."], "funnel": "follow", "shortType": "${kind}" }
+  { "voiceover": "...", "scenes": [{ "tag": "brain", "imagePrompt": "...", "caption": "" }], "title": "... #Shorts", "description": "...", "tags": ["..."], "funnel": "follow", "shortType": "${kind}" }
 ]`;
 
   const response = await client.messages.create({

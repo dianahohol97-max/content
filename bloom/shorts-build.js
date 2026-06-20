@@ -24,6 +24,7 @@ import { execSync } from "child_process";
 import { fileURLToPath } from "url";
 import sharp from "sharp";
 import { makeVoiceover, elevenLabsWithTimestamps } from "./tts.js";
+import { getOrCreate, normalizeTag, libraryStats } from "./image-library.js";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const REPO_ROOT = path.resolve(__dirname, "..");
@@ -127,9 +128,15 @@ function bottomScrim() {
 }
 
 async function buildSceneImage(scene, outPath) {
-  const bg = await geminiBackground(scene.imagePrompt);
-  const base = await sharp(bg).resize(W, H, { fit: "cover", position: "centre" }).toBuffer();
-  await sharp(base).composite([{ input: bottomScrim(), top: 0, left: 0 }]).png().toFile(outPath);
+  // Library-backed: reuse a stored variant for this tag, or generate+store a new
+  // one (up to MAX_VARIANTS). Library images are stored finished (bg+scrim) so
+  // reuse is a plain copy. Tag falls back to a prompt hash if missing.
+  const tag = scene.tag || normalizeTag((scene.imagePrompt || "scene").slice(0, 30));
+  await getOrCreate(tag, "vertical", async () => {
+    const bg = await geminiBackground(scene.imagePrompt);
+    const base = await sharp(bg).resize(W, H, { fit: "cover", position: "centre" }).toBuffer();
+    return await sharp(base).composite([{ input: bottomScrim(), top: 0, left: 0 }]).png().toBuffer();
+  }, outPath);
   return outPath;
 }
 
