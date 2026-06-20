@@ -153,23 +153,76 @@ function srtTime(sec) {
   return `${p(h)}:${p(m)}:${p(s)},${p(ms, 3)}`;
 }
 
-// Write an .srt timed by WORD COUNT (closer to speech pace than char count),
-// and hold each cue until the next one starts so subtitles never run AHEAD of
-// the narration (a small bias toward lingering rather than racing).
-function writeSRT(chunks, totalDur, outPath) {
-  const wordCounts = chunks.map((c) => Math.max(1, c.trim().split(/\s+/).length));
-  const sum = wordCounts.reduce((a, b) => a + b, 0);
-  // start times are cumulative; each cue ends right where the next begins
-  const starts = [];
-  let t = 0;
-  for (let i = 0; i < chunks.length; i++) {
-    starts.push(t);
-    t += (totalDur * wordCounts[i]) / sum;
+// Detect real speech segments by finding silence gaps in the audio. Returns
+// an array of {start,end} spoken regions. This lets subtitles follow the
+// actual voice (which pauses between phrases) instead of a flat estimate, so
+// text stops racing ahead during the speaker's natural pauses.
+function speechSegments(voicePath, totalDur) {
+  let out = "";
+  try {
+    // silencedetect prints silence_start / silence_end to stderr
+    out = execSync(
+      `ffmpeg -i "${voicePath}" -af silencedetect=noise=-32dB:d=0.35 -f null - 2>&1`,
+      { encoding: "utf8" }
+    );
+  } catch (e) {
+    out = e.stdout ? e.stdout.toString() : (e.message || "");
   }
-  starts.push(totalDur); // sentinel end
+  const silences = [];
+  const re = /silence_start:\s*([\d.]+)[\s\S]*?silence_end:\s*([\d.]+)/g;
+  let m;
+  while ((m = re.exec(out)) !== null) {
+    silences.push([parseFloat(m[1]), parseFloat(m[2])]);
+  }
+  // invert silences → speech segments
+  const segs = [];
+  let cursor = 0;
+  for (const [s, e] of silences) {
+    if (s > cursor + 0.15) segs.push({ start: cursor, end: s });
+    cursor = e;
+  }
+  if (cursor < totalDur - 0.15) segs.push({ start: cursor, end: totalDur });
+  return segs.length ? segs : [{ start: 0, end: totalDur }];
+}
+
+// Write an .srt. If we have real speech segments, distribute the subtitle cues
+// across them (weighted by word count within each segment), so cues align to
+// the voice's actual phrasing and pauses. Falls back to flat word-weighted
+// timing if detection finds nothing useful.
+function writeSRT(chunks, totalDur, outPath, voicePath = null) {
+  const wordCounts = chunks.map((c) => Math.max(1, c.trim().split(/\s+/).length));
+  const totalWords = wordCounts.reduce((a, b) => a + b, 0);
+
+  let cues = [];
+  const segs = voicePath ? speechSegments(voicePath, totalDur) : [{ start: 0, end: totalDur }];
+  const segDur = segs.reduce((a, s) => a + (s.end - s.start), 0) || totalDur;
+
+  // Assign each chunk a span of "words" proportional to its length, then walk
+  // the speech segments consuming that many words-worth of time. Each cue is
+  // placed inside real spoken time, so pauses naturally hold the previous cue.
+  const perWord = segDur / totalWords;
+  let segIdx = 0;
+  let segPos = segs[0].start;
+  for (let i = 0; i < chunks.length; i++) {
+    let need = wordCounts[i] * perWord;
+    const start = segPos;
+    while (need > 0 && segIdx < segs.length) {
+      const remain = segs[segIdx].end - segPos;
+      if (remain > need) { segPos += need; need = 0; }
+      else { need -= remain; segIdx++; if (segIdx < segs.length) segPos = segs[segIdx].start; }
+    }
+    const end = segIdx < segs.length ? segPos : totalDur;
+    cues.push({ start, end });
+  }
+  // ensure non-overlap / monotonic, end last cue at totalDur
+  for (let i = 0; i < cues.length; i++) {
+    if (i < cues.length - 1) cues[i].end = Math.max(cues[i].start + 0.4, cues[i + 1].start);
+    else cues[i].end = totalDur;
+  }
+
   let srt = "";
   chunks.forEach((c, i) => {
-    srt += `${i + 1}\n${srtTime(starts[i])} --> ${srtTime(starts[i + 1])}\n${c}\n\n`;
+    srt += `${i + 1}\n${srtTime(cues[i].start)} --> ${srtTime(cues[i].end)}\n${c}\n\n`;
   });
   fs.writeFileSync(outPath, srt);
   return outPath;
@@ -353,7 +406,7 @@ async function main() {
         // proportionally across the same voiceDur → synced, readable w/o sound.
         const chunks = splitIntoSubtitles(short.voiceover, 6);
         srtPath = path.join(workDir, "subs.srt");
-        writeSRT(chunks, voiceDur, srtPath);
+        writeSRT(chunks, voiceDur, srtPath, voicePath);
         console.log(`   💬 ${chunks.length} subtitle cues`);
       }
 
