@@ -102,11 +102,69 @@ function captionOverlay(caption) {
 </svg>`);
 }
 
+// Scene background WITHOUT text — subtitles are burned later as a separate
+// synced layer. We add a soft bottom scrim so white subtitles stay readable.
+function bottomScrim() {
+  return Buffer.from(`
+<svg width="${W}" height="${H}" xmlns="http://www.w3.org/2000/svg">
+  <defs><linearGradient id="f" x1="0" y1="0" x2="0" y2="1">
+    <stop offset="0%" stop-color="rgba(40,30,50,0)"/>
+    <stop offset="100%" stop-color="rgba(40,30,50,0.55)"/>
+  </linearGradient></defs>
+  <rect x="0" y="${H-650}" width="${W}" height="650" fill="url(#f)"/>
+</svg>`);
+}
+
 async function buildSceneImage(scene, outPath) {
   const bg = await geminiBackground(scene.imagePrompt);
   const base = await sharp(bg).resize(W, H, { fit: "cover", position: "centre" }).toBuffer();
-  const overlay = captionOverlay(scene.caption);
-  await sharp(base).composite([{ input: overlay, top: 0, left: 0 }]).png().toFile(outPath);
+  await sharp(base).composite([{ input: bottomScrim(), top: 0, left: 0 }]).png().toFile(outPath);
+  return outPath;
+}
+
+// ─── Subtitles synced to the voiceover ──────────────────────────────────────
+// Split the full narration into short subtitle chunks (4-7 words), then time
+// each chunk proportionally to its length across the measured voiceover.
+function splitIntoSubtitles(text, maxWords = 6) {
+  // split on sentence punctuation first, then pack into <= maxWords chunks
+  const words = String(text).replace(/\s+/g, " ").trim().split(" ");
+  const chunks = [];
+  let cur = [];
+  for (const w of words) {
+    cur.push(w);
+    const endsClause = /[.,!?;:]$/.test(w);
+    if (cur.length >= maxWords || (endsClause && cur.length >= 3)) {
+      chunks.push(cur.join(" "));
+      cur = [];
+    }
+  }
+  if (cur.length) chunks.push(cur.join(" "));
+  return chunks;
+}
+
+function srtTime(sec) {
+  const h = Math.floor(sec / 3600);
+  const m = Math.floor((sec % 3600) / 60);
+  const s = Math.floor(sec % 60);
+  const ms = Math.round((sec - Math.floor(sec)) * 1000);
+  const p = (n, l = 2) => String(n).padStart(l, "0");
+  return `${p(h)}:${p(m)}:${p(s)},${p(ms, 3)}`;
+}
+
+// Write an .srt timed proportionally to chunk character length.
+function writeSRT(chunks, totalDur, outPath) {
+  const lens = chunks.map((c) => Math.max(8, c.length));
+  const sum = lens.reduce((a, b) => a + b, 0);
+  let t = 0;
+  let srt = "";
+  chunks.forEach((c, i) => {
+    const dur = (totalDur * lens[i]) / sum;
+    const start = t;
+    const end = t + dur;
+    t = end;
+    srt += `${i + 1}\n${srtTime(start)} --> ${srtTime(end)}\n${c}\n\n`;
+  });
+  fs.writeFileSync(outPath, srt);
   return outPath;
 }
 
@@ -170,7 +228,7 @@ function ffprobeDuration(file) {
   } catch { return 30; }
 }
 
-function buildVideo(scenePaths, durations, voicePath, outPath, matchVoice = false) {
+function buildVideo(scenePaths, durations, voicePath, outPath, matchVoice = false, srtPath = null) {
   const tmp = path.dirname(outPath);
   const hasMusic = fs.existsSync(MUSIC_PATH);
   const vf = `scale=${W}:${H}:force_original_aspect_ratio=increase,crop=${W}:${H},fps=30,format=yuv420p`;
@@ -192,7 +250,7 @@ function buildVideo(scenePaths, durations, voicePath, outPath, matchVoice = fals
     return outPath;
   }
 
-  // ── voiced shorts: slideshow of scenes via concat demuxer ──
+  // ── voiced shorts: slideshow of scenes via concat demuxer + synced subtitles ──
   const listFile = path.join(tmp, "scenes.txt");
   let list = "";
   scenePaths.forEach((p, i) => { list += `file '${p}'\nduration ${durations[i]}\n`; });
@@ -200,14 +258,20 @@ function buildVideo(scenePaths, durations, voicePath, outPath, matchVoice = fals
   fs.writeFileSync(listFile, list);
   const totalDur = durations.reduce((a, b) => a + b, 0);
 
+  // subtitle filter (burned in, synced via .srt). Styled: white, bold, outline,
+  // lower-third, readable without sound. force_style uses libass.
+  const subFilter = srtPath
+    ? `,subtitles='${srtPath}':force_style='Fontname=Arial,Fontsize=15,Bold=1,PrimaryColour=&H00FFFFFF,OutlineColour=&H803D2C6E,BorderStyle=1,Outline=3,Shadow=0,Alignment=2,MarginV=120'`
+    : "";
+
   let cmd;
   if (hasMusic) {
     cmd = `ffmpeg -y -f concat -safe 0 -i "${listFile}" -i "${voicePath}" -stream_loop -1 -i "${MUSIC_PATH}" ` +
-      `-filter_complex "[0:v]${vf}[v];[2:a]volume=0.12[m];[1:a][m]amix=inputs=2:duration=first:dropout_transition=2[a]" ` +
+      `-filter_complex "[0:v]${vf}${subFilter}[v];[2:a]volume=0.12[m];[1:a][m]amix=inputs=2:duration=first:dropout_transition=2[a]" ` +
       `-map "[v]" -map "[a]" -t ${totalDur} -c:v libx264 -preset medium -crf 22 -c:a aac -b:a 192k -pix_fmt yuv420p "${outPath}"`;
   } else {
     cmd = `ffmpeg -y -f concat -safe 0 -i "${listFile}" -i "${voicePath}" ` +
-      `-filter_complex "[0:v]${vf}[v]" ` +
+      `-filter_complex "[0:v]${vf}${subFilter}[v]" ` +
       `-map "[v]" -map 1:a -t ${totalDur} -c:v libx264 -preset medium -crf 22 -c:a aac -b:a 192k -pix_fmt yuv420p "${outPath}"`;
   }
   execSync(cmd, { stdio: "inherit" });
@@ -252,6 +316,7 @@ async function main() {
 
       const scenePaths = [];
       const durations = [];
+      let srtPath = null;
 
       if (short.shortType === "quiztest") {
         // single 2x2 grid image held for the whole voiceover
@@ -262,7 +327,7 @@ async function main() {
         durations.push(18); // grid holds ~18s; ffmpeg trims to voiceover length via -shortest fallback
         console.log("✓");
       } else {
-        // 2+3. scene images with captions
+        // scene background images (NO baked text — subtitles are a synced layer)
         for (let i = 0; i < short.scenes.length; i++) {
           process.stdout.write(`   🖼  scene ${i + 1}/${short.scenes.length}... `);
           const sp = path.join(workDir, `scene_${String(i + 1).padStart(2, "0")}.png`);
@@ -271,21 +336,23 @@ async function main() {
           console.log("✓");
           await new Promise((r) => setTimeout(r, 600));
         }
-        // Dynamic timing: split the REAL voiceover length across scenes,
-        // weighted by caption word count (longer captions = more time), so
-        // captions never linger after the narration has moved on.
+        // Backgrounds change slowly: split the real voiceover length EVENLY
+        // across the scene images (each holds a few subtitles).
         const voiceDur = ffprobeDuration(voicePath);
-        const weights = short.scenes.map((sc) =>
-          Math.max(2, String(sc.caption || "").split(/\s+/).length));
-        const wSum = weights.reduce((a, b) => a + b, 0);
-        for (let i = 0; i < short.scenes.length; i++) {
-          durations.push((voiceDur * weights[i]) / wSum);
-        }
+        const per = voiceDur / short.scenes.length;
+        for (let i = 0; i < short.scenes.length; i++) durations.push(per);
+
+        // Subtitles: split the FULL voiceover into short chunks and time them
+        // proportionally across the same voiceDur → synced, readable w/o sound.
+        const chunks = splitIntoSubtitles(short.voiceover, 6);
+        srtPath = path.join(workDir, "subs.srt");
+        writeSRT(chunks, voiceDur, srtPath);
+        console.log(`   💬 ${chunks.length} subtitle cues`);
       }
 
       // 4. assemble
       process.stdout.write("   🎞  ffmpeg assemble... ");
-      buildVideo(scenePaths, durations, voicePath, mp4Path, short.shortType === "quiztest");
+      buildVideo(scenePaths, durations, voicePath, mp4Path, short.shortType === "quiztest", srtPath);
       console.log("✓");
 
       short.videoUrl = `${REPO_RAW}/output/shorts/week_${WEEK}/${short.id}.mp4`;
