@@ -58,12 +58,19 @@ async function buildInfographic(pin, outDir) {
   const outPath = path.join(outDir, `${pin.id}.png`);
   const response = await gemini.models.generateContent({
     model: "gemini-2.5-flash-image",
-    contents: buildInfographicPrompt(pin) + "\n\nVertical 2:3 portrait aspect ratio (1000x1500).",
+    contents: buildInfographicPrompt(pin) + "\n\nVertical 2:3 portrait aspect ratio (1000x1500). The image MUST be taller than it is wide, portrait orientation, NOT square.",
   });
   const parts = response.candidates?.[0]?.content?.parts ?? [];
   for (const part of parts) {
     if (part.inlineData?.data) {
-      fs.writeFileSync(outPath, Buffer.from(part.inlineData.data, "base64"));
+      const raw = Buffer.from(part.inlineData.data, "base64");
+      // Force 2:3 (1000x1500). Gemini often returns 1:1 despite the prompt, so
+      // normalize: fit inside the frame on a soft cream background (no cropping
+      // of the numbered list), guaranteeing a proper vertical Pinterest pin.
+      await sharp(raw)
+        .resize(W, H, { fit: "contain", background: { r: 255, g: 248, b: 240, alpha: 1 } })
+        .png()
+        .toFile(outPath);
       return outPath;
     }
   }
