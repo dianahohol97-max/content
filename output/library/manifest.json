@@ -102,6 +102,18 @@
     "url": "https://raw.githubusercontent.com/dianahohol97-max/content/main/output/library/vertical/cozy_room_3.png"
   },
   {
+    "id": "vertical_cozy_room_4.png",
+    "aspect": "vertical",
+    "filename": "cozy_room_4.png",
+    "url": "https://raw.githubusercontent.com/dianahohol97-max/content/main/output/library/vertical/cozy_room_4.png"
+  },
+  {
+    "id": "vertical_cozy_room_5.png",
+    "aspect": "vertical",
+    "filename": "cozy_room_5.png",
+    "url": "https://raw.githubusercontent.com/dianahohol97-max/content/main/output/library/vertical/cozy_room_5.png"
+  },
+  {
     "id": "vertical_desk_messy_1.png",
     "aspect": "vertical",
     "filename": "desk_messy_1.png",
@@ -138,6 +150,12 @@
     "url": "https://raw.githubusercontent.com/dianahohol97-max/content/main/output/library/vertical/desk_tidy_1.png"
   },
   {
+    "id": "vertical_desk_tidy_2.png",
+    "aspect": "vertical",
+    "filename": "desk_tidy_2.png",
+    "url": "https://raw.githubusercontent.com/dianahohol97-max/content/main/output/library/vertical/desk_tidy_2.png"
+  },
+  {
     "id": "vertical_journal_1.png",
     "aspect": "vertical",
     "filename": "journal_1.png",
@@ -168,6 +186,12 @@
     "url": "https://raw.githubusercontent.com/dianahohol97-max/content/main/output/library/vertical/journal_5.png"
   },
   {
+    "id": "vertical_lamp_1.png",
+    "aspect": "vertical",
+    "filename": "lamp_1.png",
+    "url": "https://raw.githubusercontent.com/dianahohol97-max/content/main/output/library/vertical/lamp_1.png"
+  },
+  {
     "id": "vertical_phone_1.png",
     "aspect": "vertical",
     "filename": "phone_1.png",
@@ -184,6 +208,12 @@
     "aspect": "vertical",
     "filename": "phone_3.png",
     "url": "https://raw.githubusercontent.com/dianahohol97-max/content/main/output/library/vertical/phone_3.png"
+  },
+  {
+    "id": "vertical_phone_4.png",
+    "aspect": "vertical",
+    "filename": "phone_4.png",
+    "url": "https://raw.githubusercontent.com/dianahohol97-max/content/main/output/library/vertical/phone_4.png"
   },
   {
     "id": "vertical_plant_1.png",

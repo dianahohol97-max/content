@@ -2,59 +2,58 @@
   {
     "id": "SH_W25_01",
     "week": 25,
-    "voiceover": "You were told you were too sensitive, too scattered, too much. But what if it was never a personality flaw? Seven signs of ADHD in women that get dismissed constantly. Emotional meltdowns over small things — that's rejection sensitivity, not drama. Losing track of conversations mid-sentence — that's working memory, not rudeness. Exhaustion from just existing — that's your brain working overtime to mask. Hyperfocusing on one thing and forgetting everything else — not passion, executive dysfunction. Missing deadlines despite caring deeply — not laziness, time blindness. Chronic self-blame for all of it — that's a system that missed you, not a character flaw. You were never the problem. Follow for daily ADHD content.",
+    "voiceover": "You were called too sensitive, too scattered, too much — your whole life. But what if that wasn't your personality? Seven signs of ADHD in women that get dismissed constantly. Emotional meltdowns over small things — that's rejection sensitive dysphoria, not drama. Forgetting conversations you were in. Zoning out mid-sentence. Being brilliant at work but unable to do laundry. Feeling lazy when you're actually exhausted from masking all day. Losing things obsessively. And always feeling like you're failing at being a normal person. You weren't failing. You were undiagnosed. Follow for daily ADHD content.",
     "scenes": [
       {
         "tag": "sparks",
-        "imagePrompt": "Hand-drawn illustration in soft pastel colors, cozy and warm style. Soft watercolor texture, gentle hand-painted lines, flat illustration. Palette: lavender, cream, sage green, blush pink. Calm, friendly, approachable, non-judgmental mood. No people, no faces, no text, no letters. Vertical 9:16 composition. An abstract burst of soft sparks and gentle electric flickers radiating outward from the center, like quiet energy released.",
+        "imagePrompt": "Hand-drawn illustration in soft pastel colors, cozy and warm style. Soft watercolor texture, gentle hand-painted lines, flat illustration. Palette: lavender, cream, sage green, blush pink. Calm, friendly, approachable, non-judgmental mood. No people, no faces, no text, no letters. Vertical 9:16 composition. A soft abstract burst of scattered sparks and small stars radiating outward from a gentle glowing center, floating in a dreamy lavender space.",
         "caption": ""
       },
       {
         "tag": "brain",
-        "imagePrompt": "Hand-drawn illustration in soft pastel colors, cozy and warm style. Soft watercolor texture, gentle hand-painted lines, flat illustration. Palette: lavender, cream, sage green, blush pink. Calm, friendly, approachable, non-judgmental mood. No people, no faces, no text, no letters. Vertical 9:16 composition. An abstract brain made of soft clouds and gentle sparks, floating quietly with a warm glow around it.",
+        "imagePrompt": "Hand-drawn illustration in soft pastel colors, cozy and warm style. Soft watercolor texture, gentle hand-painted lines, flat illustration. Palette: lavender, cream, sage green, blush pink. Calm, friendly, approachable, non-judgmental mood. No people, no faces, no text, no letters. Vertical 9:16 composition. An abstract brain made of soft clouds and tiny sparks, gentle and rounded, floating quietly on a cream background.",
         "caption": ""
       },
       {
-        "tag": "window_light",
-        "imagePrompt": "Hand-drawn illustration in soft pastel colors, cozy and warm style. Soft watercolor texture, gentle hand-painted lines, flat illustration. Palette: lavender, cream, sage green, blush pink. Calm, friendly, approachable, non-judgmental mood. No people, no faces, no text, no letters. Vertical 9:16 composition. A window with soft morning light streaming in and a warm mug resting on the sill beside a small plant.",
-        "caption": ""
-      },
-      {
-        "tag": "clock",
-        "imagePrompt": "Hand-drawn illustration in soft pastel colors, cozy and warm style. Soft watercolor texture, gentle hand-painted lines, flat illustration. Palette: lavender, cream, sage green, blush pink. Calm, friendly, approachable, non-judgmental mood. No people, no faces, no text, no letters. Vertical 9:16 composition. A soft surreal melting clock dissolving gently at the edges into watercolor mist, floating in a calm pastel space.",
+        "tag": "cozy_room",
+        "imagePrompt": "Hand-drawn illustration in soft pastel colors, cozy and warm style. Soft watercolor texture, gentle hand-painted lines, flat illustration. Palette: lavender, cream, sage green, blush pink. Calm, friendly, approachable, non-judgmental mood. No people, no faces, no text, no letters. Vertical 9:16 composition. A gently messy cozy room with a soft armchair, a small side table with a half-finished mug, and a scattered throw blanket, warm lamplight glowing softly.",
         "caption": ""
       },
       {
         "tag": "desk_messy",
-        "imagePrompt": "Hand-drawn illustration in soft pastel colors, cozy and warm style. Soft watercolor texture, gentle hand-painted lines, flat illustration. Palette: lavender, cream, sage green, blush pink. Calm, friendly, approachable, non-judgmental mood. No people, no faces, no text, no letters. Vertical 9:16 composition. A gently messy cozy desk with scattered notebooks, a coffee cup, loose papers, and a small plant in soft warm light.",
+        "imagePrompt": "Hand-drawn illustration in soft pastel colors, cozy and warm style. Soft watercolor texture, gentle hand-painted lines, flat illustration. Palette: lavender, cream, sage green, blush pink. Calm, friendly, approachable, non-judgmental mood. No people, no faces, no text, no letters. Vertical 9:16 composition. A desk with a coffee cup, open notebook, scattered papers, and a few small misplaced objects like a pen and sticky notes in soft pastel hues.",
+        "caption": ""
+      },
+      {
+        "tag": "window_light",
+        "imagePrompt": "Hand-drawn illustration in soft pastel colors, cozy and warm style. Soft watercolor texture, gentle hand-painted lines, flat illustration. Palette: lavender, cream, sage green, blush pink. Calm, friendly, approachable, non-judgmental mood. No people, no faces, no text, no letters. Vertical 9:16 composition. A window with soft morning light streaming through sheer curtains, a small potted plant on the sill and a warm mug resting beside it.",
         "caption": ""
       },
       {
         "tag": "journal",
-        "imagePrompt": "Hand-drawn illustration in soft pastel colors, cozy and warm style. Soft watercolor texture, gentle hand-painted lines, flat illustration. Palette: lavender, cream, sage green, blush pink. Calm, friendly, approachable, non-judgmental mood. No people, no faces, no text, no letters. Vertical 9:16 composition. A soft open journal lying flat with a pen resting beside it, gentle light falling across the pages.",
+        "imagePrompt": "Hand-drawn illustration in soft pastel colors, cozy and warm style. Soft watercolor texture, gentle hand-painted lines, flat illustration. Palette: lavender, cream, sage green, blush pink. Calm, friendly, approachable, non-judgmental mood. No people, no faces, no text, no letters. Vertical 9:16 composition. A softly worn journal lying open with a pen resting across it, surrounded by a few dried pressed flowers and gentle pastel light.",
         "caption": ""
       },
       {
         "tag": "plant",
-        "imagePrompt": "Hand-drawn illustration in soft pastel colors, cozy and warm style. Soft watercolor texture, gentle hand-painted lines, flat illustration. Palette: lavender, cream, sage green, blush pink. Calm, friendly, approachable, non-judgmental mood. No people, no faces, no text, no letters. Vertical 9:16 composition. A single small potted plant with soft round leaves sitting in gentle warm light, calm and quietly thriving.",
+        "imagePrompt": "Hand-drawn illustration in soft pastel colors, cozy and warm style. Soft watercolor texture, gentle hand-painted lines, flat illustration. Palette: lavender, cream, sage green, blush pink. Calm, friendly, approachable, non-judgmental mood. No people, no faces, no text, no letters. Vertical 9:16 composition. A single potted plant with soft rounded leaves in a simple cream ceramic pot, sitting in gentle warm light on a quiet surface.",
         "caption": ""
       }
     ],
     "title": "7 Signs of ADHD in Women That Get Dismissed #Shorts",
-    "description": "ADHD in women looks different — and it gets missed for decades. These 7 signs are often dismissed as personality traits, sensitivity, or laziness, but they are rooted in neuroscience. If you saw yourself in this, you are not broken, you were just never given the right framework. Follow for daily ADHD content.",
+    "description": "ADHD in women looks very different from the textbook definition — and most of it gets written off as personality. From rejection sensitive dysphoria to masking exhaustion, these are seven signs that are common in ADHD and chronically overlooked. If you went undiagnosed for years, this might explain a lot. Follow for daily ADHD content.",
     "tags": [
       "ADHD in women",
-      "ADHD symptoms women",
+      "ADHD signs women",
       "undiagnosed ADHD",
-      "ADHD signs",
+      "ADHD symptoms",
       "rejection sensitive dysphoria",
-      "time blindness ADHD",
-      "ADHD education",
-      "neurodivergent",
       "ADHD masking",
-      "executive dysfunction",
+      "ADHD education",
+      "neurodivergent women",
       "ADHD awareness",
-      "adhd shorts"
+      "late diagnosed ADHD",
+      "ADHD shorts"
     ],
     "funnel": "follow",
     "shortType": "educational",
@@ -65,7 +64,7 @@
   {
     "id": "SH_W25_02",
     "week": 25,
-    "voiceover": "Your brain won't start tasks? Stop forcing it. Bribe it. A dopamine menu is a short list of tiny rewards you pick from before or during hard tasks. Step one: write down five to ten things that give your brain a quick hit. Coffee, a playlist, a snack, a candle. Step two: before you sit down to work, pick one and have it ready. Step three: pair it with the task every single time. Your brain starts linking the reward to the work. That's not laziness. That's how dopamine actually works. Follow for daily ADHD content.",
+    "voiceover": "Your brain won't start a hard task? Stop forcing it. Bribe it. A dopamine menu is a short list of small rewards you pair with that task before you begin. Step one: write down five to ten things that genuinely light your brain up. A favorite snack, a playlist, a cozy blanket, a candle. Step two: pick one and set it up first, before you open the work. Step three: start the task while that reward is active. Your brain needs dopamine to launch, not discipline. You are not broken. You just need the right fuel. Follow for daily ADHD content.",
     "scenes": [
       {
         "tag": "brain",
@@ -73,38 +72,38 @@
         "caption": ""
       },
       {
-        "tag": "journal",
-        "imagePrompt": "Hand-drawn illustration in soft pastel colors, cozy and warm style. Soft watercolor texture, gentle hand-painted lines, flat illustration. Palette: lavender, cream, sage green, blush pink. Calm, friendly, approachable, non-judgmental mood. No people, no faces, no text, no letters. Vertical 9:16 composition. A soft open journal lying flat with a pencil resting across it and small illustrated doodles of stars around the edges.",
+        "tag": "desk_messy",
+        "imagePrompt": "Hand-drawn illustration in soft pastel colors, cozy and warm style. Soft watercolor texture, gentle hand-painted lines, flat illustration. Palette: lavender, cream, sage green, blush pink. Calm, friendly, approachable, non-judgmental mood. No people, no faces, no text, no letters. Vertical 9:16 composition. A gently messy cozy desk with scattered papers, a half-finished mug of coffee, and a closed notebook.",
         "caption": ""
       },
       {
-        "tag": "coffee",
-        "imagePrompt": "Hand-drawn illustration in soft pastel colors, cozy and warm style. Soft watercolor texture, gentle hand-painted lines, flat illustration. Palette: lavender, cream, sage green, blush pink. Calm, friendly, approachable, non-judgmental mood. No people, no faces, no text, no letters. Vertical 9:16 composition. A cozy ceramic mug of coffee with gentle steam rising, resting on a soft cream surface beside a small plant.",
+        "tag": "journal",
+        "imagePrompt": "Hand-drawn illustration in soft pastel colors, cozy and warm style. Soft watercolor texture, gentle hand-painted lines, flat illustration. Palette: lavender, cream, sage green, blush pink. Calm, friendly, approachable, non-judgmental mood. No people, no faces, no text, no letters. Vertical 9:16 composition. An open journal lying flat with a soft pencil resting across the page, surrounded by small illustrated icons of a candle, headphones, and a snack.",
+        "caption": ""
+      },
+      {
+        "tag": "cozy_room",
+        "imagePrompt": "Hand-drawn illustration in soft pastel colors, cozy and warm style. Soft watercolor texture, gentle hand-painted lines, flat illustration. Palette: lavender, cream, sage green, blush pink. Calm, friendly, approachable, non-judgmental mood. No people, no faces, no text, no letters. Vertical 9:16 composition. A soft cozy room corner with a lit candle on a small table, a folded blanket, and a lamp casting warm light.",
         "caption": ""
       },
       {
         "tag": "desk_tidy",
-        "imagePrompt": "Hand-drawn illustration in soft pastel colors, cozy and warm style. Soft watercolor texture, gentle hand-painted lines, flat illustration. Palette: lavender, cream, sage green, blush pink. Calm, friendly, approachable, non-judgmental mood. No people, no faces, no text, no letters. Vertical 9:16 composition. A tidy cozy desk with a notebook, a small candle flickering softly, and a mug of coffee arranged neatly.",
+        "imagePrompt": "Hand-drawn illustration in soft pastel colors, cozy and warm style. Soft watercolor texture, gentle hand-painted lines, flat illustration. Palette: lavender, cream, sage green, blush pink. Calm, friendly, approachable, non-judgmental mood. No people, no faces, no text, no letters. Vertical 9:16 composition. A tidy desk with an open notebook, a steaming mug of coffee, and a small plant beside a glowing lamp, ready for focused work.",
         "caption": ""
       },
       {
         "tag": "sparks",
-        "imagePrompt": "Hand-drawn illustration in soft pastel colors, cozy and warm style. Soft watercolor texture, gentle hand-painted lines, flat illustration. Palette: lavender, cream, sage green, blush pink. Calm, friendly, approachable, non-judgmental mood. No people, no faces, no text, no letters. Vertical 9:16 composition. Abstract soft golden and lavender sparks and small glowing dots drifting upward against a warm cream background, suggesting energy and activation.",
+        "imagePrompt": "Hand-drawn illustration in soft pastel colors, cozy and warm style. Soft watercolor texture, gentle hand-painted lines, flat illustration. Palette: lavender, cream, sage green, blush pink. Calm, friendly, approachable, non-judgmental mood. No people, no faces, no text, no letters. Vertical 9:16 composition. A soft abstract burst of golden and lavender sparks radiating outward from a warm glowing center point against a cream background.",
         "caption": ""
       },
       {
         "tag": "plant",
-        "imagePrompt": "Hand-drawn illustration in soft pastel colors, cozy and warm style. Soft watercolor texture, gentle hand-painted lines, flat illustration. Palette: lavender, cream, sage green, blush pink. Calm, friendly, approachable, non-judgmental mood. No people, no faces, no text, no letters. Vertical 9:16 composition. A small leafy potted plant in a soft sage green pot sitting on a windowsill with gentle warm light coming through the window.",
-        "caption": ""
-      },
-      {
-        "tag": "brain",
-        "imagePrompt": "Hand-drawn illustration in soft pastel colors, cozy and warm style. Soft watercolor texture, gentle hand-painted lines, flat illustration. Palette: lavender, cream, sage green, blush pink. Calm, friendly, approachable, non-judgmental mood. No people, no faces, no text, no letters. Vertical 9:16 composition. An abstract brain made of soft pastel clouds with tiny golden sparks floating around it, now glowing slightly warmer and brighter than before.",
+        "imagePrompt": "Hand-drawn illustration in soft pastel colors, cozy and warm style. Soft watercolor texture, gentle hand-painted lines, flat illustration. Palette: lavender, cream, sage green, blush pink. Calm, friendly, approachable, non-judgmental mood. No people, no faces, no text, no letters. Vertical 9:16 composition. A single small potted plant with round sage green leaves sitting on a windowsill in soft morning light.",
         "caption": ""
       }
     ],
-    "title": "Use a Dopamine Menu to Finally Start Tasks #Shorts",
-    "description": "If your ADHD brain refuses to start hard tasks, a dopamine menu can help you build momentum by pairing small rewards with work. This technique works with your brain's dopamine system instead of against it. Try it today and see the difference a tiny bribe makes. Follow for daily ADHD content.",
+    "title": "Use a Dopamine Menu to Start Hard Tasks #Shorts",
+    "description": "If your ADHD brain refuses to start tasks, the problem is not laziness, it is low dopamine. A dopamine menu is a simple ADHD-friendly technique that pairs small rewards with hard tasks to help your brain launch. Try it today and feel the difference.",
     "tags": [
       "ADHD",
       "dopamine menu",
@@ -112,12 +111,12 @@
       "ADHD productivity",
       "how to focus with ADHD",
       "ADHD brain",
-      "dopamine ADHD",
-      "ADHD hacks",
       "task initiation ADHD",
+      "ADHD hacks",
+      "neurodivergent tips",
       "ADHD education",
-      "focus tips",
-      "neurodivergent"
+      "bloom focus",
+      "ADHD shorts"
     ],
     "funnel": "follow",
     "shortType": "practical",
@@ -128,59 +127,59 @@
   {
     "id": "SH_W25_03",
     "week": 25,
-    "voiceover": "You thought you were lazy. Disorganized. Dramatic. But these are actually ADHD symptoms. Forgetting words mid-sentence — that's working memory, not stupidity. Feeling exhausted after doing nothing — that's your brain burning energy just to stay regulated. Saying yes when you mean no because you can't think fast enough to refuse — that's impulsive compliance. Hating loud sounds or scratchy tags — that's sensory sensitivity, common in ADHD. And that crushing guilt you feel constantly — that's emotional dysregulation, not weakness. None of this is a character flaw. Sound familiar every single day? Follow for daily ADHD content.",
+    "voiceover": "You thought you knew your ADHD symptoms. You didn't. Forgetting what you walked into a room for — every single time — that's ADHD. Feeling every fabric, every tag, every sound louder than everyone else — that's ADHD. Starting five things and finishing zero before noon — that's ADHD. Lying awake at 2am while your brain holds a TED talk — that's ADHD. And that crushing guilt after one small criticism — rejection sensitive dysphoria — also ADHD. None of this is a personality flaw. It's your nervous system, wired differently. Sound familiar every single day? Follow for daily ADHD content.",
     "scenes": [
       {
         "tag": "brain",
-        "imagePrompt": "Hand-drawn illustration in soft pastel colors, cozy and warm style. Soft watercolor texture, gentle hand-painted lines, flat illustration. Palette: lavender, cream, sage green, blush pink. Calm, friendly, approachable, non-judgmental mood. No people, no faces, no text, no letters. Vertical 9:16 composition. An abstract brain made of soft clouds and gentle pastel sparks floating quietly in a warm cream background.",
+        "imagePrompt": "Hand-drawn illustration in soft pastel colors, cozy and warm style. Soft watercolor texture, gentle hand-painted lines, flat illustration. Palette: lavender, cream, sage green, blush pink. Calm, friendly, approachable, non-judgmental mood. No people, no faces, no text, no letters. Vertical 9:16 composition. An abstract brain made of soft pastel clouds and tiny sparks of light, floating gently.",
         "caption": ""
       },
       {
-        "tag": "sparks",
-        "imagePrompt": "Hand-drawn illustration in soft pastel colors, cozy and warm style. Soft watercolor texture, gentle hand-painted lines, flat illustration. Palette: lavender, cream, sage green, blush pink. Calm, friendly, approachable, non-judgmental mood. No people, no faces, no text, no letters. Vertical 9:16 composition. Small soft sparks and scattered glowing dots drifting in a gentle lavender and cream space, suggesting fading thoughts.",
-        "caption": ""
-      },
-      {
-        "tag": "bed",
-        "imagePrompt": "Hand-drawn illustration in soft pastel colors, cozy and warm style. Soft watercolor texture, gentle hand-painted lines, flat illustration. Palette: lavender, cream, sage green, blush pink. Calm, friendly, approachable, non-judgmental mood. No people, no faces, no text, no letters. Vertical 9:16 composition. A soft cozy unmade bed with rumpled pastel blankets in a warm quiet room, suggesting rest but also exhaustion.",
-        "caption": ""
-      },
-      {
-        "tag": "journal",
-        "imagePrompt": "Hand-drawn illustration in soft pastel colors, cozy and warm style. Soft watercolor texture, gentle hand-painted lines, flat illustration. Palette: lavender, cream, sage green, blush pink. Calm, friendly, approachable, non-judgmental mood. No people, no faces, no text, no letters. Vertical 9:16 composition. A soft open journal on a cozy desk with a pen resting beside it and gentle warm light nearby.",
-        "caption": ""
-      },
-      {
-        "tag": "plant",
-        "imagePrompt": "Hand-drawn illustration in soft pastel colors, cozy and warm style. Soft watercolor texture, gentle hand-painted lines, flat illustration. Palette: lavender, cream, sage green, blush pink. Calm, friendly, approachable, non-judgmental mood. No people, no faces, no text, no letters. Vertical 9:16 composition. A small potted sage green plant sitting quietly on a windowsill with soft blush light coming through, calm and grounded.",
+        "tag": "cozy_room",
+        "imagePrompt": "Hand-drawn illustration in soft pastel colors, cozy and warm style. Soft watercolor texture, gentle hand-painted lines, flat illustration. Palette: lavender, cream, sage green, blush pink. Calm, friendly, approachable, non-judgmental mood. No people, no faces, no text, no letters. Vertical 9:16 composition. A gently messy cozy room with a doorway slightly ajar, soft light spilling through, a forgotten mug on the floor.",
         "caption": ""
       },
       {
         "tag": "window_light",
-        "imagePrompt": "Hand-drawn illustration in soft pastel colors, cozy and warm style. Soft watercolor texture, gentle hand-painted lines, flat illustration. Palette: lavender, cream, sage green, blush pink. Calm, friendly, approachable, non-judgmental mood. No people, no faces, no text, no letters. Vertical 9:16 composition. A window with soft morning light spilling in gently, a small mug resting on the sill, warm and still.",
+        "imagePrompt": "Hand-drawn illustration in soft pastel colors, cozy and warm style. Soft watercolor texture, gentle hand-painted lines, flat illustration. Palette: lavender, cream, sage green, blush pink. Calm, friendly, approachable, non-judgmental mood. No people, no faces, no text, no letters. Vertical 9:16 composition. A window with soft morning light streaming in, a small mug on the sill, gentle curtains drifting.",
         "caption": ""
       },
       {
-        "tag": "brain",
-        "imagePrompt": "Hand-drawn illustration in soft pastel colors, cozy and warm style. Soft watercolor texture, gentle hand-painted lines, flat illustration. Palette: lavender, cream, sage green, blush pink. Calm, friendly, approachable, non-judgmental mood. No people, no faces, no text, no letters. Vertical 9:16 composition. An abstract brain made of soft clouds and gentle pastel sparks floating quietly in a warm cream background, slightly glowing with a warm blush hue.",
+        "tag": "desk_messy",
+        "imagePrompt": "Hand-drawn illustration in soft pastel colors, cozy and warm style. Soft watercolor texture, gentle hand-painted lines, flat illustration. Palette: lavender, cream, sage green, blush pink. Calm, friendly, approachable, non-judgmental mood. No people, no faces, no text, no letters. Vertical 9:16 composition. A desk with five open notebooks and scattered papers, a half-drunk coffee, soft warm lamp light, cozy and relatable.",
+        "caption": ""
+      },
+      {
+        "tag": "lamp",
+        "imagePrompt": "Hand-drawn illustration in soft pastel colors, cozy and warm style. Soft watercolor texture, gentle hand-painted lines, flat illustration. Palette: lavender, cream, sage green, blush pink. Calm, friendly, approachable, non-judgmental mood. No people, no faces, no text, no letters. Vertical 9:16 composition. A single soft glowing lamp in a dark cozy room at nighttime, warm amber light pooling gently on a wooden floor.",
+        "caption": ""
+      },
+      {
+        "tag": "sparks",
+        "imagePrompt": "Hand-drawn illustration in soft pastel colors, cozy and warm style. Soft watercolor texture, gentle hand-painted lines, flat illustration. Palette: lavender, cream, sage green, blush pink. Calm, friendly, approachable, non-judgmental mood. No people, no faces, no text, no letters. Vertical 9:16 composition. Abstract soft pastel sparks and swirling energy trails floating in a calm lavender space, gentle and non-threatening.",
+        "caption": ""
+      },
+      {
+        "tag": "plant",
+        "imagePrompt": "Hand-drawn illustration in soft pastel colors, cozy and warm style. Soft watercolor texture, gentle hand-painted lines, flat illustration. Palette: lavender, cream, sage green, blush pink. Calm, friendly, approachable, non-judgmental mood. No people, no faces, no text, no letters. Vertical 9:16 composition. A small potted plant in soft sage green sitting on a windowsill, gentle morning light, calm and grounding.",
         "caption": ""
       }
     ],
     "title": "5 ADHD Symptoms You Didn't Know Were ADHD #Shorts",
-    "description": "Think you're just lazy or too sensitive? These 5 hidden ADHD symptoms are commonly misread as personality flaws. From word-finding struggles to emotional dysregulation, ADHD shows up in ways most people never expect. Follow for daily ADHD content.",
+    "description": "Think you know your ADHD symptoms? These 5 surprising signs -- from sensory overwhelm to rejection sensitivity to a racing mind at 2am -- are all common in ADHD and rarely talked about. If any of these hit home, your brain is just wired differently -- and that is worth understanding. Follow for daily ADHD content.",
     "tags": [
       "ADHD symptoms",
-      "hidden ADHD signs",
-      "ADHD education",
-      "ADHD brain",
-      "emotional dysregulation ADHD",
-      "sensory sensitivity ADHD",
-      "ADHD working memory",
-      "ADHD validation",
-      "neurodivergent",
       "ADHD awareness",
+      "ADHD education",
+      "rejection sensitive dysphoria",
+      "ADHD brain",
+      "neurodivergent",
       "ADHD tips",
-      "bloom focus"
+      "ADHD sensory",
+      "ADHD sleep",
+      "ADHD explained",
+      "bloom focus",
+      "ADHD shorts"
     ],
     "funnel": "follow",
     "shortType": "painpoint",
@@ -191,59 +190,54 @@
   {
     "id": "SH_W25_04",
     "week": 25,
-    "voiceover": "Out of sight, out of mind — but for ADHD brains, that is literally true. Object permanence means if you can't see it, your brain stops registering it exists. Here's what it looks like: You ignore a text for days — it just vanished from your brain. You forget laundry in the machine until it smells. You lose your keys on the counter in plain sight. You meant to reply to that email. Your brain filed it under gone. This is not laziness. It's how your brain handles what's not in front of it. Common in ADHD, and completely valid. Does this sound like you? Follow for daily ADHD content.",
+    "voiceover": "Object Permanence — if you can't see it, your brain acts like it doesn't exist. It's not forgetfulness. Your ADHD brain genuinely loses track of things that leave your field of view. Here's what it looks like: You ignore a text for days — it just vanished from your brain. You forget laundry in the machine until it smells. You lose your keys even when they're sitting right there on the counter. Out of sight really does mean out of mind. If this sounds familiar, you're not lazy — your brain just works differently. Follow for daily ADHD content.",
     "scenes": [
       {
         "tag": "brain",
-        "imagePrompt": "Hand-drawn illustration in soft pastel colors, cozy and warm style. Soft watercolor texture, gentle hand-painted lines, flat illustration. Palette: lavender, cream, sage green, blush pink. Calm, friendly, approachable, non-judgmental mood. No people, no faces, no text, no letters. Vertical 9:16 composition. An abstract brain made of soft pastel clouds with tiny sparks and gentle question marks floating around it, surrounded by small faded objects drifting away into mist.",
+        "imagePrompt": "Hand-drawn illustration in soft pastel colors, cozy and warm style. Soft watercolor texture, gentle hand-painted lines, flat illustration. Palette: lavender, cream, sage green, blush pink. Calm, friendly, approachable, non-judgmental mood. No people, no faces, no text, no letters. Vertical 9:16 composition. An abstract brain made of soft drifting clouds and tiny fading sparks, with small objects gently dissolving into mist around its edges.",
         "caption": ""
       },
       {
         "tag": "phone",
-        "imagePrompt": "Hand-drawn illustration in soft pastel colors, cozy and warm style. Soft watercolor texture, gentle hand-painted lines, flat illustration. Palette: lavender, cream, sage green, blush pink. Calm, friendly, approachable, non-judgmental mood. No people, no faces, no text, no letters. Vertical 9:16 composition. A soft pastel phone lying face-down on a cozy surface with small faded notification bubbles floating above it and gently dissolving into the air.",
+        "imagePrompt": "Hand-drawn illustration in soft pastel colors, cozy and warm style. Soft watercolor texture, gentle hand-painted lines, flat illustration. Palette: lavender, cream, sage green, blush pink. Calm, friendly, approachable, non-judgmental mood. No people, no faces, no text, no letters. Vertical 9:16 composition. A phone face-down on a soft surface with small translucent notification bubbles floating upward and fading away like soap bubbles.",
         "caption": ""
       },
       {
         "tag": "cozy_room",
-        "imagePrompt": "Hand-drawn illustration in soft pastel colors, cozy and warm style. Soft watercolor texture, gentle hand-painted lines, flat illustration. Palette: lavender, cream, sage green, blush pink. Calm, friendly, approachable, non-judgmental mood. No people, no faces, no text, no letters. Vertical 9:16 composition. A cozy gently messy room with a small pile of laundry in a soft basket tucked in a corner, a warm lamp glowing nearby, and a faint swirl of steam suggesting forgotten dampness.",
+        "imagePrompt": "Hand-drawn illustration in soft pastel colors, cozy and warm style. Soft watercolor texture, gentle hand-painted lines, flat illustration. Palette: lavender, cream, sage green, blush pink. Calm, friendly, approachable, non-judgmental mood. No people, no faces, no text, no letters. Vertical 9:16 composition. A gently messy cozy room with a laundry basket in the corner, soft clothes piled softly, a small window with warm light, and a gentle haze suggesting time passing.",
         "caption": ""
       },
       {
         "tag": "desk_messy",
-        "imagePrompt": "Hand-drawn illustration in soft pastel colors, cozy and warm style. Soft watercolor texture, gentle hand-painted lines, flat illustration. Palette: lavender, cream, sage green, blush pink. Calm, friendly, approachable, non-judgmental mood. No people, no faces, no text, no letters. Vertical 9:16 composition. A softly cluttered pastel desk with a set of keys sitting right in the center in plain sight, surrounded by a gentle glowing haze as if they are hiding in the open.",
-        "caption": ""
-      },
-      {
-        "tag": "journal",
-        "imagePrompt": "Hand-drawn illustration in soft pastel colors, cozy and warm style. Soft watercolor texture, gentle hand-painted lines, flat illustration. Palette: lavender, cream, sage green, blush pink. Calm, friendly, approachable, non-judgmental mood. No people, no faces, no text, no letters. Vertical 9:16 composition. A soft pastel journal closed on a desk with a small envelope resting on top, tiny faded dots floating upward as if the memory of it is drifting away like smoke.",
+        "imagePrompt": "Hand-drawn illustration in soft pastel colors, cozy and warm style. Soft watercolor texture, gentle hand-painted lines, flat illustration. Palette: lavender, cream, sage green, blush pink. Calm, friendly, approachable, non-judgmental mood. No people, no faces, no text, no letters. Vertical 9:16 composition. A warmly lit desk with a set of keys resting in plain sight among soft scattered items, with a faint dreamy glow around the keys as if they are hiding despite being visible.",
         "caption": ""
       },
       {
         "tag": "brain",
-        "imagePrompt": "Hand-drawn illustration in soft pastel colors, cozy and warm style. Soft watercolor texture, gentle hand-painted lines, flat illustration. Palette: lavender, cream, sage green, blush pink. Calm, friendly, approachable, non-judgmental mood. No people, no faces, no text, no letters. Vertical 9:16 composition. An abstract brain made of soft pastel clouds with tiny sparks and gentle question marks floating around it, with small illustrated objects orbiting outside its edges as if waiting to be remembered.",
+        "imagePrompt": "Hand-drawn illustration in soft pastel colors, cozy and warm style. Soft watercolor texture, gentle hand-painted lines, flat illustration. Palette: lavender, cream, sage green, blush pink. Calm, friendly, approachable, non-judgmental mood. No people, no faces, no text, no letters. Vertical 9:16 composition. An abstract brain made of soft drifting clouds and tiny fading sparks, with gentle warm light radiating from its center, calm and non-judgmental in feeling.",
         "caption": ""
       },
       {
-        "tag": "window_light",
-        "imagePrompt": "Hand-drawn illustration in soft pastel colors, cozy and warm style. Soft watercolor texture, gentle hand-painted lines, flat illustration. Palette: lavender, cream, sage green, blush pink. Calm, friendly, approachable, non-judgmental mood. No people, no faces, no text, no letters. Vertical 9:16 composition. A soft warm window with morning light streaming in and a small mug on the sill, the light gentle and reassuring, casting a calm validating glow over the scene.",
+        "tag": "plant",
+        "imagePrompt": "Hand-drawn illustration in soft pastel colors, cozy and warm style. Soft watercolor texture, gentle hand-painted lines, flat illustration. Palette: lavender, cream, sage green, blush pink. Calm, friendly, approachable, non-judgmental mood. No people, no faces, no text, no letters. Vertical 9:16 composition. A single soft rounded potted plant on a windowsill with gentle morning light, warm and still, a quiet comforting scene.",
         "caption": ""
       }
     ],
-    "title": "ADHD Object Permanence: Out of Sight Out of Mind #Shorts",
-    "description": "If something is out of sight, your ADHD brain may genuinely stop registering it exists — that's object permanence, and it's a real neurological pattern, not a character flaw. From forgotten texts to keys hiding in plain sight, this is one of the most relatable ADHD experiences there is. Common in ADHD, completely valid, and now you have a name for it.\nFollow for daily ADHD content.",
+    "title": "ADHD Object Permanence: Out of Sight, Out of Mind #Shorts",
+    "description": "Object Permanence is a common ADHD pattern where your brain genuinely loses track of things it can't see — and it explains so much. From forgotten texts to missing keys in plain sight, this is your brain, not your character. Common in ADHD and finally worth understanding.\nFollow for daily ADHD content.",
     "tags": [
       "ADHD",
       "ADHD object permanence",
-      "ADHD tips",
-      "ADHD brain",
-      "ADHD awareness",
-      "neurodivergent",
-      "ADHD explained",
-      "ADHD relatable",
-      "ADHD education",
-      "dopamine ADHD",
       "ADHD patterns",
-      "bloom focus"
+      "ADHD brain",
+      "ADHD explained",
+      "ADHD tips",
+      "neurodivergent",
+      "ADHD awareness",
+      "ADHD education",
+      "ADHD relatable",
+      "dopamine ADHD",
+      "ADHD forgetfulness"
     ],
     "funnel": "follow",
     "shortType": "pattern",
@@ -258,41 +252,42 @@
     "options": [
       {
         "label": "The avalanche",
-        "imagePrompt": "Hand-drawn illustration in soft pastel colors, cozy and warm style. Soft watercolor texture, gentle hand-painted lines, flat illustration. Palette: lavender, cream, sage green, blush pink. Calm, friendly, approachable, non-judgmental mood. No people, no faces, no text, no letters. Vertical 9:16 composition. A cozy illustrated laptop screen glowing softly, with a towering overflowing stack of envelopes spilling out of the screen like a avalanche, envelopes scattered across a warm cream desk, a small wilting plant nearby, gentle chaos everywhere.",
-        "result": "You're drowning in volume - every unread message feels like a tiny emergency alarm."
+        "imagePrompt": "Hand-drawn illustration in soft pastel colors, cozy and warm style. Soft watercolor texture, gentle hand-painted lines, flat illustration. Palette: lavender, cream, sage green, blush pink. Calm, friendly, approachable, non-judgmental mood. No people, no faces, no text, no letters. Vertical 9:16 composition. A cozy illustrated email inbox icon overflowing with hundreds of stacked envelope shapes cascading out in a gentle avalanche, piling softly onto a pastel desk surface, envelopes in cream and lavender with small blush pink accents.",
+        "result": "Avoidance is your coping style - unseen stress still charges interest in your brain."
       },
       {
-        "label": "The one email",
-        "imagePrompt": "Hand-drawn illustration in soft pastel colors, cozy and warm style. Soft watercolor texture, gentle hand-painted lines, flat illustration. Palette: lavender, cream, sage green, blush pink. Calm, friendly, approachable, non-judgmental mood. No people, no faces, no text, no letters. Vertical 9:16 composition. A cozy illustrated laptop screen glowing softly on a tidy desk, showing a single solitary envelope sitting alone in a vast empty space, a small spotlight effect around it, a tiny wilted flower beside the laptop, the emptiness around it feeling weirdly ominous.",
-        "result": "One unanswered thing haunts you more than a thousand - your brain loops on the unfinished."
+        "label": "The one unread",
+        "imagePrompt": "Hand-drawn illustration in soft pastel colors, cozy and warm style. Soft watercolor texture, gentle hand-painted lines, flat illustration. Palette: lavender, cream, sage green, blush pink. Calm, friendly, approachable, non-judgmental mood. No people, no faces, no text, no letters. Vertical 9:16 composition. A single small envelope sitting alone on a wide empty pastel shelf, with a tiny bold dot badge above it glowing softly in blush pink, surrounded by lots of empty calm cream-colored space that somehow feels more tense than crowded.",
+        "result": "One unread haunts you more than a thousand - your brain treats it like an alarm that won't quit."
       },
       {
-        "label": "The bold names",
-        "imagePrompt": "Hand-drawn illustration in soft pastel colors, cozy and warm style. Soft watercolor texture, gentle hand-painted lines, flat illustration. Palette: lavender, cream, sage green, blush pink. Calm, friendly, approachable, non-judgmental mood. No people, no faces, no text, no letters. Vertical 9:16 composition. A cozy illustrated open notebook on a warm desk with a list of items, some with small bold star symbols beside them and some plain, a gentle glow highlighting the starred ones, a soft cup of tea nearby, the contrast between marked and unmarked items feeling quietly stressful.",
-        "result": "Urgency cues are your kryptonite - bold and flagged means your nervous system is already activated."
+        "label": "All flagged, none done",
+        "imagePrompt": "Hand-drawn illustration in soft pastel colors, cozy and warm style. Soft watercolor texture, gentle hand-painted lines, flat illustration. Palette: lavender, cream, sage green, blush pink. Calm, friendly, approachable, non-judgmental mood. No people, no faces, no text, no letters. Vertical 9:16 composition. A cozy illustrated pile of envelopes each tagged with a small soft sage green flag or ribbon bookmark, every single envelope flagged and stacked neatly but clearly untouched, the flags fluttering gently, a system that looks organized but has stalled completely.",
+        "result": "You have brilliant systems that work perfectly right up until they don't - classic ADHD intention loop."
       },
       {
-        "label": "All of them",
-        "imagePrompt": "Hand-drawn illustration in soft pastel colors, cozy and warm style. Soft watercolor texture, gentle hand-painted lines, flat illustration. Palette: lavender, cream, sage green, blush pink. Calm, friendly, approachable, non-judgmental mood. No people, no faces, no text, no letters. Vertical 9:16 composition. A cozy illustrated desk scene with multiple small laptops and tablets all open at once, each screen glowing with little envelope icons, a tangled mess of soft illustrated cables between them, a tiny overwhelmed succulent in the corner, the whole scene radiating gentle chaotic energy.",
-        "result": "You don't have an inbox problem - you have an ADHD nervous system that treats all input as urgent."
+        "label": "Already archived",
+        "imagePrompt": "Hand-drawn illustration in soft pastel colors, cozy and warm style. Soft watercolor texture, gentle hand-painted lines, flat illustration. Palette: lavender, cream, sage green, blush pink. Calm, friendly, approachable, non-judgmental mood. No people, no faces, no text, no letters. Vertical 9:16 composition. A clean empty inbox shelf with a single small open archive box beside it, all envelopes tucked neatly inside the box, the shelf surface bare and glowing in soft cream light, a little dusty label on the box, the whole scene radiating a slightly-too-tidy energy.",
+        "result": "Out of sight, out of mind is your survival strategy - and yes, some of those still needed replies."
       }
     ],
-    "introVoiceover": "Four inboxes. Pick the one that makes your stomach drop. Because your pick actually says something real about how your ADHD brain handles pressure - drop your answer below, let's see.",
-    "outroVoiceover": "None of these are bad - they are just your brain being a brain. Follow for daily ADHD content.",
+    "introVoiceover": "Four inboxes. Pick the one that makes your stomach drop fastest. Your choice actually says something real about how your ADHD brain handles stress - drop your answer in the comments.",
+    "outroVoiceover": "No wrong answers - just different ADHD brains doing their best. Follow for daily ADHD content.",
     "title": "Which inbox stresses you out most? (ADHD test) #Shorts",
-    "description": "Pick the inbox that makes you sweat - then watch as we reveal what each choice says about your ADHD brain, one option at a time. This one is uncomfortably accurate.\nFollow for daily ADHD content.",
+    "description": "Pick the inbox that makes you sweat - then watch as we reveal what each choice says about your ADHD brain, one at a time. The results might feel uncomfortably accurate.\nFollow for daily ADHD content.",
     "tags": [
       "ADHD",
       "ADHDtest",
       "ADHDawareness",
-      "ADHDbrain",
       "neurodivergent",
       "ADHDlife",
-      "focustips",
-      "ADHDtiktok",
       "bloomfocus",
-      "mentalhealthmatters",
-      "ADHDcommunity"
+      "ADHDbrain",
+      "executivefunction",
+      "ADHDtips",
+      "mentalhealth",
+      "ADHDcommunity",
+      "focustips"
     ],
     "funnel": "follow",
     "shortType": "quiztest",
@@ -303,68 +298,68 @@
   {
     "id": "SH_W25_06",
     "week": 25,
-    "voiceover": "Someone gives you mild feedback and your whole body floods with shame. That is not you being dramatic. That is rejection sensitive dysphoria, and it is one of the most painful hidden symptoms of ADHD. Here is the science. ADHD brains are wired differently around emotional regulation. The part of your brain that buffers emotional signals, the prefrontal cortex, has weaker connections to your limbic system. So when rejection hits, there is no filter. The pain arrives at full volume, instantly. It feels like the worst moment of your life, even if it was just a comment on your work. And here is what makes it harder: you cannot logic your way out of it in the moment because the emotional brain has already taken the wheel. So what actually helps? First, name it in real time. Say out loud, this is RSD, not reality. Second, give yourself twenty minutes before you respond or decide anything. The intensity will drop. Third, tell someone you trust about your RSD so they understand why you sometimes go quiet or spiral. You are not too sensitive. Your brain just has a louder alarm. Follow for daily ADHD content.",
+    "voiceover": "Someone gives you mild feedback and your whole body floods with shame. That's not being sensitive. That's rejection sensitive dysphoria. RSD is one of the most intense emotional experiences tied to ADHD, and almost nobody talks about it. Here's the science: ADHD brains have dysregulated dopamine and norepinephrine, the chemicals that manage emotional signaling. So when rejection, or even the hint of it, hits your brain, it doesn't land like a nudge. It lands like a shockwave. The pain is real, it's neurological, and it is not a character flaw. RSD can make you avoid asking for help, quit things before anyone can judge you, or replay one comment for three days straight. So what actually helps? First, name it in the moment. Saying 'this is RSD, not reality' interrupts the spiral. Second, delay your response by ten minutes. The flood passes faster than it feels like it will. Third, build one safe relationship where honesty feels okay. Your nervous system learns safety slowly, but it does learn. Follow for daily ADHD content.",
     "scenes": [
       {
         "tag": "sparks",
-        "imagePrompt": "Hand-drawn illustration in soft pastel colors, cozy and warm style. Soft watercolor texture, gentle hand-painted lines, flat illustration. Palette: lavender, cream, sage green, blush pink. Calm, friendly, approachable, non-judgmental mood. No people, no faces, no text, no letters. Vertical 9:16 composition. A burst of soft electric sparks and gentle ripple waves radiating outward from a central point, suggesting a sudden overwhelming emotional wave.",
+        "imagePrompt": "Hand-drawn illustration in soft pastel colors, cozy and warm style. Soft watercolor texture, gentle hand-painted lines, flat illustration. Palette: lavender, cream, sage green, blush pink. Calm, friendly, approachable, non-judgmental mood. No people, no faces, no text, no letters. Vertical 9:16 composition. Abstract burst of small electric sparks and soft light rings radiating outward from a glowing center, suggesting an overwhelming surge of feeling.",
         "caption": ""
       },
       {
         "tag": "brain",
-        "imagePrompt": "Hand-drawn illustration in soft pastel colors, cozy and warm style. Soft watercolor texture, gentle hand-painted lines, flat illustration. Palette: lavender, cream, sage green, blush pink. Calm, friendly, approachable, non-judgmental mood. No people, no faces, no text, no letters. Vertical 9:16 composition. An abstract brain made of soft clouds and gentle sparks, with two regions shown connected by a thin fragile thread, suggesting a weak neural bridge.",
+        "imagePrompt": "Hand-drawn illustration in soft pastel colors, cozy and warm style. Soft watercolor texture, gentle hand-painted lines, flat illustration. Palette: lavender, cream, sage green, blush pink. Calm, friendly, approachable, non-judgmental mood. No people, no faces, no text, no letters. Vertical 9:16 composition. An abstract brain made of soft clouds and gentle sparks, with small lightning-like lines flickering inside its folds.",
+        "caption": ""
+      },
+      {
+        "tag": "brain",
+        "imagePrompt": "Hand-drawn illustration in soft pastel colors, cozy and warm style. Soft watercolor texture, gentle hand-painted lines, flat illustration. Palette: lavender, cream, sage green, blush pink. Calm, friendly, approachable, non-judgmental mood. No people, no faces, no text, no letters. Vertical 9:16 composition. An abstract brain made of soft clouds and gentle sparks, with two small glowing nodes inside connected by a faint wavering line, suggesting chemical signaling.",
         "caption": ""
       },
       {
         "tag": "sparks",
-        "imagePrompt": "Hand-drawn illustration in soft pastel colors, cozy and warm style. Soft watercolor texture, gentle hand-painted lines, flat illustration. Palette: lavender, cream, sage green, blush pink. Calm, friendly, approachable, non-judgmental mood. No people, no faces, no text, no letters. Vertical 9:16 composition. A burst of soft electric sparks and gentle ripple waves radiating outward from a central point, suggesting a sudden overwhelming emotional wave, slightly larger and more intense than before.",
-        "caption": ""
-      },
-      {
-        "tag": "brain",
-        "imagePrompt": "Hand-drawn illustration in soft pastel colors, cozy and warm style. Soft watercolor texture, gentle hand-painted lines, flat illustration. Palette: lavender, cream, sage green, blush pink. Calm, friendly, approachable, non-judgmental mood. No people, no faces, no text, no letters. Vertical 9:16 composition. An abstract brain of soft clouds and sparks with a small glowing alarm bell symbol inside, suggesting an oversensitive emotional alarm system.",
-        "caption": ""
-      },
-      {
-        "tag": "clock",
-        "imagePrompt": "Hand-drawn illustration in soft pastel colors, cozy and warm style. Soft watercolor texture, gentle hand-painted lines, flat illustration. Palette: lavender, cream, sage green, blush pink. Calm, friendly, approachable, non-judgmental mood. No people, no faces, no text, no letters. Vertical 9:16 composition. A soft surreal gently melting clock face sitting on a cozy shelf, suggesting a waiting period of twenty minutes passing slowly.",
-        "caption": ""
-      },
-      {
-        "tag": "journal",
-        "imagePrompt": "Hand-drawn illustration in soft pastel colors, cozy and warm style. Soft watercolor texture, gentle hand-painted lines, flat illustration. Palette: lavender, cream, sage green, blush pink. Calm, friendly, approachable, non-judgmental mood. No people, no faces, no text, no letters. Vertical 9:16 composition. A softly lit open journal with a gentle pen resting beside it on a cozy desk, suggesting the act of naming and writing down feelings.",
-        "caption": ""
-      },
-      {
-        "tag": "plant",
-        "imagePrompt": "Hand-drawn illustration in soft pastel colors, cozy and warm style. Soft watercolor texture, gentle hand-painted lines, flat illustration. Palette: lavender, cream, sage green, blush pink. Calm, friendly, approachable, non-judgmental mood. No people, no faces, no text, no letters. Vertical 9:16 composition. A small potted plant with soft round leaves sitting in warm window light, suggesting calm, groundedness, and recovery after an emotional wave.",
+        "imagePrompt": "Hand-drawn illustration in soft pastel colors, cozy and warm style. Soft watercolor texture, gentle hand-painted lines, flat illustration. Palette: lavender, cream, sage green, blush pink. Calm, friendly, approachable, non-judgmental mood. No people, no faces, no text, no letters. Vertical 9:16 composition. A wide ripple of concentric soft rings spreading from a single point, like a shockwave in still water, rendered in blush pink and lavender.",
         "caption": ""
       },
       {
         "tag": "window_light",
-        "imagePrompt": "Hand-drawn illustration in soft pastel colors, cozy and warm style. Soft watercolor texture, gentle hand-painted lines, flat illustration. Palette: lavender, cream, sage green, blush pink. Calm, friendly, approachable, non-judgmental mood. No people, no faces, no text, no letters. Vertical 9:16 composition. A window with soft morning light streaming through sheer curtains onto a cozy windowsill with a small mug, suggesting clarity and calm returning after intensity fades.",
+        "imagePrompt": "Hand-drawn illustration in soft pastel colors, cozy and warm style. Soft watercolor texture, gentle hand-painted lines, flat illustration. Palette: lavender, cream, sage green, blush pink. Calm, friendly, approachable, non-judgmental mood. No people, no faces, no text, no letters. Vertical 9:16 composition. A window with soft morning light coming through sheer curtains, a small mug resting on the sill, casting a gentle warm glow.",
         "caption": ""
       },
       {
-        "tag": "brain",
-        "imagePrompt": "Hand-drawn illustration in soft pastel colors, cozy and warm style. Soft watercolor texture, gentle hand-painted lines, flat illustration. Palette: lavender, cream, sage green, blush pink. Calm, friendly, approachable, non-judgmental mood. No people, no faces, no text, no letters. Vertical 9:16 composition. An abstract brain made of soft clouds and gentle sparks, now glowing warmly and steadily, suggesting understanding and self-compassion after learning about RSD.",
+        "tag": "journal",
+        "imagePrompt": "Hand-drawn illustration in soft pastel colors, cozy and warm style. Soft watercolor texture, gentle hand-painted lines, flat illustration. Palette: lavender, cream, sage green, blush pink. Calm, friendly, approachable, non-judgmental mood. No people, no faces, no text, no letters. Vertical 9:16 composition. An open journal on a soft surface with a pencil resting beside it, small abstract looping doodles on the page suggesting thoughts being sorted.",
+        "caption": ""
+      },
+      {
+        "tag": "clock",
+        "imagePrompt": "Hand-drawn illustration in soft pastel colors, cozy and warm style. Soft watercolor texture, gentle hand-painted lines, flat illustration. Palette: lavender, cream, sage green, blush pink. Calm, friendly, approachable, non-judgmental mood. No people, no faces, no text, no letters. Vertical 9:16 composition. A soft surreal melting clock with hands paused, surrounded by gentle floating dots suggesting the passage of a short waiting period.",
+        "caption": ""
+      },
+      {
+        "tag": "plant",
+        "imagePrompt": "Hand-drawn illustration in soft pastel colors, cozy and warm style. Soft watercolor texture, gentle hand-painted lines, flat illustration. Palette: lavender, cream, sage green, blush pink. Calm, friendly, approachable, non-judgmental mood. No people, no faces, no text, no letters. Vertical 9:16 composition. A small potted plant with soft rounded leaves, sitting in a warm patch of light, new tiny growth visible on one stem.",
+        "caption": ""
+      },
+      {
+        "tag": "cozy_room",
+        "imagePrompt": "Hand-drawn illustration in soft pastel colors, cozy and warm style. Soft watercolor texture, gentle hand-painted lines, flat illustration. Palette: lavender, cream, sage green, blush pink. Calm, friendly, approachable, non-judgmental mood. No people, no faces, no text, no letters. Vertical 9:16 composition. A gently messy cozy room with a soft blanket draped over a chair, a lamp glowing warmly, and a small plant in the corner, feeling safe and contained.",
         "caption": ""
       }
     ],
     "title": "Why Criticism Physically Hurts With ADHD #Shorts",
-    "description": "Rejection sensitive dysphoria is one of the most painful and least talked about symptoms of ADHD. If criticism hits you like a wave of total shame, this is the neuroscience behind why, and three things that actually help. Common in ADHD, and finally explainable.\nFollow for daily ADHD content.",
+    "description": "Rejection sensitive dysphoria is one of the most painful and least talked about parts of ADHD. Learn why criticism hits so hard neurologically and three concrete steps to interrupt the spiral. Common in ADHD, and completely real.\nFollow for daily ADHD content.",
     "tags": [
       "rejection sensitive dysphoria",
       "RSD ADHD",
-      "ADHD emotional regulation",
-      "ADHD feelings",
-      "ADHD symptoms",
+      "ADHD emotions",
+      "ADHD rejection",
       "ADHD brain",
       "ADHD education",
-      "neurodivergent",
       "ADHD tips",
+      "emotional dysregulation ADHD",
+      "dopamine ADHD",
+      "ADHD mental health",
       "ADHD awareness",
-      "adhd shorts",
       "bloom focus"
     ],
     "funnel": "follow",
