@@ -1,199 +1,241 @@
 [
   {
-    "id": "LF_W29_01",
-    "week": 29,
-    "title": "Executive Dysfunction Explained: The 7 Functions and ADHD",
-    "description": "Executive dysfunction is not laziness, bad attitude, or lack of effort. In this video, we break down all 7 executive functions, explain exactly what is happening in the ADHD brain for each one, and walk through why standard advice fails and what actually helps. If you have ever stared at a task for an hour and still could not start, this video is for you.\n\nChapters:",
+    "id": "LF_W25_01",
+    "week": 25,
+    "title": "ADHD Task Paralysis: Why It Happens and How to Break It",
+    "thumbnailText": "Why tasks feel IMPOSSIBLE",
+    "thumbnailAccent": "IMPOSSIBLE",
+    "description": "If you have ADHD and you've ever sat frozen in front of a task you desperately needed to do, this video explains exactly why that happens in your brain and gives you real, science-backed strategies to break through it. Task paralysis is not laziness, not a character flaw, and not something you can fix by just 'trying harder' — it has a neurological explanation. We cover dopamine, the prefrontal cortex, executive function deficits, and six concrete techniques that actually work for the ADHD brain. This is the complete guide you've been looking for.\n\nChapters:\n\nChapters:\n0:00 The Frozen Feeling Is Real\n1:18 What Task Paralysis Actually Is\n3:00 The Dopamine Problem\n4:47 Why Common Advice Fails\n6:27 Strategies That Actually Work\n8:23 Building a Brain-Friendly System\n\nundefined",
     "tags": [
-      "executive dysfunction ADHD",
-      "ADHD executive function",
-      "ADHD explained",
-      "ADHD brain science",
       "ADHD task paralysis",
-      "working memory ADHD",
-      "emotional regulation ADHD",
+      "ADHD paralysis",
+      "why I can't start tasks ADHD",
+      "ADHD executive function",
       "ADHD dopamine",
-      "prefrontal cortex ADHD",
+      "ADHD focus tips",
+      "task initiation ADHD",
       "ADHD productivity",
+      "ADHD strategies that work",
+      "ADHD brain explained",
+      "ADHD not laziness",
+      "how to break task paralysis",
       "ADHD education",
-      "what is executive dysfunction",
-      "ADHD daily life",
-      "ADHD strategies",
-      "bloom focus"
+      "neuroscience ADHD",
+      "ADHD daily life"
     ],
     "chapters": [
       {
-        "title": "You Are Not Lazy",
-        "voiceover": "It is Tuesday morning. The email has been sitting open in your browser for forty minutes. You have read the first line six times. You know it is not hard. You know it will take maybe four minutes to reply. And yet here you are, doing absolutely nothing, while a quiet voice in the back of your head calls you useless. That voice is wrong. And this video is going to prove it. What you are experiencing has a name. It is called executive dysfunction, and it is one of the most misunderstood features of the ADHD brain. Not a personality flaw. Not a moral failing. A neurological difference in how your brain regulates and initiates behavior. Today we are going to walk through all seven executive functions, what each one actually does, what is happening in your brain when ADHD disrupts it, and what kinds of strategies actually match the real problem. Not generic productivity advice. Not 'just break it into smaller steps.' Real, neuroscience-grounded explanations. By the end of this video you will understand your own brain in a way that most people, including a lot of clinicians, honestly do not. So let us start from the beginning.",
+        "title": "The Frozen Feeling Is Real",
+        "voiceover": "It is Tuesday morning. The email has been sitting open on your screen for forty minutes. You know exactly what you need to write. It is not a hard email. It is maybe six sentences. And yet — nothing. You are not distracted by something more interesting. You are not avoiding it because you do not care. You are just completely, utterly stuck. And somewhere in the back of your mind, a voice says: what is wrong with you? Here is what this video is going to do. It is going to answer that question — but not the way that voice means it. Because something is happening in your brain, something specific and neurological and well-documented, and it has a name: task paralysis. And once you understand what is actually going on under the hood, two things happen. First, the shame starts to loosen its grip. Second, you can actually do something about it. Over the next ten minutes, we are going to go deep. We will look at the real neuroscience — dopamine, the prefrontal cortex, how ADHD rewires the brain's motivation system. We will look at why the advice everyone gives you does not work. And we will walk through strategies that are specifically built for how your brain operates. Not hacks. Not hustle. Real tools. Stay with this — it is worth it.",
         "scenes": [
           {
+            "tag": "desk_messy",
             "caption": "",
-            "imagePrompt": "Hand-drawn illustration in soft pastel colors, cozy and warm style. Soft watercolor texture, gentle hand-painted lines, flat illustration. Palette: lavender, cream, sage green, blush pink. Calm, friendly, approachable, non-judgmental mood. No people, no faces, no text, no letters. Wide landscape 16:9 composition. A cozy desk with a warm coffee mug, an open notebook, and soft morning light spilling across it.",
+            "imagePrompt": "Hand-drawn illustration in soft pastel colors, cozy and warm style. Soft watercolor texture, gentle hand-painted lines, flat illustration. Palette: lavender, cream, sage green, blush pink. Calm, friendly, approachable, non-judgmental mood. No people, no faces, no text, no letters. Wide landscape 16:9 composition. A gently messy cozy desk with an open notebook, scattered papers, and a half-finished cup of coffee in soft morning light.",
             "seconds": 0
           },
           {
+            "tag": "clock",
             "caption": "",
-            "imagePrompt": "Hand-drawn illustration in soft pastel colors, cozy and warm style. Soft watercolor texture, gentle hand-painted lines, flat illustration. Palette: lavender, cream, sage green, blush pink. Calm, friendly, approachable, non-judgmental mood. No people, no faces, no text, no letters. Wide landscape 16:9 composition. An abstract soft brain shape made of gentle watercolor clouds with tiny sparks floating around it.",
+            "imagePrompt": "Hand-drawn illustration in soft pastel colors, cozy and warm style. Soft watercolor texture, gentle hand-painted lines, flat illustration. Palette: lavender, cream, sage green, blush pink. Calm, friendly, approachable, non-judgmental mood. No people, no faces, no text, no letters. Wide landscape 16:9 composition. A soft surreal melting clock floating gently in a warm dreamy space, edges dissolving into watercolor mist.",
             "seconds": 0
           },
           {
+            "tag": "window_light",
             "caption": "",
-            "imagePrompt": "Hand-drawn illustration in soft pastel colors, cozy and warm style. Soft watercolor texture, gentle hand-painted lines, flat illustration. Palette: lavender, cream, sage green, blush pink. Calm, friendly, approachable, non-judgmental mood. No people, no faces, no text, no letters. Wide landscape 16:9 composition. A gently messy cozy room with soft cushions, a half-open book, and warm lamp light.",
+            "imagePrompt": "Hand-drawn illustration in soft pastel colors, cozy and warm style. Soft watercolor texture, gentle hand-painted lines, flat illustration. Palette: lavender, cream, sage green, blush pink. Calm, friendly, approachable, non-judgmental mood. No people, no faces, no text, no letters. Wide landscape 16:9 composition. A window with soft morning light streaming through sheer curtains, a small plant on the sill, gentle and still.",
             "seconds": 0
           },
           {
+            "tag": "brain",
             "caption": "",
-            "imagePrompt": "Hand-drawn illustration in soft pastel colors, cozy and warm style. Soft watercolor texture, gentle hand-painted lines, flat illustration. Palette: lavender, cream, sage green, blush pink. Calm, friendly, approachable, non-judgmental mood. No people, no faces, no text, no letters. Wide landscape 16:9 composition. A window with soft morning light filtering through sheer curtains onto a calm windowsill.",
+            "imagePrompt": "Hand-drawn illustration in soft pastel colors, cozy and warm style. Soft watercolor texture, gentle hand-painted lines, flat illustration. Palette: lavender, cream, sage green, blush pink. Calm, friendly, approachable, non-judgmental mood. No people, no faces, no text, no letters. Wide landscape 16:9 composition. An abstract brain made of soft pastel clouds and gentle sparks of light, floating serenely in a warm illustrated sky.",
             "seconds": 0
           }
         ]
       },
       {
-        "title": "What Executive Function Actually Is",
-        "voiceover": "The term executive function was coined by neuropsychologist Alexander Luria in the mid-twentieth century, and it refers to a set of mental processes that sit at the very top of your cognitive hierarchy. Think of them as the brain's management system. They do not do the work directly. They decide what work gets done, in what order, with how much effort, and when to stop. These functions are primarily coordinated by the prefrontal cortex, the large frontal region of the brain that is disproportionately affected in ADHD. Here is the key neurological fact: in ADHD, the prefrontal cortex is underactivated, not because it is damaged, but because it is not receiving sufficient dopamine and norepinephrine signals to function at full capacity. Dopamine in this context is not just the pleasure chemical the internet loves to talk about. It is a critical signal that tells your prefrontal cortex that something matters, that it is worth sustained effort. Without adequate dopamine tone, the prefrontal cortex essentially idles. And when your management system idles, seven very specific things start to break down. Researchers including Russell Barkley have identified these seven functions as the core of what ADHD disrupts. We are going to go through each one. Understanding them individually is what separates 'I am broken' from 'I know exactly what is happening and why.'",
+        "title": "What Task Paralysis Actually Is",
+        "voiceover": "Task paralysis is not procrastination, though they can look identical from the outside. Procrastination is a choice — a delay, often driven by avoiding discomfort. Task paralysis is a failure of initiation. The engine will not turn over. You can want to do the task, intend to do the task, feel urgently stressed about the task — and still not be able to start it. That gap, between intention and action, is the hallmark of ADHD executive dysfunction. Think of executive function as the brain's project manager — the system that takes a goal and converts it into a sequence of actions. For most people, that system runs quietly in the background. For ADHD brains, that system is unreliable, especially for tasks that are not immediately rewarding, novel, or urgent. And here is something important: this is not a discipline problem. Studies using brain imaging show that people with ADHD have measurably lower activation in the prefrontal cortex during task initiation compared to neurotypical controls. The circuitry responsible for translating 'I should do this' into 'I am doing this' is genuinely underactive. So when you sit frozen in front of that email, you are not failing at effort. You are experiencing a real neurological bottleneck. The task is waiting at a gate that your brain, right now, cannot reliably open on willpower alone. Understanding this distinction — paralysis versus procrastination, neurology versus character — is not an excuse. It is the starting point for finding the right tools.",
         "scenes": [
           {
+            "tag": "brain",
             "caption": "",
-            "imagePrompt": "Hand-drawn illustration in soft pastel colors, cozy and warm style. Soft watercolor texture, gentle hand-painted lines, flat illustration. Palette: lavender, cream, sage green, blush pink. Calm, friendly, approachable, non-judgmental mood. No people, no faces, no text, no letters. Wide landscape 16:9 composition. An abstract soft brain shape made of gentle watercolor clouds with tiny sparks floating around it.",
+            "imagePrompt": "Hand-drawn illustration in soft pastel colors, cozy and warm style. Soft watercolor texture, gentle hand-painted lines, flat illustration. Palette: lavender, cream, sage green, blush pink. Calm, friendly, approachable, non-judgmental mood. No people, no faces, no text, no letters. Wide landscape 16:9 composition. An abstract brain made of soft pastel clouds and gentle sparks of light, floating serenely in a warm illustrated sky.",
             "seconds": 0
           },
           {
+            "tag": "path",
             "caption": "",
-            "imagePrompt": "Hand-drawn illustration in soft pastel colors, cozy and warm style. Soft watercolor texture, gentle hand-painted lines, flat illustration. Palette: lavender, cream, sage green, blush pink. Calm, friendly, approachable, non-judgmental mood. No people, no faces, no text, no letters. Wide landscape 16:9 composition. Stacked books of different heights arranged neatly on a soft pastel shelf with gentle shadows.",
+            "imagePrompt": "Hand-drawn illustration in soft pastel colors, cozy and warm style. Soft watercolor texture, gentle hand-painted lines, flat illustration. Palette: lavender, cream, sage green, blush pink. Calm, friendly, approachable, non-judgmental mood. No people, no faces, no text, no letters. Wide landscape 16:9 composition. A winding gentle path through a soft illustrated landscape, curving into a warm misty horizon with small plants along the edges.",
             "seconds": 0
           },
           {
+            "tag": "desk_empty",
             "caption": "",
-            "imagePrompt": "Hand-drawn illustration in soft pastel colors, cozy and warm style. Soft watercolor texture, gentle hand-painted lines, flat illustration. Palette: lavender, cream, sage green, blush pink. Calm, friendly, approachable, non-judgmental mood. No people, no faces, no text, no letters. Wide landscape 16:9 composition. A winding soft path through a gentle illustrated landscape of rolling hills and soft light.",
+            "imagePrompt": "Hand-drawn illustration in soft pastel colors, cozy and warm style. Soft watercolor texture, gentle hand-painted lines, flat illustration. Palette: lavender, cream, sage green, blush pink. Calm, friendly, approachable, non-judgmental mood. No people, no faces, no text, no letters. Wide landscape 16:9 composition. A clean empty desk in soft warm light, completely bare surface, a single lamp glowing gently in the corner.",
             "seconds": 0
           },
           {
+            "tag": "sparks",
             "caption": "",
-            "imagePrompt": "Hand-drawn illustration in soft pastel colors, cozy and warm style. Soft watercolor texture, gentle hand-painted lines, flat illustration. Palette: lavender, cream, sage green, blush pink. Calm, friendly, approachable, non-judgmental mood. No people, no faces, no text, no letters. Wide landscape 16:9 composition. A single cozy armchair beside a small side table with a warm glowing lamp.",
+            "imagePrompt": "Hand-drawn illustration in soft pastel colors, cozy and warm style. Soft watercolor texture, gentle hand-painted lines, flat illustration. Palette: lavender, cream, sage green, blush pink. Calm, friendly, approachable, non-judgmental mood. No people, no faces, no text, no letters. Wide landscape 16:9 composition. Soft abstract sparks and gentle glowing nodes connected by fine illustrated lines, floating in a warm pastel space suggesting neural pathways.",
+            "seconds": 0
+          },
+          {
+            "tag": "clock",
+            "caption": "",
+            "imagePrompt": "Hand-drawn illustration in soft pastel colors, cozy and warm style. Soft watercolor texture, gentle hand-painted lines, flat illustration. Palette: lavender, cream, sage green, blush pink. Calm, friendly, approachable, non-judgmental mood. No people, no faces, no text, no letters. Wide landscape 16:9 composition. A soft surreal melting clock floating gently in a warm dreamy space, edges dissolving into watercolor mist.",
             "seconds": 0
           }
         ]
       },
       {
-        "title": "Functions 1 and 2: Working Memory and Inhibition",
-        "voiceover": "Function one is working memory. This is your brain's mental whiteboard, the place where you hold information actively while you use it. You walk into a room to get something. By the time you get there, it is gone. You start a sentence and lose the point mid-way through. You forget what you just read four seconds ago. This is not forgetfulness in the traditional sense. It is a working memory system that drops information faster than it can be used. In the ADHD brain, reduced dopamine signaling in the prefrontal cortex means the whiteboard essentially keeps erasing itself. The practical fix that actually works: externalize everything. The goal is not to remember harder. The goal is to never rely on memory at all. Write the thing the second you think it. Say it out loud so you hear it twice. Put the object where the action is. If you need to take your medication with breakfast, put the bottle next to the coffee machine. Memory lives in the environment, not in the brain. Function two is inhibition, and this one is at the absolute core of ADHD. Inhibition is your ability to pause before acting, to suppress an impulse or an irrelevant thought long enough to make a deliberate choice. Low inhibitory control does not mean you have no self-control. It means the brake system activates too slowly. You say the thing before you thought it through. You click away from the task. You interrupt without meaning to. The gap between impulse and action, where everyone else makes decisions, is just narrower for ADHD brains. This is structural. This is dopamine. This is not who you are.",
+        "title": "The Dopamine Problem",
+        "voiceover": "Here is where we need to talk about dopamine — because almost everything said about dopamine online is either oversimplified or wrong, and getting this right actually changes how you approach the problem. Dopamine is not a happiness chemical. It is fundamentally a signal about anticipated reward. When your brain predicts that an action will lead to something meaningful — a result, a feeling, recognition, relief — dopamine motivates you to move toward it. It is the neurological bridge between 'this matters' and 'I am doing it.' Research consistently shows that ADHD brains have differences in dopamine availability and in the density of dopamine receptors, particularly in the circuits connecting the prefrontal cortex to the reward and motivation centers deeper in the brain. The practical consequence of this is significant. For a neurotypical brain, 'I need to send this email so the project moves forward' generates enough of a dopamine signal to initiate action. For an ADHD brain, that same future-oriented, abstract reward often does not generate a strong enough signal. The prefrontal cortex says: this matters. But the motivation system says: I am not feeling it yet. This is why urgency works so well for ADHD — a deadline creates immediate, concrete, high-stakes pressure that finally generates enough signal to move. It is not that you can only work under pressure because you are dramatic or disorganized. It is that urgency is one of the few things that reliably bridges the dopamine gap. But urgency-dependent functioning is exhausting, and it fails for tasks without natural deadlines. So the real question is: can you engineer that signal artificially? And the answer is yes.",
         "scenes": [
           {
+            "tag": "brain",
             "caption": "",
-            "imagePrompt": "Hand-drawn illustration in soft pastel colors, cozy and warm style. Soft watercolor texture, gentle hand-painted lines, flat illustration. Palette: lavender, cream, sage green, blush pink. Calm, friendly, approachable, non-judgmental mood. No people, no faces, no text, no letters. Wide landscape 16:9 composition. A cozy desk with a warm coffee mug, an open notebook, and soft morning light spilling across it.",
+            "imagePrompt": "Hand-drawn illustration in soft pastel colors, cozy and warm style. Soft watercolor texture, gentle hand-painted lines, flat illustration. Palette: lavender, cream, sage green, blush pink. Calm, friendly, approachable, non-judgmental mood. No people, no faces, no text, no letters. Wide landscape 16:9 composition. An abstract brain made of soft pastel clouds and gentle sparks of light, floating serenely in a warm illustrated sky.",
             "seconds": 0
           },
           {
+            "tag": "sparks",
             "caption": "",
-            "imagePrompt": "Hand-drawn illustration in soft pastel colors, cozy and warm style. Soft watercolor texture, gentle hand-painted lines, flat illustration. Palette: lavender, cream, sage green, blush pink. Calm, friendly, approachable, non-judgmental mood. No people, no faces, no text, no letters. Wide landscape 16:9 composition. An abstract soft brain shape made of gentle watercolor clouds with tiny sparks floating around it.",
+            "imagePrompt": "Hand-drawn illustration in soft pastel colors, cozy and warm style. Soft watercolor texture, gentle hand-painted lines, flat illustration. Palette: lavender, cream, sage green, blush pink. Calm, friendly, approachable, non-judgmental mood. No people, no faces, no text, no letters. Wide landscape 16:9 composition. Soft abstract sparks and gentle glowing nodes connected by fine illustrated lines, floating in a warm pastel space suggesting neural pathways.",
             "seconds": 0
           },
           {
+            "tag": "coffee",
             "caption": "",
-            "imagePrompt": "Hand-drawn illustration in soft pastel colors, cozy and warm style. Soft watercolor texture, gentle hand-painted lines, flat illustration. Palette: lavender, cream, sage green, blush pink. Calm, friendly, approachable, non-judgmental mood. No people, no faces, no text, no letters. Wide landscape 16:9 composition. A small illustrated notepad and pen on a soft pastel surface with a gentle shadow.",
+            "imagePrompt": "Hand-drawn illustration in soft pastel colors, cozy and warm style. Soft watercolor texture, gentle hand-painted lines, flat illustration. Palette: lavender, cream, sage green, blush pink. Calm, friendly, approachable, non-judgmental mood. No people, no faces, no text, no letters. Wide landscape 16:9 composition. A single warm coffee cup on a cozy surface, steam rising gently in soft curling wisps, surrounded by quiet warmth.",
             "seconds": 0
           },
           {
+            "tag": "clock",
             "caption": "",
-            "imagePrompt": "Hand-drawn illustration in soft pastel colors, cozy and warm style. Soft watercolor texture, gentle hand-painted lines, flat illustration. Palette: lavender, cream, sage green, blush pink. Calm, friendly, approachable, non-judgmental mood. No people, no faces, no text, no letters. Wide landscape 16:9 composition. A soft surreal melting clock shape in watercolor tones of lavender and blush, gentle and abstract.",
+            "imagePrompt": "Hand-drawn illustration in soft pastel colors, cozy and warm style. Soft watercolor texture, gentle hand-painted lines, flat illustration. Palette: lavender, cream, sage green, blush pink. Calm, friendly, approachable, non-judgmental mood. No people, no faces, no text, no letters. Wide landscape 16:9 composition. A soft surreal melting clock floating gently in a warm dreamy space, edges dissolving into watercolor mist.",
             "seconds": 0
           },
           {
+            "tag": "window_light",
             "caption": "",
-            "imagePrompt": "Hand-drawn illustration in soft pastel colors, cozy and warm style. Soft watercolor texture, gentle hand-painted lines, flat illustration. Palette: lavender, cream, sage green, blush pink. Calm, friendly, approachable, non-judgmental mood. No people, no faces, no text, no letters. Wide landscape 16:9 composition. A gently messy cozy room with soft cushions, a half-open book, and warm lamp light.",
+            "imagePrompt": "Hand-drawn illustration in soft pastel colors, cozy and warm style. Soft watercolor texture, gentle hand-painted lines, flat illustration. Palette: lavender, cream, sage green, blush pink. Calm, friendly, approachable, non-judgmental mood. No people, no faces, no text, no letters. Wide landscape 16:9 composition. A window with soft morning light streaming through sheer curtains, a small plant on the sill, gentle and still.",
             "seconds": 0
           }
         ]
       },
       {
-        "title": "Functions 3, 4 and 5: Emotional Regulation, Shifting and Planning",
-        "voiceover": "Function three is emotional regulation, and this one is criminally underrepresented in most ADHD conversations. The ADHD brain does not just have trouble regulating attention. It has trouble regulating emotional intensity. Rejection, frustration, excitement, even a mildly harsh email can hit with a force that feels completely disproportionate. This is called emotional impulsivity, and it connects directly to inhibition. When the braking system is slow, emotions do not get modulated before they land. They arrive at full volume. This is why ADHD burnout happens. The emotional load is just higher, constantly. Knowing this does not make it disappear, but it does mean you can stop spending energy wondering why you react so strongly and start spending it on regulation tools, physical ones: slow exhale before responding, cold water, movement to discharge the spike. Function four is cognitive flexibility, or shifting. This is your ability to transition between tasks, ideas, or mental sets. When this is impaired, transitions feel like being wrenched out of something. Switching from work to a meeting, from one tab to another, from a task you chose to a task someone asks you to do, all of these create real neurological friction. It is not stubbornness. The brain is mid-process and lacks the dopamine signal to smoothly disengage. Transition cues, small rituals that signal a shift is coming, help dramatically. A five-minute timer. Closing one physical thing before opening another. Function five is planning and organization, the ability to look at a future goal and construct the steps backward to now. For ADHD brains, the future is neurologically abstract. If it is not happening right now, it barely registers as real. This is why deadlines feel urgent only when they are immediate. It is not poor prioritization. It is a time perception deficit baked into the neurology.",
+        "title": "Why Common Advice Fails",
+        "voiceover": "Before we get to what works, we need to briefly talk about why most advice does not work — because if you have tried the standard productivity tips and felt like a failure when they did not stick, that failure was not yours. 'Just break it into smaller steps' is probably the most common piece of advice given to people with ADHD. And structurally, it is not wrong — smaller steps genuinely are easier to start. The problem is the word 'just.' Creating a task breakdown requires executive function. It requires your prefrontal cortex to plan ahead, sequence steps, and hold a mental model of the whole project — the exact capacities that are compromised when you are already in paralysis. Telling someone in task paralysis to break their task into steps is a little like telling someone with a broken leg to walk it off. The tool requires the very thing that is missing. 'Use a timer' is another one. The Pomodoro technique works beautifully for some ADHD people — but it often fails at initiation. If you cannot start, a ticking timer adds time pressure, which for many ADHD brains adds anxiety rather than momentum, making the freeze worse. And perhaps most damaging: 'just do it for five minutes.' This advice assumes the barrier is duration. For task paralysis, the barrier is the moment of beginning — the first keystroke, the opening sentence, the uncapping of the pen. Duration is almost irrelevant. You could do it for five seconds if you could just get there. So what actually works is not about pushing harder through the wall. It is about changing the wall itself.",
         "scenes": [
           {
+            "tag": "journal",
             "caption": "",
-            "imagePrompt": "Hand-drawn illustration in soft pastel colors, cozy and warm style. Soft watercolor texture, gentle hand-painted lines, flat illustration. Palette: lavender, cream, sage green, blush pink. Calm, friendly, approachable, non-judgmental mood. No people, no faces, no text, no letters. Wide landscape 16:9 composition. A window with soft morning light filtering through sheer curtains onto a calm windowsill.",
+            "imagePrompt": "Hand-drawn illustration in soft pastel colors, cozy and warm style. Soft watercolor texture, gentle hand-painted lines, flat illustration. Palette: lavender, cream, sage green, blush pink. Calm, friendly, approachable, non-judgmental mood. No people, no faces, no text, no letters. Wide landscape 16:9 composition. An open journal on a cozy desk with a pen resting across the page, soft warm light falling across it gently.",
             "seconds": 0
           },
           {
+            "tag": "desk_messy",
             "caption": "",
-            "imagePrompt": "Hand-drawn illustration in soft pastel colors, cozy and warm style. Soft watercolor texture, gentle hand-painted lines, flat illustration. Palette: lavender, cream, sage green, blush pink. Calm, friendly, approachable, non-judgmental mood. No people, no faces, no text, no letters. Wide landscape 16:9 composition. An abstract soft brain shape made of gentle watercolor clouds with tiny sparks floating around it.",
+            "imagePrompt": "Hand-drawn illustration in soft pastel colors, cozy and warm style. Soft watercolor texture, gentle hand-painted lines, flat illustration. Palette: lavender, cream, sage green, blush pink. Calm, friendly, approachable, non-judgmental mood. No people, no faces, no text, no letters. Wide landscape 16:9 composition. A gently messy cozy desk with an open notebook, scattered papers, and a half-finished cup of coffee in soft morning light.",
             "seconds": 0
           },
           {
+            "tag": "clock",
             "caption": "",
-            "imagePrompt": "Hand-drawn illustration in soft pastel colors, cozy and warm style. Soft watercolor texture, gentle hand-painted lines, flat illustration. Palette: lavender, cream, sage green, blush pink. Calm, friendly, approachable, non-judgmental mood. No people, no faces, no text, no letters. Wide landscape 16:9 composition. A soft surreal melting clock shape in watercolor tones of lavender and blush, gentle and abstract.",
+            "imagePrompt": "Hand-drawn illustration in soft pastel colors, cozy and warm style. Soft watercolor texture, gentle hand-painted lines, flat illustration. Palette: lavender, cream, sage green, blush pink. Calm, friendly, approachable, non-judgmental mood. No people, no faces, no text, no letters. Wide landscape 16:9 composition. A soft surreal melting clock floating gently in a warm dreamy space, edges dissolving into watercolor mist.",
             "seconds": 0
           },
           {
+            "tag": "path",
             "caption": "",
-            "imagePrompt": "Hand-drawn illustration in soft pastel colors, cozy and warm style. Soft watercolor texture, gentle hand-painted lines, flat illustration. Palette: lavender, cream, sage green, blush pink. Calm, friendly, approachable, non-judgmental mood. No people, no faces, no text, no letters. Wide landscape 16:9 composition. A winding soft path through a gentle illustrated landscape of rolling hills and soft light.",
+            "imagePrompt": "Hand-drawn illustration in soft pastel colors, cozy and warm style. Soft watercolor texture, gentle hand-painted lines, flat illustration. Palette: lavender, cream, sage green, blush pink. Calm, friendly, approachable, non-judgmental mood. No people, no faces, no text, no letters. Wide landscape 16:9 composition. A winding gentle path through a soft illustrated landscape, curving into a warm misty horizon with small plants along the edges.",
             "seconds": 0
           },
           {
+            "tag": "books",
             "caption": "",
-            "imagePrompt": "Hand-drawn illustration in soft pastel colors, cozy and warm style. Soft watercolor texture, gentle hand-painted lines, flat illustration. Palette: lavender, cream, sage green, blush pink. Calm, friendly, approachable, non-judgmental mood. No people, no faces, no text, no letters. Wide landscape 16:9 composition. Stacked books of different heights arranged neatly on a soft pastel shelf with gentle shadows.",
+            "imagePrompt": "Hand-drawn illustration in soft pastel colors, cozy and warm style. Soft watercolor texture, gentle hand-painted lines, flat illustration. Palette: lavender, cream, sage green, blush pink. Calm, friendly, approachable, non-judgmental mood. No people, no faces, no text, no letters. Wide landscape 16:9 composition. A small stack of illustrated books in soft pastel covers, gently piled on a warm surface with a cozy lamp glowing nearby.",
             "seconds": 0
           }
         ]
       },
       {
-        "title": "Functions 6 and 7: Self-Monitoring and Task Initiation",
-        "voiceover": "Function six is self-monitoring, your brain's ability to observe itself in real time, to notice that you have drifted off task, that your tone shifted, that the plan is not working and needs adjusting. In ADHD, this metacognitive loop is delayed. You do not realize you have been scrolling for twenty minutes until you are thirty minutes in. You do not notice the meeting is going sideways until it already has. This is not obliviousness. It is a monitoring system that checks in less frequently. What helps: external checkpoints. Set a recurring timer that simply asks the question: what am I doing right now, is it what I intended? That external prompt does the job the internal system is not doing automatically. Function seven is task initiation, and this might be the one that causes the most shame. Because it looks, from the outside and from the inside, like you are just not doing it. But initiation is a completely separate function from motivation. You can fully want to do something, know you need to do it, feel the pressure of not doing it, and still be completely unable to start. Why? Because in the ADHD brain, the dopamine signal required to fire up the prefrontal cortex and begin sustained action is not generated by importance or intention. It is generated by novelty, urgency, interest, or challenge. This is Barkley's framework: ADHD brains run on a now-or-not-now system. If the task does not trigger a dopamine response, the start signal simply does not fire. The fix is not discipline. The fix is manufacturing the condition that generates the signal. Work somewhere new. Put on specific music only used for this task. Tell someone what you are about to do out loud. Race a timer for just ten minutes. You are not cheating. You are giving your brain the input it actually needs to function.",
+        "title": "Strategies That Actually Work",
+        "voiceover": "Let us go through what genuinely helps — and walk through each one specifically, not just name it. The first strategy is called the body double. This is one of the most well-supported interventions for ADHD initiation and it sounds almost too simple: work near another person. Not someone who helps you — just someone present. A friend working on their own thing, a library, a coffee shop, a virtual coworking session online. The presence of another person activates social awareness circuits in the brain, which generates just enough ambient stimulation and mild accountability to bridge the dopamine gap. It bypasses willpower entirely by changing the neurological environment. Try it before anything else. Second: pre-decide the micro-action. Not the task — the very first physical movement. Before you close your laptop tonight, write one sentence somewhere visible: 'Tomorrow at 9am I open the document and type one line.' That specific, tiny, concrete action script reduces the cognitive load of initiation to near zero. Your brain does not have to decide anything in the moment. It just executes the script. Third: temptation bundling. Pair the task with something genuinely enjoyable — a specific playlist you only allow during that task, your favorite drink, a candle you only light for work. This creates a conditioned dopamine association over time. Your brain starts to link the task context with a mild reward signal before the task even produces results. Fourth: the two-minute reset. If you have been frozen for more than ten minutes, physically change something — stand up, move to a different chair, go outside for sixty seconds, make a drink. Paralysis is partly a nervous system state, and a physical pattern interrupt can shift it. You are not wasting time. You are resetting the system.",
         "scenes": [
           {
+            "tag": "cozy_room",
             "caption": "",
-            "imagePrompt": "Hand-drawn illustration in soft pastel colors, cozy and warm style. Soft watercolor texture, gentle hand-painted lines, flat illustration. Palette: lavender, cream, sage green, blush pink. Calm, friendly, approachable, non-judgmental mood. No people, no faces, no text, no letters. Wide landscape 16:9 composition. A cozy desk with a warm coffee mug, an open notebook, and soft morning light spilling across it.",
+            "imagePrompt": "Hand-drawn illustration in soft pastel colors, cozy and warm style. Soft watercolor texture, gentle hand-painted lines, flat illustration. Palette: lavender, cream, sage green, blush pink. Calm, friendly, approachable, non-judgmental mood. No people, no faces, no text, no letters. Wide landscape 16:9 composition. A gently illustrated cozy room with a soft rug, warm lamp, bookshelves, and two small desks side by side in a peaceful companionable arrangement.",
             "seconds": 0
           },
           {
+            "tag": "journal",
             "caption": "",
-            "imagePrompt": "Hand-drawn illustration in soft pastel colors, cozy and warm style. Soft watercolor texture, gentle hand-painted lines, flat illustration. Palette: lavender, cream, sage green, blush pink. Calm, friendly, approachable, non-judgmental mood. No people, no faces, no text, no letters. Wide landscape 16:9 composition. An abstract soft brain shape made of gentle watercolor clouds with tiny sparks floating around it.",
+            "imagePrompt": "Hand-drawn illustration in soft pastel colors, cozy and warm style. Soft watercolor texture, gentle hand-painted lines, flat illustration. Palette: lavender, cream, sage green, blush pink. Calm, friendly, approachable, non-judgmental mood. No people, no faces, no text, no letters. Wide landscape 16:9 composition. An open journal on a cozy desk with a pen resting across the page, soft warm light falling across it gently.",
             "seconds": 0
           },
           {
+            "tag": "coffee",
             "caption": "",
-            "imagePrompt": "Hand-drawn illustration in soft pastel colors, cozy and warm style. Soft watercolor texture, gentle hand-painted lines, flat illustration. Palette: lavender, cream, sage green, blush pink. Calm, friendly, approachable, non-judgmental mood. No people, no faces, no text, no letters. Wide landscape 16:9 composition. A small illustrated timer or clock shape in soft watercolor on a calm pastel surface.",
+            "imagePrompt": "Hand-drawn illustration in soft pastel colors, cozy and warm style. Soft watercolor texture, gentle hand-painted lines, flat illustration. Palette: lavender, cream, sage green, blush pink. Calm, friendly, approachable, non-judgmental mood. No people, no faces, no text, no letters. Wide landscape 16:9 composition. A single warm coffee cup on a cozy surface, steam rising gently in soft curling wisps, surrounded by quiet warmth.",
             "seconds": 0
           },
           {
+            "tag": "chair",
             "caption": "",
-            "imagePrompt": "Hand-drawn illustration in soft pastel colors, cozy and warm style. Soft watercolor texture, gentle hand-painted lines, flat illustration. Palette: lavender, cream, sage green, blush pink. Calm, friendly, approachable, non-judgmental mood. No people, no faces, no text, no letters. Wide landscape 16:9 composition. A gently messy cozy room with soft cushions, a half-open book, and warm lamp light.",
+            "imagePrompt": "Hand-drawn illustration in soft pastel colors, cozy and warm style. Soft watercolor texture, gentle hand-painted lines, flat illustration. Palette: lavender, cream, sage green, blush pink. Calm, friendly, approachable, non-judgmental mood. No people, no faces, no text, no letters. Wide landscape 16:9 composition. A single illustrated armchair in a warm cozy corner, soft cushion, gentle lamp light nearby, inviting and still.",
             "seconds": 0
           },
           {
+            "tag": "plant",
             "caption": "",
-            "imagePrompt": "Hand-drawn illustration in soft pastel colors, cozy and warm style. Soft watercolor texture, gentle hand-painted lines, flat illustration. Palette: lavender, cream, sage green, blush pink. Calm, friendly, approachable, non-judgmental mood. No people, no faces, no text, no letters. Wide landscape 16:9 composition. A winding soft path through a gentle illustrated landscape of rolling hills and soft light.",
+            "imagePrompt": "Hand-drawn illustration in soft pastel colors, cozy and warm style. Soft watercolor texture, gentle hand-painted lines, flat illustration. Palette: lavender, cream, sage green, blush pink. Calm, friendly, approachable, non-judgmental mood. No people, no faces, no text, no letters. Wide landscape 16:9 composition. A small illustrated potted plant in a soft ceramic pot, sitting on a warm windowsill with gentle diffused daylight around it.",
+            "seconds": 0
+          },
+          {
+            "tag": "window_light",
+            "caption": "",
+            "imagePrompt": "Hand-drawn illustration in soft pastel colors, cozy and warm style. Soft watercolor texture, gentle hand-painted lines, flat illustration. Palette: lavender, cream, sage green, blush pink. Calm, friendly, approachable, non-judgmental mood. No people, no faces, no text, no letters. Wide landscape 16:9 composition. A window with soft morning light streaming through sheer curtains, a small plant on the sill, gentle and still.",
             "seconds": 0
           }
         ]
       },
       {
-        "title": "What This All Means for You",
-        "voiceover": "Here is what we just covered. Seven executive functions. Working memory, the whiteboard that keeps erasing. Inhibition, the brake that activates too slowly. Emotional regulation, the volume dial that goes to ten without warning. Cognitive flexibility, the painful friction of transitions. Planning, the future that feels neurologically invisible. Self-monitoring, the check-in that does not come automatically. And task initiation, the start signal that needs the right input to fire. Every single one of these is coordinated by the same prefrontal dopamine system that ADHD disrupts. Which means when you struggle with all of these at once, it is not because you have seven separate problems. It is because one underlying neurological difference ripples across seven domains of function. That is not seven reasons to feel bad about yourself. That is one explanation. And one explanation is something you can actually work with. The strategies that help are not the ones that ask you to be more disciplined. They are the ones that reshape your environment to compensate for what the brain is not doing automatically. Externalize memory. Manufacture initiation triggers. Build in transition cues. Create external monitoring checkpoints. Work with the dopamine system, not against it. You have probably spent years trying to fix your character. This video is an invitation to stop doing that and start understanding your neurology instead. Because you were never the problem. Your brain just needed a different manual. If this helped, follow Bloom Focus for daily ADHD content that is always grounded in real science.",
+        "title": "Building a Brain-Friendly System",
+        "voiceover": "The strategies in the last chapter work best as isolated interventions — things to reach for when you are already stuck. But what you really want is a daily structure that reduces how often paralysis hits in the first place. That is what we are talking about now. The single most effective structural change for ADHD task initiation is reducing decision load before the day begins. Every time you sit down to work and ask yourself 'what should I do first?' you are demanding executive function on demand — and that is exactly when ADHD brains fail. The fix: the night before, you choose one task. Not a to-do list. One task. The task. You write down the specific first action of that task. And when you sit down tomorrow, the only question your brain has to answer is whether to follow the plan — not what the plan is. This is not a productivity hack. It is reducing the number of times your prefrontal cortex has to perform under pressure. Pair this with what researchers call an implementation intention — a simple if-then statement. 'When I sit at my desk with my coffee, I open the document.' This format has strong evidence behind it for improving follow-through specifically in populations with executive function challenges. It works because it offloads the decision into automatic behavior. Finally, be honest about your peak window. Most ADHD brains have one to three hours per day of genuinely reliable cognitive availability. Protecting that window for your most demanding initiation tasks — and using lower-demand time for admin, movement, and rest — is not laziness. It is intelligent resource management. You have not failed this week. You have been trying to use tools built for a different brain. Now you have better ones. Follow for daily ADHD content — we go this deep every time.",
         "scenes": [
           {
+            "tag": "calendar",
             "caption": "",
-            "imagePrompt": "Hand-drawn illustration in soft pastel colors, cozy and warm style. Soft watercolor texture, gentle hand-painted lines, flat illustration. Palette: lavender, cream, sage green, blush pink. Calm, friendly, approachable, non-judgmental mood. No people, no faces, no text, no letters. Wide landscape 16:9 composition. A window with soft morning light filtering through sheer curtains onto a calm windowsill.",
+            "imagePrompt": "Hand-drawn illustration in soft pastel colors, cozy and warm style. Soft watercolor texture, gentle hand-painted lines, flat illustration. Palette: lavender, cream, sage green, blush pink. Calm, friendly, approachable, non-judgmental mood. No people, no faces, no text, no letters. Wide landscape 16:9 composition. A softly illustrated open calendar or planner page with a single gentle mark on one square, surrounded by a warm cozy desk surface.",
             "seconds": 0
           },
           {
+            "tag": "lamp",
             "caption": "",
-            "imagePrompt": "Hand-drawn illustration in soft pastel colors, cozy and warm style. Soft watercolor texture, gentle hand-painted lines, flat illustration. Palette: lavender, cream, sage green, blush pink. Calm, friendly, approachable, non-judgmental mood. No people, no faces, no text, no letters. Wide landscape 16:9 composition. An abstract soft brain shape made of gentle watercolor clouds with tiny sparks floating around it.",
+            "imagePrompt": "Hand-drawn illustration in soft pastel colors, cozy and warm style. Soft watercolor texture, gentle hand-painted lines, flat illustration. Palette: lavender, cream, sage green, blush pink. Calm, friendly, approachable, non-judgmental mood. No people, no faces, no text, no letters. Wide landscape 16:9 composition. A single soft glowing desk lamp casting warm illustrated light across a cozy surface in a dim quiet room.",
             "seconds": 0
           },
           {
+            "tag": "journal",
             "caption": "",
-            "imagePrompt": "Hand-drawn illustration in soft pastel colors, cozy and warm style. Soft watercolor texture, gentle hand-painted lines, flat illustration. Palette: lavender, cream, sage green, blush pink. Calm, friendly, approachable, non-judgmental mood. No people, no faces, no text, no letters. Wide landscape 16:9 composition. Stacked books of different heights arranged neatly on a soft pastel shelf with gentle shadows.",
+            "imagePrompt": "Hand-drawn illustration in soft pastel colors, cozy and warm style. Soft watercolor texture, gentle hand-painted lines, flat illustration. Palette: lavender, cream, sage green, blush pink. Calm, friendly, approachable, non-judgmental mood. No people, no faces, no text, no letters. Wide landscape 16:9 composition. An open journal on a cozy desk with a pen resting across the page, soft warm light falling across it gently.",
             "seconds": 0
           },
           {
+            "tag": "sky",
             "caption": "",
-            "imagePrompt": "Hand-drawn illustration in soft pastel colors, cozy and warm style. Soft watercolor texture, gentle hand-painted lines, flat illustration. Palette: lavender, cream, sage green, blush pink. Calm, friendly, approachable, non-judgmental mood. No people, no faces, no text, no letters. Wide landscape 16:9 composition. A single cozy armchair beside a small side table with a warm glowing lamp.",
+            "imagePrompt": "Hand-drawn illustration in soft pastel colors, cozy and warm style. Soft watercolor texture, gentle hand-painted lines, flat illustration. Palette: lavender, cream, sage green, blush pink. Calm, friendly, approachable, non-judgmental mood. No people, no faces, no text, no letters. Wide landscape 16:9 composition. A soft illustrated sky at gentle dusk with watercolor clouds in lavender and blush, a calm open horizon, peaceful and warm.",
             "seconds": 0
           },
           {
+            "tag": "path",
             "caption": "",
-            "imagePrompt": "Hand-drawn illustration in soft pastel colors, cozy and warm style. Soft watercolor texture, gentle hand-painted lines, flat illustration. Palette: lavender, cream, sage green, blush pink. Calm, friendly, approachable, non-judgmental mood. No people, no faces, no text, no letters. Wide landscape 16:9 composition. A winding soft path through a gentle illustrated landscape of rolling hills and soft light, bathed in warm golden light.",
+            "imagePrompt": "Hand-drawn illustration in soft pastel colors, cozy and warm style. Soft watercolor texture, gentle hand-painted lines, flat illustration. Palette: lavender, cream, sage green, blush pink. Calm, friendly, approachable, non-judgmental mood. No people, no faces, no text, no letters. Wide landscape 16:9 composition. A winding gentle path through a soft illustrated landscape, curving into a warm misty horizon with small plants along the edges.",
             "seconds": 0
           }
         ]
@@ -201,7 +243,9 @@
     ],
     "funnel": "follow",
     "status": "pending",
-    "videoUrl": null,
-    "postedAt": null
+    "videoUrl": "https://raw.githubusercontent.com/dianahohol97-max/content/main/output/longform/week_25/LF_W25_01.mp4",
+    "postedAt": null,
+    "durationSec": 614,
+    "thumbnailUrl": "https://raw.githubusercontent.com/dianahohol97-max/content/main/output/longform/week_25/LF_W25_01_thumb.jpg"
   }
 ]
