@@ -42,6 +42,12 @@
     "url": "https://raw.githubusercontent.com/dianahohol97-max/content/main/output/library/vertical/brain_5.png"
   },
   {
+    "id": "vertical_calendar_1.png",
+    "aspect": "vertical",
+    "filename": "calendar_1.png",
+    "url": "https://raw.githubusercontent.com/dianahohol97-max/content/main/output/library/vertical/calendar_1.png"
+  },
+  {
     "id": "vertical_clock_1.png",
     "aspect": "vertical",
     "filename": "clock_1.png",
@@ -84,6 +90,24 @@
     "url": "https://raw.githubusercontent.com/dianahohol97-max/content/main/output/library/vertical/coffee_2.png"
   },
   {
+    "id": "vertical_coffee_3.png",
+    "aspect": "vertical",
+    "filename": "coffee_3.png",
+    "url": "https://raw.githubusercontent.com/dianahohol97-max/content/main/output/library/vertical/coffee_3.png"
+  },
+  {
+    "id": "vertical_coffee_4.png",
+    "aspect": "vertical",
+    "filename": "coffee_4.png",
+    "url": "https://raw.githubusercontent.com/dianahohol97-max/content/main/output/library/vertical/coffee_4.png"
+  },
+  {
+    "id": "vertical_coffee_5.png",
+    "aspect": "vertical",
+    "filename": "coffee_5.png",
+    "url": "https://raw.githubusercontent.com/dianahohol97-max/content/main/output/library/vertical/coffee_5.png"
+  },
+  {
     "id": "vertical_cozy_room_1.png",
     "aspect": "vertical",
     "filename": "cozy_room_1.png",
@@ -112,6 +136,12 @@
     "aspect": "vertical",
     "filename": "cozy_room_5.png",
     "url": "https://raw.githubusercontent.com/dianahohol97-max/content/main/output/library/vertical/cozy_room_5.png"
+  },
+  {
+    "id": "vertical_desk_empty_1.png",
+    "aspect": "vertical",
+    "filename": "desk_empty_1.png",
+    "url": "https://raw.githubusercontent.com/dianahohol97-max/content/main/output/library/vertical/desk_empty_1.png"
   },
   {
     "id": "vertical_desk_messy_1.png",
@@ -156,6 +186,18 @@
     "url": "https://raw.githubusercontent.com/dianahohol97-max/content/main/output/library/vertical/desk_tidy_2.png"
   },
   {
+    "id": "vertical_desk_tidy_3.png",
+    "aspect": "vertical",
+    "filename": "desk_tidy_3.png",
+    "url": "https://raw.githubusercontent.com/dianahohol97-max/content/main/output/library/vertical/desk_tidy_3.png"
+  },
+  {
+    "id": "vertical_desk_tidy_4.png",
+    "aspect": "vertical",
+    "filename": "desk_tidy_4.png",
+    "url": "https://raw.githubusercontent.com/dianahohol97-max/content/main/output/library/vertical/desk_tidy_4.png"
+  },
+  {
     "id": "vertical_journal_1.png",
     "aspect": "vertical",
     "filename": "journal_1.png",
@@ -190,6 +232,12 @@
     "aspect": "vertical",
     "filename": "lamp_1.png",
     "url": "https://raw.githubusercontent.com/dianahohol97-max/content/main/output/library/vertical/lamp_1.png"
+  },
+  {
+    "id": "vertical_path_1.png",
+    "aspect": "vertical",
+    "filename": "path_1.png",
+    "url": "https://raw.githubusercontent.com/dianahohol97-max/content/main/output/library/vertical/path_1.png"
   },
   {
     "id": "vertical_phone_1.png",
