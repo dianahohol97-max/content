@@ -1,0 +1,11 @@
+[2026-06-26T21:56:14.391Z] SH_W26_01 (educational)
+MESSAGE: Command failed: ffmpeg -y -f concat -safe 0 -i "scenes.txt" -i "voice.mp3" -filter_complex "[0:v]scale=1080:1920:force_original_aspect_ratio=increase,crop=1080:1920,fps=30,format=yuv420p,subtitles=subs.srt:force_style='Fontname=Arial,Fontsize=13,Bold=1,PrimaryColour=&H00FFFFFF,OutlineColour=&H803D2C6E,BorderStyle=1,Outline=3,Shadow=0,Alignment=2,MarginV=320,MarginL=90,MarginR=90'[v]" -map "[v]" -map 1:a -t 46.419591999999994 -c:v libx264 -preset veryfast -crf 23 -c:a aac -b:a 192k -pix_fmt yuv420p "/home/runner/work/content/content/output/shorts/week_26/SH_W26_01.mp4"
+STACK:
+Error: Command failed: ffmpeg -y -f concat -safe 0 -i "scenes.txt" -i "voice.mp3" -filter_complex "[0:v]scale=1080:1920:force_original_aspect_ratio=increase,crop=1080:1920,fps=30,format=yuv420p,subtitles=subs.srt:force_style='Fontname=Arial,Fontsize=13,Bold=1,PrimaryColour=&H00FFFFFF,OutlineColour=&H803D2C6E,BorderStyle=1,Outline=3,Shadow=0,Alignment=2,MarginV=320,MarginL=90,MarginR=90'[v]" -map "[v]" -map 1:a -t 46.419591999999994 -c:v libx264 -preset veryfast -crf 23 -c:a aac -b:a 192k -pix_fmt yuv420p "/home/runner/work/content/content/output/shorts/week_26/SH_W26_01.mp4"
+    at genericNodeError (node:internal/errors:984:15)
+    at wrappedFn (node:internal/errors:538:14)
+    at checkExecSyncError (node:child_process:891:11)
+    at execSync (node:child_process:963:15)
+    at buildVideo (file:///home/runner/work/content/content/bloom/shorts-build.js:408:3)
+    at main (file:///home/runner/work/content/content/bloom/shorts-build.js:558:9)
+============================================================
