@@ -2,8 +2,7 @@ name: bloom focus — YouTube Long-form
 
 on:
   schedule:
-    - cron: "0 3 * * 1"     # Monday 06:00 Kyiv — generate a batch of scripts + build first video
-    - cron: "0 3 */2 * *"   # every 2 days 06:00 Kyiv — build ONE more video from the queue
+    - cron: "0 3 */2 * *"   # every 2 days 06:00 Kyiv — generate 1 fresh video + build it
   workflow_dispatch:
     inputs:
       week:
@@ -47,22 +46,15 @@ jobs:
       - name: Resolve inputs (cron-safe defaults)
         id: cfg
         run: |
-          # - Monday cron (0 3 * * 1) => full: top up the script queue + build 1
-          # - every-2-days cron      => video-only: build 1 more from the queue
-          # - manual                 => use provided inputs
+          # Every run: generate 1 fresh video + build it (full mode).
+          # Cron fires every 2 days → one new long-form video every 2 days.
           if [ "${{ github.event_name }}" = "schedule" ]; then
-            if [ "${{ github.event.schedule }}" = "0 3 * * 1" ]; then
-              echo "mode=full" >> $GITHUB_OUTPUT
-            else
-              echo "mode=video-only" >> $GITHUB_OUTPUT
-            fi
-            echo "count=4"   >> $GITHUB_OUTPUT
+            echo "mode=full" >> $GITHUB_OUTPUT
             echo "limit=1"   >> $GITHUB_OUTPUT
             echo "voice=gemini" >> $GITHUB_OUTPUT
             echo "week=" >> $GITHUB_OUTPUT
           else
             echo "mode=${{ inputs.mode || 'full' }}" >> $GITHUB_OUTPUT
-            echo "count=${{ inputs.count || '4' }}" >> $GITHUB_OUTPUT
             echo "limit=${{ inputs.limit || '1' }}" >> $GITHUB_OUTPUT
             echo "voice=${{ inputs.voice_engine || 'gemini' }}" >> $GITHUB_OUTPUT
             echo "week=${{ inputs.week || '' }}" >> $GITHUB_OUTPUT
@@ -72,7 +64,7 @@ jobs:
         if: ${{ steps.cfg.outputs.mode == 'full' || steps.cfg.outputs.mode == 'script-only' }}
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
-        run: node bloom/longform-generator.js ${{ steps.cfg.outputs.week != '' && format('--week={0}', steps.cfg.outputs.week) || '' }} --count=${{ steps.cfg.outputs.count }}
+        run: node bloom/longform-generator.js ${{ steps.cfg.outputs.week != '' && format('--week={0}', steps.cfg.outputs.week) || '' }}
 
       - name: Build videos
         if: ${{ steps.cfg.outputs.mode == 'full' || steps.cfg.outputs.mode == 'video-only' }}
