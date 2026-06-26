@@ -219,7 +219,13 @@ async function main() {
   if (!ffmpegAvailable()) throw new Error("ffmpeg not found");
 
   let videos = loadVideos(WEEK);
-  if (LIMIT) videos = videos.slice(0, LIMIT);
+  // Build the next N videos that DON'T yet have a real videoUrl (so repeated
+  // runs progress through the queue instead of rebuilding the first ones).
+  if (LIMIT) {
+    const pending = videos.filter((v) => !(typeof v.videoUrl === "string" && v.videoUrl.startsWith("http")));
+    videos = pending.slice(0, LIMIT);
+    console.log(`   🎯 LIMIT=${LIMIT}: building ${videos.length} of ${pending.length} pending long-form videos`);
+  }
 
   const outDir = path.join(REPO_ROOT, `output/longform/week_${WEEK}`);
   fs.mkdirSync(outDir, { recursive: true });
@@ -376,6 +382,12 @@ async function main() {
   for (let i = 0; i < full.length; i++) if (byId[full[i].id]) full[i] = byId[full[i].id];
   fs.writeFileSync(path.join(REPO_ROOT, `longform_week_${WEEK}.json`), JSON.stringify(full, null, 2));
   fs.writeFileSync(path.join(REPO_ROOT, "longform_current.json"), JSON.stringify(full, null, 2));
+
+  // longform_ready.json — only videos with a real videoUrl that are not yet
+  // posted. Make.com reads this so it never has to filter null videoUrls.
+  const ready = full.filter((v) => typeof v.videoUrl === "string" && v.videoUrl.startsWith("http") && v.status !== "posted");
+  fs.writeFileSync(path.join(REPO_ROOT, "longform_ready.json"), JSON.stringify(ready, null, 2));
+  console.log(`   ✅ longform_ready.json: ${ready.length} videos ready to post`);
 
   console.log(`\n${"━".repeat(50)}\n✅ done ${done} · skipped ${skipped} · failed ${failed}`);
 }
