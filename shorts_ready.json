@@ -1,5 +1,68 @@
 [
   {
+    "id": "SH_W26_01",
+    "week": 26,
+    "voiceover": "You think you're lazy. You're not. These 8 things feel like personality flaws but they're actually ADHD. Forgetting a conversation you just had. Losing track of time and suddenly it's dark outside. Starting five tasks and finishing zero. Reading the same sentence four times. Saying yes then immediately dreading it. Feeling everything too intensely or nothing at all. Being exhausted by doing basically nothing. And hyperfocusing on one thing for six hours straight. None of that is a character flaw. It's your brain wired differently. Now you know. Follow for daily ADHD content.",
+    "scenes": [
+      {
+        "tag": "brain",
+        "imagePrompt": "Hand-drawn illustration in soft pastel colors, cozy and warm style. Soft watercolor texture, gentle hand-painted lines, flat illustration. Palette: lavender, cream, sage green, blush pink. Calm, friendly, approachable, non-judgmental mood. No people, no faces, no text, no letters. Vertical 9:16 composition. An abstract brain made of soft pastel clouds and tiny gentle sparks floating around it.",
+        "caption": ""
+      },
+      {
+        "tag": "cozy_room",
+        "imagePrompt": "Hand-drawn illustration in soft pastel colors, cozy and warm style. Soft watercolor texture, gentle hand-painted lines, flat illustration. Palette: lavender, cream, sage green, blush pink. Calm, friendly, approachable, non-judgmental mood. No people, no faces, no text, no letters. Vertical 9:16 composition. A gently messy cozy room with a soft blanket draped over a chair, a lamp glowing warmly, and small scattered items on the floor.",
+        "caption": ""
+      },
+      {
+        "tag": "clock",
+        "imagePrompt": "Hand-drawn illustration in soft pastel colors, cozy and warm style. Soft watercolor texture, gentle hand-painted lines, flat illustration. Palette: lavender, cream, sage green, blush pink. Calm, friendly, approachable, non-judgmental mood. No people, no faces, no text, no letters. Vertical 9:16 composition. A soft surreal melting clock with gentle pastel shadows dissolving at the edges into lavender mist.",
+        "caption": ""
+      },
+      {
+        "tag": "desk_messy",
+        "imagePrompt": "Hand-drawn illustration in soft pastel colors, cozy and warm style. Soft watercolor texture, gentle hand-painted lines, flat illustration. Palette: lavender, cream, sage green, blush pink. Calm, friendly, approachable, non-judgmental mood. No people, no faces, no text, no letters. Vertical 9:16 composition. A cozy messy desk with a coffee mug, open notebooks, scattered sticky notes, and a gentle warm lamp glowing softly.",
+        "caption": ""
+      },
+      {
+        "tag": "window_light",
+        "imagePrompt": "Hand-drawn illustration in soft pastel colors, cozy and warm style. Soft watercolor texture, gentle hand-painted lines, flat illustration. Palette: lavender, cream, sage green, blush pink. Calm, friendly, approachable, non-judgmental mood. No people, no faces, no text, no letters. Vertical 9:16 composition. A window with soft evening light fading to dark outside, a small mug resting on the sill, curtains gently drawn back.",
+        "caption": ""
+      },
+      {
+        "tag": "sparks",
+        "imagePrompt": "Hand-drawn illustration in soft pastel colors, cozy and warm style. Soft watercolor texture, gentle hand-painted lines, flat illustration. Palette: lavender, cream, sage green, blush pink. Calm, friendly, approachable, non-judgmental mood. No people, no faces, no text, no letters. Vertical 9:16 composition. A cluster of soft glowing sparks and tiny stars floating in gentle swirls against a warm cream background.",
+        "caption": ""
+      },
+      {
+        "tag": "brain",
+        "imagePrompt": "Hand-drawn illustration in soft pastel colors, cozy and warm style. Soft watercolor texture, gentle hand-painted lines, flat illustration. Palette: lavender, cream, sage green, blush pink. Calm, friendly, approachable, non-judgmental mood. No people, no faces, no text, no letters. Vertical 9:16 composition. An abstract brain made of soft pastel clouds and tiny gentle sparks floating around it.",
+        "caption": ""
+      }
+    ],
+    "title": "8 Things That Feel Normal But Are Actually ADHD #Shorts",
+    "description": "Think you're just lazy or forgetful? These 8 everyday experiences feel like personality flaws but are actually common signs of ADHD. From time blindness to emotional intensity, understanding your brain is the first step. Follow for daily ADHD content.",
+    "tags": [
+      "ADHD",
+      "ADHD symptoms",
+      "signs of ADHD",
+      "ADHD awareness",
+      "ADHD education",
+      "neurodivergent",
+      "ADHD brain",
+      "time blindness ADHD",
+      "ADHD explained",
+      "mental health shorts",
+      "ADHD tips",
+      "bloom focus"
+    ],
+    "funnel": "follow",
+    "shortType": "educational",
+    "status": "pending",
+    "videoUrl": "https://raw.githubusercontent.com/dianahohol97-max/content/main/output/shorts/week_26/SH_W26_01.mp4",
+    "postedAt": null
+  },
+  {
     "id": "SH_W26_05",
     "week": 26,
     "question": "Which inbox makes you sweat most?",
