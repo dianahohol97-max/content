@@ -353,7 +353,10 @@ function ffprobeDuration(file) {
 }
 
 function buildVideo(scenePaths, durations, voicePath, outPath, matchVoice = false, srtPath = null) {
-  const tmp = path.dirname(outPath);
+  // ffmpeg must run from the directory where the input files (scenes, voice,
+  // subs.srt, scenes.txt) actually live — that's the work dir, not the output
+  // dir. libass + concat reference these by bare filename, so cwd must match.
+  const tmp = path.dirname(scenePaths[0]);
   const hasMusic = fs.existsSync(MUSIC_PATH);
   const vf = `scale=${W}:${H}:force_original_aspect_ratio=increase,crop=${W}:${H},fps=30,format=yuv420p`;
 
