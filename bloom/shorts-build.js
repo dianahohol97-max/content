@@ -568,10 +568,6 @@ async function main() {
       failed++;
       console.log(`   ✗ FAILED ${short.id} (${short.shortType}): ${err.message}`);
       console.log(err.stack);
-      try {
-        const errLog = `[${new Date().toISOString()}] ${short.id} (${short.shortType})\nMESSAGE: ${err.message}\nSTACK:\n${err.stack}\n${"=".repeat(60)}\n`;
-        fs.appendFileSync(path.join(REPO_ROOT, "build-error.log"), errLog);
-      } catch (e) {}
     } finally {
       // Always clean the work dir (even on failure) so temp files never commit.
       const wd = path.join(outDir, `_work_${short.id}`);
