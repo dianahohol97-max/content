@@ -563,7 +563,8 @@ async function main() {
       done++;
     } catch (err) {
       failed++;
-      console.log(`   ✗ ${err.message}`);
+      console.log(`   ✗ FAILED ${short.id} (${short.shortType}): ${err.message}`);
+      console.log(err.stack);
     } finally {
       // Always clean the work dir (even on failure) so temp files never commit.
       const wd = path.join(outDir, `_work_${short.id}`);
