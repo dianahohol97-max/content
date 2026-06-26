@@ -137,16 +137,46 @@ Return ONLY a valid JSON array with ONE object, no markdown:
 
 async function main() {
   console.log(`\n🎥 bloom focus — Long-form generator — Week ${WEEK}\n${"━".repeat(50)}`);
-  const startIdx = ((WEEK - 1) * COUNT) % TOPICS.length;
-  const weekTopics = Array.from({ length: COUNT }, (_, i) => TOPICS[(startIdx + i) % TOPICS.length]);
 
-  const videos = [];
-  for (let i = 0; i < weekTopics.length; i++) {
-    console.log(`\n  [${i + 1}/${COUNT}] ${weekTopics[i]}`);
+  // ── Accumulate mode ──────────────────────────────────────────────────────
+  // Keep a rolling queue of pending (not-yet-built) scripts so a "build 1 every
+  // 2 days" cron always has something ready. We APPEND new scripts to the week
+  // file instead of overwriting it, continuing the id numbering, and only top
+  // up enough to keep TARGET_PENDING unbuilt videos in the queue.
+  const weekPath = path.join(REPO_ROOT, `longform_week_${WEEK}.json`);
+  let existing = [];
+  try {
+    if (fs.existsSync(weekPath)) existing = JSON.parse(fs.readFileSync(weekPath, "utf8"));
+    if (!Array.isArray(existing)) existing = [];
+  } catch { existing = []; }
+
+  // How many unbuilt (no videoUrl) scripts we want sitting ready at all times.
+  const TARGET_PENDING = args.target ? parseInt(args.target) : 4;
+  const pendingNow = existing.filter((v) => !(typeof v.videoUrl === "string" && v.videoUrl.startsWith("http"))).length;
+  const need = Math.max(0, TARGET_PENDING - pendingNow);
+  // COUNT caps how many we make in a single run (so one run never explodes the
+  // API bill). If the queue is already full (need=0) we generate nothing.
+  const toMake = Math.min(need, COUNT);
+
+  if (toMake === 0) {
+    console.log(`   queue already has ${pendingNow} pending scripts (target ${TARGET_PENDING}) — nothing to generate.`);
+    fs.writeFileSync(path.join(REPO_ROOT, "longform_current.json"), JSON.stringify(existing, null, 2));
+    return;
+  }
+  console.log(`   queue: ${pendingNow} pending, target ${TARGET_PENDING} → generating ${toMake}`);
+
+  // Continue topic rotation + id numbering from however many we already have.
+  const already = existing.length;
+  const topics = Array.from({ length: toMake }, (_, i) => TOPICS[(already + i) % TOPICS.length]);
+
+  const videos = existing.slice();
+  for (let i = 0; i < topics.length; i++) {
+    const idNum = already + i + 1;
+    console.log(`\n  [${i + 1}/${toMake}] (#${idNum}) ${topics[i]}`);
     let v;
     for (let attempt = 1; attempt <= 3; attempt++) {
       try {
-        v = await generateOne(weekTopics[i]);
+        v = await generateOne(topics[i]);
         if (!v || !Array.isArray(v.chapters) || v.chapters.length === 0) throw new Error("no chapters");
         break;
       } catch (err) {
@@ -158,7 +188,7 @@ async function main() {
     const sceneCount = v.chapters.reduce((n, c) => n + (c.scenes?.length ?? 0), 0);
     console.log(`    ✓ ${v.chapters.length} chapters, ${sceneCount} scenes`);
     videos.push({
-      id: `LF_W${WEEK}_${String(i + 1).padStart(2, "0")}`,
+      id: `LF_W${WEEK}_${String(idNum).padStart(2, "0")}`,
       week: WEEK,
       ...v,
       status: "pending",
@@ -167,10 +197,10 @@ async function main() {
     });
   }
 
-  fs.writeFileSync(path.join(REPO_ROOT, `longform_week_${WEEK}.json`), JSON.stringify(videos, null, 2));
+  fs.writeFileSync(weekPath, JSON.stringify(videos, null, 2));
   fs.writeFileSync(path.join(REPO_ROOT, "longform_current.json"), JSON.stringify(videos, null, 2));
-  console.log(`\n✅ ${videos.length} long-form videos → longform_week_${WEEK}.json`);
-  videos.forEach((v) => console.log(`   ${v.id}: ${v.title}`));
+  console.log(`\n✅ ${videos.length} total long-form videos (${videos.length - already} new) → longform_week_${WEEK}.json`);
+  videos.slice(already).forEach((v) => console.log(`   ${v.id}: ${v.title}`));
 }
 
 main().catch((e) => { console.error("❌", e.message); process.exit(1); });
