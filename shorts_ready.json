@@ -1,0 +1,360 @@
+[
+  {
+    "id": "SH_W26_05",
+    "week": 26,
+    "question": "Which inbox makes you sweat most?",
+    "options": [
+      {
+        "label": "The avalanche",
+        "imagePrompt": "Hand-drawn illustration in soft pastel colors, cozy and warm style. Soft watercolor texture, gentle hand-painted lines, flat illustration. Palette: lavender, cream, sage green, blush pink. Calm, friendly, approachable, non-judgmental mood. No people, no faces, no text, no letters. Vertical 9:16 composition. A cozy desktop computer screen glowing softly, with a towering stack of envelopes overflowing in a cascade around the keyboard, envelopes spilling onto the desk surface, a small potted succulent nearly buried under the pile, warm lamplight casting gentle shadows.",
+        "result": "Avoidance is your default - unseen tasks feel like threats your brain would rather not process."
+      },
+      {
+        "label": "The one unread",
+        "imagePrompt": "Hand-drawn illustration in soft pastel colors, cozy and warm style. Soft watercolor texture, gentle hand-painted lines, flat illustration. Palette: lavender, cream, sage green, blush pink. Calm, friendly, approachable, non-judgmental mood. No people, no faces, no text, no letters. Vertical 9:16 composition. A cozy desktop computer screen glowing softly, almost completely tidy inbox scene with just a single small envelope resting alone in the center of the screen, surrounded by empty space, a cup of tea steaming beside the monitor, a clean minimal desk.",
+        "result": "Your brain fixates hard - one loose end can hijack your entire day until it is closed."
+      },
+      {
+        "label": "The color coded",
+        "imagePrompt": "Hand-drawn illustration in soft pastel colors, cozy and warm style. Soft watercolor texture, gentle hand-painted lines, flat illustration. Palette: lavender, cream, sage green, blush pink. Calm, friendly, approachable, non-judgmental mood. No people, no faces, no text, no letters. Vertical 9:16 composition. A cozy desktop computer screen glowing softly, showing a neatly organized collection of small folders in different soft pastel shades arranged in careful rows on the screen, colored sticky note flags on the monitor edges, a ruler and highlighters on the desk beside it, everything symmetrical and deliberate.",
+        "result": "You build perfect systems to feel in control - but the system itself becomes the procrastination."
+      },
+      {
+        "label": "What inbox",
+        "imagePrompt": "Hand-drawn illustration in soft pastel colors, cozy and warm style. Soft watercolor texture, gentle hand-painted lines, flat illustration. Palette: lavender, cream, sage green, blush pink. Calm, friendly, approachable, non-judgmental mood. No people, no faces, no text, no letters. Vertical 9:16 composition. A cozy desktop computer screen sitting dark and switched off, a thin layer of dust suggested on the screen surface, a forgotten mug with a dried tea ring beside it, a closed notebook and a single pen resting on top, soft ambient light from a nearby window, peaceful but neglected.",
+        "result": "Out of sight is completely out of mind - if you can not see it, your brain acts like it does not exist."
+      }
+    ],
+    "introVoiceover": "Four inboxes. One of them made your stomach drop. Pick the one that hits hardest - because your choice says something real about how your ADHD brain handles stress. Comment your answer below.",
+    "outroVoiceover": "None of these are wrong - they are just your brain doing its thing. Follow for daily ADHD content.",
+    "title": "Which inbox gives you anxiety? (ADHD test) #Shorts",
+    "description": "Pick the inbox that stresses you out most - then watch as we reveal what each choice says about your ADHD brain. The answers are all in the video.\nFollow for daily ADHD content.",
+    "tags": [
+      "ADHD",
+      "ADHDtest",
+      "ADHDtips",
+      "neurodivergent",
+      "ADHDbrain",
+      "focustips",
+      "bloomfocus",
+      "ADHDlife",
+      "procrastination",
+      "dopamine",
+      "mentalhealthtips",
+      "ADHDawareness"
+    ],
+    "funnel": "follow",
+    "shortType": "quiztest",
+    "status": "pending",
+    "videoUrl": "https://raw.githubusercontent.com/dianahohol97-max/content/main/output/shorts/week_26/SH_W26_05.mp4",
+    "postedAt": null
+  },
+  {
+    "id": "SH_W29_01",
+    "week": 29,
+    "voiceover": "You can't start the task. But if you had a menu of tiny dopamine boosts to pair with it, suddenly it's possible. That's the dopamine menu trick. Your ADHD brain isn't lazy, it's literally low on the chemical that makes starting feel worth it. So you build a personal menu: things that reliably spark your brain, like a specific playlist, a crunchy snack, a change of location, or a timer challenge. You pick one from the menu and attach it to the task. You're not tricking yourself. You're fueling yourself. Follow for daily ADHD content.",
+    "scenes": [
+      {
+        "caption": "Can't make yourself start?",
+        "imagePrompt": "Hand-drawn illustration in soft pastel colors, cozy and warm style. Soft watercolor texture, gentle hand-painted lines, flat illustration. Palette: lavender, cream, sage green, blush pink. Calm, friendly, approachable, non-judgmental mood. No people, no faces, no text, no letters. Vertical 9:16 composition. A cozy desk with a closed notebook and a cooling cup of coffee, a single pen resting unused beside it.",
+        "seconds": 0
+      },
+      {
+        "caption": "Your brain needs dopamine to start",
+        "imagePrompt": "Hand-drawn illustration in soft pastel colors, cozy and warm style. Soft watercolor texture, gentle hand-painted lines, flat illustration. Palette: lavender, cream, sage green, blush pink. Calm, friendly, approachable, non-judgmental mood. No people, no faces, no text, no letters. Vertical 9:16 composition. An abstract brain made of soft watercolor clouds with tiny gentle sparks floating around it, looking a little dim and sleepy.",
+        "seconds": 0
+      },
+      {
+        "caption": "Build your dopamine menu",
+        "imagePrompt": "Hand-drawn illustration in soft pastel colors, cozy and warm style. Soft watercolor texture, gentle hand-painted lines, flat illustration. Palette: lavender, cream, sage green, blush pink. Calm, friendly, approachable, non-judgmental mood. No people, no faces, no text, no letters. Vertical 9:16 composition. A small open journal lying flat with a soft illustrated list of simple icons on the page, like a music note, a snack, and a tiny timer, arranged like a cozy menu.",
+        "seconds": 0
+      },
+      {
+        "caption": "Playlist. Snack. New spot. Timer.",
+        "imagePrompt": "Hand-drawn illustration in soft pastel colors, cozy and warm style. Soft watercolor texture, gentle hand-painted lines, flat illustration. Palette: lavender, cream, sage green, blush pink. Calm, friendly, approachable, non-judgmental mood. No people, no faces, no text, no letters. Vertical 9:16 composition. A flat-lay of cozy objects: small wireless earbuds, a bowl of snacks, a soft glowing lamp, and a gentle round timer, arranged warmly on a cream surface.",
+        "seconds": 0
+      },
+      {
+        "caption": "Pair one boost with the task",
+        "imagePrompt": "Hand-drawn illustration in soft pastel colors, cozy and warm style. Soft watercolor texture, gentle hand-painted lines, flat illustration. Palette: lavender, cream, sage green, blush pink. Calm, friendly, approachable, non-judgmental mood. No people, no faces, no text, no letters. Vertical 9:16 composition. A cozy desk scene with an open notebook now being written in, a warm mug of tea steaming beside it and soft earbuds resting nearby, looking alive and active.",
+        "seconds": 0
+      },
+      {
+        "caption": "Not tricking yourself. Fueling yourself.",
+        "imagePrompt": "Hand-drawn illustration in soft pastel colors, cozy and warm style. Soft watercolor texture, gentle hand-painted lines, flat illustration. Palette: lavender, cream, sage green, blush pink. Calm, friendly, approachable, non-judgmental mood. No people, no faces, no text, no letters. Vertical 9:16 composition. An abstract brain made of soft watercolor clouds now glowing warmly with bright gentle sparks and small blooming flowers growing from it, looking energized and content.",
+        "seconds": 0
+      },
+      {
+        "caption": "Follow for daily ADHD content",
+        "imagePrompt": "Hand-drawn illustration in soft pastel colors, cozy and warm style. Soft watercolor texture, gentle hand-painted lines, flat illustration. Palette: lavender, cream, sage green, blush pink. Calm, friendly, approachable, non-judgmental mood. No people, no faces, no text, no letters. Vertical 9:16 composition. A small potted plant on a sunny windowsill with soft morning light streaming in and a single open journal resting beside it, calm and inviting.",
+        "seconds": 0
+      }
+    ],
+    "title": "The Dopamine Menu Trick for ADHD Task Starting #Shorts",
+    "description": "If your ADHD brain struggles to start tasks, it's not laziness, it's a dopamine deficit. The dopamine menu trick helps you pair small brain-boosting rewards with hard-to-start tasks so you can actually get going. Learn how to build your own menu and use it every day. Follow for daily ADHD content.",
+    "tags": [
+      "ADHD tips",
+      "dopamine menu",
+      "ADHD task starting",
+      "ADHD productivity",
+      "ADHD education",
+      "dopamine ADHD",
+      "ADHD brain",
+      "executive dysfunction",
+      "ADHD motivation",
+      "ADHD shorts",
+      "neurodivergent tips",
+      "ADHD hacks"
+    ],
+    "funnel": "follow",
+    "shortType": "educational",
+    "status": "pending",
+    "videoUrl": "https://raw.githubusercontent.com/dianahohol97-max/content/main/output/shorts/week_29/SH_W29_01.mp4",
+    "postedAt": null
+  },
+  {
+    "id": "SH_W29_02",
+    "week": 29,
+    "voiceover": "Your brain won't start? Stop forcing it. Bribe it. This is a dopamine menu. Write down five to ten things that genuinely light your brain up. Music, a snack, a walk, your favorite show in the background. Before a hard task, pick one from the list and pair it with the task. Not as a reward after. During. Your brain needs dopamine to initiate. You are not giving yourself a treat. You are giving your brain the fuel it actually runs on. Build your menu tonight. Use it tomorrow. Follow for daily ADHD content.",
+    "scenes": [
+      {
+        "caption": "Brain won't start?",
+        "imagePrompt": "Hand-drawn illustration in soft pastel colors, cozy and warm style. Soft watercolor texture, gentle hand-painted lines, flat illustration. Palette: lavender, cream, sage green, blush pink. Calm, friendly, approachable, non-judgmental mood. No people, no faces, no text, no letters. Vertical 9:16 composition. A cozy desk with a steaming coffee mug and a blank open notebook, soft morning light.",
+        "seconds": 0
+      },
+      {
+        "caption": "Bribe it instead.",
+        "imagePrompt": "Hand-drawn illustration in soft pastel colors, cozy and warm style. Soft watercolor texture, gentle hand-painted lines, flat illustration. Palette: lavender, cream, sage green, blush pink. Calm, friendly, approachable, non-judgmental mood. No people, no faces, no text, no letters. Vertical 9:16 composition. An abstract soft brain shape made of gentle pastel clouds with small warm sparks and glowing dots floating around it.",
+        "seconds": 0
+      },
+      {
+        "caption": "Make a dopamine menu.",
+        "imagePrompt": "Hand-drawn illustration in soft pastel colors, cozy and warm style. Soft watercolor texture, gentle hand-painted lines, flat illustration. Palette: lavender, cream, sage green, blush pink. Calm, friendly, approachable, non-judgmental mood. No people, no faces, no text, no letters. Vertical 9:16 composition. A softly drawn journal open flat with a gentle pencil resting beside it, small illustrated doodle icons of headphones, a snack, and a plant around it.",
+        "seconds": 0
+      },
+      {
+        "caption": "Pair it WITH the task.",
+        "imagePrompt": "Hand-drawn illustration in soft pastel colors, cozy and warm style. Soft watercolor texture, gentle hand-painted lines, flat illustration. Palette: lavender, cream, sage green, blush pink. Calm, friendly, approachable, non-judgmental mood. No people, no faces, no text, no letters. Vertical 9:16 composition. A cozy desk scene with headphones resting beside a notebook and a small bowl of snacks, warm lamp light glowing softly.",
+        "seconds": 0
+      },
+      {
+        "caption": "Not a reward. Fuel.",
+        "imagePrompt": "Hand-drawn illustration in soft pastel colors, cozy and warm style. Soft watercolor texture, gentle hand-painted lines, flat illustration. Palette: lavender, cream, sage green, blush pink. Calm, friendly, approachable, non-judgmental mood. No people, no faces, no text, no letters. Vertical 9:16 composition. An abstract soft glowing orb like a gentle sun radiating calm pastel light rays outward against a cream background.",
+        "seconds": 0
+      },
+      {
+        "caption": "Build your menu tonight.",
+        "imagePrompt": "Hand-drawn illustration in soft pastel colors, cozy and warm style. Soft watercolor texture, gentle hand-painted lines, flat illustration. Palette: lavender, cream, sage green, blush pink. Calm, friendly, approachable, non-judgmental mood. No people, no faces, no text, no letters. Vertical 9:16 composition. A window with soft evening light coming through, a small potted plant on the sill and a cozy mug resting on the ledge.",
+        "seconds": 0
+      },
+      {
+        "caption": "Follow for ADHD content.",
+        "imagePrompt": "Hand-drawn illustration in soft pastel colors, cozy and warm style. Soft watercolor texture, gentle hand-painted lines, flat illustration. Palette: lavender, cream, sage green, blush pink. Calm, friendly, approachable, non-judgmental mood. No people, no faces, no text, no letters. Vertical 9:16 composition. A small cluster of soft pastel flowers and a tiny open notebook together on a cream surface, gentle and inviting.",
+        "seconds": 0
+      }
+    ],
+    "title": "Use a Dopamine Menu to Finally Start Hard Tasks #Shorts",
+    "description": "If your ADHD brain refuses to start tasks, a dopamine menu can help. Pairing a task with something that genuinely excites your brain is not a cheat code, it is how dopamine-driven brains actually work. Try building your own menu tonight and use it before your hardest task tomorrow.\nFollow for daily ADHD content.",
+    "tags": [
+      "ADHD tips",
+      "dopamine menu",
+      "ADHD productivity",
+      "how to start tasks ADHD",
+      "ADHD motivation",
+      "dopamine ADHD",
+      "ADHD hacks",
+      "ADHD education",
+      "task initiation ADHD",
+      "ADHD tools",
+      "neurodivergent tips",
+      "ADHD shorts"
+    ],
+    "funnel": "follow",
+    "shortType": "practical",
+    "status": "pending",
+    "videoUrl": "https://raw.githubusercontent.com/dianahohol97-max/content/main/output/shorts/week_29/SH_W29_02.mp4",
+    "postedAt": null
+  },
+  {
+    "id": "SH_W29_03",
+    "week": 29,
+    "voiceover": "You can only focus when someone else is in the room. That is not weird. That is your ADHD brain. Without enough dopamine, your brain struggles to self-regulate and stay on task. But when another person is nearby, something shifts. Their presence activates your nervous system just enough to keep you anchored. It is called body doubling, and it is one of the most powerful focus tools for ADHD brains. A cafe, a friend on a video call, even a stranger on YouTube. You are not broken for needing this. You are just wired for it. Sound familiar every single day? Follow for daily ADHD content.",
+    "scenes": [
+      {
+        "caption": "Can't focus alone?",
+        "imagePrompt": "Hand-drawn illustration in soft pastel colors, cozy and warm style. Soft watercolor texture, gentle hand-painted lines, flat illustration. Palette: lavender, cream, sage green, blush pink. Calm, friendly, approachable, non-judgmental mood. No people, no faces, no text, no letters. Vertical 9:16 composition. A cozy desk with a single coffee mug and an open notebook, soft morning light falling across it, gentle shadows.",
+        "seconds": 0
+      },
+      {
+        "caption": "Your brain needs presence",
+        "imagePrompt": "Hand-drawn illustration in soft pastel colors, cozy and warm style. Soft watercolor texture, gentle hand-painted lines, flat illustration. Palette: lavender, cream, sage green, blush pink. Calm, friendly, approachable, non-judgmental mood. No people, no faces, no text, no letters. Vertical 9:16 composition. An abstract brain made of soft pastel clouds with tiny gentle sparks floating around it, warm and glowing at the center.",
+        "seconds": 0
+      },
+      {
+        "caption": "Low dopamine = hard to focus",
+        "imagePrompt": "Hand-drawn illustration in soft pastel colors, cozy and warm style. Soft watercolor texture, gentle hand-painted lines, flat illustration. Palette: lavender, cream, sage green, blush pink. Calm, friendly, approachable, non-judgmental mood. No people, no faces, no text, no letters. Vertical 9:16 composition. A small softly glowing lantern sitting on a wooden surface, its light dim and flickering, surrounded by soft shadows and a warm cream background.",
+        "seconds": 0
+      },
+      {
+        "caption": "Someone nearby changes things",
+        "imagePrompt": "Hand-drawn illustration in soft pastel colors, cozy and warm style. Soft watercolor texture, gentle hand-painted lines, flat illustration. Palette: lavender, cream, sage green, blush pink. Calm, friendly, approachable, non-judgmental mood. No people, no faces, no text, no letters. Vertical 9:16 composition. A cozy cafe corner scene with two steaming mugs on a small round table, a window with soft afternoon light streaming in, potted plant in the corner.",
+        "seconds": 0
+      },
+      {
+        "caption": "Body doubling is real science",
+        "imagePrompt": "Hand-drawn illustration in soft pastel colors, cozy and warm style. Soft watercolor texture, gentle hand-painted lines, flat illustration. Palette: lavender, cream, sage green, blush pink. Calm, friendly, approachable, non-judgmental mood. No people, no faces, no text, no letters. Vertical 9:16 composition. An open journal on a soft cream surface with a small plant beside it and a gentle warm light casting a soft rounded shadow.",
+        "seconds": 0
+      },
+      {
+        "caption": "Cafe, call, YouTube \u2014 it works",
+        "imagePrompt": "Hand-drawn illustration in soft pastel colors, cozy and warm style. Soft watercolor texture, gentle hand-painted lines, flat illustration. Palette: lavender, cream, sage green, blush pink. Calm, friendly, approachable, non-judgmental mood. No people, no faces, no text, no letters. Vertical 9:16 composition. A soft illustrated laptop on a desk beside a small succulent plant, a gentle warm glow emanating from the screen onto the cream-colored desk surface.",
+        "seconds": 0
+      },
+      {
+        "caption": "You are wired for this",
+        "imagePrompt": "Hand-drawn illustration in soft pastel colors, cozy and warm style. Soft watercolor texture, gentle hand-painted lines, flat illustration. Palette: lavender, cream, sage green, blush pink. Calm, friendly, approachable, non-judgmental mood. No people, no faces, no text, no letters. Vertical 9:16 composition. A window with soft morning light and a small steaming mug resting on the windowsill, a gentle leafy vine curling along the frame.",
+        "seconds": 0
+      }
+    ],
+    "title": "Why You Focus Better Around Other People #Shorts",
+    "description": "If you can only focus when someone else is in the room, your ADHD brain is not broken. Body doubling is a science-backed focus hack that works by using another person's presence to regulate your nervous system and boost dopamine. Common in ADHD, it explains why cafes, co-working, and video calls actually help you get things done. Follow for daily ADHD content.",
+    "tags": [
+      "body doubling ADHD",
+      "ADHD focus tips",
+      "ADHD productivity",
+      "ADHD brain explained",
+      "focus hack ADHD",
+      "ADHD dopamine",
+      "ADHD education",
+      "ADHD awareness",
+      "ADHD tips",
+      "neurodivergent tips",
+      "ADHD shorts",
+      "bloom focus"
+    ],
+    "funnel": "follow",
+    "shortType": "painpoint",
+    "status": "pending",
+    "videoUrl": "https://raw.githubusercontent.com/dianahohol97-max/content/main/output/shorts/week_29/SH_W29_03.mp4",
+    "postedAt": null
+  },
+  {
+    "id": "SH_W29_04",
+    "week": 29,
+    "question": "Which desk looks most like yours?",
+    "options": [
+      {
+        "label": "The avalanche",
+        "imagePrompt": "Hand-drawn illustration in soft pastel colors, cozy and warm style. Soft watercolor texture, gentle hand-painted lines, flat illustration. Palette: lavender, cream, sage green, blush pink. Calm, friendly, approachable, non-judgmental mood. No people, no faces, no text, no letters. Vertical 9:16 composition. A desk completely buried under cascading layers of papers, notebooks, empty mugs, snack wrappers, tangled cables, sticky notes, and random objects like a single sock and a flashlight, everything spilling toward the edges in a chaotic warm avalanche."
+      },
+      {
+        "label": "Fake clean",
+        "imagePrompt": "Hand-drawn illustration in soft pastel colors, cozy and warm style. Soft watercolor texture, gentle hand-painted lines, flat illustration. Palette: lavender, cream, sage green, blush pink. Calm, friendly, approachable, non-judgmental mood. No people, no faces, no text, no letters. Vertical 9:16 composition. A desk that looks almost tidy at first glance but has one suspiciously large overstuffed drawer slightly open, a neat stack of papers hiding a forgotten bowl, and a single pen rolling near the edge, the illusion of order just barely holding together."
+      },
+      {
+        "label": "One clear spot",
+        "imagePrompt": "Hand-drawn illustration in soft pastel colors, cozy and warm style. Soft watercolor texture, gentle hand-painted lines, flat illustration. Palette: lavender, cream, sage green, blush pink. Calm, friendly, approachable, non-judgmental mood. No people, no faces, no text, no letters. Vertical 9:16 composition. A desk where the surrounding surface is covered in clutter, open notebooks, stacked books, a cold mug, scattered pens, but right in the center there is one small precious cleared rectangle of space with a single open notebook and a lamp shining warmly on it, a tiny island of calm in chaos."
+      },
+      {
+        "label": "Perfectly empty",
+        "imagePrompt": "Hand-drawn illustration in soft pastel colors, cozy and warm style. Soft watercolor texture, gentle hand-painted lines, flat illustration. Palette: lavender, cream, sage green, blush pink. Calm, friendly, approachable, non-judgmental mood. No people, no faces, no text, no letters. Vertical 9:16 composition. A completely bare minimal desk with nothing on it except a single closed laptop and a small plant in a round pot, the surface clear and clean, warm light falling across it, looking serene but also slightly lonely and unused, like it belongs in a catalog not real life."
+      }
+    ],
+    "voiceover": "Pick the desk that looks most like yours. One, two, three, or four? Your answer actually says something real about how your ADHD brain handles focus and overwhelm. Drop your number in the comments. No wrong answers here. Follow for daily ADHD content.",
+    "answerKey": "1) The Avalanche. Your brain runs hot and fast and it shows. You work in bursts of intensity and the mess is basically a physical map of every hyperfocus session you've ever had. You know where everything is. Others do not. This is common in ADHD brains that struggle with object permanence and task-switching cleanup.\n2) Fake Clean. You are a master of the surface reset. Company coming? Done in four minutes. But the drawer is a crime scene and you know it. This pattern is common in ADHD when shame and social pressure drive tidying, but working memory makes deep organization feel impossible to maintain.\n3) One Clear Spot. You have figured something out most people haven't. You can't control the whole environment, so you protect one small zone. That cleared rectangle is your brain's way of creating a dopamine-friendly on-ramp. This is actually a solid ADHD coping strategy, even if it looks accidental.\n4) Perfectly Empty. Two possibilities: either you haven't started yet and the clean desk is part of the pre-task ritual, or you cleaned everything as a way to avoid the actual work. Both are deeply ADHD. The perfectly empty desk is often a procrastination masterpiece dressed up as productivity.",
+    "title": "Pick your desk. The answer reveals your ADHD focus type #Shorts",
+    "description": "Your desk isn't a mess. It's a personality test. Pick the one that looks most like yours and check below to see what it says about how your ADHD brain actually handles focus and overwhelm.\n\nYour answer is in the description:\n\n1) The Avalanche. Your brain runs hot and fast and it shows. You work in bursts of intensity and the mess is basically a physical map of every hyperfocus session you've ever had. You know where everything is. Others do not. This is common in ADHD brains that struggle with object permanence and task-switching cleanup.\n2) Fake Clean. You are a master of the surface reset. Company coming? Done in four minutes. But the drawer is a crime scene and you know it. This pattern is common in ADHD when shame and social pressure drive tidying, but working memory makes deep organization feel impossible to maintain.\n3) One Clear Spot. You have figured something out most people haven't. You can't control the whole environment, so you protect one small zone. That cleared rectangle is your brain's way of creating a dopamine-friendly on-ramp. This is actually a solid ADHD coping strategy, even if it looks accidental.\n4) Perfectly Empty. Two possibilities: either you haven't started yet and the clean desk is part of the pre-task ritual, or you cleaned everything as a way to avoid the actual work. Both are deeply ADHD. The perfectly empty desk is often a procrastination masterpiece dressed up as productivity.\n\nFollow for daily ADHD content.",
+    "tags": [
+      "ADHD",
+      "ADHDtest",
+      "ADHDtips",
+      "focustips",
+      "neurodivergent",
+      "ADHDlife",
+      "bloomfocus",
+      "ADHDawareness",
+      "brainhacks",
+      "ADHDcommunity",
+      "mentalhealth",
+      "productivity"
+    ],
+    "funnel": "follow",
+    "shortType": "quiztest",
+    "status": "pending",
+    "videoUrl": "https://raw.githubusercontent.com/dianahohol97-max/content/main/output/shorts/week_29/SH_W29_04.mp4",
+    "postedAt": null
+  },
+  {
+    "id": "SH_W29_05",
+    "week": 29,
+    "voiceover": "You can hyperfocus on a YouTube rabbit hole for four hours but cannot read one paragraph of something important. That is not laziness. That is your nervous system working exactly as built. The ADHD brain runs on an interest-based nervous system. Neurotypical brains can choose to focus because importance or deadlines activate their prefrontal cortex. Your brain needs a different fuel entirely: interest, urgency, challenge, or passion. Without one of those four, the signal just does not fire. No dopamine, no focus. Full stop. This is why a boring but critical task feels physically impossible, while a random topic you got curious about at midnight pulls you in effortlessly. So what do you actually do with this? First, stop fighting the wiring. Second, inject the fuel artificially. Add a timer for urgency. Add music or a body double for interest. Reframe the task as a puzzle for challenge. Your brain is not broken. It just needs the right ignition. Follow for daily ADHD content.",
+    "scenes": [
+      {
+        "caption": "4 hours. One paragraph. Why?",
+        "imagePrompt": "Hand-drawn illustration in soft pastel colors, cozy and warm style. Soft watercolor texture, gentle hand-painted lines, flat illustration. Palette: lavender, cream, sage green, blush pink. Calm, friendly, approachable, non-judgmental mood. No people, no faces, no text, no letters. Vertical 9:16 composition. A cozy desk with a glowing laptop, a cold cup of coffee, and a single crumpled sticky note beside it.",
+        "seconds": 0
+      },
+      {
+        "caption": "Not laziness. Not choice.",
+        "imagePrompt": "Hand-drawn illustration in soft pastel colors, cozy and warm style. Soft watercolor texture, gentle hand-painted lines, flat illustration. Palette: lavender, cream, sage green, blush pink. Calm, friendly, approachable, non-judgmental mood. No people, no faces, no text, no letters. Vertical 9:16 composition. An abstract soft brain shape made of gentle watercolor clouds with a single dim spark at its center.",
+        "seconds": 0
+      },
+      {
+        "caption": "Interest-based nervous system",
+        "imagePrompt": "Hand-drawn illustration in soft pastel colors, cozy and warm style. Soft watercolor texture, gentle hand-painted lines, flat illustration. Palette: lavender, cream, sage green, blush pink. Calm, friendly, approachable, non-judgmental mood. No people, no faces, no text, no letters. Vertical 9:16 composition. An abstract brain shape made of soft pastel waves and gentle electric sparks radiating outward in warm lavender and blush tones.",
+        "seconds": 0
+      },
+      {
+        "caption": "4 fuels: interest, urgency, challenge, passion",
+        "imagePrompt": "Hand-drawn illustration in soft pastel colors, cozy and warm style. Soft watercolor texture, gentle hand-painted lines, flat illustration. Palette: lavender, cream, sage green, blush pink. Calm, friendly, approachable, non-judgmental mood. No people, no faces, no text, no letters. Vertical 9:16 composition. Four small soft glowing lanterns of different pastel colors floating gently in a warm cream background.",
+        "seconds": 0
+      },
+      {
+        "caption": "No fuel. No focus. Full stop.",
+        "imagePrompt": "Hand-drawn illustration in soft pastel colors, cozy and warm style. Soft watercolor texture, gentle hand-painted lines, flat illustration. Palette: lavender, cream, sage green, blush pink. Calm, friendly, approachable, non-judgmental mood. No people, no faces, no text, no letters. Vertical 9:16 composition. A softly illustrated empty matchbox lying open on a cream surface with no matches inside, gentle shadows around it.",
+        "seconds": 0
+      },
+      {
+        "caption": "Boring task feels impossible",
+        "imagePrompt": "Hand-drawn illustration in soft pastel colors, cozy and warm style. Soft watercolor texture, gentle hand-painted lines, flat illustration. Palette: lavender, cream, sage green, blush pink. Calm, friendly, approachable, non-judgmental mood. No people, no faces, no text, no letters. Vertical 9:16 composition. A gently melting soft pastel clock on a plain cream surface, edges dissolving into watercolor haze.",
+        "seconds": 0
+      },
+      {
+        "caption": "Stop fighting the wiring",
+        "imagePrompt": "Hand-drawn illustration in soft pastel colors, cozy and warm style. Soft watercolor texture, gentle hand-painted lines, flat illustration. Palette: lavender, cream, sage green, blush pink. Calm, friendly, approachable, non-judgmental mood. No people, no faces, no text, no letters. Vertical 9:16 composition. A small cozy plant in a pastel pot with tangled roots visible below the soil line, soft and warm light around it.",
+        "seconds": 0
+      },
+      {
+        "caption": "Add urgency, interest, or challenge",
+        "imagePrompt": "Hand-drawn illustration in soft pastel colors, cozy and warm style. Soft watercolor texture, gentle hand-painted lines, flat illustration. Palette: lavender, cream, sage green, blush pink. Calm, friendly, approachable, non-judgmental mood. No people, no faces, no text, no letters. Vertical 9:16 composition. A cozy desk scene with a small timer, a pair of soft headphones, and an open journal with a pencil resting on it.",
+        "seconds": 0
+      },
+      {
+        "caption": "Not broken. Needs the right ignition.",
+        "imagePrompt": "Hand-drawn illustration in soft pastel colors, cozy and warm style. Soft watercolor texture, gentle hand-painted lines, flat illustration. Palette: lavender, cream, sage green, blush pink. Calm, friendly, approachable, non-judgmental mood. No people, no faces, no text, no letters. Vertical 9:16 composition. An abstract brain shape made of soft pastel clouds now glowing brightly with warm sparks and gentle light radiating from its center.",
+        "seconds": 0
+      }
+    ],
+    "title": "Why You Can't Focus On Command With ADHD #Shorts",
+    "description": "The ADHD brain runs on an interest-based nervous system, not importance or willpower. Learn the four fuels your brain actually needs to focus, and how to use them intentionally. This is the science behind why boring tasks feel physically impossible even when you care about the outcome.\nFollow for daily ADHD content.",
+    "tags": [
+      "ADHD",
+      "interest based nervous system",
+      "ADHD focus",
+      "ADHD brain",
+      "dopamine ADHD",
+      "ADHD tips",
+      "ADHD education",
+      "neurodivergent",
+      "ADHD explained",
+      "ADHD science",
+      "focus ADHD",
+      "bloom focus"
+    ],
+    "funnel": "follow",
+    "shortType": "flagship",
+    "status": "pending",
+    "videoUrl": "https://raw.githubusercontent.com/dianahohol97-max/content/main/output/shorts/week_29/SH_W29_05.mp4",
+    "postedAt": null
+  }
+]
