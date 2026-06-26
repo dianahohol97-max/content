@@ -421,7 +421,13 @@ async function main() {
   if (!ffmpegAvailable()) throw new Error("ffmpeg not found on PATH");
 
   let shorts = loadShorts(WEEK);
-  if (LIMIT) shorts = shorts.slice(0, LIMIT);
+  // When LIMIT is set, build the next N shorts that don't have a video yet
+  // (rather than the first N overall — those may already be built).
+  if (LIMIT) {
+    const pending = shorts.filter(s => !(typeof s.videoUrl === "string" && s.videoUrl.startsWith("http")));
+    shorts = pending.slice(0, LIMIT);
+    console.log(`   🎯 LIMIT=${LIMIT}: building ${shorts.length} of ${pending.length} pending shorts`);
+  }
 
   const outDir = path.join(REPO_ROOT, `output/shorts/week_${WEEK}`);
   fs.mkdirSync(outDir, { recursive: true });
@@ -575,7 +581,7 @@ async function main() {
   // shorts_ready.json — only items with a real videoUrl that are not yet posted.
   // Make.com reads this so it never has to filter null videoUrls itself.
   const ready = full.filter(s => typeof s.videoUrl === "string" && s.videoUrl.startsWith("http") && s.status !== "posted");
-  fs.writeFileSync(path.join(REPO_ROOT, "shorts_ready.json"), JSON.stringify({ items: ready }, null, 2));
+  fs.writeFileSync(path.join(REPO_ROOT, "shorts_ready.json"), JSON.stringify(ready, null, 2));
   console.log(`   ✅ shorts_ready.json: ${ready.length} videos ready to post`);
 
   try { const n = writeLibraryManifest(); console.log(`   🗂  library manifest: ${n} images`); } catch {}
