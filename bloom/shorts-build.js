@@ -575,7 +575,7 @@ async function main() {
   // shorts_ready.json — only items with a real videoUrl that are not yet posted.
   // Make.com reads this so it never has to filter null videoUrls itself.
   const ready = full.filter(s => typeof s.videoUrl === "string" && s.videoUrl.startsWith("http") && s.status !== "posted");
-  fs.writeFileSync(path.join(REPO_ROOT, "shorts_ready.json"), JSON.stringify(ready, null, 2));
+  fs.writeFileSync(path.join(REPO_ROOT, "shorts_ready.json"), JSON.stringify({ items: ready }, null, 2));
   console.log(`   ✅ shorts_ready.json: ${ready.length} videos ready to post`);
 
   try { const n = writeLibraryManifest(); console.log(`   🗂  library manifest: ${n} images`); } catch {}
