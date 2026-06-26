@@ -2,7 +2,8 @@ name: bloom focus — YouTube Shorts
 
 on:
   schedule:
-    - cron: "0 3 * * 1"   # every Monday 06:00 Kyiv (auto-pilot)
+    - cron: "0 3 * * 1"     # Monday 06:00 Kyiv — generate weekly scripts + build first video
+    - cron: "0 6,18 * * *"  # every day 09:00 & 21:00 Kyiv — build ONE more video
   workflow_dispatch:
     inputs:
       week:
@@ -49,10 +50,28 @@ jobs:
       - name: Resolve inputs (cron-safe defaults)
         id: cfg
         run: |
-          echo "mode=${{ inputs.mode || 'full' }}" >> $GITHUB_OUTPUT
-          echo "count=${{ inputs.count || '18' }}" >> $GITHUB_OUTPUT
-          echo "voice=${{ inputs.voice_engine || 'elevenlabs' }}" >> $GITHUB_OUTPUT
-          echo "week=${{ inputs.week || '' }}" >> $GITHUB_OUTPUT
+          # Determine mode based on trigger:
+          # - Monday cron (0 3) => full (scripts + first video, limit 1)
+          # - 12h cron (0 6,18) => video-only (build 1 more)
+          # - manual => use provided inputs
+          if [ "${{ github.event_name }}" = "schedule" ]; then
+            if [ "${{ github.event.schedule }}" = "0 3 * * 1" ]; then
+              echo "mode=full"   >> $GITHUB_OUTPUT
+              echo "limit=1"     >> $GITHUB_OUTPUT
+            else
+              echo "mode=video-only" >> $GITHUB_OUTPUT
+              echo "limit=1"         >> $GITHUB_OUTPUT
+            fi
+            echo "count=18"  >> $GITHUB_OUTPUT
+            echo "voice=elevenlabs" >> $GITHUB_OUTPUT
+            echo "week=" >> $GITHUB_OUTPUT
+          else
+            echo "mode=${{ inputs.mode || 'full' }}"   >> $GITHUB_OUTPUT
+            echo "count=${{ inputs.count || '18' }}"   >> $GITHUB_OUTPUT
+            echo "voice=${{ inputs.voice_engine || 'elevenlabs' }}" >> $GITHUB_OUTPUT
+            echo "week=${{ inputs.week || '' }}"       >> $GITHUB_OUTPUT
+            echo "limit=${{ inputs.limit || '' }}"     >> $GITHUB_OUTPUT
+          fi
 
       - name: Generate scripts
         if: ${{ steps.cfg.outputs.mode == 'full' || steps.cfg.outputs.mode == 'script-only' }}
@@ -67,7 +86,7 @@ jobs:
           ELEVENLABS_VOICE_ID: ${{ secrets.ELEVENLABS_VOICE_ID }}
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
           VOICE_ENGINE: ${{ steps.cfg.outputs.voice }}
-        run: node bloom/shorts-build.js ${{ steps.cfg.outputs.week != '' && format('--week={0}', steps.cfg.outputs.week) || '' }} ${{ inputs.limit != '' && format('--limit={0}', inputs.limit) || '' }}
+        run: node bloom/shorts-build.js ${{ steps.cfg.outputs.week != '' && format('--week={0}', steps.cfg.outputs.week) || '' }} ${{ steps.cfg.outputs.limit != '' && format('--limit={0}', steps.cfg.outputs.limit) || '' }}
 
       - name: Commit results
         run: |
