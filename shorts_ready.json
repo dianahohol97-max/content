@@ -61,55 +61,5 @@
     "status": "pending",
     "videoUrl": "https://raw.githubusercontent.com/dianahohol97-max/content/main/output/shorts/week_26/SH_W26_01.mp4",
     "postedAt": null
-  },
-  {
-    "id": "SH_W26_05",
-    "week": 26,
-    "question": "Which inbox makes you sweat most?",
-    "options": [
-      {
-        "label": "The avalanche",
-        "imagePrompt": "Hand-drawn illustration in soft pastel colors, cozy and warm style. Soft watercolor texture, gentle hand-painted lines, flat illustration. Palette: lavender, cream, sage green, blush pink. Calm, friendly, approachable, non-judgmental mood. No people, no faces, no text, no letters. Vertical 9:16 composition. A cozy desktop computer screen glowing softly, with a towering stack of envelopes overflowing in a cascade around the keyboard, envelopes spilling onto the desk surface, a small potted succulent nearly buried under the pile, warm lamplight casting gentle shadows.",
-        "result": "Avoidance is your default - unseen tasks feel like threats your brain would rather not process."
-      },
-      {
-        "label": "The one unread",
-        "imagePrompt": "Hand-drawn illustration in soft pastel colors, cozy and warm style. Soft watercolor texture, gentle hand-painted lines, flat illustration. Palette: lavender, cream, sage green, blush pink. Calm, friendly, approachable, non-judgmental mood. No people, no faces, no text, no letters. Vertical 9:16 composition. A cozy desktop computer screen glowing softly, almost completely tidy inbox scene with just a single small envelope resting alone in the center of the screen, surrounded by empty space, a cup of tea steaming beside the monitor, a clean minimal desk.",
-        "result": "Your brain fixates hard - one loose end can hijack your entire day until it is closed."
-      },
-      {
-        "label": "The color coded",
-        "imagePrompt": "Hand-drawn illustration in soft pastel colors, cozy and warm style. Soft watercolor texture, gentle hand-painted lines, flat illustration. Palette: lavender, cream, sage green, blush pink. Calm, friendly, approachable, non-judgmental mood. No people, no faces, no text, no letters. Vertical 9:16 composition. A cozy desktop computer screen glowing softly, showing a neatly organized collection of small folders in different soft pastel shades arranged in careful rows on the screen, colored sticky note flags on the monitor edges, a ruler and highlighters on the desk beside it, everything symmetrical and deliberate.",
-        "result": "You build perfect systems to feel in control - but the system itself becomes the procrastination."
-      },
-      {
-        "label": "What inbox",
-        "imagePrompt": "Hand-drawn illustration in soft pastel colors, cozy and warm style. Soft watercolor texture, gentle hand-painted lines, flat illustration. Palette: lavender, cream, sage green, blush pink. Calm, friendly, approachable, non-judgmental mood. No people, no faces, no text, no letters. Vertical 9:16 composition. A cozy desktop computer screen sitting dark and switched off, a thin layer of dust suggested on the screen surface, a forgotten mug with a dried tea ring beside it, a closed notebook and a single pen resting on top, soft ambient light from a nearby window, peaceful but neglected.",
-        "result": "Out of sight is completely out of mind - if you can not see it, your brain acts like it does not exist."
-      }
-    ],
-    "introVoiceover": "Four inboxes. One of them made your stomach drop. Pick the one that hits hardest - because your choice says something real about how your ADHD brain handles stress. Comment your answer below.",
-    "outroVoiceover": "None of these are wrong - they are just your brain doing its thing. Follow for daily ADHD content.",
-    "title": "Which inbox gives you anxiety? (ADHD test) #Shorts",
-    "description": "Pick the inbox that stresses you out most - then watch as we reveal what each choice says about your ADHD brain. The answers are all in the video.\nFollow for daily ADHD content.",
-    "tags": [
-      "ADHD",
-      "ADHDtest",
-      "ADHDtips",
-      "neurodivergent",
-      "ADHDbrain",
-      "focustips",
-      "bloomfocus",
-      "ADHDlife",
-      "procrastination",
-      "dopamine",
-      "mentalhealthtips",
-      "ADHDawareness"
-    ],
-    "funnel": "follow",
-    "shortType": "quiztest",
-    "status": "pending",
-    "videoUrl": "https://raw.githubusercontent.com/dianahohol97-max/content/main/output/shorts/week_26/SH_W26_05.mp4",
-    "postedAt": null
   }
 ]
