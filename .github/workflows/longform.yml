@@ -2,7 +2,8 @@ name: bloom focus — YouTube Long-form
 
 on:
   schedule:
-    - cron: "0 3 */2 * *"   # every 2 days 06:00 Kyiv (auto-pilot)
+    - cron: "0 3 * * 1"     # Monday 06:00 Kyiv — generate a batch of scripts + build first video
+    - cron: "0 3 */2 * *"   # every 2 days 06:00 Kyiv — build ONE more video from the queue
   workflow_dispatch:
     inputs:
       week:
@@ -46,10 +47,26 @@ jobs:
       - name: Resolve inputs (cron-safe defaults)
         id: cfg
         run: |
-          echo "mode=${{ inputs.mode || 'full' }}" >> $GITHUB_OUTPUT
-          echo "count=${{ inputs.count || '1' }}" >> $GITHUB_OUTPUT
-          echo "voice=${{ inputs.voice_engine || 'gemini' }}" >> $GITHUB_OUTPUT
-          echo "week=${{ inputs.week || '' }}" >> $GITHUB_OUTPUT
+          # - Monday cron (0 3 * * 1) => full: top up the script queue + build 1
+          # - every-2-days cron      => video-only: build 1 more from the queue
+          # - manual                 => use provided inputs
+          if [ "${{ github.event_name }}" = "schedule" ]; then
+            if [ "${{ github.event.schedule }}" = "0 3 * * 1" ]; then
+              echo "mode=full" >> $GITHUB_OUTPUT
+            else
+              echo "mode=video-only" >> $GITHUB_OUTPUT
+            fi
+            echo "count=4"   >> $GITHUB_OUTPUT
+            echo "limit=1"   >> $GITHUB_OUTPUT
+            echo "voice=gemini" >> $GITHUB_OUTPUT
+            echo "week=" >> $GITHUB_OUTPUT
+          else
+            echo "mode=${{ inputs.mode || 'full' }}" >> $GITHUB_OUTPUT
+            echo "count=${{ inputs.count || '4' }}" >> $GITHUB_OUTPUT
+            echo "limit=${{ inputs.limit || '1' }}" >> $GITHUB_OUTPUT
+            echo "voice=${{ inputs.voice_engine || 'gemini' }}" >> $GITHUB_OUTPUT
+            echo "week=${{ inputs.week || '' }}" >> $GITHUB_OUTPUT
+          fi
 
       - name: Generate scripts
         if: ${{ steps.cfg.outputs.mode == 'full' || steps.cfg.outputs.mode == 'script-only' }}
@@ -64,7 +81,7 @@ jobs:
           ELEVENLABS_VOICE_ID: ${{ secrets.ELEVENLABS_VOICE_ID }}
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
           VOICE_ENGINE: ${{ steps.cfg.outputs.voice }}
-        run: node bloom/longform-build.js ${{ steps.cfg.outputs.week != '' && format('--week={0}', steps.cfg.outputs.week) || '' }} ${{ inputs.limit != '' && format('--limit={0}', inputs.limit) || '' }}
+        run: node bloom/longform-build.js ${{ steps.cfg.outputs.week != '' && format('--week={0}', steps.cfg.outputs.week) || '' }} ${{ steps.cfg.outputs.limit != '' && format('--limit={0}', steps.cfg.outputs.limit) || '' }}
 
       - name: Commit results
         run: |
