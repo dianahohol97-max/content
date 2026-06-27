@@ -61,5 +61,118 @@
     "status": "pending",
     "videoUrl": "https://raw.githubusercontent.com/dianahohol97-max/content/main/output/shorts/week_26/SH_W26_01.mp4",
     "postedAt": null
+  },
+  {
+    "id": "SH_W26_02",
+    "week": 26,
+    "voiceover": "Your brain won't start the hard task. So stop forcing it. Bribe it. A dopamine menu is a short list of small, fast rewards you pair with a task you can't begin. Here's how to build one. First, brainstorm five to ten things that genuinely light you up. A favourite song, a good snack, a cosy blanket, a scented candle. Write them down. Now pick one before you start your task. Not after. Before. That tiny dopamine hit lowers the brain's resistance just enough to get moving. Pair the reward to the work, not to finishing it. That's the switch. Follow for daily ADHD content.",
+    "scenes": [
+      {
+        "tag": "brain",
+        "imagePrompt": "Hand-drawn illustration in soft pastel colors, cozy and warm style. Soft watercolor texture, gentle hand-painted lines, flat illustration. Palette: lavender, cream, sage green, blush pink. Calm, friendly, approachable, non-judgmental mood. No people, no faces, no text, no letters. Vertical 9:16 composition. An abstract brain made of soft pastel clouds with tiny golden sparks drifting around it, floating gently in a cream background.",
+        "caption": ""
+      },
+      {
+        "tag": "desk_messy",
+        "imagePrompt": "Hand-drawn illustration in soft pastel colors, cozy and warm style. Soft watercolor texture, gentle hand-painted lines, flat illustration. Palette: lavender, cream, sage green, blush pink. Calm, friendly, approachable, non-judgmental mood. No people, no faces, no text, no letters. Vertical 9:16 composition. A gently messy cozy desk with scattered papers, a half-finished coffee mug, and soft warm lamp light glowing over the clutter.",
+        "caption": ""
+      },
+      {
+        "tag": "journal",
+        "imagePrompt": "Hand-drawn illustration in soft pastel colors, cozy and warm style. Soft watercolor texture, gentle hand-painted lines, flat illustration. Palette: lavender, cream, sage green, blush pink. Calm, friendly, approachable, non-judgmental mood. No people, no faces, no text, no letters. Vertical 9:16 composition. A soft open journal lying flat with a pencil resting beside it, surrounded by gentle pastel doodle swirls on a warm cream surface.",
+        "caption": ""
+      },
+      {
+        "tag": "sparks",
+        "imagePrompt": "Hand-drawn illustration in soft pastel colors, cozy and warm style. Soft watercolor texture, gentle hand-painted lines, flat illustration. Palette: lavender, cream, sage green, blush pink. Calm, friendly, approachable, non-judgmental mood. No people, no faces, no text, no letters. Vertical 9:16 composition. Tiny soft golden and blush pink sparks and small glowing dots scattered across a calm lavender background, like a gentle burst of energy and light.",
+        "caption": ""
+      },
+      {
+        "tag": "coffee",
+        "imagePrompt": "Hand-drawn illustration in soft pastel colors, cozy and warm style. Soft watercolor texture, gentle hand-painted lines, flat illustration. Palette: lavender, cream, sage green, blush pink. Calm, friendly, approachable, non-judgmental mood. No people, no faces, no text, no letters. Vertical 9:16 composition. A cozy ceramic mug of coffee with soft steam curling upward, sitting on a small saucer beside a candle with a tiny warm flame, all on a cream surface.",
+        "caption": ""
+      },
+      {
+        "tag": "desk_tidy",
+        "imagePrompt": "Hand-drawn illustration in soft pastel colors, cozy and warm style. Soft watercolor texture, gentle hand-painted lines, flat illustration. Palette: lavender, cream, sage green, blush pink. Calm, friendly, approachable, non-judgmental mood. No people, no faces, no text, no letters. Vertical 9:16 composition. A calm tidy desk with a neatly placed notebook, a single pen, a small plant in a sage green pot, and a warm glowing lamp casting soft light across the surface.",
+        "caption": ""
+      },
+      {
+        "tag": "brain",
+        "imagePrompt": "Hand-drawn illustration in soft pastel colors, cozy and warm style. Soft watercolor texture, gentle hand-painted lines, flat illustration. Palette: lavender, cream, sage green, blush pink. Calm, friendly, approachable, non-judgmental mood. No people, no faces, no text, no letters. Vertical 9:16 composition. An abstract brain made of soft pastel clouds with tiny golden sparks drifting around it, now glowing a little brighter with a warm blush pink light radiating softly outward.",
+        "caption": ""
+      }
+    ],
+    "title": "Use a Dopamine Menu to Finally Start Hard Tasks #Shorts",
+    "description": "If your ADHD brain refuses to start tasks, a dopamine menu can lower that resistance before you even begin. Learn how to build a simple reward list and pair it to your work, not to finishing it. This one shift makes starting feel possible. Follow for daily ADHD content.",
+    "tags": [
+      "ADHD tips",
+      "dopamine menu",
+      "ADHD productivity",
+      "how to start tasks ADHD",
+      "ADHD brain",
+      "task initiation ADHD",
+      "ADHD strategies",
+      "dopamine ADHD",
+      "ADHD motivation",
+      "ADHD education",
+      "focus tips",
+      "ADHD shorts"
+    ],
+    "funnel": "follow",
+    "shortType": "practical",
+    "status": "pending",
+    "videoUrl": "https://raw.githubusercontent.com/dianahohol97-max/content/main/output/shorts/week_26/SH_W26_02.mp4",
+    "postedAt": null
+  },
+  {
+    "id": "SH_W26_05",
+    "week": 26,
+    "question": "Which inbox makes you sweat most?",
+    "options": [
+      {
+        "label": "The avalanche",
+        "imagePrompt": "Hand-drawn illustration in soft pastel colors, cozy and warm style. Soft watercolor texture, gentle hand-painted lines, flat illustration. Palette: lavender, cream, sage green, blush pink. Calm, friendly, approachable, non-judgmental mood. No people, no faces, no text, no letters. Vertical 9:16 composition. A cozy desktop computer screen glowing softly, with a towering stack of envelopes overflowing in a cascade around the keyboard, envelopes spilling onto the desk surface, a small potted succulent nearly buried under the pile, warm lamplight casting gentle shadows.",
+        "result": "Avoidance is your default - unseen tasks feel like threats your brain would rather not process."
+      },
+      {
+        "label": "The one unread",
+        "imagePrompt": "Hand-drawn illustration in soft pastel colors, cozy and warm style. Soft watercolor texture, gentle hand-painted lines, flat illustration. Palette: lavender, cream, sage green, blush pink. Calm, friendly, approachable, non-judgmental mood. No people, no faces, no text, no letters. Vertical 9:16 composition. A cozy desktop computer screen glowing softly, almost completely tidy inbox scene with just a single small envelope resting alone in the center of the screen, surrounded by empty space, a cup of tea steaming beside the monitor, a clean minimal desk.",
+        "result": "Your brain fixates hard - one loose end can hijack your entire day until it is closed."
+      },
+      {
+        "label": "The color coded",
+        "imagePrompt": "Hand-drawn illustration in soft pastel colors, cozy and warm style. Soft watercolor texture, gentle hand-painted lines, flat illustration. Palette: lavender, cream, sage green, blush pink. Calm, friendly, approachable, non-judgmental mood. No people, no faces, no text, no letters. Vertical 9:16 composition. A cozy desktop computer screen glowing softly, showing a neatly organized collection of small folders in different soft pastel shades arranged in careful rows on the screen, colored sticky note flags on the monitor edges, a ruler and highlighters on the desk beside it, everything symmetrical and deliberate.",
+        "result": "You build perfect systems to feel in control - but the system itself becomes the procrastination."
+      },
+      {
+        "label": "What inbox",
+        "imagePrompt": "Hand-drawn illustration in soft pastel colors, cozy and warm style. Soft watercolor texture, gentle hand-painted lines, flat illustration. Palette: lavender, cream, sage green, blush pink. Calm, friendly, approachable, non-judgmental mood. No people, no faces, no text, no letters. Vertical 9:16 composition. A cozy desktop computer screen sitting dark and switched off, a thin layer of dust suggested on the screen surface, a forgotten mug with a dried tea ring beside it, a closed notebook and a single pen resting on top, soft ambient light from a nearby window, peaceful but neglected.",
+        "result": "Out of sight is completely out of mind - if you can not see it, your brain acts like it does not exist."
+      }
+    ],
+    "introVoiceover": "Four inboxes. One of them made your stomach drop. Pick the one that hits hardest - because your choice says something real about how your ADHD brain handles stress. Comment your answer below.",
+    "outroVoiceover": "None of these are wrong - they are just your brain doing its thing. Follow for daily ADHD content.",
+    "title": "Which inbox gives you anxiety? (ADHD test) #Shorts",
+    "description": "Pick the inbox that stresses you out most - then watch as we reveal what each choice says about your ADHD brain. The answers are all in the video.\nFollow for daily ADHD content.",
+    "tags": [
+      "ADHD",
+      "ADHDtest",
+      "ADHDtips",
+      "neurodivergent",
+      "ADHDbrain",
+      "focustips",
+      "bloomfocus",
+      "ADHDlife",
+      "procrastination",
+      "dopamine",
+      "mentalhealthtips",
+      "ADHDawareness"
+    ],
+    "funnel": "follow",
+    "shortType": "quiztest",
+    "status": "pending",
+    "videoUrl": "https://raw.githubusercontent.com/dianahohol97-max/content/main/output/shorts/week_26/SH_W26_05.mp4",
+    "postedAt": null
   }
 ]
