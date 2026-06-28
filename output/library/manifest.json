@@ -48,6 +48,12 @@
     "url": "https://raw.githubusercontent.com/dianahohol97-max/content/main/output/library/vertical/calendar_1.png"
   },
   {
+    "id": "vertical_calendar_2.png",
+    "aspect": "vertical",
+    "filename": "calendar_2.png",
+    "url": "https://raw.githubusercontent.com/dianahohol97-max/content/main/output/library/vertical/calendar_2.png"
+  },
+  {
     "id": "vertical_clock_1.png",
     "aspect": "vertical",
     "filename": "clock_1.png",
