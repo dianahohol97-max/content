@@ -39,93 +39,45 @@ function loadPins(week) {
   return JSON.parse(fs.readFileSync(p, "utf-8"));
 }
 
-// ═══ Gemini infographic (full image with text + list) ═══════════════════════
-function buildInfographicPrompt(pin) {
+// ═══ Gemini infographic (full image with text + list, cropped to 2:3) ════════
+async function buildInfographic(pin, outDir) {
+  const outPath = path.join(outDir, `${pin.id}.png`);
   const items = pin.items ?? [];
   const itemsText = items.map((it, i) => `${i + 1}. ${it}`).join("\n");
   const count = items.length;
-  return `Create a clean, professional Pinterest infographic in a soft pastel aesthetic for an ADHD wellness brand.
+  // Ask Gemini to keep the whole design safely centered with generous empty
+  // margins top and bottom, so a cover-crop to 2:3 removes only background —
+  // never the title or the last list item.
+  const prompt = `Create a clean, professional Pinterest infographic in a soft pastel aesthetic for an ADHD wellness brand.
 
 TITLE at top (large, bold, friendly rounded font): "${pin.headline}"
 
-A vertical numbered list with EXACTLY ${count} items, each with a numbered circle badge (1 through ${count} in order) and a small matching pastel icon:
+A vertical numbered list with EXACTLY ${count} items, each with a numbered circle badge (1 through ${count} IN CORRECT ORDER) and a small matching pastel icon:
 ${itemsText}
 
-STYLE: soft pastel palette (lavender, cream, sage green, blush pink, light blue), cute minimal flat icons, rounded friendly legible sans-serif, perfect spelling, soft decorative elements (stars, leaves, hearts), warm supportive feeling, small "bloomfocus.org" at bottom center. Vertical 2:3 portrait. All text must be crisp, readable, correctly spelled.`;
-}
+STYLE: soft pastel palette (lavender, cream, sage green, blush pink, light blue), cute minimal flat icons, rounded friendly legible sans-serif, PERFECT SPELLING, soft decorative elements (stars, leaves, hearts), warm supportive feeling, small "bloomfocus.org" at bottom center.
 
-// Numbered-list infographic overlay drawn in SVG (crisp text, guaranteed 2:3,
-// correct sequential numbering, zero spelling errors — Gemini only paints the
-// soft background photo, never the text).
-function buildInfographicOverlay(headline, items, cta) {
-  const list = (Array.isArray(items) ? items : []).slice(0, 6);
+LAYOUT: Keep ALL content (title, full numbered list, footer) safely centered inside the middle of the canvas with generous empty pastel margin at the very top and the very bottom, so nothing important is near the edges. Tall vertical portrait 2:3, taller than wide, NOT square. Every number 1-${count} present in order, every word correctly spelled.`;
 
-  // Headline (wrapped) in a rounded panel at the top.
-  const headLines = wrapText(headline, 20);
-  const headLH = 74;
-  const headBlockH = headLines.length * headLH + 50;
-  const headTspans = headLines.map((ln, i) =>
-    `<tspan x="${W/2}" dy="${i === 0 ? 0 : headLH}">${esc(ln)}</tspan>`).join("");
-
-  const listStartY = 120 + headBlockH + 40;
-  const rowH = 150;
-  const itemRows = list.map((it, i) => {
-    const y = listStartY + i * rowH;
-    const itemLines = wrapText(it, 24);
-    const itemTspans = itemLines.map((ln, k) =>
-      `<tspan x="230" dy="${k === 0 ? 0 : 46}">${esc(ln)}</tspan>`).join("");
-    return `
-      <circle cx="140" cy="${y - 6}" r="42" fill="#9B7FD4"/>
-      <text x="140" y="${y + 10}" font-family="Georgia, serif" font-size="46" font-weight="700"
-            fill="#ffffff" text-anchor="middle">${i + 1}</text>
-      <text x="230" y="${y}" font-family="Helvetica, Arial, sans-serif" font-size="40" font-weight="600"
-            fill="#2a2438">${itemTspans}</text>`;
-  }).join("");
-
-  const panelH = (listStartY + list.length * rowH - 40);
-
-  return Buffer.from(`
-<svg width="${W}" height="${H}" xmlns="http://www.w3.org/2000/svg">
-  <defs>
-    <linearGradient id="botfade" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0%" stop-color="rgba(40,30,50,0)"/>
-      <stop offset="100%" stop-color="rgba(40,30,50,0.5)"/>
-    </linearGradient>
-  </defs>
-
-  <!-- soft panel behind headline + list for readability -->
-  <rect x="45" y="70" width="${W-90}" height="${panelH}" rx="34" fill="rgba(255,248,240,0.94)"/>
-
-  <!-- headline -->
-  <text x="${W/2}" y="${150 + headLH*0.3}" font-family="Georgia, serif" font-size="64" font-weight="700"
-        fill="#3d2c6e" text-anchor="middle" style="letter-spacing:-1px;">${headTspans}</text>
-
-  <!-- divider -->
-  <rect x="${W/2 - 60}" y="${120 + headBlockH}" width="120" height="5" rx="3" fill="#9B7FD4"/>
-
-  <!-- numbered list -->
-  ${itemRows}
-
-  <!-- CTA -->
-  <rect x="0" y="${H-200}" width="${W}" height="200" fill="url(#botfade)"/>
-  <text x="${W/2}" y="${H-120}" font-family="Helvetica, Arial, sans-serif" font-size="42" font-weight="700"
-        fill="#ffffff" text-anchor="middle">${esc(cta)}</text>
-  <text x="${W/2}" y="${H-70}" font-family="Helvetica, Arial, sans-serif" font-size="32" font-weight="500"
-        fill="rgba(255,255,255,0.9)" text-anchor="middle">bloomfocus.org</text>
-</svg>`);
-}
-
-async function buildInfographic(pin, outDir) {
-  const outPath = path.join(outDir, `${pin.id}.png`);
-  // Gemini paints ONLY a soft pastel background (no text) — guaranteed 2:3.
-  const bgPrompt = "Soft pastel abstract background for an ADHD wellness brand, muted lavender / cream / sage / blush tones, gentle gradient, tiny minimal decorative leaves and dots in the corners, lots of soft empty space, no text, no words, no letters, no people. Calm, warm, minimal.";
-  const bgBuffer = await geminiBackground(bgPrompt);
-  const bg = await sharp(bgBuffer).resize(W, H, { fit: "cover", position: "centre" }).toBuffer();
-
-  const shortCta = { quiz: "Take the ADHD test →", app: "Try the free app →", etsy: "Shop on Etsy →", blog: "Read more →" }[pin.funnel] ?? "Learn more →";
-  const overlay = buildInfographicOverlay(pin.headline ?? pin.title, pin.items ?? [], shortCta);
-  await sharp(bg).composite([{ input: overlay, top: 0, left: 0 }]).png().toFile(outPath);
-  return outPath;
+  const response = await gemini.models.generateContent({
+    model: "gemini-2.5-flash-image",
+    contents: prompt,
+  });
+  const parts = response.candidates?.[0]?.content?.parts ?? [];
+  for (const part of parts) {
+    if (part.inlineData?.data) {
+      const raw = Buffer.from(part.inlineData.data, "base64");
+      // Force exact 1000x1500 (2:3). cover-crops to fill the frame; because the
+      // prompt keeps content centered with margins, the crop trims only the
+      // top/bottom background, keeping the title and list intact.
+      await sharp(raw)
+        .resize(W, H, { fit: "cover", position: "centre" })
+        .png()
+        .toFile(outPath);
+      return outPath;
+    }
+  }
+  throw new Error("No Gemini infographic image");
 }
 
 // ═══ Gemini photo + overlay (hooks & products) ═══════════════════════════════
