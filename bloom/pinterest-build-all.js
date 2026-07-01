@@ -45,9 +45,10 @@ async function buildInfographic(pin, outDir) {
   const items = pin.items ?? [];
   const itemsText = items.map((it, i) => `${i + 1}. ${it}`).join("\n");
   const count = items.length;
-  // Ask Gemini to keep the whole design safely centered with generous empty
-  // margins top and bottom, so a cover-crop to 2:3 removes only background —
-  // never the title or the last list item.
+  // Infographics use a 4:5 portrait frame (1080x1350) — a gentler vertical
+  // ratio that Gemini fills more naturally than a tall 2:3, so less normalizing
+  // is needed and the layout looks less stretched.
+  const IW = 1080, IH = 1350;
   const prompt = `Create a clean, professional Pinterest infographic in a soft pastel aesthetic for an ADHD wellness brand.
 
 TITLE at top (large, bold, friendly rounded font): "${pin.headline}"
@@ -55,9 +56,9 @@ TITLE at top (large, bold, friendly rounded font): "${pin.headline}"
 A vertical numbered list with EXACTLY ${count} items, each with a numbered circle badge (1 through ${count} IN CORRECT ORDER) and a small matching pastel icon:
 ${itemsText}
 
-STYLE: soft pastel palette (lavender, cream, sage green, blush pink, light blue), cute minimal flat icons, rounded friendly legible sans-serif, PERFECT SPELLING, soft decorative elements (stars, leaves, hearts), warm supportive feeling, small "bloomfocus.org" at bottom center.
+STYLE: soft pastel palette (lavender #E8DEFF, cream #FFF8F0, sage green #D4E8D4, blush pink #FFD4E4, sky blue #D4EEFF), cute minimal flat icons, rounded friendly legible sans-serif, PERFECT SPELLING, soft decorative elements (stars, leaves, hearts), warm supportive feeling, small "bloomfocus.org" at bottom center. Flat vector illustration style, NO photos, NO dark colors.
 
-LAYOUT: Keep ALL content (title, full numbered list, footer) safely centered inside the middle of the canvas with generous empty pastel margin at the very top and the very bottom, so nothing important is near the edges. Tall vertical portrait 2:3, taller than wide, NOT square. Every number 1-${count} present in order, every word correctly spelled.`;
+LAYOUT: Keep ALL content (title, full numbered list, footer) safely centered with comfortable margin at top and bottom so nothing is near the edges. Portrait 4:5 aspect ratio (taller than wide, but not extremely tall). Every number 1-${count} present in order, every word correctly spelled.`;
 
   const response = await gemini.models.generateContent({
     model: "gemini-2.5-flash-image",
@@ -68,30 +69,22 @@ LAYOUT: Keep ALL content (title, full numbered list, footer) safely centered ins
     if (part.inlineData?.data) {
       const raw = Buffer.from(part.inlineData.data, "base64");
 
-      // Normalize to a true 2:3 (1000x1500) WITHOUT cropping the title.
-      // 1) scale to full width (1000px) keeping aspect — nothing is cut;
-      // 2) if the result is shorter than 1500 (Gemini gave ~square), pad the
-      //    BOTTOM with the image's own bottom-edge pastel color so it blends in;
-      // 3) if it's taller than 1500, it's already portrait — center-crop lightly.
-      const scaled = await sharp(raw).resize({ width: W }).toBuffer();
+      // Normalize to exact 4:5 (1080x1350) without cropping the title:
+      // scale to full width, then pad the bottom (or lightly crop if too tall).
+      const scaled = await sharp(raw).resize({ width: IW }).toBuffer();
       const meta = await sharp(scaled).metadata();
 
-      if (meta.height >= H) {
-        // Already tall enough — crop to exact frame from the top (keep title).
-        await sharp(scaled).extract({ left: 0, top: 0, width: W, height: H }).png().toFile(outPath);
+      if (meta.height >= IH) {
+        await sharp(scaled).extract({ left: 0, top: 0, width: IW, height: IH }).png().toFile(outPath);
       } else {
-        // Sample the average color of the bottom 6px strip to pad seamlessly.
         const strip = await sharp(scaled)
-          .extract({ left: 0, top: meta.height - 6, width: W, height: 6 })
-          .resize(1, 1)
-          .raw()
-          .toBuffer();
+          .extract({ left: 0, top: meta.height - 6, width: IW, height: 6 })
+          .resize(1, 1).raw().toBuffer();
         const [r, g, b] = [strip[0], strip[1], strip[2]];
         await sharp(scaled)
-          .extend({ top: 0, bottom: H - meta.height, left: 0, right: 0,
+          .extend({ top: 0, bottom: IH - meta.height, left: 0, right: 0,
                     background: { r, g, b, alpha: 1 } })
-          .png()
-          .toFile(outPath);
+          .png().toFile(outPath);
       }
       return outPath;
     }
