@@ -121,15 +121,38 @@ const KEYWORD_SEEDS = [
 ];
 
 // Day→topic theme to keep variety across the week
-const DAY_THEMES = {
-  1: "morning routines and starting the day",
-  2: "focus and task initiation",
-  3: "emotional regulation and overwhelm",
-  4: "organization systems and planners",
-  5: "dopamine, motivation, and reward",
-  6: "ADHD science and brain facts",
-  7: "self-compassion and ADHD identity",
-};
+// A large pool of distinct themes. Instead of pinning day 1 to "mornings"
+// every single week, we walk through this pool continuously using (week, day)
+// so the same weekday lands on a DIFFERENT theme each week — no more repeating
+// "morning routines" two weeks in a row.
+const THEME_POOL = [
+  "morning routines and starting the day",
+  "focus and task initiation",
+  "emotional regulation and overwhelm",
+  "organization systems and planners",
+  "dopamine, motivation, and reward",
+  "ADHD science and brain facts",
+  "self-compassion and ADHD identity",
+  "time blindness and time management",
+  "rejection sensitivity and relationships",
+  "evening routines and winding down",
+  "work and productivity with ADHD",
+  "cleaning and home management",
+  "hyperfocus and flow states",
+  "ADHD and money / impulse spending",
+  "rest, burnout, and recovery",
+  "ADHD in women / late diagnosis",
+  "study and learning with ADHD",
+  "sensory needs and regulation",
+  "habits and routines that actually stick",
+  "confidence, shame, and self-talk",
+];
+
+// Pick a theme for a given (week, day) by walking the pool continuously.
+function themeFor(weekNum, dayNum) {
+  const idx = ((weekNum - 1) * 7 + (dayNum - 1)) % THEME_POOL.length;
+  return THEME_POOL[idx];
+}
 
 // ─── Anthropic client ─────────────────────────────────────────────────────────
 
@@ -207,6 +230,7 @@ ${patternGuide}
 
 RULES:
 - headline: ${patternMode ? "the pattern name as a searchable hook (keep the exact term)" : 'a number-driven hook, 4-7 words. Examples: "5 ADHD Morning Tricks", "7 Signs of ADHD Burnout", "4 Ways to Start Any Task". Use a number.'}
+- IMPORTANT for headline: use SIMPLE, common, short words that an image generator can spell correctly. AVOID long/technical words like "dysfunction", "dysregulation", "procrastination", "overwhelm" IN THE HEADLINE — rephrase with plain words (e.g. instead of "Executive Dysfunction" use "Can't Get Started", instead of "Emotional Dysregulation" use "Big Feelings"). Save the technical terms for the title/description fields, not the on-image headline.
 - items: an array of 3-5 SHORT list items (each max 6 words, punchy, ${patternMode ? '"what it looks like" signs' : "actionable"}, specific to ADHD). No full sentences.
 - title: keyword-rich long-tail SEO title (40-60 chars) for the pin metadata.${patternMode ? " Include the pattern name." : ""}
 - description: 150-300 chars, keyword-rich, ends with: ${funnelCTA[funnel]}
@@ -477,8 +501,8 @@ async function generateMemeWithRetry(params) {
 //   = 12 pins/day
 
 async function generateDay(weekNum, dayNum) {
-  const theme = DAY_THEMES[dayNum] ?? "ADHD productivity and focus";
-  console.log(`\n📅 Day ${dayNum} — theme: ${theme}`);
+  const theme = themeFor(weekNum, dayNum);
+  console.log(`\n📅 Day ${dayNum} (week ${weekNum}) — theme: ${theme}`);
 
   // ── 4 HOOK pins (short text on photo) ──
   console.log(`  📌 Hook pins...`);
