@@ -352,6 +352,14 @@ function ffprobeDuration(file) {
   } catch { return 30; }
 }
 
+// ── ЧОМУ shorts educational/practical були БЕЗ субтитрів (виправлено) ──────────
+// Стиль субтитрів мав MarginV=320. Без параметра original_size libass рахує
+// координати у власному дефолтному полотні PlayResY=288. MarginV=320 > 288 —
+// отже текст виштовхувався ЗА нижній край кадру й був невидимий, хоча ffmpeg
+// завершувався успішно (subtitle:0kB, без помилки). ВИПРАВЛЕНО: MarginV=50 +
+// Fontsize=20 у системі координат libass (288), Outline=2. Прибрано MarginL/R,
+// що стискали перенос рядків. Перевірено локально на реальному SH_W27_01 —
+// субтитри тепер великі, білі з обведенням, у нижній третині кадру.
 function buildVideo(scenePaths, durations, voicePath, outPath, matchVoice = false, srtPath = null) {
   // ffmpeg must run from the directory where the input files (scenes, voice,
   // subs.srt, scenes.txt) actually live — that's the work dir, not the output
@@ -365,7 +373,7 @@ function buildVideo(scenePaths, durations, voicePath, outPath, matchVoice = fals
     const still = path.basename(scenePaths[0]);
     const voiceName = path.basename(voicePath);
     const sub = srtPath
-      ? `,subtitles=${path.basename(srtPath)}:force_style='Fontname=Arial,Fontsize=13,Bold=1,PrimaryColour=&H00FFFFFF,OutlineColour=&H803D2C6E,BorderStyle=1,Outline=3,Shadow=0,Alignment=2,MarginV=320,MarginL=90,MarginR=90'`
+      ? `,subtitles=${path.basename(srtPath)}:force_style='Fontname=Arial,Fontsize=20,Bold=1,PrimaryColour=&H00FFFFFF,OutlineColour=&H803D2C6E,BorderStyle=1,Outline=2,Shadow=0,Alignment=2,MarginV=50'`
       : "";
     let cmd;
     if (hasMusic) {
@@ -393,7 +401,7 @@ function buildVideo(scenePaths, durations, voicePath, outPath, matchVoice = fals
   // (absolute paths with slashes/colons break the filtergraph), so we run
   // ffmpeg with cwd=tmp and reference subs.srt / scenes.txt by basename.
   const subFilter = srtPath
-    ? `,subtitles=${path.basename(srtPath)}:force_style='Fontname=Arial,Fontsize=13,Bold=1,PrimaryColour=&H00FFFFFF,OutlineColour=&H803D2C6E,BorderStyle=1,Outline=3,Shadow=0,Alignment=2,MarginV=320,MarginL=90,MarginR=90'`
+    ? `,subtitles=${path.basename(srtPath)}:force_style='Fontname=Arial,Fontsize=20,Bold=1,PrimaryColour=&H00FFFFFF,OutlineColour=&H803D2C6E,BorderStyle=1,Outline=2,Shadow=0,Alignment=2,MarginV=50'`
     : "";
   const listName = path.basename(listFile);
   const voiceName = path.basename(voicePath);
