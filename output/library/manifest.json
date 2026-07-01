@@ -156,6 +156,12 @@
     "url": "https://raw.githubusercontent.com/dianahohol97-max/content/main/output/library/vertical/desk_empty_2.png"
   },
   {
+    "id": "vertical_desk_empty_3.png",
+    "aspect": "vertical",
+    "filename": "desk_empty_3.png",
+    "url": "https://raw.githubusercontent.com/dianahohol97-max/content/main/output/library/vertical/desk_empty_3.png"
+  },
+  {
     "id": "vertical_desk_messy_1.png",
     "aspect": "vertical",
     "filename": "desk_messy_1.png",
@@ -262,6 +268,12 @@
     "aspect": "vertical",
     "filename": "path_2.png",
     "url": "https://raw.githubusercontent.com/dianahohol97-max/content/main/output/library/vertical/path_2.png"
+  },
+  {
+    "id": "vertical_path_3.png",
+    "aspect": "vertical",
+    "filename": "path_3.png",
+    "url": "https://raw.githubusercontent.com/dianahohol97-max/content/main/output/library/vertical/path_3.png"
   },
   {
     "id": "vertical_phone_1.png",
