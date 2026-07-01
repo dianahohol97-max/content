@@ -402,6 +402,12 @@
     "url": "https://raw.githubusercontent.com/dianahohol97-max/content/main/output/library/wide/bed_4.png"
   },
   {
+    "id": "wide_bed_5.png",
+    "aspect": "wide",
+    "filename": "bed_5.png",
+    "url": "https://raw.githubusercontent.com/dianahohol97-max/content/main/output/library/wide/bed_5.png"
+  },
+  {
     "id": "wide_books_1.png",
     "aspect": "wide",
     "filename": "books_1.png",
@@ -424,6 +430,12 @@
     "aspect": "wide",
     "filename": "books_4.png",
     "url": "https://raw.githubusercontent.com/dianahohol97-max/content/main/output/library/wide/books_4.png"
+  },
+  {
+    "id": "wide_books_5.png",
+    "aspect": "wide",
+    "filename": "books_5.png",
+    "url": "https://raw.githubusercontent.com/dianahohol97-max/content/main/output/library/wide/books_5.png"
   },
   {
     "id": "wide_brain_1.png",
@@ -610,6 +622,18 @@
     "aspect": "wide",
     "filename": "desk_empty_3.png",
     "url": "https://raw.githubusercontent.com/dianahohol97-max/content/main/output/library/wide/desk_empty_3.png"
+  },
+  {
+    "id": "wide_desk_empty_4.png",
+    "aspect": "wide",
+    "filename": "desk_empty_4.png",
+    "url": "https://raw.githubusercontent.com/dianahohol97-max/content/main/output/library/wide/desk_empty_4.png"
+  },
+  {
+    "id": "wide_desk_empty_5.png",
+    "aspect": "wide",
+    "filename": "desk_empty_5.png",
+    "url": "https://raw.githubusercontent.com/dianahohol97-max/content/main/output/library/wide/desk_empty_5.png"
   },
   {
     "id": "wide_desk_messy_1.png",
@@ -910,5 +934,179 @@
     "aspect": "wide",
     "filename": "window_light_5.png",
     "url": "https://raw.githubusercontent.com/dianahohol97-max/content/main/output/library/wide/window_light_5.png"
+  },
+  {
+    "id": "portrait_bed_1.png",
+    "aspect": "portrait",
+    "filename": "bed_1.png",
+    "url": "https://raw.githubusercontent.com/dianahohol97-max/content/main/output/library/portrait/bed_1.png"
+  },
+  {
+    "id": "portrait_brain_1.png",
+    "aspect": "portrait",
+    "filename": "brain_1.png",
+    "url": "https://raw.githubusercontent.com/dianahohol97-max/content/main/output/library/portrait/brain_1.png"
+  },
+  {
+    "id": "portrait_brain_2.png",
+    "aspect": "portrait",
+    "filename": "brain_2.png",
+    "url": "https://raw.githubusercontent.com/dianahohol97-max/content/main/output/library/portrait/brain_2.png"
+  },
+  {
+    "id": "portrait_brain_3.png",
+    "aspect": "portrait",
+    "filename": "brain_3.png",
+    "url": "https://raw.githubusercontent.com/dianahohol97-max/content/main/output/library/portrait/brain_3.png"
+  },
+  {
+    "id": "portrait_brain_4.png",
+    "aspect": "portrait",
+    "filename": "brain_4.png",
+    "url": "https://raw.githubusercontent.com/dianahohol97-max/content/main/output/library/portrait/brain_4.png"
+  },
+  {
+    "id": "portrait_clock_1.png",
+    "aspect": "portrait",
+    "filename": "clock_1.png",
+    "url": "https://raw.githubusercontent.com/dianahohol97-max/content/main/output/library/portrait/clock_1.png"
+  },
+  {
+    "id": "portrait_clock_2.png",
+    "aspect": "portrait",
+    "filename": "clock_2.png",
+    "url": "https://raw.githubusercontent.com/dianahohol97-max/content/main/output/library/portrait/clock_2.png"
+  },
+  {
+    "id": "portrait_clock_3.png",
+    "aspect": "portrait",
+    "filename": "clock_3.png",
+    "url": "https://raw.githubusercontent.com/dianahohol97-max/content/main/output/library/portrait/clock_3.png"
+  },
+  {
+    "id": "portrait_coffee_1.png",
+    "aspect": "portrait",
+    "filename": "coffee_1.png",
+    "url": "https://raw.githubusercontent.com/dianahohol97-max/content/main/output/library/portrait/coffee_1.png"
+  },
+  {
+    "id": "portrait_cozy_room_1.png",
+    "aspect": "portrait",
+    "filename": "cozy_room_1.png",
+    "url": "https://raw.githubusercontent.com/dianahohol97-max/content/main/output/library/portrait/cozy_room_1.png"
+  },
+  {
+    "id": "portrait_cozy_room_2.png",
+    "aspect": "portrait",
+    "filename": "cozy_room_2.png",
+    "url": "https://raw.githubusercontent.com/dianahohol97-max/content/main/output/library/portrait/cozy_room_2.png"
+  },
+  {
+    "id": "portrait_desk_messy_1.png",
+    "aspect": "portrait",
+    "filename": "desk_messy_1.png",
+    "url": "https://raw.githubusercontent.com/dianahohol97-max/content/main/output/library/portrait/desk_messy_1.png"
+  },
+  {
+    "id": "portrait_desk_messy_2.png",
+    "aspect": "portrait",
+    "filename": "desk_messy_2.png",
+    "url": "https://raw.githubusercontent.com/dianahohol97-max/content/main/output/library/portrait/desk_messy_2.png"
+  },
+  {
+    "id": "portrait_desk_messy_3.png",
+    "aspect": "portrait",
+    "filename": "desk_messy_3.png",
+    "url": "https://raw.githubusercontent.com/dianahohol97-max/content/main/output/library/portrait/desk_messy_3.png"
+  },
+  {
+    "id": "portrait_journal_1.png",
+    "aspect": "portrait",
+    "filename": "journal_1.png",
+    "url": "https://raw.githubusercontent.com/dianahohol97-max/content/main/output/library/portrait/journal_1.png"
+  },
+  {
+    "id": "portrait_journal_2.png",
+    "aspect": "portrait",
+    "filename": "journal_2.png",
+    "url": "https://raw.githubusercontent.com/dianahohol97-max/content/main/output/library/portrait/journal_2.png"
+  },
+  {
+    "id": "portrait_path_1.png",
+    "aspect": "portrait",
+    "filename": "path_1.png",
+    "url": "https://raw.githubusercontent.com/dianahohol97-max/content/main/output/library/portrait/path_1.png"
+  },
+  {
+    "id": "portrait_phone_1.png",
+    "aspect": "portrait",
+    "filename": "phone_1.png",
+    "url": "https://raw.githubusercontent.com/dianahohol97-max/content/main/output/library/portrait/phone_1.png"
+  },
+  {
+    "id": "portrait_plant_1.png",
+    "aspect": "portrait",
+    "filename": "plant_1.png",
+    "url": "https://raw.githubusercontent.com/dianahohol97-max/content/main/output/library/portrait/plant_1.png"
+  },
+  {
+    "id": "portrait_plant_2.png",
+    "aspect": "portrait",
+    "filename": "plant_2.png",
+    "url": "https://raw.githubusercontent.com/dianahohol97-max/content/main/output/library/portrait/plant_2.png"
+  },
+  {
+    "id": "portrait_plant_3.png",
+    "aspect": "portrait",
+    "filename": "plant_3.png",
+    "url": "https://raw.githubusercontent.com/dianahohol97-max/content/main/output/library/portrait/plant_3.png"
+  },
+  {
+    "id": "portrait_plant_4.png",
+    "aspect": "portrait",
+    "filename": "plant_4.png",
+    "url": "https://raw.githubusercontent.com/dianahohol97-max/content/main/output/library/portrait/plant_4.png"
+  },
+  {
+    "id": "portrait_sparks_1.png",
+    "aspect": "portrait",
+    "filename": "sparks_1.png",
+    "url": "https://raw.githubusercontent.com/dianahohol97-max/content/main/output/library/portrait/sparks_1.png"
+  },
+  {
+    "id": "portrait_sparks_2.png",
+    "aspect": "portrait",
+    "filename": "sparks_2.png",
+    "url": "https://raw.githubusercontent.com/dianahohol97-max/content/main/output/library/portrait/sparks_2.png"
+  },
+  {
+    "id": "portrait_sparks_3.png",
+    "aspect": "portrait",
+    "filename": "sparks_3.png",
+    "url": "https://raw.githubusercontent.com/dianahohol97-max/content/main/output/library/portrait/sparks_3.png"
+  },
+  {
+    "id": "portrait_sparks_4.png",
+    "aspect": "portrait",
+    "filename": "sparks_4.png",
+    "url": "https://raw.githubusercontent.com/dianahohol97-max/content/main/output/library/portrait/sparks_4.png"
+  },
+  {
+    "id": "portrait_window_light_1.png",
+    "aspect": "portrait",
+    "filename": "window_light_1.png",
+    "url": "https://raw.githubusercontent.com/dianahohol97-max/content/main/output/library/portrait/window_light_1.png"
+  },
+  {
+    "id": "portrait_window_light_2.png",
+    "aspect": "portrait",
+    "filename": "window_light_2.png",
+    "url": "https://raw.githubusercontent.com/dianahohol97-max/content/main/output/library/portrait/window_light_2.png"
+  },
+  {
+    "id": "portrait_window_light_3.png",
+    "aspect": "portrait",
+    "filename": "window_light_3.png",
+    "url": "https://raw.githubusercontent.com/dianahohol97-max/content/main/output/library/portrait/window_light_3.png"
   }
 ]
