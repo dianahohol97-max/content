@@ -67,13 +67,32 @@ LAYOUT: Keep ALL content (title, full numbered list, footer) safely centered ins
   for (const part of parts) {
     if (part.inlineData?.data) {
       const raw = Buffer.from(part.inlineData.data, "base64");
-      // Force exact 1000x1500 (2:3). cover-crops to fill the frame; because the
-      // prompt keeps content centered with margins, the crop trims only the
-      // top/bottom background, keeping the title and list intact.
-      await sharp(raw)
-        .resize(W, H, { fit: "cover", position: "centre" })
-        .png()
-        .toFile(outPath);
+
+      // Normalize to a true 2:3 (1000x1500) WITHOUT cropping the title.
+      // 1) scale to full width (1000px) keeping aspect — nothing is cut;
+      // 2) if the result is shorter than 1500 (Gemini gave ~square), pad the
+      //    BOTTOM with the image's own bottom-edge pastel color so it blends in;
+      // 3) if it's taller than 1500, it's already portrait — center-crop lightly.
+      const scaled = await sharp(raw).resize({ width: W }).toBuffer();
+      const meta = await sharp(scaled).metadata();
+
+      if (meta.height >= H) {
+        // Already tall enough — crop to exact frame from the top (keep title).
+        await sharp(scaled).extract({ left: 0, top: 0, width: W, height: H }).png().toFile(outPath);
+      } else {
+        // Sample the average color of the bottom 6px strip to pad seamlessly.
+        const strip = await sharp(scaled)
+          .extract({ left: 0, top: meta.height - 6, width: W, height: 6 })
+          .resize(1, 1)
+          .raw()
+          .toBuffer();
+        const [r, g, b] = [strip[0], strip[1], strip[2]];
+        await sharp(scaled)
+          .extend({ top: 0, bottom: H - meta.height, left: 0, right: 0,
+                    background: { r, g, b, alpha: 1 } })
+          .png()
+          .toFile(outPath);
+      }
       return outPath;
     }
   }
