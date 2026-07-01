@@ -44,6 +44,40 @@ const URLS = {
   site: "https://bloomfocus.org",
 };
 
+// ─── Anti-repeat memory ──────────────────────────────────────────────────────
+// Collect headlines / overlay titles / meme text from ALL previous weeks so we
+// can tell the model NOT to reuse the same phrasings. Pinterest suppresses
+// near-duplicate pins, so fresh wording each week matters for reach.
+function loadPreviousPhrases(currentWeek) {
+  const phrases = new Set();
+  try {
+    for (const f of fs.readdirSync(".")) {
+      const m = f.match(/^pinterest_week_(\d+)\.json$/);
+      if (!m) continue;
+      if (parseInt(m[1]) === currentWeek) continue; // skip the week we're building
+      let pins;
+      try { pins = JSON.parse(fs.readFileSync(f, "utf8")); } catch { continue; }
+      if (!Array.isArray(pins)) continue;
+      for (const p of pins) {
+        for (const v of [p.headline, p.overlayTitle, p.title, p.memeText]) {
+          if (typeof v === "string" && v.trim()) phrases.add(v.replace(/\n/g, " ").trim());
+        }
+      }
+    }
+  } catch { /* no previous weeks yet */ }
+  return Array.from(phrases);
+}
+
+// Build a short "avoid these" block for prompts (cap length to keep tokens sane).
+function avoidBlock(prevPhrases, max = 40) {
+  if (!prevPhrases.length) return "";
+  const sample = prevPhrases.slice(-max); // most recent weeks matter most
+  return `\n\nAVOID REPETITION: These titles/hooks were used in PREVIOUS weeks. Do NOT reuse them or trivial variations of them — write fresh, different wording and angles:\n- ${sample.join("\n- ")}\n`;
+}
+
+const PREV_PHRASES = loadPreviousPhrases(WEEK);
+console.log(`🧠 Anti-repeat: loaded ${PREV_PHRASES.length} phrases from previous weeks`);
+
 const BOARDS = [
   "ADHD Tips & Science",
   "ADHD Productivity",
@@ -198,7 +232,7 @@ Return ONLY a valid JSON array:
   const response = await client.messages.create({
     model: "claude-sonnet-4-6",
     max_tokens: 2000,
-    messages: [{ role: "user", content: prompt }],
+    messages: [{ role: "user", content: prompt + avoidBlock(PREV_PHRASES) }],
   });
 
   return parseJSON(response.content[0].text);
@@ -319,7 +353,7 @@ Return ONLY a valid JSON array, no markdown, no explanation:
   const response = await client.messages.create({
     model: "claude-sonnet-4-6",
     max_tokens: 2000,
-    messages: [{ role: "user", content: prompt }],
+    messages: [{ role: "user", content: prompt + avoidBlock(PREV_PHRASES) }],
   });
 
   return parseJSON(response.content[0].text);
@@ -398,7 +432,7 @@ Return ONLY a valid JSON array, no markdown:
   const response = await client.messages.create({
     model: "claude-sonnet-4-6",
     max_tokens: 1500,
-    messages: [{ role: "user", content: prompt }],
+    messages: [{ role: "user", content: prompt + avoidBlock(PREV_PHRASES) }],
   });
 
   return parseJSON(response.content[0].text);
