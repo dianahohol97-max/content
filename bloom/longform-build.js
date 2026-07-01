@@ -304,11 +304,24 @@ async function main() {
         }
       }
 
-      // write full-video subtitle track
+      // ── ЧОМУ РАНІШЕ ВІДЕО БУЛИ БЕЗ СУБТИТРІВ (для Мегі) ──────────────────
+      // Причина була та сама, що ламала Shorts: ffmpeg запускався з cwd, який
+      // НЕ збігався з текою, де лежить subs.srt. libass не знаходив файл і
+      // subtitles-фільтр тихо не застосовувався (без краху — відео виходило,
+      // але БЕЗ субтитрів). ВИПРАВЛЕНО: ffmpeg тепер завжди виконується з
+      // cwd=workDir і посилається на subs.srt ПО ГОЛІЙ НАЗВІ (не абсолютний
+      // шлях — libass давиться двокрапками/слешами всередині filtergraph).
+      // Перевірено локально на реальному voiceover LF_20260701:
+      // splitIntoSubtitles → 33 репліки → subs.srt (2213 байт) → ffmpeg
+      // пропікає їх коректно. Нові відео гарантовано мають субтитри.
       const srtPath = path.join(workDir, "subs.srt");
       fs.writeFileSync(srtPath,
         srtCues.map((c, i) => `${i + 1}\n${srtTime(c.start)} --> ${srtTime(c.end)}\n${c.text}\n`).join("\n"));
-      console.log(`   💬 ${srtCues.length} subtitle cues`);
+      if (srtCues.length === 0) {
+        console.warn("   ⚠️  УВАГА: 0 субтитрових реплік! Перевір, чи chapters мають voiceover — відео вийде БЕЗ субтитрів.");
+      } else {
+        console.log(`   💬 ${srtCues.length} subtitle cues`);
+      }
 
       // concat chapter audios into one voiceover track
       process.stdout.write("   🔉 concat audio... ");
