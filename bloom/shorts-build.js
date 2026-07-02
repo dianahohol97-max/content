@@ -397,7 +397,7 @@ function buildVideo(scenePaths, durations, voicePath, outPath, matchVoice = fals
   if (matchVoice) {
     const still = path.basename(scenePaths[0]);
     const voiceName = path.basename(voicePath);
-    const motion = `scale=2700:4800,zoompan=z='min(1+0.00030*on,1.10)':x='iw/2-(iw/zoom/2)':y='ih/2-(ih/zoom/2)':d=18000:s=${W}x${H}:fps=30,format=yuv420p`;
+    const motion = `scale=1620:2880,zoompan=z='min(1+0.00030*on,1.10)':x='iw/2-(iw/zoom/2)':y='ih/2-(ih/zoom/2)':d=18000:s=${W}x${H}:fps=30,format=yuv420p`;
     const cmd = `ffmpeg -y -loop 1 -i "${still}" -i "${voiceName}" ` +
       (hasMusic ? `-stream_loop -1 -i "${MUSIC_PATH}" ` : "") +
       `-filter_complex "[0:v]${motion}${sub}[v];${audioChain(hasMusic)}" ` +
@@ -417,7 +417,7 @@ function buildVideo(scenePaths, durations, voicePath, outPath, matchVoice = fals
     const x = `'iw/2-(iw/zoom/2)${drift}40*on/${N}'`;
     const seg = `seg_${i}.mp4`;
     const cmd = `ffmpeg -y -loop 1 -i "${path.basename(p)}" ` +
-      `-vf "scale=2700:4800,zoompan=z=${z}:x=${x}:y='ih/2-(ih/zoom/2)':d=${N}:s=${W}x${H}:fps=30,format=yuv420p" ` +
+      `-vf "scale=1620:2880,zoompan=z=${z}:x=${x}:y='ih/2-(ih/zoom/2)':d=${N}:s=${W}x${H}:fps=30,format=yuv420p" ` +
       `-frames:v ${N} -c:v libx264 -preset veryfast -crf 18 "${seg}"`;
     execSync(cmd, { stdio: "inherit", cwd: tmp });
     segNames.push(seg);
