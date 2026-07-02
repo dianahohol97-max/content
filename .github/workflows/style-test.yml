@@ -1,0 +1,29 @@
+name: bloom focus — Style Test
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  style-test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - run: npm install
+      - name: Render style candidates
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+        run: node bloom/style-test.js
+      - name: Commit results
+        run: |
+          git config user.name "bloom-bot"
+          git config user.email "bot@bloomfocus.org"
+          git add output/style-tests/ -f
+          git commit -m "style test candidates" || echo "nothing to commit"
+          git push
