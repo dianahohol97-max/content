@@ -373,7 +373,7 @@ function ensureSubFont(tmp) {
 
 // libass coords (PlayResY=288): Fontsize 23 ≈ 153px on 1920. MarginV 60 keeps
 // cues clear of YT/IG UI. Outline 3 for readability over any background.
-const SUB_STYLE = "Fontname=Poppins ExtraBold,Fontsize=23,Bold=1,PrimaryColour=&H00FFFFFF,OutlineColour=&H803D2C6E,BorderStyle=1,Outline=3,Shadow=0,Alignment=2,MarginV=60";
+const SUB_STYLE = "Fontname=Poppins ExtraBold,Fontsize=19,Bold=1,PrimaryColour=&H00FFFFFF,OutlineColour=&H803D2C6E,BorderStyle=1,Outline=2,Shadow=0,Alignment=2,MarginV=60";
 
 // Voice: loudnorm to -14 LUFS (platform standard). Music ducked to 0.10.
 // alimiter guarantees no clipping after the mix (old build peaked at +1.8dB).
