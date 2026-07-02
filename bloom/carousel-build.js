@@ -114,6 +114,19 @@ function wrapLine(text, max) {
   return lines.length ? lines : [""];
 }
 function wrapText(text, max) { return String(text || "").split(/\r?\n/).flatMap((l) => (l.trim() === "" ? [""] : wrapLine(l, max))); }
+// fitBlock: pick largest font whose wrapped text fits maxH. Returns {font, lines, lh}.
+const FIT_LADDER = [[40,38],[38,42],[35,46],[32,50],[30,54],[28,58],[26,62],[24,66],[22,72]];
+function fitBlock(text, maxH, lhFactor = 1.5, ladder = FIT_LADDER) {
+  let best = null;
+  for (const [font, width] of ladder) {
+    const lines = wrapText(text, width);
+    const h = lines.length * font * lhFactor;
+    best = { font, lines, lh: font * lhFactor, h };
+    if (h <= maxH) return best;
+  }
+  return best; // smallest ladder step even if slightly over
+}
+
 function grad(rubric) {
   const [a, b, c] = GRADS[rubric] || GRADS.chapters;
   return `<defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
@@ -172,13 +185,13 @@ function chapterStepSVG(s, rubric, pos, total, isStep) {
   const hLines = wrapText(s.headline, isStep ? 18 : 20);
   const hFont = hLines.length > 2 ? 58 : isStep ? 66 : 70;
   const hLH = hFont * 1.18;
-  let bFont = 38, bLines = s.body ? wrapText(s.body, 42) : [];
-  if (bLines.length > 12) { bFont = 30; bLines = wrapText(s.body, 52); }
-  else if (bLines.length > 9) { bFont = 34; bLines = wrapText(s.body, 46); }
-  const bLH = bFont * 1.5;
   const numBlock = isStep ? 160 : 0;
-  const inner = 110 + numBlock + hLines.length * hLH + 34 + 46 + bLines.length * bLH + 90;
-  const cardH = Math.min(inner, H - 400);
+  const cardHMax = H - 400;
+  const fixed = 110 + numBlock + hLines.length * hLH + 34 + 46 + 90;
+  const fit = s.body ? fitBlock(s.body, cardHMax - fixed) : { font: 38, lines: [], lh: 57, h: 0 };
+  const bFont = fit.font, bLines = fit.lines, bLH = fit.lh;
+  const inner = fixed + fit.h;
+  const cardH = Math.min(inner, cardHMax);
   const cardY = (H - cardH) / 2 - 20;
   const numY = cardY + 118;
   const hY = (isStep ? numY + 70 : cardY + 110) + hFont * 0.75;
@@ -232,11 +245,12 @@ function quizSVG(s, rubric, pos, total) {
   const col = colors[letter] || "#E8A0BC";
   const hLines = wrapText(s.typeName || s.headline, 18);
   const hFont = hLines.length > 2 ? 56 : 66, hLH = hFont * 1.18;
-  let bFont = 37, bLines = wrapText(s.body, 40), bLH0 = 1.5;
-  if (bLines.length > 10) { bFont = 32; bLines = wrapText(s.body, 46); }
-  const bLH = bFont * bLH0;
-  const inner = 210 + hLines.length * hLH + 46 + bLines.length * bLH + 80;
-  const cardH = Math.min(inner, H - 400), cardY = (H - cardH) / 2 - 20;
+  const cardHMax = H - 400;
+  const fixed = 210 + hLines.length * hLH + 46 + 80;
+  const fit = fitBlock(s.body, cardHMax - fixed);
+  const bFont = fit.font, bLines = fit.lines, bLH = fit.lh;
+  const inner = fixed + fit.h;
+  const cardH = Math.min(inner, cardHMax), cardY = (H - cardH) / 2 - 20;
   const letY = cardY + 150;
   const hY = letY + 110 + hFont * 0.7;
   const bY = hY + (hLines.length - 1) * hLH + 46 + bFont * 0.85;
@@ -277,11 +291,12 @@ function mythSVG(s, rubric, pos, total) {
 function truthSVG(s, rubric, pos, total) {
   const hLines = wrapText(s.headline, 20);
   const hFont = hLines.length > 2 ? 58 : 66, hLH = hFont * 1.18;
-  let bFont = 37, bLines = wrapText(s.body, 42);
-  if (bLines.length > 9) { bFont = 33; bLines = wrapText(s.body, 47); }
-  const bLH = bFont * 1.5;
-  const inner = 200 + hLines.length * hLH + 46 + bLines.length * bLH + 90;
-  const cardH = Math.min(inner, H - 400), cardY = (H - cardH) / 2 - 20;
+  const cardHMax = H - 400;
+  const fixed = 200 + hLines.length * hLH + 46 + 90;
+  const fit = fitBlock(s.body, cardHMax - fixed);
+  const bFont = fit.font, bLines = fit.lines, bLH = fit.lh;
+  const inner = fixed + fit.h;
+  const cardH = Math.min(inner, cardHMax), cardY = (H - cardH) / 2 - 20;
   const hY = cardY + 170 + hFont * 0.7;
   const bY = hY + (hLines.length - 1) * hLH + 46 + bFont * 0.85;
   return svgWrap(`${grad("truth")}
@@ -297,15 +312,27 @@ function truthSVG(s, rubric, pos, total) {
 
 function dictSVG(s, rubric, pos, total) {
   const cardY = 210, cardH = H - 420;
-  let y = cardY + 320;
+  const y0 = cardY + 320;
+  const bottomLimit = cardY + cardH - 90;
+  const maxContentH = bottomLimit - y0;
+  const example = String(s.example || "").replace(/^["'\u201c\u2018]+|["'\u201d\u2019]+$/g, "");
+  const LAD = [[35,38,36,38],[32,42,33,42],[29,46,30,46],[26,51,27,51],[24,56,25,56]];
+  let geo = null;
+  for (const [dF, dW, eF, eW] of LAD) {
+    const defBlocks = (s.defs || []).map((d) => wrapText(d, dW));
+    const defsH = defBlocks.reduce((a, ls) => a + ls.length * (dF * 1.48) + 40, 0);
+    const exLines = wrapText('"' + example + '"', eW);
+    const exH = exLines.length * (eF * 1.5);
+    geo = { dF, dW, eF, eW, defBlocks, exLines, total: defsH + 40 + exH };
+    if (geo.total <= maxContentH) break;
+  }
+  let y = y0;
   let defsSvg = "";
-  (s.defs || []).forEach((d, i) => {
-    const ls = wrapText(d, 38);
-    defsSvg += `<text x="170" y="${y}" font-family="Playfair Display" font-style="italic" font-weight="500" font-size="34" fill="#A98F6F">${i + 1}.</text>`;
-    ls.forEach((l, j) => { defsSvg += `<text x="230" y="${y + j * 52}" font-family="Poppins" font-weight="500" font-size="35" fill="#4a3a7a">${esc(l)}</text>`; });
-    y += ls.length * 52 + 40;
+  geo.defBlocks.forEach((ls, i) => {
+    defsSvg += `<text x="170" y="${y}" font-family="Playfair Display" font-style="italic" font-weight="500" font-size="${Math.round(geo.dF * 0.95)}" fill="#A98F6F">${i + 1}.</text>`;
+    ls.forEach((l, j) => { defsSvg += `<text x="230" y="${y + j * geo.dF * 1.48}" font-family="Poppins" font-weight="500" font-size="${geo.dF}" fill="#4a3a7a">${esc(l)}</text>`; });
+    y += ls.length * geo.dF * 1.48 + 40;
   });
-  const exLines = wrapText('"' + (s.example || "") + '"', 38);
   const exY = y + 40;
   return svgWrap(`${grad("dictionary")}
   ${header("the ADHD dictionary", `${pos} / ${total}`)}
@@ -315,17 +342,18 @@ function dictSVG(s, rubric, pos, total) {
   <text x="170" y="${cardY + 186}" font-family="Playfair Display" font-style="italic" font-weight="500" font-size="36" fill="#A98F6F">${esc(s.pos)} · ${esc(s.phonetic)}</text>
   <line x1="170" y1="${cardY + 230}" x2="${W - 170}" y2="${cardY + 230}" stroke="rgba(61,44,110,0.2)" stroke-width="2"/>
   ${defsSvg}
-  <text x="170" y="${exY}" font-family="Playfair Display" font-style="italic" font-weight="500" font-size="36" fill="#7a6a9e">${spans(exLines, 170, 54)}</text>
+  <text x="170" y="${exY}" font-family="Playfair Display" font-style="italic" font-weight="500" font-size="${geo.eF}" fill="#7a6a9e">${spans(geo.exLines, 170, geo.eF * 1.5)}</text>
   <text x="${W / 2}" y="${H - 110}" font-family="Poppins" font-weight="500" font-size="26" fill="rgba(61,44,110,0.5)" text-anchor="middle">bloomfocus.org · word of the week</text>`);
 }
 
 function diarySVG(s, rubric, pos, total) {
   const dateLines = wrapText(s.dateLine || "monday, 9am", 24);
-  let bFont = 44, bLines = wrapText(s.body, 34);
-  if (bLines.length > 8) { bFont = 38; bLines = wrapText(s.body, 40); }
-  const bLH = bFont * 1.55;
-  const inner = 200 + bLines.length * bLH + 110;
-  const cardH = Math.min(Math.max(inner, 560), H - 400);
+  const cardHMax = H - 400;
+  const fixed = 200 + 110;
+  const fit = fitBlock(s.body, cardHMax - fixed, 1.55, [[44,34],[40,38],[36,42],[32,47],[29,52],[26,58],[24,64]]);
+  const bFont = fit.font, bLines = fit.lines, bLH = fit.lh;
+  const inner = fixed + fit.h;
+  const cardH = Math.min(Math.max(inner, 560), cardHMax);
   const cardY = (H - cardH) / 2 - 20;
   const dY = cardY + 130;
   const bY = dY + 90 + bFont * 0.85;
