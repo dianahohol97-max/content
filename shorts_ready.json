@@ -431,5 +431,68 @@
     "status": "pending",
     "videoUrl": "https://raw.githubusercontent.com/dianahohol97-max/content/main/output/shorts/week_27/SH_W27_07.mp4",
     "postedAt": null
+  },
+  {
+    "id": "SH_W27_08",
+    "week": 27,
+    "voiceover": "Your brain won't start a task? Stop forcing it. Bribe it. A dopamine menu is a short list of tiny pleasures you pair with hard tasks to make your brain actually want to begin. Pick your menu items first: a favorite playlist, a fancy drink, a candle, a cozy spot. Then when you sit down to work, you activate one. Not as a reward after. As fuel during. Your brain gets dopamine, the task gets done. Make your list tonight. Even three things works. Follow for daily ADHD content.",
+    "scenes": [
+      {
+        "tag": "brain",
+        "imagePrompt": "Hand-drawn illustration in soft pastel colors, cozy and warm style. Soft watercolor texture, gentle hand-painted lines, flat illustration. Palette: lavender, cream, sage green, blush pink. Calm, friendly, approachable, non-judgmental mood. No people, no faces, no text, no letters. Vertical 9:16 composition. An abstract brain made of soft pastel clouds with tiny golden sparks floating around it, gentle and glowing.",
+        "caption": ""
+      },
+      {
+        "tag": "desk_messy",
+        "imagePrompt": "Hand-drawn illustration in soft pastel colors, cozy and warm style. Soft watercolor texture, gentle hand-painted lines, flat illustration. Palette: lavender, cream, sage green, blush pink. Calm, friendly, approachable, non-judgmental mood. No people, no faces, no text, no letters. Vertical 9:16 composition. A gently messy cozy desk with scattered papers, a half-open notebook, and a pen resting sideways, soft afternoon light.",
+        "caption": ""
+      },
+      {
+        "tag": "journal",
+        "imagePrompt": "Hand-drawn illustration in soft pastel colors, cozy and warm style. Soft watercolor texture, gentle hand-painted lines, flat illustration. Palette: lavender, cream, sage green, blush pink. Calm, friendly, approachable, non-judgmental mood. No people, no faces, no text, no letters. Vertical 9:16 composition. An open journal lying flat with a soft ribbon bookmark and a small pencil beside it, warm gentle light falling across the pages.",
+        "caption": ""
+      },
+      {
+        "tag": "coffee",
+        "imagePrompt": "Hand-drawn illustration in soft pastel colors, cozy and warm style. Soft watercolor texture, gentle hand-painted lines, flat illustration. Palette: lavender, cream, sage green, blush pink. Calm, friendly, approachable, non-judgmental mood. No people, no faces, no text, no letters. Vertical 9:16 composition. A cozy ceramic mug with a swirl of steam rising gently, resting on a small saucer beside a single tiny plant, warm and inviting.",
+        "caption": ""
+      },
+      {
+        "tag": "lamp",
+        "imagePrompt": "Hand-drawn illustration in soft pastel colors, cozy and warm style. Soft watercolor texture, gentle hand-painted lines, flat illustration. Palette: lavender, cream, sage green, blush pink. Calm, friendly, approachable, non-judgmental mood. No people, no faces, no text, no letters. Vertical 9:16 composition. A soft glowing desk lamp casting a warm circle of golden light onto a clean surface, surrounded by gentle shadows and a small candle nearby.",
+        "caption": ""
+      },
+      {
+        "tag": "desk_tidy",
+        "imagePrompt": "Hand-drawn illustration in soft pastel colors, cozy and warm style. Soft watercolor texture, gentle hand-painted lines, flat illustration. Palette: lavender, cream, sage green, blush pink. Calm, friendly, approachable, non-judgmental mood. No people, no faces, no text, no letters. Vertical 9:16 composition. A tidy cozy desk with a notebook, a steaming mug, and a small plant arranged neatly, soft warm light suggesting a calm productive moment.",
+        "caption": ""
+      },
+      {
+        "tag": "sparks",
+        "imagePrompt": "Hand-drawn illustration in soft pastel colors, cozy and warm style. Soft watercolor texture, gentle hand-painted lines, flat illustration. Palette: lavender, cream, sage green, blush pink. Calm, friendly, approachable, non-judgmental mood. No people, no faces, no text, no letters. Vertical 9:16 composition. Abstract soft golden sparks and tiny pastel stars floating upward against a gentle lavender and cream background, light and energizing.",
+        "caption": ""
+      }
+    ],
+    "title": "Use a Dopamine Menu to Finally Start Hard Tasks #Shorts",
+    "description": "If your ADHD brain refuses to start tasks, a dopamine menu can change everything. Learn how to pair small pleasures with hard work so your brain gets the fuel it needs to begin. This simple ADHD strategy is backed by how the dopamine system actually works.\nFollow for daily ADHD content.",
+    "tags": [
+      "ADHD tips",
+      "dopamine menu",
+      "ADHD productivity",
+      "ADHD strategies",
+      "how to focus with ADHD",
+      "ADHD brain",
+      "task initiation ADHD",
+      "ADHD motivation",
+      "executive function",
+      "ADHD education",
+      "focus tips",
+      "ADHD shorts"
+    ],
+    "funnel": "follow",
+    "shortType": "practical",
+    "status": "pending",
+    "videoUrl": "https://raw.githubusercontent.com/dianahohol97-max/content/main/output/shorts/week_27/SH_W27_08.mp4",
+    "postedAt": null
   }
 ]

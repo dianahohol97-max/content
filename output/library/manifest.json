@@ -270,6 +270,12 @@
     "url": "https://raw.githubusercontent.com/dianahohol97-max/content/main/output/library/vertical/lamp_1.png"
   },
   {
+    "id": "vertical_lamp_2.png",
+    "aspect": "vertical",
+    "filename": "lamp_2.png",
+    "url": "https://raw.githubusercontent.com/dianahohol97-max/content/main/output/library/vertical/lamp_2.png"
+  },
+  {
     "id": "vertical_path_1.png",
     "aspect": "vertical",
     "filename": "path_1.png",
