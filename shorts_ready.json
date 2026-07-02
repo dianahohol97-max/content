@@ -557,5 +557,63 @@
     "status": "pending",
     "videoUrl": "https://raw.githubusercontent.com/dianahohol97-max/content/main/output/shorts/week_27/SH_W27_09.mp4",
     "postedAt": null
+  },
+  {
+    "id": "SH_W27_10",
+    "week": 27,
+    "voiceover": "You become a completely different person depending on who you're with. That's not fake — that's Rejection Masking. It's when your brain learns to hide the real you to avoid being disliked or rejected. Here's what it looks like: You laugh at a joke you hate because disagreeing feels too risky. You shrink your whole personality at work so nobody finds you 'too much.' You go home exhausted — not from the day, but from performing a version of yourself that felt safe. Sound familiar? Follow for daily ADHD content.",
+    "scenes": [
+      {
+        "tag": "sparks",
+        "imagePrompt": "Hand-drawn illustration in soft pastel colors, cozy and warm style. Soft watercolor texture, gentle hand-painted lines, flat illustration. Palette: lavender, cream, sage green, blush pink. Calm, friendly, approachable, non-judgmental mood. No people, no faces, no text, no letters. Vertical 9:16 composition. Two soft glowing spark clusters side by side — one bright and vivid, one dimmed and muted — floating gently against a lavender background, suggesting hidden energy.",
+        "caption": ""
+      },
+      {
+        "tag": "brain",
+        "imagePrompt": "Hand-drawn illustration in soft pastel colors, cozy and warm style. Soft watercolor texture, gentle hand-painted lines, flat illustration. Palette: lavender, cream, sage green, blush pink. Calm, friendly, approachable, non-judgmental mood. No people, no faces, no text, no letters. Vertical 9:16 composition. An abstract brain made of soft clouds and gentle sparks, with a small dim shadow layered over half of it, suggesting something being quietly hidden.",
+        "caption": ""
+      },
+      {
+        "tag": "cozy_room",
+        "imagePrompt": "Hand-drawn illustration in soft pastel colors, cozy and warm style. Soft watercolor texture, gentle hand-painted lines, flat illustration. Palette: lavender, cream, sage green, blush pink. Calm, friendly, approachable, non-judgmental mood. No people, no faces, no text, no letters. Vertical 9:16 composition. A gently messy cozy room with a soft armchair, a small lamp glowing warmly, and a closed journal resting on the seat, suggesting quiet retreat and concealment.",
+        "caption": ""
+      },
+      {
+        "tag": "desk_tidy",
+        "imagePrompt": "Hand-drawn illustration in soft pastel colors, cozy and warm style. Soft watercolor texture, gentle hand-painted lines, flat illustration. Palette: lavender, cream, sage green, blush pink. Calm, friendly, approachable, non-judgmental mood. No people, no faces, no text, no letters. Vertical 9:16 composition. A very neat, overly tidy desk with a perfectly placed notebook, a single pen, and a small coffee cup — everything arranged with careful precision, suggesting performative tidiness.",
+        "caption": ""
+      },
+      {
+        "tag": "bed",
+        "imagePrompt": "Hand-drawn illustration in soft pastel colors, cozy and warm style. Soft watercolor texture, gentle hand-painted lines, flat illustration. Palette: lavender, cream, sage green, blush pink. Calm, friendly, approachable, non-judgmental mood. No people, no faces, no text, no letters. Vertical 9:16 composition. A soft unmade bed with rumpled pastel blankets and a single dim lamp beside it, evoking the quiet exhaustion of coming home after a long day of masking.",
+        "caption": ""
+      },
+      {
+        "tag": "plant",
+        "imagePrompt": "Hand-drawn illustration in soft pastel colors, cozy and warm style. Soft watercolor texture, gentle hand-painted lines, flat illustration. Palette: lavender, cream, sage green, blush pink. Calm, friendly, approachable, non-judgmental mood. No people, no faces, no text, no letters. Vertical 9:16 composition. A small potted plant on a sunny windowsill, one side in warm golden light and one side in soft shadow, gently suggesting two contrasting sides of the same living thing.",
+        "caption": ""
+      }
+    ],
+    "title": "Rejection Masking: Hiding Who You Are With ADHD #Shorts",
+    "description": "Rejection Masking is a common ADHD pattern where your brain learns to hide your true self to avoid being disliked or rejected. It can look like shrinking your personality, agreeing when you don't, and coming home completely drained from performing a safer version of you. If this resonates, you are not alone — this is a real, recognized ADHD experience.\nFollow for daily ADHD content.",
+    "tags": [
+      "ADHD",
+      "rejection masking",
+      "ADHD masking",
+      "rejection sensitive dysphoria",
+      "ADHD patterns",
+      "ADHD education",
+      "neurodivergent",
+      "ADHD explained",
+      "ADHD awareness",
+      "bloom focus",
+      "ADHD symptoms",
+      "masking ADHD"
+    ],
+    "funnel": "follow",
+    "shortType": "pattern",
+    "status": "pending",
+    "videoUrl": "https://raw.githubusercontent.com/dianahohol97-max/content/main/output/shorts/week_27/SH_W27_10.mp4",
+    "postedAt": null
   }
 ]
