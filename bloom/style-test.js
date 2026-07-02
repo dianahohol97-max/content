@@ -14,14 +14,18 @@ const OUT = path.join(REPO_ROOT, "output", "style-tests");
 fs.mkdirSync(OUT, { recursive: true });
 
 const STYLES = {
-  R1_brand_riso: `Risograph print illustration in the bloom focus brand palette: four inks only — deep violet-purple (like #3d2c6e) as the dark ink, soft lavender, blush pink, sage green, printed on warm cream paper. Soft visible grain, bold flat organic shapes, slight print misregistration, contemporary indie zine aesthetic. Warm and calm, yet stylish and adult. No people, no faces, no text, no letters. Vertical 9:16 composition.`,
-  R2_brand_riso_airy: `Airy risograph print illustration, soft pastel brand palette: lavender, blush pink, sage green on warm cream paper, with sparse deep violet-purple accents for contrast. Generous negative space, delicate grain, simple bold shapes, gentle print misregistration, modern indie print aesthetic. Light, breathable, adult and calm. No people, no faces, no text, no letters. Vertical 9:16 composition.`,
+  S1_soft3d: `Soft 3D render in the style of premium wellness app illustrations (like Headspace or Calm): smooth rounded clay-like forms, matte materials, gentle studio lighting, soft shadows. Palette: lavender, blush pink, sage green, cream, with deep violet accents. Calm, premium, modern, adult. No people, no faces, no text, no letters. Vertical 9:16 composition.`,
+  S2_flatgrain: `Modern flat illustration with grain shading, contemporary editorial style popular in mental-health media: bold simple shapes, subtle noise texture on shadows, warm sophisticated palette of lavender, blush, sage, cream and deep violet. Stylish, warm, adult. No people, no faces, no text, no letters. Vertical 9:16 composition.`,
+  S3_collage: `Paper collage mixed-media illustration: torn and cut paper layers in lavender, blush pink, sage green and cream, visible paper texture and soft drop shadows, Matisse-inspired organic shapes, a few hand-drawn ink details. Artistic, tactile, adult. No people, no faces, no text, no letters. Vertical 9:16 composition.`,
+  S4_lineart: `Elegant minimal line art: confident continuous ink lines in deep violet on warm cream paper, with soft washes of lavender, blush and sage as sparse color accents. Generous negative space, sophisticated and calm, high-end wellness brand aesthetic. No people, no faces, no text, no letters. Vertical 9:16 composition.`,
+  S5_gouache: `Matte gouache painting, mid-century modern illustration style for adults: visible brush texture, muted pastel palette of lavender, dusty blush, sage and cream with deep violet shadows, simplified elegant shapes, warm evening atmosphere. Sophisticated, cozy but grown-up. No people, no faces, no text, no letters. Vertical 9:16 composition.`,
+  S6_dreamy: `Dreamy soft airbrush illustration: smooth gradients of lavender, blush and sky blue, gentle glow, slightly surreal floating objects, soft depth of field, calm ethereal atmosphere. Modern, soothing, adult. No people, no faces, no text, no letters. Vertical 9:16 composition.`,
 };
 
 const SCENES = {
-  desk: `A desk with a steaming coffee cup and an open notebook beside a window with evening light.`,
-  brain: `An abstract brain made of tangled glowing threads slowly unraveling into calm lines.`,
+  desk: `A desk with a steaming coffee cup and an open notebook beside a window with soft evening light.`,
 };
+
 
 async function gemini(prompt) {
   const key = process.env.GEMINI_API_KEY;
