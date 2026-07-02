@@ -26,17 +26,16 @@ const SCENES = {
 
 async function gemini(prompt) {
   const key = process.env.GEMINI_API_KEY;
-  const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash-exp-image-generation:generateContent?key=${key}`;
-  const body = JSON.stringify({
-    contents: [{ parts: [{ text: prompt }] }],
-    generationConfig: { responseModalities: ["TEXT", "IMAGE"] },
-  });
-  for (let attempt = 1; attempt <= 3; attempt++) {
-    const res = await fetch(url, { method: "POST", headers: { "Content-Type": "application/json" }, body });
-    if (res.ok) {
+  const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-image:generateContent?key=${key}`;
+  const body = JSON.stringify({ contents: [{ parts: [{ text: prompt }] }] });
+  for (let attempt = 1; attempt <= 5; attempt++) {
+    const res = await fetch(url, { method: "POST", headers: { "Content-Type": "application/json" }, body }).catch(() => null);
+    if (res && res.ok) {
       const data = await res.json();
-      const part = data.candidates?.[0]?.content?.parts?.find((p) => p.inlineData);
-      if (part) return Buffer.from(part.inlineData.data, "base64");
+      const img = (data.candidates?.[0]?.content?.parts ?? []).find((p) => p.inlineData)?.inlineData?.data;
+      if (img) return Buffer.from(img, "base64");
+    } else if (res && ![429, 500, 502, 503, 504].includes(res.status)) {
+      throw new Error(`Gemini ${res.status}: ${(await res.text()).slice(0, 160)}`);
     }
     await new Promise((r) => setTimeout(r, 3000 * attempt));
   }
