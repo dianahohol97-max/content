@@ -589,6 +589,11 @@ async function main() {
       done++;
     } catch (err) {
       failed++;
+      // persist error so it survives in the repo (Actions logs are not always reachable)
+      try {
+        fs.appendFileSync(path.join(outDir, "build_errors.log"),
+          `${new Date().toISOString()} ${short.id} (${short.shortType||"voiced"}): ${err.message}\n${(err.stack||"").split("\n").slice(0,6).join("\n")}\n\n`);
+      } catch {}
       console.log(`   ✗ FAILED ${short.id} (${short.shortType}): ${err.message}`);
       console.log(err.stack);
     } finally {
