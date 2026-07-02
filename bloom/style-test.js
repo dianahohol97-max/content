@@ -14,9 +14,8 @@ const OUT = path.join(REPO_ROOT, "output", "style-tests");
 fs.mkdirSync(OUT, { recursive: true });
 
 const STYLES = {
-  A_editorial: `Modern editorial illustration for a serious magazine feature. Sophisticated muted palette: deep plum, dusty rose, ochre, slate blue, cream. Conceptual and metaphorical, bold organic shapes, visible grain and subtle print texture. Moody but warm, intelligent, adult. No people, no faces, no text, no letters. Vertical 9:16 composition.`,
-  B_cinematic: `Atmospheric digital painting with cinematic lighting. Cozy moody interior, warm lamplight against deep dusk shadows, rich fabric and wood textures, soft film grain. Muted warm palette with lavender-dusk accents. Quiet, intimate, contemplative adult mood. No people, no faces, no text, no letters. Vertical 9:16 composition.`,
-  C_risograph: `Risograph print illustration, limited palette of four inks: deep violet, coral, sage green, warm cream paper. Heavy grain, bold flat shapes with slight print misregistration, contemporary indie zine aesthetic. Stylish, adult, slightly surreal. No people, no faces, no text, no letters. Vertical 9:16 composition.`,
+  R1_brand_riso: `Risograph print illustration in the bloom focus brand palette: four inks only — deep violet-purple (like #3d2c6e) as the dark ink, soft lavender, blush pink, sage green, printed on warm cream paper. Soft visible grain, bold flat organic shapes, slight print misregistration, contemporary indie zine aesthetic. Warm and calm, yet stylish and adult. No people, no faces, no text, no letters. Vertical 9:16 composition.`,
+  R2_brand_riso_airy: `Airy risograph print illustration, soft pastel brand palette: lavender, blush pink, sage green on warm cream paper, with sparse deep violet-purple accents for contrast. Generous negative space, delicate grain, simple bold shapes, gentle print misregistration, modern indie print aesthetic. Light, breathable, adult and calm. No people, no faces, no text, no letters. Vertical 9:16 composition.`,
 };
 
 const SCENES = {
