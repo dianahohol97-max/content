@@ -155,10 +155,10 @@ IMPORTANT — what makes these perform:
 - Relatable AND accurate. bloom focus wins trust by being correct. "common in ADHD" not "if you do this you have ADHD".`;
 
 // Single fixed illustration style across ALL scenes — hand-drawn warm pastel.
-const ART_STYLE = `Hand-drawn illustration in soft pastel colors, cozy and warm style. Soft watercolor texture, gentle hand-painted lines, flat illustration. Palette: lavender, cream, sage green, blush pink. Calm, friendly, approachable, non-judgmental mood. No people, no faces, no text, no letters. Vertical 9:16 composition.`;
+const ART_STYLE = `Elegant minimal line art illustration: confident continuous ink lines in deep violet on warm cream paper, with soft washes of lavender, blush pink and sage green as sparse color accents. Generous negative space, sophisticated, calm, adult wellness aesthetic. No people, no faces, no text, no letters. Vertical 9:16 composition.`;
 
 const SCENE_SPEC = `    - tag: a SHORT category slug for this scene's main subject (lowercase, underscores) from a small reusable vocabulary so images can be cached/reused. Prefer ONE of: brain, desk_messy, desk_tidy, desk_empty, coffee, journal, window_light, bed, clock, plant, books, phone, path, lamp, calendar, sparks, cozy_room, sky. If none fit, make a simple 1-2 word slug. Scenes about the same thing MUST share the same tag.
-    - imagePrompt: ALWAYS begin with exactly this style: "${ART_STYLE}" Then add ONE simple scene detail matching the tag (a desk with coffee and a notebook; an abstract brain of soft clouds and sparks; a gently messy cozy room; a window with morning light and a mug; a soft surreal melting clock; a plant; a journal). Keep every scene in this SAME hand-drawn pastel style.
+    - imagePrompt: ALWAYS begin with exactly this style: "${ART_STYLE}" Then describe ONE clear line-art scene that ILLUSTRATES EXACTLY what the narration says during this scene — the drawing must visually tell that beat of the story. Give the whole video ONE recurring visual motif that evolves scene by scene (e.g. a tangled violet thread gradually untangling; a wind-up clock unwinding into a calm line; scattered paper notes assembling into a stack). State the motif's current state in each prompt so the story reads as a progression.
     - caption: leave "" (on-screen text comes from synced subtitles).`;
 
 const CTA_LINE = `"Follow for daily ADHD content."`;
@@ -236,7 +236,7 @@ For EACH test short return:
 - question: the on-screen question (max 8 words), shown at the top.
 - options: an array of EXACTLY 4 options, each:
     - label: short label shown on the tile (max 3 words), e.g. "The avalanche".
-    - imagePrompt: ALWAYS begin with exactly this style: "${ART_STYLE}" Then add one simple distinct scene for this tile. All 4 in the SAME hand-drawn pastel style, just different scenes.
+    - imagePrompt: ALWAYS begin with exactly this style: "${ART_STYLE}" Then add one simple distinct line-art scene for this tile. All 4 in the SAME elegant line-art style, just different scenes.
     - result: ONE short sentence (max 16 words) revealing what picking this option says about the viewer's ADHD brain. Playful, validating, accurate (not fake-clinical). e.g. "You thrive in visible chaos - out of sight really is out of mind for you."
 - introVoiceover: short narration (~20-30 words) for the GRID phase: read the question, tease "your pick says something about how your ADHD brain works - let's see", invite a comment.
 - outroVoiceover: short closing line (~10-15 words) after the reveals, ending with: Follow for daily ADHD content.
