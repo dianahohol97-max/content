@@ -315,17 +315,28 @@ async function main() {
     }
   }
 
-  // Add metadata + IDs
+  // MERGE with existing week file: never destroy already-built/posted entries.
+  // New shorts continue the ID numbering after the last existing one.
+  const outPath = path.join(REPO_ROOT, `shorts_week_${WEEK}.json`);
+  let existing = [];
+  if (fs.existsSync(outPath)) {
+    try { existing = JSON.parse(fs.readFileSync(outPath, "utf8")); } catch {}
+    if (!Array.isArray(existing)) existing = [];
+  }
+  const offset = existing.length;
+  if (offset) console.log(`  ↩ merging: ${offset} existing shorts kept, new IDs start at ${offset + 1}`);
+
+  // Add metadata + IDs (numbering continues after existing entries)
   shorts = shorts.map((s, i) => ({
-    id: `SH_W${WEEK}_${String(i + 1).padStart(2, "0")}`,
+    id: `SH_W${WEEK}_${String(offset + i + 1).padStart(2, "0")}`,
     week: WEEK,
     ...s,
     status: "pending",
     videoUrl: null,
     postedAt: null,
   }));
+  shorts = [...existing, ...shorts];
 
-  const outPath = path.join(REPO_ROOT, `shorts_week_${WEEK}.json`);
   fs.writeFileSync(outPath, JSON.stringify(shorts, null, 2));
   // Stable file Make can always read
   fs.writeFileSync(path.join(REPO_ROOT, "shorts_current.json"), JSON.stringify(shorts, null, 2));
