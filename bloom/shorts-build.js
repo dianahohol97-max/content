@@ -152,7 +152,7 @@ async function buildSceneImage(scene, outPath) {
 // ─── Subtitles synced to the voiceover ──────────────────────────────────────
 // Split the full narration into short subtitle chunks (4-7 words), then time
 // each chunk proportionally to its length across the measured voiceover.
-function splitIntoSubtitles(text, maxWords = 6) {
+function splitIntoSubtitles(text, maxWords = 4) {
   // Prefer breaking at natural pauses (commas, clause/sentence ends) so cues
   // read naturally, while keeping each cue <= maxWords.
   const words = String(text).replace(/\s+/g, " ").trim().split(" ");
@@ -181,7 +181,7 @@ function srtTime(sec) {
 }
 
 // Build an .srt from real per-word timestamps (ElevenLabs) — perfect sync.
-function writeSRTfromWords(words, outPath, maxWords = 5) {
+function writeSRTfromWords(words, outPath, maxWords = 4) {
   const cues = [];
   let cur = [];
   for (const w of words) {
@@ -360,62 +360,77 @@ function ffprobeDuration(file) {
 // Fontsize=20 у системі координат libass (288), Outline=2. Прибрано MarginL/R,
 // що стискали перенос рядків. Перевірено локально на реальному SH_W27_01 —
 // субтитри тепер великі, білі з обведенням, у нижній третині кадру.
+// Poppins ExtraBold for burned subtitles (downloaded once into workdir).
+function ensureSubFont(tmp) {
+  const dir = path.join(tmp, "fonts");
+  fs.mkdirSync(dir, { recursive: true });
+  const p = path.join(dir, "Poppins-ExtraBold.ttf");
+  if (!fs.existsSync(p) || fs.statSync(p).size < 10000) {
+    execSync(`curl -sL -o "${p}" "https://raw.githubusercontent.com/google/fonts/main/ofl/poppins/Poppins-ExtraBold.ttf"`);
+  }
+  return "fonts";
+}
+
+// libass coords (PlayResY=288): Fontsize 23 ≈ 153px on 1920. MarginV 60 keeps
+// cues clear of YT/IG UI. Outline 3 for readability over any background.
+const SUB_STYLE = "Fontname=Poppins ExtraBold,Fontsize=23,Bold=1,PrimaryColour=&H00FFFFFF,OutlineColour=&H803D2C6E,BorderStyle=1,Outline=3,Shadow=0,Alignment=2,MarginV=60";
+
+// Voice: loudnorm to -14 LUFS (platform standard). Music ducked to 0.10.
+// alimiter guarantees no clipping after the mix (old build peaked at +1.8dB).
+function audioChain(hasMusic) {
+  return hasMusic
+    ? `[1:a]loudnorm=I=-14:TP=-1.5:LRA=7[vn];[2:a]volume=0.10[m];[vn][m]amix=inputs=2:duration=first:dropout_transition=2[mx];[mx]alimiter=limit=0.891[a]`
+    : `[1:a]loudnorm=I=-14:TP=-1.5:LRA=7[a]`;
+}
+
+const ENC = `-c:v libx264 -preset medium -crf 20 -c:a aac -b:a 192k -ar 44100 -pix_fmt yuv420p -movflags +faststart`;
+
 function buildVideo(scenePaths, durations, voicePath, outPath, matchVoice = false, srtPath = null) {
-  // ffmpeg must run from the directory where the input files (scenes, voice,
-  // subs.srt, scenes.txt) actually live — that's the work dir, not the output
-  // dir. libass + concat reference these by bare filename, so cwd must match.
   const tmp = path.dirname(scenePaths[0]);
   const hasMusic = fs.existsSync(MUSIC_PATH);
-  const vf = `scale=${W}:${H}:force_original_aspect_ratio=increase,crop=${W}:${H},fps=30,format=yuv420p`;
+  const fontsDir = ensureSubFont(tmp);
+  const sub = srtPath
+    ? `,subtitles=${path.basename(srtPath)}:fontsdir=${fontsDir}:force_style='${SUB_STYLE}'`
+    : "";
 
-  // ── single still image, length = voiceover (quiztest segments) ──
+  // ── single still, length = voiceover (quiz segments): slow continuous zoom ──
   if (matchVoice) {
     const still = path.basename(scenePaths[0]);
     const voiceName = path.basename(voicePath);
-    const sub = srtPath
-      ? `,subtitles=${path.basename(srtPath)}:force_style='Fontname=Arial,Fontsize=20,Bold=1,PrimaryColour=&H00FFFFFF,OutlineColour=&H803D2C6E,BorderStyle=1,Outline=2,Shadow=0,Alignment=2,MarginV=50'`
-      : "";
-    let cmd;
-    if (hasMusic) {
-      cmd = `ffmpeg -y -loop 1 -i "${still}" -i "${voiceName}" -stream_loop -1 -i "${MUSIC_PATH}" ` +
-        `-filter_complex "[0:v]${vf}${sub}[v];[2:a]volume=0.12[m];[1:a][m]amix=inputs=2:duration=first:dropout_transition=2[a]" ` +
-        `-map "[v]" -map "[a]" -shortest -c:v libx264 -preset veryfast -crf 23 -c:a aac -b:a 192k -pix_fmt yuv420p "${path.basename(outPath)}"`;
-    } else {
-      cmd = `ffmpeg -y -loop 1 -i "${still}" -i "${voiceName}" ` +
-        `-filter_complex "[0:v]${vf}${sub}[v]" -map "[v]" -map 1:a -shortest ` +
-        `-c:v libx264 -preset veryfast -crf 23 -c:a aac -b:a 192k -pix_fmt yuv420p "${path.basename(outPath)}"`;
-    }
+    const motion = `scale=2700:4800,zoompan=z='min(1+0.00030*on,1.10)':x='iw/2-(iw/zoom/2)':y='ih/2-(ih/zoom/2)':d=18000:s=${W}x${H}:fps=30,format=yuv420p`;
+    const cmd = `ffmpeg -y -loop 1 -i "${still}" -i "${voiceName}" ` +
+      (hasMusic ? `-stream_loop -1 -i "${MUSIC_PATH}" ` : "") +
+      `-filter_complex "[0:v]${motion}${sub}[v];${audioChain(hasMusic)}" ` +
+      `-map "[v]" -map "[a]" -shortest ${ENC} "${path.basename(outPath)}"`;
     execSync(cmd, { stdio: "inherit", cwd: tmp });
     return outPath;
   }
 
-  // ── voiced shorts: slideshow of scenes via concat demuxer + synced subtitles ──
+  // ── voiced shorts: Ken Burns per scene (alternating zoom in/out + drift),
+  //    then concat segments, then subs + audio in the final pass ──
+  const segNames = [];
+  scenePaths.forEach((p, i) => {
+    const d = Math.max(1.2, durations[i]);
+    const N = Math.round(d * 30);
+    const z = i % 2 === 0 ? `'min(1+0.10*on/${N},1.10)'` : `'max(1.10-0.10*on/${N},1.0)'`;
+    const drift = i % 4 < 2 ? "+" : "-";
+    const x = `'iw/2-(iw/zoom/2)${drift}40*on/${N}'`;
+    const seg = `seg_${i}.mp4`;
+    const cmd = `ffmpeg -y -loop 1 -i "${path.basename(p)}" ` +
+      `-vf "scale=2700:4800,zoompan=z=${z}:x=${x}:y='ih/2-(ih/zoom/2)':d=${N}:s=${W}x${H}:fps=30,format=yuv420p" ` +
+      `-frames:v ${N} -c:v libx264 -preset veryfast -crf 18 "${seg}"`;
+    execSync(cmd, { stdio: "inherit", cwd: tmp });
+    segNames.push(seg);
+  });
+
   const listFile = path.join(tmp, "scenes.txt");
-  let list = "";
-  scenePaths.forEach((p, i) => { list += `file '${path.basename(p)}'\nduration ${durations[i]}\n`; });
-  list += `file '${path.basename(scenePaths[scenePaths.length - 1])}'\n`;
-  fs.writeFileSync(listFile, list);
+  fs.writeFileSync(listFile, segNames.map((s) => `file '${s}'`).join("\n") + "\n");
   const totalDur = durations.reduce((a, b) => a + b, 0);
 
-  // subtitle filter (burned in, synced via .srt). libass needs a bare filename
-  // (absolute paths with slashes/colons break the filtergraph), so we run
-  // ffmpeg with cwd=tmp and reference subs.srt / scenes.txt by basename.
-  const subFilter = srtPath
-    ? `,subtitles=${path.basename(srtPath)}:force_style='Fontname=Arial,Fontsize=20,Bold=1,PrimaryColour=&H00FFFFFF,OutlineColour=&H803D2C6E,BorderStyle=1,Outline=2,Shadow=0,Alignment=2,MarginV=50'`
-    : "";
-  const listName = path.basename(listFile);
-  const voiceName = path.basename(voicePath);
-
-  let cmd;
-  if (hasMusic) {
-    cmd = `ffmpeg -y -f concat -safe 0 -i "${listName}" -i "${voiceName}" -stream_loop -1 -i "${MUSIC_PATH}" ` +
-      `-filter_complex "[0:v]${vf}${subFilter}[v];[2:a]volume=0.12[m];[1:a][m]amix=inputs=2:duration=first:dropout_transition=2[a]" ` +
-      `-map "[v]" -map "[a]" -t ${totalDur} -c:v libx264 -preset veryfast -crf 23 -c:a aac -b:a 192k -pix_fmt yuv420p "${outPath}"`;
-  } else {
-    cmd = `ffmpeg -y -f concat -safe 0 -i "${listName}" -i "${voiceName}" ` +
-      `-filter_complex "[0:v]${vf}${subFilter}[v]" ` +
-      `-map "[v]" -map 1:a -t ${totalDur} -c:v libx264 -preset veryfast -crf 23 -c:a aac -b:a 192k -pix_fmt yuv420p "${outPath}"`;
-  }
+  const cmd = `ffmpeg -y -f concat -safe 0 -i "scenes.txt" -i "${path.basename(voicePath)}" ` +
+    (hasMusic ? `-stream_loop -1 -i "${MUSIC_PATH}" ` : "") +
+    `-filter_complex "[0:v]fps=30${sub}[v];${audioChain(hasMusic)}" ` +
+    `-map "[v]" -map "[a]" -t ${totalDur} ${ENC} "${outPath}"`;
   execSync(cmd, { stdio: "inherit", cwd: tmp });
   return outPath;
 }
