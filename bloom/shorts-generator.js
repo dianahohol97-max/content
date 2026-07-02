@@ -173,7 +173,7 @@ async function generateVoicedShorts(weekTopics, kind) {
     : kind === "practical"
     ? `These are PRACTICAL HOW-TO shorts. Each teaches ONE concrete ADHD-friendly technique (dopamine menu, body doubling, 2-minute rule, launch pad...). Hook with the struggle sharply ("Your brain won't start? Stop forcing it. Bribe it."), then walk through the method in clear simple steps. Actionable and specific.`
     : kind === "flagship"
-    ? `These are FLAGSHIP shorts — longer (45-60s) and deeper. Same sharp hook, but richer: explain the underlying ADHD science AND give concrete practical steps. More substance, more scenes, still tight (no padding). Cover meatier concepts (wall of awful, working memory, full task-paralysis breakdown).`
+    ? `These are FLAGSHIP shorts — longer (40-48s) and deeper. Same sharp hook, but richer: explain the underlying ADHD science AND give concrete practical steps. More substance, more scenes, still tight (no padding). Cover meatier concepts (wall of awful, working memory, full task-paralysis breakdown).`
     : `These are EDUCATIONAL shorts. Sharp hook, then explain the concept simply with recognition + one practical takeaway.`;
 
   const isFlag = kind === "flagship";
@@ -183,7 +183,7 @@ ${SHARED_VOICE}
 
 ${kindGuide}
 
-Write exactly ${count} YouTube Shorts (${isFlag ? "45-60s, deeper" : "30-40s"}, faceless, voiced narration over changing hand-drawn pastel illustrations).
+Write exactly ${count} YouTube Shorts (${isFlag ? "40-48s, deeper" : "28-35s"}, faceless, voiced narration over changing hand-drawn pastel illustrations).
 
 Topics (one Short each):
 ${weekTopics.map((t, i) => `${i + 1}. ${t}`).join("\n")}
@@ -194,7 +194,7 @@ STRUCTURE:
 - CTA (last 2s): ${CTA_LINE} — NO links, NO "quiz". Just invite them to follow.
 
 For EACH Short return:
-- voiceover: FULL narration as one flowing text (${isFlag ? "~130-160 words for ~50s" : "~80-100 words for ~33s"}). Natural spoken rhythm. End with: Follow for daily ADHD content.
+- voiceover: FULL narration as one flowing text (${isFlag ? "~110-135 words for ~42s" : "~75-90 words for ~30s"}). Natural spoken rhythm. End with: Follow for daily ADHD content.
 - scenes: array of ${isFlag ? "8-10" : "5-7"} scenes. Each:
 ${SCENE_SPEC}
 - title: 40-70 chars, search-friendly, ends with #Shorts.
