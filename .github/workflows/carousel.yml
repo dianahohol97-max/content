@@ -1,6 +1,8 @@
 name: bloom focus — Instagram Carousels
 
 on:
+  schedule:
+    - cron: "30 4 * * 1"   # Monday 07:30 Kyiv — weekly 7-day carousel pack
   workflow_dispatch:
     inputs:
       week:
@@ -8,9 +10,9 @@ on:
         required: true
         default: "29"
       count:
-        description: "How many carousels (3-4/week)"
+        description: "How many carousels (7 = full week)"
         required: false
-        default: "4"
+        default: "7"
       mode:
         description: "full = text+images | images-only | text-only"
         required: false
@@ -36,16 +38,14 @@ jobs:
         run: npm install
 
       - name: Generate carousels
-        if: ${{ inputs.mode == 'full' || inputs.mode == 'text-only' }}
+        if: ${{ inputs.mode == '' || inputs.mode == 'full' || inputs.mode == 'text-only' }}
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
-        run: node bloom/carousel-generator.js --week=${{ inputs.week }} --count=${{ inputs.count }}
+        run: node bloom/carousel-generator.js --week=${{ inputs.week || '' }} --count=${{ inputs.count || '7' }}
 
       - name: Build slides
-        if: ${{ inputs.mode == 'full' || inputs.mode == 'images-only' }}
-        env:
-          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
-        run: node bloom/carousel-build.js --week=${{ inputs.week }} ${{ inputs.limit != '' && format('--limit={0}', inputs.limit) || '' }}
+        if: ${{ inputs.mode == '' || inputs.mode == 'full' || inputs.mode == 'images-only' }}
+        run: node bloom/carousel-build.js --week=${{ inputs.week || '' }} ${{ inputs.limit != '' && format('--limit={0}', inputs.limit) || '' }}
 
       - name: Commit results
         run: |
