@@ -360,6 +360,60 @@ function ffprobeDuration(file) {
 // Fontsize=20 у системі координат libass (288), Outline=2. Прибрано MarginL/R,
 // що стискали перенос рядків. Перевірено локально на реальному SH_W27_01 —
 // субтитри тепер великі, білі з обведенням, у нижній третині кадру.
+// Self-drawing reveal: violet lines draw themselves in a serpentine sweep,
+// then color washes fade in. Pure pixel math over the finished illustration —
+// zero API cost. Returns path to an mp4 segment of `drawDur` seconds.
+async function selfDrawSegment(scenePath, tmp, idx, drawDur) {
+  const sharp = (await import("sharp")).default;
+  const { data, info } = await sharp(scenePath).resize(W, H, { fit: "cover" })
+    .removeAlpha().raw().toBuffer({ resolveWithObject: true });
+  const px = W * H;
+  const ink = new Uint8Array(px), col = new Uint8Array(px);
+  const paper = [252, 247, 240];
+  for (let i = 0; i < px; i++) {
+    const r = data[i*3], g = data[i*3+1], b = data[i*3+2];
+    const gray = (r + g + b) / 3;
+    const sat = Math.max(r, g, b) - Math.min(r, g, b);
+    if (gray < 150) ink[i] = 1;
+    else if (sat > 28 && gray < 235) col[i] = 1;
+  }
+  const order = new Float32Array(px);
+  const bands = 9;
+  for (let y = 0; y < H; y++) {
+    const bandF = y / H * bands, band = Math.floor(bandF);
+    const wobY = 0.018 * Math.sin(y / 37);
+    for (let x = 0; x < W; x++) {
+      const frac = band % 2 === 0 ? x / W : 1 - x / W;
+      let v = (band + frac) / bands + wobY + 0.012 * Math.sin(x / 53);
+      order[y*W + x] = v < 0 ? 0 : v > 1 ? 1 : v;
+    }
+  }
+  const total = Math.max(18, Math.round(drawDur * 30));
+  const fLines = Math.round(total * 0.72);
+  const framesDir = path.join(tmp, `draw_${idx}`);
+  fs.mkdirSync(framesDir, { recursive: true });
+  const soft = 0.05;
+  const out = Buffer.alloc(px * 3);
+  for (let f = 0; f < total; f++) {
+    const inLines = f < fLines;
+    const p = inLines ? (f + 1) / fLines : 1;
+    const q = inLines ? 0 : (f - fLines + 1) / (total - fLines);
+    for (let i = 0; i < px; i++) {
+      let a = 0;
+      if (ink[i]) { a = (p - order[i]) / soft; a = a < 0 ? 0 : a > 1 ? 1 : a; }
+      else if (col[i]) a = q;
+      if (a === 0) { out[i*3] = paper[0]; out[i*3+1] = paper[1]; out[i*3+2] = paper[2]; }
+      else if (a === 1) { out[i*3] = data[i*3]; out[i*3+1] = data[i*3+1]; out[i*3+2] = data[i*3+2]; }
+      else for (let c = 0; c < 3; c++) out[i*3+c] = paper[c] + (data[i*3+c] - paper[c]) * a;
+    }
+    await sharp(out, { raw: { width: W, height: H, channels: 3 } })
+      .jpeg({ quality: 90 }).toFile(path.join(framesDir, `f_${String(f).padStart(4, "0")}.jpg`));
+  }
+  const seg = `seg_draw_${idx}.mp4`;
+  execSync(`ffmpeg -y -framerate 30 -i "${path.join(`draw_${idx}`, "f_%04d.jpg")}" -c:v libx264 -preset veryfast -crf 18 -pix_fmt yuv420p "${seg}"`, { stdio: "inherit", cwd: tmp });
+  return seg;
+}
+
 // Poppins ExtraBold for burned subtitles (downloaded once into workdir).
 function ensureSubFont(tmp) {
   const dir = path.join(tmp, "fonts");
@@ -385,7 +439,7 @@ function audioChain(hasMusic) {
 
 const ENC = `-c:v libx264 -preset medium -crf 20 -c:a aac -b:a 192k -ar 44100 -pix_fmt yuv420p -movflags +faststart`;
 
-function buildVideo(scenePaths, durations, voicePath, outPath, matchVoice = false, srtPath = null) {
+async function buildVideo(scenePaths, durations, voicePath, outPath, matchVoice = false, srtPath = null) {
   const tmp = path.dirname(scenePaths[0]);
   const hasMusic = fs.existsSync(MUSIC_PATH);
   const fontsDir = ensureSubFont(tmp);
@@ -409,19 +463,26 @@ function buildVideo(scenePaths, durations, voicePath, outPath, matchVoice = fals
   // ── voiced shorts: Ken Burns per scene (alternating zoom in/out + drift),
   //    then concat segments, then subs + audio in the final pass ──
   const segNames = [];
-  scenePaths.forEach((p, i) => {
+  for (let i = 0; i < scenePaths.length; i++) {
+    const p = scenePaths[i];
     const d = Math.max(1.2, durations[i]);
-    const N = Math.round(d * 30);
-    const z = i % 2 === 0 ? `'min(1+0.10*on/${N},1.10)'` : `'max(1.10-0.10*on/${N},1.0)'`;
-    const drift = i % 4 < 2 ? "+" : "-";
-    const x = `'iw/2-(iw/zoom/2)${drift}40*on/${N}'`;
-    const seg = `seg_${i}.mp4`;
-    const cmd = `ffmpeg -y -loop 1 -i "${path.basename(p)}" ` +
-      `-vf "scale=1620:2880,zoompan=z=${z}:x=${x}:y='ih/2-(ih/zoom/2)':d=${N}:s=${W}x${H}:fps=30,format=yuv420p" ` +
-      `-frames:v ${N} -c:v libx264 -preset veryfast -crf 18 "${seg}"`;
-    execSync(cmd, { stdio: "inherit", cwd: tmp });
-    segNames.push(seg);
-  });
+    // self-drawing intro: longer on the hook scene, quicker after
+    const drawDur = Math.min(i === 0 ? 1.8 : 1.2, d * 0.55);
+    segNames.push(await selfDrawSegment(p, tmp, i, drawDur));
+    const kb = d - drawDur;
+    if (kb > 0.2) {
+      const N = Math.round(kb * 30);
+      const z = i % 2 === 0 ? `'min(1+0.08*on/${N},1.08)'` : `'max(1.08-0.08*on/${N},1.0)'`;
+      const drift = i % 4 < 2 ? "+" : "-";
+      const x = `'iw/2-(iw/zoom/2)${drift}30*on/${N}'`;
+      const seg = `seg_${i}.mp4`;
+      const cmd = `ffmpeg -y -loop 1 -i "${path.basename(p)}" ` +
+        `-vf "scale=1620:2880,zoompan=z=${z}:x=${x}:y='ih/2-(ih/zoom/2)':d=${N}:s=${W}x${H}:fps=30,format=yuv420p" ` +
+        `-frames:v ${N} -c:v libx264 -preset veryfast -crf 18 "${seg}"`;
+      execSync(cmd, { stdio: "inherit", cwd: tmp });
+      segNames.push(seg);
+    }
+  }
 
   const listFile = path.join(tmp, "scenes.txt");
   fs.writeFileSync(listFile, segNames.map((s) => `file '${s}'`).join("\n") + "\n");
@@ -514,7 +575,7 @@ async function main() {
           if (words) writeSRTfromWords(words, segSrt, 5);
           else writeSRT(splitIntoSubtitles(voText, 5), segDur, segSrt, segVoice);
           const segMp4 = path.join(workDir, `seg_${idx}.mp4`);
-          buildVideo([img], [segDur], segVoice, segMp4, true, segSrt);
+          await buildVideo([img], [segDur], segVoice, segMp4, true, segSrt);
           segVideos.push(segMp4);
         };
 
@@ -581,7 +642,7 @@ async function main() {
 
         // assemble (non-quiztest)
         process.stdout.write("   🎞  ffmpeg assemble... ");
-        buildVideo(scenePaths, durations, voicePath, mp4Path, false, srtPath);
+        await buildVideo(scenePaths, durations, voicePath, mp4Path, false, srtPath);
         console.log("✓");
       }
 
