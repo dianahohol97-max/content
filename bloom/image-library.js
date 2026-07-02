@@ -23,6 +23,10 @@ const REPO_ROOT = path.resolve(__dirname, "..");
 
 export const MAX_VARIANTS = 5;
 
+// Bump when the ART_STYLE changes: old-style cached images are then ignored
+// (kept on disk but never reused), and the library refills in the new style.
+export const STYLE_VERSION = 2;
+
 function libDir(aspect) {
   // aspect: "vertical" (9:16 shorts/stories) | "wide" (16:9 longform) | "square" (1:1 carousels)
   const d = path.join(REPO_ROOT, "output", "library", aspect);
@@ -42,7 +46,7 @@ export function normalizeTag(tag) {
 function variantsFor(aspect, tag) {
   const dir = libDir(aspect);
   const t = normalizeTag(tag);
-  return fs.readdirSync(dir).filter((f) => f.startsWith(`${t}_`) && f.endsWith(".png"));
+  return fs.readdirSync(dir).filter((f) => f.startsWith(`v${STYLE_VERSION}_${t}_`) && f.endsWith(".png"));
 }
 
 /**
@@ -68,7 +72,7 @@ export async function getOrCreate(tag, aspect, generateFn, copyTo) {
   // generate a new variant, store it, then use it
   const buf = await generateFn();
   const n = existing.length + 1;
-  const libPath = path.join(dir, `${t}_${n}.png`);
+  const libPath = path.join(dir, `v${STYLE_VERSION}_${t}_${n}.png`);
   fs.writeFileSync(libPath, buf);
   fs.copyFileSync(libPath, copyTo);
   return { path: copyTo, reused: false, tag: t };
