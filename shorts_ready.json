@@ -368,5 +368,68 @@
     "status": "pending",
     "videoUrl": "https://raw.githubusercontent.com/dianahohol97-max/content/main/output/shorts/week_27/SH_W27_06.mp4",
     "postedAt": null
+  },
+  {
+    "id": "SH_W27_07",
+    "week": 27,
+    "voiceover": "You're anxious AND scattered. But which one came first? Here's how to tell. Anxiety usually has a specific fear attached — something bad might happen. ADHD anxiety is different. It's not dread. It's just... noise. Overwhelm with no clear source. A key difference: ADHD symptoms show up even when life is calm. Anxiety spikes around triggers. Both are real, both are exhausting, and they often travel together. So if you've been treating one and still struggling, the other might be the missing piece. Follow for daily ADHD content.",
+    "scenes": [
+      {
+        "tag": "brain",
+        "imagePrompt": "Hand-drawn illustration in soft pastel colors, cozy and warm style. Soft watercolor texture, gentle hand-painted lines, flat illustration. Palette: lavender, cream, sage green, blush pink. Calm, friendly, approachable, non-judgmental mood. No people, no faces, no text, no letters. Vertical 9:16 composition. An abstract brain made of soft clouds and gentle sparks, split softly down the middle with two different pastel hues, lavender on one side and blush pink on the other.",
+        "caption": ""
+      },
+      {
+        "tag": "journal",
+        "imagePrompt": "Hand-drawn illustration in soft pastel colors, cozy and warm style. Soft watercolor texture, gentle hand-painted lines, flat illustration. Palette: lavender, cream, sage green, blush pink. Calm, friendly, approachable, non-judgmental mood. No people, no faces, no text, no letters. Vertical 9:16 composition. A softly worn journal lying open on a cozy surface with a small pencil resting beside it.",
+        "caption": ""
+      },
+      {
+        "tag": "sparks",
+        "imagePrompt": "Hand-drawn illustration in soft pastel colors, cozy and warm style. Soft watercolor texture, gentle hand-painted lines, flat illustration. Palette: lavender, cream, sage green, blush pink. Calm, friendly, approachable, non-judgmental mood. No people, no faces, no text, no letters. Vertical 9:16 composition. Soft abstract sparks and swirling pastel shapes floating gently in the air, suggesting buzzing mental noise and overwhelm.",
+        "caption": ""
+      },
+      {
+        "tag": "window_light",
+        "imagePrompt": "Hand-drawn illustration in soft pastel colors, cozy and warm style. Soft watercolor texture, gentle hand-painted lines, flat illustration. Palette: lavender, cream, sage green, blush pink. Calm, friendly, approachable, non-judgmental mood. No people, no faces, no text, no letters. Vertical 9:16 composition. A window with soft morning light streaming through sheer curtains, a small mug resting quietly on the sill, peaceful and still.",
+        "caption": ""
+      },
+      {
+        "tag": "clock",
+        "imagePrompt": "Hand-drawn illustration in soft pastel colors, cozy and warm style. Soft watercolor texture, gentle hand-painted lines, flat illustration. Palette: lavender, cream, sage green, blush pink. Calm, friendly, approachable, non-judgmental mood. No people, no faces, no text, no letters. Vertical 9:16 composition. A soft surreal melting clock with gently drooping edges, rendered in cream and lavender, suggesting time feeling distorted and hard to hold.",
+        "caption": ""
+      },
+      {
+        "tag": "plant",
+        "imagePrompt": "Hand-drawn illustration in soft pastel colors, cozy and warm style. Soft watercolor texture, gentle hand-painted lines, flat illustration. Palette: lavender, cream, sage green, blush pink. Calm, friendly, approachable, non-judgmental mood. No people, no faces, no text, no letters. Vertical 9:16 composition. A small potted plant with rounded sage green leaves sitting on a warm cream surface, calm and grounded.",
+        "caption": ""
+      },
+      {
+        "tag": "cozy_room",
+        "imagePrompt": "Hand-drawn illustration in soft pastel colors, cozy and warm style. Soft watercolor texture, gentle hand-painted lines, flat illustration. Palette: lavender, cream, sage green, blush pink. Calm, friendly, approachable, non-judgmental mood. No people, no faces, no text, no letters. Vertical 9:16 composition. A gently messy cozy room with a soft lamp glowing warmly, a scattered notebook and a small plant, feeling lived-in and safe.",
+        "caption": ""
+      }
+    ],
+    "title": "ADHD or Anxiety? Here's How to Tell the Difference #Shorts",
+    "description": "ADHD and anxiety feel similar but have key differences. If your overwhelm has no clear source and sticks around even in calm moments, that's a sign ADHD might be involved. Understanding which one is driving your symptoms is the first step to actually treating the right thing. Follow for daily ADHD content.",
+    "tags": [
+      "ADHD",
+      "anxiety",
+      "ADHD vs anxiety",
+      "ADHD education",
+      "mental health",
+      "ADHD symptoms",
+      "anxiety symptoms",
+      "neurodivergent",
+      "ADHD awareness",
+      "ADHD tips",
+      "bloom focus",
+      "ADHD shorts"
+    ],
+    "funnel": "follow",
+    "shortType": "educational",
+    "status": "pending",
+    "videoUrl": "https://raw.githubusercontent.com/dianahohol97-max/content/main/output/shorts/week_27/SH_W27_07.mp4",
+    "postedAt": null
   }
 ]
