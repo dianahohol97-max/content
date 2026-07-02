@@ -1,435 +1,771 @@
 [
   {
-    "title": "adhd_traits_not_personality_flaws",
     "slides": [
       {
-        "headline": "These aren't personality flaws. They're ADHD traits.",
-        "body": "You've probably spent years thinking you were lazy, forgetful, too sensitive, or just bad at life.\n\nYou weren't. Your brain was working differently all along.\n\nScroll through — you'll recognize yourself. 🔖",
-        "tag": "sparks",
-        "imagePrompt": "Hand-drawn illustration in soft pastel colors, cozy and warm style. Soft watercolor texture, gentle hand-painted lines, flat illustration. Palette: lavender, cream, sage green, blush pink. Calm, friendly, approachable, non-judgmental mood. No people, no faces, no text, no letters. Portrait 4:5 composition. A soft cluster of small glowing sparks and gentle stars drifting upward against a warm cream background, surrounded by delicate botanical sprigs."
+        "type": "hook",
+        "headline": "3 ADHD Medication Myths We Need To Bury",
+        "sub": "If you've ever been told meds are a shortcut or that you'll get addicted, this one's for you. All three of these are clinically wrong.",
+        "kicker": "let's fix this rn"
       },
       {
-        "headline": "Object Permanence",
-        "body": "ADHD brains often struggle with 'out of sight, out of mind' — not just for objects, but for tasks, people, and intentions. If you can't see it, your brain may act like it doesn't exist.\n\nWhat it might look like:\n🧺 You forget laundry in the machine until it smells, every single time\n💊 Medication sits untouched because the bottle is inside a cabinet\n📱 You lose touch with close friends for months — not because you don't care, but because they weren't in front of you",
-        "tag": "desk_messy",
-        "imagePrompt": "Hand-drawn illustration in soft pastel colors, cozy and warm style. Soft watercolor texture, gentle hand-painted lines, flat illustration. Palette: lavender, cream, sage green, blush pink. Calm, friendly, approachable, non-judgmental mood. No people, no faces, no text, no letters. Portrait 4:5 composition. A cozy cluttered desk seen from above with scattered papers, a closed notebook, a small plant, and a forgotten cup of tea, all rendered in soft muted tones."
+        "type": "myth",
+        "idx": 1,
+        "headline": "ADHD meds are a crutch, not real treatment"
       },
       {
-        "headline": "Low Interoception",
-        "body": "Interoception is your brain's ability to read signals from inside your body. Many people with ADHD have a reduced connection to these signals, making it hard to notice basic needs until they become urgent.\n\nWhat it might look like:\n🍽️ You realize you're dizzy and shaking before you notice you're hungry\n🚽 You've held it for two hours because you genuinely didn't feel the urge to use the bathroom\n😴 You crash into exhaustion without any warning — your body never seemed to send a 'getting tired' signal",
-        "tag": "cozy_room",
-        "imagePrompt": "Hand-drawn illustration in soft pastel colors, cozy and warm style. Soft watercolor texture, gentle hand-painted lines, flat illustration. Palette: lavender, cream, sage green, blush pink. Calm, friendly, approachable, non-judgmental mood. No people, no faces, no text, no letters. Portrait 4:5 composition. A soft cozy corner of a room with a rumpled blanket on a chair, an unfinished glass of water on a side table, and a small potted plant in gentle afternoon light."
+        "type": "truth",
+        "idx": 1,
+        "headline": "Stimulants fix a dopamine supply problem",
+        "body": "ADHD brains underperform in dopamine and norepinephrine signaling — stimulant medication raises those levels to functional range, the same way insulin regulates blood sugar. A 2023 meta-analysis of over 20,000 participants found stimulants produced the largest effect size of any psychiatric treatment for ADHD. Using a tool that works isn't weakness. It's just neuroscience."
       },
       {
-        "headline": "Rejection Masking",
-        "body": "Rejection Sensitive Dysphoria (RSD) is an intense emotional response to perceived criticism or rejection that is neurologically common in ADHD. To cope, many people learn to mask it — hiding the pain behind people-pleasing, over-explaining, or withdrawing.\n\nWhat it might look like:\n😶 A friend replies with a short text and you spend an hour convinced they're angry at you\n✅ You say yes to things you hate because the idea of someone being disappointed feels unbearable\n🚪 You go completely quiet after any hint of criticism rather than risk showing how much it stings",
-        "tag": "window_light",
-        "imagePrompt": "Hand-drawn illustration in soft pastel colors, cozy and warm style. Soft watercolor texture, gentle hand-painted lines, flat illustration. Palette: lavender, cream, sage green, blush pink. Calm, friendly, approachable, non-judgmental mood. No people, no faces, no text, no letters. Portrait 4:5 composition. A softly lit window with sheer curtains gently diffusing pale morning light, a small vase of simple flowers on the sill, casting a calm and quiet mood."
+        "type": "myth",
+        "idx": 2,
+        "headline": "ADHD meds will turn my kid into a zombie"
       },
       {
-        "headline": "Time Blindness",
-        "body": "ADHD affects the brain's ability to perceive and manage time. Research by Dr. Russell Barkley describes it as living in two time zones: 'now' and 'not now.' Planning for 'not now' is genuinely neurologically harder.\n\nWhat it might look like:\n⏰ You mean to leave in 10 minutes and suddenly 45 have passed and you have no idea where they went\n📅 A deadline two weeks away feels so far off that your brain treats it as irrelevant — until it's tomorrow\n🌀 You're late even when you tried your hardest and left earlier than usual, because transitions take more time than you account for",
-        "tag": "clock",
-        "imagePrompt": "Hand-drawn illustration in soft pastel colors, cozy and warm style. Soft watercolor texture, gentle hand-painted lines, flat illustration. Palette: lavender, cream, sage green, blush pink. Calm, friendly, approachable, non-judgmental mood. No people, no faces, no text, no letters. Portrait 4:5 composition. A simple round analog clock face rendered in soft watercolor with blurred pastel hands, surrounded by small floating botanical leaves and a hazy dreamy background."
+        "type": "truth",
+        "idx": 2,
+        "headline": "Wrong dose looks flat. Right dose looks like them.",
+        "body": "The 'zombie' effect — emotional blunting, blank staring, no personality — is a sign the dose is too high or the medication isn't the right fit. It is not an inevitable side effect. Clinical guidelines require titration, meaning you adjust until the child is more focused AND still fully themselves. If that's not happening, the prescription needs revisiting, not abandoning."
       },
       {
-        "headline": "Emotional Permanence",
-        "body": "Just as ADHD affects object permanence, it can affect emotional permanence — the ability to hold onto the felt sense of a relationship or positive emotion when it isn't actively present. This isn't emotional immaturity. It's a working memory gap.\n\nWhat it might look like:\n💛 You know logically that your partner loves you, but when they're not around you can't emotionally feel it and anxiety creeps in\n🌧️ One bad interaction can completely overwrite a whole good day in your emotional memory\n📞 You need more frequent reassurance in relationships and feel ashamed about it, not knowing it has a neurological basis",
-        "tag": "journal",
-        "imagePrompt": "Hand-drawn illustration in soft pastel colors, cozy and warm style. Soft watercolor texture, gentle hand-painted lines, flat illustration. Palette: lavender, cream, sage green, blush pink. Calm, friendly, approachable, non-judgmental mood. No people, no faces, no text, no letters. Portrait 4:5 composition. An open soft-cover journal with blank pages lying on a wooden surface beside a small sprig of dried lavender and a gentle warm pool of light."
+        "type": "myth",
+        "idx": 3,
+        "headline": "Taking stimulants as a kid causes addiction later"
       },
       {
-        "headline": "You're not broken. Your brain just works differently.",
-        "body": "Every single trait on this list was probably explained to you as a character flaw at some point.\n\nIt wasn't. It isn't.\n\nUnderstanding your brain is the first step to actually working with it.\n\nSave this for the moments you forget. 🔖\nFollow @bloomfocus for more honest, science-backed ADHD content every week.",
-        "tag": "plant",
-        "imagePrompt": "Hand-drawn illustration in soft pastel colors, cozy and warm style. Soft watercolor texture, gentle hand-painted lines, flat illustration. Palette: lavender, cream, sage green, blush pink. Calm, friendly, approachable, non-judgmental mood. No people, no faces, no text, no letters. Portrait 4:5 composition. A single small potted plant with soft rounded leaves sitting in warm gentle light on a plain surface, rendered in calming sage green and cream tones with a peaceful, grounded feeling."
+        "type": "truth",
+        "idx": 3,
+        "headline": "Untreated ADHD raises addiction risk more",
+        "body": "This fear gets it backwards. A landmark study published in Pediatrics found that children with ADHD who received medication were significantly less likely to develop substance use disorders as adults compared to untreated peers. The mechanism makes sense: stimulants stabilize dopamine-seeking behavior. Leaving the dopamine deficit unaddressed is what leaves people vulnerable to finding other ways to fill it."
+      },
+      {
+        "type": "cta",
+        "headline": "You deserved accurate information years ago.",
+        "body": "These myths delay treatment, create shame, and keep real people from functioning at their actual capacity. Share this with anyone who's still on the fence.",
+        "commentPrompt": "Which of these three have you heard the most? Drop the number below 👇"
       }
     ],
-    "caption": "You didn't have a bad attitude. You had an unrecognized ADHD brain.\n\nThese 5 traits — from time blindness to emotional permanence — are neurologically documented patterns that millions of people grew up believing were personal failures. They weren't character flaws. They were clues.\n\nUnderstanding the 'why' behind your behavior doesn't excuse it — it gives you somewhere real to start.\n\nWhich one surprised you most, or hit the hardest? Tell us in the comments. 👇\n\nSave this and follow @bloomfocus for daily ADHD education that actually respects your brain.",
+    "caption": "ADHD medication is the most studied treatment in all of psychiatry — and somehow it still gets called dangerous, addictive, and a personality killer.\n\nThe stimulant-causes-addiction myth in particular is doing real harm. Research consistently shows that untreated ADHD, not medicated ADHD, is the stronger predictor of substance use disorders later in life. The dopamine deficit doesn't disappear because you white-knuckle through it.\n\nAnd the zombie concern? Valid fear, wrong conclusion. That's a dosing signal, not a destiny.\n\nHave you or someone you love been talked out of treatment because of one of these myths? Tell me in the comments.\n\nSave this and follow @bloomfocus.adhd for daily ADHD content.",
     "hashtags": [
-      "#ADHDawareness",
-      "#ADHDadults",
+      "#ADHD",
       "#ADHDbrain",
       "#neurodivergent",
-      "#ADHDeducation",
-      "#RejectionSensitivity",
-      "#timeblindness",
-      "#ADHDwomen",
-      "#latediagnosedADHD",
-      "#neurodivergentlife",
-      "#bloomfocus",
-      "#ADHDtips"
+      "#ADHDmedication",
+      "#ADHDawareness",
+      "#ADHDparenting",
+      "#stimulantmedication",
+      "#ADHDtreatment",
+      "#neurodivergence",
+      "#ADHDfacts",
+      "#adultADHD",
+      "#ADHDmyths"
     ],
-    "funnel": "follow",
-    "format": "pattern",
-    "id": "CR_W27_01",
+    "id": "CR_W27_MON",
     "week": 27,
+    "day": "MON",
+    "rubric": "myth",
     "status": "pending",
     "slideImageURLs": [
-      "https://raw.githubusercontent.com/dianahohol97-max/content/main/output/carousels/week_27/CR_W27_01_01.jpg",
-      "https://raw.githubusercontent.com/dianahohol97-max/content/main/output/carousels/week_27/CR_W27_01_02.jpg",
-      "https://raw.githubusercontent.com/dianahohol97-max/content/main/output/carousels/week_27/CR_W27_01_03.jpg",
-      "https://raw.githubusercontent.com/dianahohol97-max/content/main/output/carousels/week_27/CR_W27_01_04.jpg",
-      "https://raw.githubusercontent.com/dianahohol97-max/content/main/output/carousels/week_27/CR_W27_01_05.jpg",
-      "https://raw.githubusercontent.com/dianahohol97-max/content/main/output/carousels/week_27/CR_W27_01_06.jpg",
-      "https://raw.githubusercontent.com/dianahohol97-max/content/main/output/carousels/week_27/CR_W27_01_07.jpg"
+      "https://raw.githubusercontent.com/dianahohol97-max/content/main/output/carousels/week_27/CR_W27_MON_01.jpg",
+      "https://raw.githubusercontent.com/dianahohol97-max/content/main/output/carousels/week_27/CR_W27_MON_02.jpg",
+      "https://raw.githubusercontent.com/dianahohol97-max/content/main/output/carousels/week_27/CR_W27_MON_03.jpg",
+      "https://raw.githubusercontent.com/dianahohol97-max/content/main/output/carousels/week_27/CR_W27_MON_04.jpg",
+      "https://raw.githubusercontent.com/dianahohol97-max/content/main/output/carousels/week_27/CR_W27_MON_05.jpg",
+      "https://raw.githubusercontent.com/dianahohol97-max/content/main/output/carousels/week_27/CR_W27_MON_06.jpg",
+      "https://raw.githubusercontent.com/dianahohol97-max/content/main/output/carousels/week_27/CR_W27_MON_07.jpg",
+      "https://raw.githubusercontent.com/dianahohol97-max/content/main/output/carousels/week_27/CR_W27_MON_08.jpg"
     ],
     "files": [
       {
         "media_type": "IMAGE",
-        "image_url": "https://raw.githubusercontent.com/dianahohol97-max/content/main/output/carousels/week_27/CR_W27_01_01.jpg"
+        "image_url": "https://raw.githubusercontent.com/dianahohol97-max/content/main/output/carousels/week_27/CR_W27_MON_01.jpg"
       },
       {
         "media_type": "IMAGE",
-        "image_url": "https://raw.githubusercontent.com/dianahohol97-max/content/main/output/carousels/week_27/CR_W27_01_02.jpg"
+        "image_url": "https://raw.githubusercontent.com/dianahohol97-max/content/main/output/carousels/week_27/CR_W27_MON_02.jpg"
       },
       {
         "media_type": "IMAGE",
-        "image_url": "https://raw.githubusercontent.com/dianahohol97-max/content/main/output/carousels/week_27/CR_W27_01_03.jpg"
+        "image_url": "https://raw.githubusercontent.com/dianahohol97-max/content/main/output/carousels/week_27/CR_W27_MON_03.jpg"
       },
       {
         "media_type": "IMAGE",
-        "image_url": "https://raw.githubusercontent.com/dianahohol97-max/content/main/output/carousels/week_27/CR_W27_01_04.jpg"
+        "image_url": "https://raw.githubusercontent.com/dianahohol97-max/content/main/output/carousels/week_27/CR_W27_MON_04.jpg"
       },
       {
         "media_type": "IMAGE",
-        "image_url": "https://raw.githubusercontent.com/dianahohol97-max/content/main/output/carousels/week_27/CR_W27_01_05.jpg"
+        "image_url": "https://raw.githubusercontent.com/dianahohol97-max/content/main/output/carousels/week_27/CR_W27_MON_05.jpg"
       },
       {
         "media_type": "IMAGE",
-        "image_url": "https://raw.githubusercontent.com/dianahohol97-max/content/main/output/carousels/week_27/CR_W27_01_06.jpg"
+        "image_url": "https://raw.githubusercontent.com/dianahohol97-max/content/main/output/carousels/week_27/CR_W27_MON_06.jpg"
       },
       {
         "media_type": "IMAGE",
-        "image_url": "https://raw.githubusercontent.com/dianahohol97-max/content/main/output/carousels/week_27/CR_W27_01_07.jpg"
+        "image_url": "https://raw.githubusercontent.com/dianahohol97-max/content/main/output/carousels/week_27/CR_W27_MON_07.jpg"
+      },
+      {
+        "media_type": "IMAGE",
+        "image_url": "https://raw.githubusercontent.com/dianahohol97-max/content/main/output/carousels/week_27/CR_W27_MON_08.jpg"
       }
     ]
   },
   {
-    "title": "emotional-dysregulation-feelings-hit-twice-as-hard",
     "slides": [
       {
-        "headline": "Why Your Feelings Hit Twice as Hard With ADHD",
-        "body": "",
-        "tag": "sparks",
-        "imagePrompt": "Hand-drawn illustration in soft pastel colors, cozy and warm style. Soft watercolor texture, gentle hand-painted lines, flat illustration. Palette: lavender, cream, sage green, blush pink. Calm, friendly, approachable, non-judgmental mood. No people, no faces, no text, no letters. Portrait 4:5 composition. A single small spark blooming into a large soft radiant burst of light, surrounded by gentle floating dots and soft glowing rings, on a warm cream background."
+        "type": "hook",
+        "headline": "How does your ADHD brain do friendship?",
+        "sub": "four types. one is painfully you. comment your letter.",
+        "kicker": "...which one though 👀"
       },
       {
-        "headline": "This is not a character flaw.",
-        "body": "Emotional dysregulation is a core feature of ADHD — not a personality problem. Your brain is wired differently, not broken.",
-        "tag": "brain",
-        "imagePrompt": "Hand-drawn illustration in soft pastel colors, cozy and warm style. Soft watercolor texture, gentle hand-painted lines, flat illustration. Palette: lavender, cream, sage green, blush pink. Calm, friendly, approachable, non-judgmental mood. No people, no faces, no text, no letters. Portrait 4:5 composition. A softly illustrated brain shape rendered in gentle lavender and blush tones, with small delicate blooming flowers growing from its surface, set against a warm cream background."
+        "type": "quiz",
+        "letter": "A",
+        "typeName": "The Ghost Who Cares",
+        "body": "You saw the text. You felt warmth. You thought 'I'll reply when I have the right words' — and now it's been 11 days.\n\nYou genuinely love this person. You think about them randomly at 2am. You'd drive four hours if they were in crisis.\n\nBut the low-stakes check-in? It gets lost in the attention void between 'meaning to' and 'actually doing'.\n\nThe friendship is real. The follow-through just doesn't match the feeling."
       },
       {
-        "headline": "Your brain's brakes are undersized.",
-        "body": "The prefrontal cortex regulates emotional response. In ADHD brains, this region is underactive — meaning feelings arrive fast and loud, with less built-in filtering.",
-        "tag": "brain",
-        "imagePrompt": "Hand-drawn illustration in soft pastel colors, cozy and warm style. Soft watercolor texture, gentle hand-painted lines, flat illustration. Palette: lavender, cream, sage green, blush pink. Calm, friendly, approachable, non-judgmental mood. No people, no faces, no text, no letters. Portrait 4:5 composition. A softly illustrated brain shape with one section highlighted in a warm blush glow, surrounded by small radiating lines suggesting intensity, gentle and non-alarming, on a cream background."
+        "type": "quiz",
+        "letter": "B",
+        "typeName": "The Overtexer",
+        "body": "You sent six voice notes today. One was nine minutes long. You apologized for the nine-minute one, then sent a four-minute explanation of the apology.\n\nWhen something good or terrible or funny or weird happens, your friend is the first tab you open.\n\nYou worry you're 'too much.' You've been told you're 'a lot.' You've never once stopped caring, not even a little.\n\nThis is hyperfocus meeting attachment — your nervous system files friendship under 'extremely important, monitor constantly.'"
       },
       {
-        "headline": "Dopamine shapes how hard it lands.",
-        "body": "Low dopamine makes neutral moments feel flat and emotional ones feel overwhelming. Your nervous system is not overreacting — it is compensating for chronic underregulation.",
-        "tag": "sparks",
-        "imagePrompt": "Hand-drawn illustration in soft pastel colors, cozy and warm style. Soft watercolor texture, gentle hand-painted lines, flat illustration. Palette: lavender, cream, sage green, blush pink. Calm, friendly, approachable, non-judgmental mood. No people, no faces, no text, no letters. Portrait 4:5 composition. Two soft glowing orbs side by side — one small and dim, one larger and warmly luminous — surrounded by tiny floating particles, illustrated in a gentle dreamy style on a lavender-tinted cream background."
+        "type": "quiz",
+        "letter": "C",
+        "typeName": "The Plan Canceller",
+        "body": "You said yes to brunch because in that moment you absolutely meant it.\n\nThen the day arrived and getting dressed felt like moving furniture, and the noise of a restaurant felt impossible, and you canceled 40 minutes before with a paragraph of guilt that took longer to write than the brunch would have taken.\n\nYou want connection. You also have a body that sometimes refuses to perform 'normal social event' on demand.\n\nThe flakiness isn't indifference. It's executive function meeting sensory load, right at 10:45am on a Saturday."
       },
       {
-        "headline": "Rejection hits like a physical thing.",
-        "body": "Rejection Sensitive Dysphoria is real. A critical tone, an unanswered text, a small perceived slight — the emotional pain can feel instant and crushing, even when others don't understand why.",
-        "tag": "window_light",
-        "imagePrompt": "Hand-drawn illustration in soft pastel colors, cozy and warm style. Soft watercolor texture, gentle hand-painted lines, flat illustration. Palette: lavender, cream, sage green, blush pink. Calm, friendly, approachable, non-judgmental mood. No people, no faces, no text, no letters. Portrait 4:5 composition. A softly lit window with gentle rain droplets on the glass, warm golden light filtering through sheer curtains, a small potted plant on the windowsill, calm and introspective mood."
+        "type": "quiz",
+        "letter": "D",
+        "typeName": "The Ride-or-Die (in bursts)",
+        "body": "When you're in, you are ALL in. You remembered their obscure allergy, researched their situation at midnight, showed up with exactly the right thing unsolicited.\n\nBut then you went quiet for three weeks because your own life became a five-alarm fire and bandwidth hit zero.\n\nYour friendships look like a heart rate monitor — intense presence, then radio silence, then back like you never left.\n\nThe loyalty is total. The consistency is the thing that's hard."
       },
       {
-        "headline": "Recovery takes longer than the trigger did.",
-        "body": "Once flooded, the ADHD brain struggles to self-soothe quickly. You might feel fine one moment and wrecked the next — and need real time to return to baseline. That is biology, not drama.",
-        "tag": "cozy_room",
-        "imagePrompt": "Hand-drawn illustration in soft pastel colors, cozy and warm style. Soft watercolor texture, gentle hand-painted lines, flat illustration. Palette: lavender, cream, sage green, blush pink. Calm, friendly, approachable, non-judgmental mood. No people, no faces, no text, no letters. Portrait 4:5 composition. A cozy armchair beside a small side table with a steaming mug, a soft folded blanket draped over the arm, warm ambient light, illustrated in a gentle inviting style on a cream background."
+        "type": "chapter",
+        "idx": 1,
+        "headline": "Whichever letter you picked —",
+        "body": "A, B, C and D are all the same thing underneath: an attention-regulation system that doesn't run on social autopilot.\n\nNone of these are personality flaws or proof you're a bad friend. They're patterns that make complete sense once you understand how the ADHD brain allocates energy and salience.\n\nThe people who love you deserve to understand this. So do you."
       },
       {
-        "headline": "You deserve support, not just strategies.",
-        "body": "",
-        "tag": "plant",
-        "imagePrompt": "Hand-drawn illustration in soft pastel colors, cozy and warm style. Soft watercolor texture, gentle hand-painted lines, flat illustration. Palette: lavender, cream, sage green, blush pink. Calm, friendly, approachable, non-judgmental mood. No people, no faces, no text, no letters. Portrait 4:5 composition. A small potted plant in a round terracotta pot, leaves rendered in soft sage green, sitting on a warm cream surface with a gentle soft shadow beneath it, simple and tender."
+        "type": "cta",
+        "headline": "comment your letter 👇",
+        "body": "and if you want the full picture — the free ADHD quiz goes deeper than four types.",
+        "commentPrompt": "A, B, C or D?"
       }
     ],
-    "caption": "Your feelings are not too much. Your brain just processes emotion differently — and there is real science behind why. In ADHD, emotional dysregulation is not about being sensitive or dramatic. It is a neurological reality rooted in how the prefrontal cortex and dopamine system work together. Understanding why your feelings hit so hard is the first step to being gentler with yourself on the hard days. Save this for the next time someone tells you you are overreacting. Save this and follow for daily ADHD content.",
+    "caption": "Your ADHD brain has a friendship style — and it's not random.\n\nMaybe you ghost people you genuinely love. Maybe you send nine-minute voice notes and then spiral about being too much. Maybe you cancel plans you actually wanted to keep, or you show up with ferocious intensity and then disappear for a month.\n\nAll four of these patterns come from the same place: an ADHD nervous system that doesn't do 'medium' or 'consistent on cue' very naturally.\n\nWhich letter are you — A, B, C or D? Drop it below (and tag a friend who will immediately know their letter too).\n\nSave this and follow @bloomfocus.adhd for daily ADHD content.",
     "hashtags": [
       "#ADHD",
       "#ADHDbrain",
-      "#emotionaldysregulation",
       "#neurodivergent",
+      "#ADHDfriendship",
+      "#ADHDrelationships",
       "#ADHDawareness",
-      "#RejectionSensitiveDysphoria",
       "#ADHDadult",
-      "#ADHDeducation",
-      "#neurodivergentlife",
-      "#ADHDsupport",
-      "#mentalhealth"
-    ],
-    "funnel": "follow",
-    "format": "educational",
-    "id": "CR_W27_02",
-    "week": 27,
-    "status": "pending",
-    "slideImageURLs": [
-      "https://raw.githubusercontent.com/dianahohol97-max/content/main/output/carousels/week_27/CR_W27_02_01.jpg",
-      "https://raw.githubusercontent.com/dianahohol97-max/content/main/output/carousels/week_27/CR_W27_02_02.jpg",
-      "https://raw.githubusercontent.com/dianahohol97-max/content/main/output/carousels/week_27/CR_W27_02_03.jpg",
-      "https://raw.githubusercontent.com/dianahohol97-max/content/main/output/carousels/week_27/CR_W27_02_04.jpg",
-      "https://raw.githubusercontent.com/dianahohol97-max/content/main/output/carousels/week_27/CR_W27_02_05.jpg",
-      "https://raw.githubusercontent.com/dianahohol97-max/content/main/output/carousels/week_27/CR_W27_02_06.jpg",
-      "https://raw.githubusercontent.com/dianahohol97-max/content/main/output/carousels/week_27/CR_W27_02_07.jpg"
-    ],
-    "files": [
-      {
-        "media_type": "IMAGE",
-        "image_url": "https://raw.githubusercontent.com/dianahohol97-max/content/main/output/carousels/week_27/CR_W27_02_01.jpg"
-      },
-      {
-        "media_type": "IMAGE",
-        "image_url": "https://raw.githubusercontent.com/dianahohol97-max/content/main/output/carousels/week_27/CR_W27_02_02.jpg"
-      },
-      {
-        "media_type": "IMAGE",
-        "image_url": "https://raw.githubusercontent.com/dianahohol97-max/content/main/output/carousels/week_27/CR_W27_02_03.jpg"
-      },
-      {
-        "media_type": "IMAGE",
-        "image_url": "https://raw.githubusercontent.com/dianahohol97-max/content/main/output/carousels/week_27/CR_W27_02_04.jpg"
-      },
-      {
-        "media_type": "IMAGE",
-        "image_url": "https://raw.githubusercontent.com/dianahohol97-max/content/main/output/carousels/week_27/CR_W27_02_05.jpg"
-      },
-      {
-        "media_type": "IMAGE",
-        "image_url": "https://raw.githubusercontent.com/dianahohol97-max/content/main/output/carousels/week_27/CR_W27_02_06.jpg"
-      },
-      {
-        "media_type": "IMAGE",
-        "image_url": "https://raw.githubusercontent.com/dianahohol97-max/content/main/output/carousels/week_27/CR_W27_02_07.jpg"
-      }
-    ]
-  },
-  {
-    "title": "hidden_adhd_struggles_no_one_talks_about",
-    "slides": [
-      {
-        "headline": "5 Hidden ADHD Struggles Nobody Talks About",
-        "body": "You have probably felt these your whole life and had no name for them.\n\nScroll through — you will recognize yourself. Save this for the next time someone says you are just being lazy. 🔖",
-        "tag": "brain",
-        "imagePrompt": "Hand-drawn illustration in soft pastel colors, cozy and warm style. Soft watercolor texture, gentle hand-painted lines, flat illustration. Palette: lavender, cream, sage green, blush pink. Calm, friendly, approachable, non-judgmental mood. No people, no faces, no text, no letters. Portrait 4:5 composition. A softly glowing brain shape surrounded by small floating question marks and gentle sparks, set against a cream background."
-      },
-      {
-        "headline": "Waiting Mode",
-        "body": "When you have one thing coming up later, your brain cannot start anything else until it is over. The whole day gets held hostage by a single appointment.\n\nWhat it might look like:\n🪑 You have a 3pm call so you sit doing nothing useful from 10am onward, even though you have hours free\n📋 You cannot start a project because you are waiting on one small piece of information first\n🚗 You arrive 45 minutes early rather than risk the anxiety of the wait back home",
-        "tag": "clock",
-        "imagePrompt": "Hand-drawn illustration in soft pastel colors, cozy and warm style. Soft watercolor texture, gentle hand-painted lines, flat illustration. Palette: lavender, cream, sage green, blush pink. Calm, friendly, approachable, non-judgmental mood. No people, no faces, no text, no letters. Portrait 4:5 composition. A large soft clock face with gentle hands frozen mid-tick, surrounded by small floating hourglasses on a warm cream background."
-      },
-      {
-        "headline": "Decision Paralysis",
-        "body": "ADHD brains struggle to rank options by importance, so even tiny choices can cause a full system freeze. It is not indecisiveness — it is a working memory and executive function issue.\n\nWhat it might look like:\n🍕 You spend 40 minutes trying to pick what to eat and then just do not eat\n📧 You draft an email five times, cannot decide if the tone is right, and close the tab without sending it\n🛒 You abandon a full online shopping cart because choosing between two similar items feels impossible",
-        "tag": "journal",
-        "imagePrompt": "Hand-drawn illustration in soft pastel colors, cozy and warm style. Soft watercolor texture, gentle hand-painted lines, flat illustration. Palette: lavender, cream, sage green, blush pink. Calm, friendly, approachable, non-judgmental mood. No people, no faces, no text, no letters. Portrait 4:5 composition. An open journal with two blank pages side by side, a pencil resting in the middle as if stuck between them, small soft arrows pointing in different directions around it."
-      },
-      {
-        "headline": "Auditory Processing Lag",
-        "body": "You heard the words, but by the time your brain finished processing them, the conversation has already moved on. ADHD affects how quickly the brain converts sound into meaning, completely separate from hearing ability.\n\nWhat it might look like:\n👂 Someone gives you a three-step instruction and you can only recall the last step by the time they finish\n😶 You say 'yes' to something in a meeting and then have absolutely no idea what you agreed to\n📺 You watch TV with subtitles on not because of volume but because your brain needs the visual backup",
-        "tag": "phone",
-        "imagePrompt": "Hand-drawn illustration in soft pastel colors, cozy and warm style. Soft watercolor texture, gentle hand-painted lines, flat illustration. Palette: lavender, cream, sage green, blush pink. Calm, friendly, approachable, non-judgmental mood. No people, no faces, no text, no letters. Portrait 4:5 composition. A small vintage telephone handset with soft sound wave lines radiating out from it, the waves gently fading before they reach the edges of the frame, on a lavender background."
-      },
-      {
-        "headline": "The Wall of Awful",
-        "body": "Before starting a task, ADHD brains can experience an intense wall of negative emotion — dread, shame, boredom, overwhelm — built up from every previous bad experience with that task. The task itself is not the barrier. The emotional weight of it is.\n\nWhat it might look like:\n💌 Replying to one simple text feels like climbing a mountain because unanswered messages have piled up with shame\n🧺 You cannot start the laundry because the last three loads sat in the machine too long and you feel too guilty to try again\n📑 You avoid opening your emails for days because the backlog feels like a personal failure you are not ready to face",
-        "tag": "desk_messy",
-        "imagePrompt": "Hand-drawn illustration in soft pastel colors, cozy and warm style. Soft watercolor texture, gentle hand-painted lines, flat illustration. Palette: lavender, cream, sage green, blush pink. Calm, friendly, approachable, non-judgmental mood. No people, no faces, no text, no letters. Portrait 4:5 composition. A cozy messy desk scene with stacked papers, a tipped-over pencil cup, and a small wilting plant beside a steaming mug, all rendered in soft warm tones."
-      },
-      {
-        "headline": "Hyperfixation Crash",
-        "body": "After an intense period of hyperfocus, your brain can hit a wall of complete exhaustion, flatness, and inability to feel interest in anything at all. The high always has a comedown.\n\nWhat it might look like:\n🛋️ You spend a weekend deep in a new hobby and then feel zero desire to touch it again for two weeks\n😶‍🌫️ After finishing a big project you feel empty and unmotivated rather than proud or relieved\n📚 You read every article on a topic for days straight, then feel almost nothing about it the next week and cannot explain why",
-        "tag": "bed",
-        "imagePrompt": "Hand-drawn illustration in soft pastel colors, cozy and warm style. Soft watercolor texture, gentle hand-painted lines, flat illustration. Palette: lavender, cream, sage green, blush pink. Calm, friendly, approachable, non-judgmental mood. No people, no faces, no text, no letters. Portrait 4:5 composition. A cozy unmade bed with rumpled soft blankets and a few open books scattered across it, gentle morning light coming from the side, pillows slightly squashed, calm and quiet mood."
-      },
-      {
-        "headline": "You are not broken.",
-        "body": "Your brain is not lazy. It is not dramatic. It is not making excuses.\n\nThese are real, documented, neurological experiences that millions of people with ADHD live with every single day — usually in silence.\n\nNaming them is the first step to working with your brain instead of against it.\n\nSave this for the hard days. 🔖\nFollow @bloomfocus for more science-backed ADHD content that actually feels human.",
-        "tag": "plant",
-        "imagePrompt": "Hand-drawn illustration in soft pastel colors, cozy and warm style. Soft watercolor texture, gentle hand-painted lines, flat illustration. Palette: lavender, cream, sage green, blush pink. Calm, friendly, approachable, non-judgmental mood. No people, no faces, no text, no letters. Portrait 4:5 composition. A small potted plant with soft rounded leaves sitting on a sunny windowsill, gentle light casting a warm glow around it, a single small bloom opening at the top."
-      }
-    ],
-    "caption": "Your brain is not lazy — it is just doing things nobody gave you the language for. 🧠\n\nWaiting Mode, the Wall of Awful, Auditory Processing Lag — these are real neurological patterns that come with ADHD, and most people spend decades thinking they are just bad at life because of them.\n\nNaming what is happening in your brain does not fix everything, but it is a genuinely powerful place to start.\n\nWhich one surprised you most — or hit a little too close to home? Drop it in the comments. 👇\n\nSave this and follow @bloomfocus for daily ADHD content that is science-backed and actually warm about it.",
-    "hashtags": [
-      "#ADHDawareness",
-      "#ADHDbrain",
-      "#ADHDlife",
       "#ADHDwomen",
-      "#ADHDadults",
-      "#neurodivergent",
-      "#executivedysfunction",
-      "#ADHDeducation",
-      "#bloomfocus",
-      "#mentalhealth",
-      "#brainscience",
-      "#ADHDtips"
+      "#neurodivergentlife",
+      "#ADHDcommunity",
+      "#adultADHD",
+      "#neurodivergentfriendship"
     ],
-    "funnel": "follow",
-    "format": "pattern",
-    "id": "CR_W27_03",
+    "id": "CR_W27_TUE",
     "week": 27,
+    "day": "TUE",
+    "rubric": "quiz",
     "status": "pending",
     "slideImageURLs": [
-      "https://raw.githubusercontent.com/dianahohol97-max/content/main/output/carousels/week_27/CR_W27_03_01.jpg",
-      "https://raw.githubusercontent.com/dianahohol97-max/content/main/output/carousels/week_27/CR_W27_03_02.jpg",
-      "https://raw.githubusercontent.com/dianahohol97-max/content/main/output/carousels/week_27/CR_W27_03_03.jpg",
-      "https://raw.githubusercontent.com/dianahohol97-max/content/main/output/carousels/week_27/CR_W27_03_04.jpg",
-      "https://raw.githubusercontent.com/dianahohol97-max/content/main/output/carousels/week_27/CR_W27_03_05.jpg",
-      "https://raw.githubusercontent.com/dianahohol97-max/content/main/output/carousels/week_27/CR_W27_03_06.jpg",
-      "https://raw.githubusercontent.com/dianahohol97-max/content/main/output/carousels/week_27/CR_W27_03_07.jpg"
+      "https://raw.githubusercontent.com/dianahohol97-max/content/main/output/carousels/week_27/CR_W27_TUE_01.jpg",
+      "https://raw.githubusercontent.com/dianahohol97-max/content/main/output/carousels/week_27/CR_W27_TUE_02.jpg",
+      "https://raw.githubusercontent.com/dianahohol97-max/content/main/output/carousels/week_27/CR_W27_TUE_03.jpg",
+      "https://raw.githubusercontent.com/dianahohol97-max/content/main/output/carousels/week_27/CR_W27_TUE_04.jpg",
+      "https://raw.githubusercontent.com/dianahohol97-max/content/main/output/carousels/week_27/CR_W27_TUE_05.jpg",
+      "https://raw.githubusercontent.com/dianahohol97-max/content/main/output/carousels/week_27/CR_W27_TUE_06.jpg",
+      "https://raw.githubusercontent.com/dianahohol97-max/content/main/output/carousels/week_27/CR_W27_TUE_07.jpg"
     ],
     "files": [
       {
         "media_type": "IMAGE",
-        "image_url": "https://raw.githubusercontent.com/dianahohol97-max/content/main/output/carousels/week_27/CR_W27_03_01.jpg"
+        "image_url": "https://raw.githubusercontent.com/dianahohol97-max/content/main/output/carousels/week_27/CR_W27_TUE_01.jpg"
       },
       {
         "media_type": "IMAGE",
-        "image_url": "https://raw.githubusercontent.com/dianahohol97-max/content/main/output/carousels/week_27/CR_W27_03_02.jpg"
+        "image_url": "https://raw.githubusercontent.com/dianahohol97-max/content/main/output/carousels/week_27/CR_W27_TUE_02.jpg"
       },
       {
         "media_type": "IMAGE",
-        "image_url": "https://raw.githubusercontent.com/dianahohol97-max/content/main/output/carousels/week_27/CR_W27_03_03.jpg"
+        "image_url": "https://raw.githubusercontent.com/dianahohol97-max/content/main/output/carousels/week_27/CR_W27_TUE_03.jpg"
       },
       {
         "media_type": "IMAGE",
-        "image_url": "https://raw.githubusercontent.com/dianahohol97-max/content/main/output/carousels/week_27/CR_W27_03_04.jpg"
+        "image_url": "https://raw.githubusercontent.com/dianahohol97-max/content/main/output/carousels/week_27/CR_W27_TUE_04.jpg"
       },
       {
         "media_type": "IMAGE",
-        "image_url": "https://raw.githubusercontent.com/dianahohol97-max/content/main/output/carousels/week_27/CR_W27_03_05.jpg"
+        "image_url": "https://raw.githubusercontent.com/dianahohol97-max/content/main/output/carousels/week_27/CR_W27_TUE_05.jpg"
       },
       {
         "media_type": "IMAGE",
-        "image_url": "https://raw.githubusercontent.com/dianahohol97-max/content/main/output/carousels/week_27/CR_W27_03_06.jpg"
+        "image_url": "https://raw.githubusercontent.com/dianahohol97-max/content/main/output/carousels/week_27/CR_W27_TUE_06.jpg"
       },
       {
         "media_type": "IMAGE",
-        "image_url": "https://raw.githubusercontent.com/dianahohol97-max/content/main/output/carousels/week_27/CR_W27_03_07.jpg"
+        "image_url": "https://raw.githubusercontent.com/dianahohol97-max/content/main/output/carousels/week_27/CR_W27_TUE_07.jpg"
       }
     ]
   },
   {
-    "title": "7_types_executive_function_adhd",
     "slides": [
       {
-        "headline": "ADHD isn't laziness. It's an executive function problem.",
-        "body": "",
-        "tag": "brain",
-        "imagePrompt": "Hand-drawn illustration in soft pastel colors, cozy and warm style. Soft watercolor texture, gentle hand-painted lines, flat illustration. Palette: lavender, cream, sage green, blush pink. Calm, friendly, approachable, non-judgmental mood. No people, no faces, no text, no letters. Portrait 4:5 composition. A softly glowing brain shape nestled among small pastel stars and gentle swirling lines, floating in a calm lavender space."
+        "type": "hook",
+        "headline": "Survive waiting mode without losing your day",
+        "sub": "You're not lazy — your brain literally can't start other tasks when it's locked onto 'the thing that might happen.' Here's how to break the freeze without forcing it.",
+        "kicker": "...you can do this"
       },
       {
-        "headline": "1. Working Memory: your brain's sticky note",
-        "body": "ADHD shrinks working memory capacity. That's why you walk into a room and forget why, or lose your train of thought mid-sentence. It's neurological, not carelessness.",
-        "tag": "desk_messy",
-        "imagePrompt": "Hand-drawn illustration in soft pastel colors, cozy and warm style. Soft watercolor texture, gentle hand-painted lines, flat illustration. Palette: lavender, cream, sage green, blush pink. Calm, friendly, approachable, non-judgmental mood. No people, no faces, no text, no letters. Portrait 4:5 composition. A cozy cluttered desk with scattered pastel sticky notes, a small plant, and an open notebook, lit by warm soft light."
+        "type": "step",
+        "idx": 1,
+        "headline": "Name the wait out loud",
+        "body": "Say it — actually say it — to yourself or write it down: 'I am waiting for the dentist to call. That call might come between 10am and 2pm.' Naming the open loop gives your working memory somewhere to file it instead of blasting it on repeat.\nExample: instead of half-watching TV while refreshing your phone, you write 'waiting: dentist call, window 10–2' on a sticky note and stick it to your desk. Your brain now has external storage for that loop.",
+        "kicker": "say it, don't hold it"
       },
       {
-        "headline": "2. Inhibition: braking when your brain says go",
-        "body": "ADHD weakens the brain's brake system. Impulsive spending, blurting things out, jumping between tasks — that's poor inhibitory control, not bad character.",
-        "tag": "sparks",
-        "imagePrompt": "Hand-drawn illustration in soft pastel colors, cozy and warm style. Soft watercolor texture, gentle hand-painted lines, flat illustration. Palette: lavender, cream, sage green, blush pink. Calm, friendly, approachable, non-judgmental mood. No people, no faces, no text, no letters. Portrait 4:5 composition. Soft scattered sparks and small pastel lightning-like bursts radiating outward from a central gentle glow, on a cream background."
+        "type": "step",
+        "idx": 2,
+        "headline": "Set a physical timer anchor",
+        "body": "Pick the longest stretch between now and the expected event and set a timer for half that time. This gives your brain a concrete near-future point to aim at, which lowers the activation energy drain of endless open-ended waiting.\nWhy it works: ADHD brains struggle with time as an abstract concept but respond to time as a physical, sensory event — a sound, a buzz, a light.\nExample: waiting until 2pm? Set a timer for 11am. Now you only have to survive until 11.",
+        "kicker": "timers = time made real"
       },
       {
-        "headline": "3. Task Initiation: starting is the hardest part",
-        "body": "ADHD brains need dopamine to launch. Without it, starting a task — even one you want to do — can feel physically impossible. This is called activation dysfunction.",
-        "tag": "coffee",
-        "imagePrompt": "Hand-drawn illustration in soft pastel colors, cozy and warm style. Soft watercolor texture, gentle hand-painted lines, flat illustration. Palette: lavender, cream, sage green, blush pink. Calm, friendly, approachable, non-judgmental mood. No people, no faces, no text, no letters. Portrait 4:5 composition. A single warm coffee cup on a small saucer, steam curling upward gently, sitting on a quiet pale surface with a soft blush shadow beneath."
+        "type": "step",
+        "idx": 3,
+        "headline": "Choose one tiny, completable task",
+        "body": "Pick something with a clear finish line that takes under 15 minutes — not 'work on the project,' but 'write the first two sentences of the email.' Small completable tasks release dopamine on finishing, which is exactly what a waiting-mode brain is starved of.\nExample: unload the dishwasher, respond to one text, water one plant. The goal isn't productivity — it's giving your reward system something to grab onto so you stop spinning.",
+        "kicker": "done > perfect rn"
       },
       {
-        "headline": "4. Cognitive Flexibility: switching mental gears",
-        "body": "ADHD makes shifting between tasks, plans, or ideas genuinely hard. Unexpected changes can feel overwhelming. This isn't rigidity — it's a dysregulated transition system.",
-        "tag": "path",
-        "imagePrompt": "Hand-drawn illustration in soft pastel colors, cozy and warm style. Soft watercolor texture, gentle hand-painted lines, flat illustration. Palette: lavender, cream, sage green, blush pink. Calm, friendly, approachable, non-judgmental mood. No people, no faces, no text, no letters. Portrait 4:5 composition. A gentle winding path splitting softly into two directions, surrounded by small sage green leaves and tiny blush wildflowers, in a calm open landscape."
+        "type": "step",
+        "idx": 4,
+        "headline": "Allow a guilt-free buffer zone",
+        "body": "Decide in advance that the 30 minutes before the expected event is officially unstructured. No tasks, no pressure. This prevents the anxiety spiral of 'I only have 20 minutes left, too short to start anything' — which usually ends in doom-scrolling anyway, but now with shame attached.\nWhy it works: removing the guilt reduces cortisol, which is already elevated during uncertainty, and lets your brain coast in instead of crash-landing into the wait.\nExample: if the call might come at 2pm, 1:30–2pm is your declared free zone. You planned it. It's not failure.",
+        "kicker": "planned rest = rest"
       },
       {
-        "headline": "5. Emotional Regulation: feelings hit harder",
-        "body": "ADHD brains experience emotions more intensely and struggle to dial them back. Rejection sensitivity, frustration spirals, sudden mood crashes — all linked to this underrated piece of EF.",
-        "tag": "window_light",
-        "imagePrompt": "Hand-drawn illustration in soft pastel colors, cozy and warm style. Soft watercolor texture, gentle hand-painted lines, flat illustration. Palette: lavender, cream, sage green, blush pink. Calm, friendly, approachable, non-judgmental mood. No people, no faces, no text, no letters. Portrait 4:5 composition. Soft diffused light streaming through a tall window, casting gentle warm shapes across a plain cream interior wall, with a small potted plant on the sill."
+        "type": "step",
+        "idx": 5,
+        "headline": "Debrief the wait after it ends",
+        "body": "When the wait is over — call came, appointment done, email arrived — take 60 seconds to notice what happened. Did you spiral? Did one strategy help? You're not grading yourself, you're building a personal data set.\nWhy it works: ADHD brains have weaker connection between experience and future planning, so a quick verbal or written debrief literally strengthens that loop over time.\nExample: voice memo to yourself: 'timer anchor helped a lot, the tiny task backfired because I picked too big a one.' Thirty seconds. Done.",
+        "kicker": "data, not judgment"
       },
       {
-        "headline": "6 & 7. Planning + Time Management: the double hit",
-        "body": "ADHD impairs both building a plan and sensing time passing. 'Time blindness' is real — future deadlines don't feel urgent until they're on top of you. This is your prefrontal cortex, not your priorities.",
-        "tag": "clock",
-        "imagePrompt": "Hand-drawn illustration in soft pastel colors, cozy and warm style. Soft watercolor texture, gentle hand-painted lines, flat illustration. Palette: lavender, cream, sage green, blush pink. Calm, friendly, approachable, non-judgmental mood. No people, no faces, no text, no letters. Portrait 4:5 composition. A simple round analog clock face with soft lavender hands and no numerals, resting gently on a cream surface beside a small open journal and a sprig of greenery."
+        "type": "checklist",
+        "headline": "your toolkit",
+        "items": [
+          "Name the open loop",
+          "Set a timer anchor",
+          "One tiny completable task",
+          "Plan your buffer zone",
+          "Debrief in 60 seconds"
+        ]
       },
       {
-        "headline": "You were never just not trying hard enough.",
-        "body": "Save this for the next time someone — or the voice in your head — says otherwise. Follow @bloomfocus for more honest, science-backed ADHD education.",
-        "tag": "plant",
-        "imagePrompt": "Hand-drawn illustration in soft pastel colors, cozy and warm style. Soft watercolor texture, gentle hand-painted lines, flat illustration. Palette: lavender, cream, sage green, blush pink. Calm, friendly, approachable, non-judgmental mood. No people, no faces, no text, no letters. Portrait 4:5 composition. A small potted plant with rounded sage green leaves sitting in a blush pink ceramic pot, centered on a warm cream surface with soft gentle shadow."
+        "type": "cta",
+        "headline": "You're not broken for struggling with this — waiting mode is genuinely one of the hardest ADHD challenges.",
+        "body": "Start with one. literally just one.",
+        "commentPrompt": "Which of these are you trying tonight? Drop it below 👇 even just typing it out makes it more likely to happen."
       }
     ],
-    "caption": "Your ADHD brain isn't broken — it's running on a different operating system. Executive function is the set of brain-based skills that manage how we plan, start, focus, shift, remember, and regulate ourselves. ADHD directly impairs all seven of them, and that explains so much more than just 'trouble focusing.' Swipe through to finally understand what's actually going on in your brain — and send this to someone who needs to see it. Save this and follow for daily ADHD content.",
+    "caption": "Your brain isn't being dramatic — waiting mode is a real neurological freeze, not a willpower problem.\n\nWhen there's an open loop (a call you're expecting, an appointment coming up, a reply you're waiting on), the ADHD brain can lock onto it so hard that everything else becomes impossible to start. It's not laziness. It's your working memory and dopamine system stuck in a holding pattern.\n\nThese 5 steps won't make the wait disappear — but they'll stop it from eating your whole day.\n\nWhich one are you going to try the next time you're stuck in waiting mode? Tell me in the comments 👇\n\nSave this and follow @bloomfocus.adhd for daily ADHD content.",
     "hashtags": [
       "#ADHD",
       "#ADHDbrain",
       "#neurodivergent",
-      "#executivefunction",
+      "#ADHDwomen",
+      "#ADHDproductivity",
+      "#waitingmode",
+      "#ADHDtips",
+      "#executivedysfunction",
       "#ADHDawareness",
-      "#ADHDadults",
-      "#timebindness",
+      "#neurodivergentlife",
+      "#ADHDcommunity",
+      "#timeblindness"
+    ],
+    "id": "CR_W27_WED",
+    "week": 27,
+    "day": "WED",
+    "rubric": "steps",
+    "status": "pending",
+    "slideImageURLs": [
+      "https://raw.githubusercontent.com/dianahohol97-max/content/main/output/carousels/week_27/CR_W27_WED_01.jpg",
+      "https://raw.githubusercontent.com/dianahohol97-max/content/main/output/carousels/week_27/CR_W27_WED_02.jpg",
+      "https://raw.githubusercontent.com/dianahohol97-max/content/main/output/carousels/week_27/CR_W27_WED_03.jpg",
+      "https://raw.githubusercontent.com/dianahohol97-max/content/main/output/carousels/week_27/CR_W27_WED_04.jpg",
+      "https://raw.githubusercontent.com/dianahohol97-max/content/main/output/carousels/week_27/CR_W27_WED_05.jpg",
+      "https://raw.githubusercontent.com/dianahohol97-max/content/main/output/carousels/week_27/CR_W27_WED_06.jpg",
+      "https://raw.githubusercontent.com/dianahohol97-max/content/main/output/carousels/week_27/CR_W27_WED_07.jpg",
+      "https://raw.githubusercontent.com/dianahohol97-max/content/main/output/carousels/week_27/CR_W27_WED_08.jpg"
+    ],
+    "files": [
+      {
+        "media_type": "IMAGE",
+        "image_url": "https://raw.githubusercontent.com/dianahohol97-max/content/main/output/carousels/week_27/CR_W27_WED_01.jpg"
+      },
+      {
+        "media_type": "IMAGE",
+        "image_url": "https://raw.githubusercontent.com/dianahohol97-max/content/main/output/carousels/week_27/CR_W27_WED_02.jpg"
+      },
+      {
+        "media_type": "IMAGE",
+        "image_url": "https://raw.githubusercontent.com/dianahohol97-max/content/main/output/carousels/week_27/CR_W27_WED_03.jpg"
+      },
+      {
+        "media_type": "IMAGE",
+        "image_url": "https://raw.githubusercontent.com/dianahohol97-max/content/main/output/carousels/week_27/CR_W27_WED_04.jpg"
+      },
+      {
+        "media_type": "IMAGE",
+        "image_url": "https://raw.githubusercontent.com/dianahohol97-max/content/main/output/carousels/week_27/CR_W27_WED_05.jpg"
+      },
+      {
+        "media_type": "IMAGE",
+        "image_url": "https://raw.githubusercontent.com/dianahohol97-max/content/main/output/carousels/week_27/CR_W27_WED_06.jpg"
+      },
+      {
+        "media_type": "IMAGE",
+        "image_url": "https://raw.githubusercontent.com/dianahohol97-max/content/main/output/carousels/week_27/CR_W27_WED_07.jpg"
+      },
+      {
+        "media_type": "IMAGE",
+        "image_url": "https://raw.githubusercontent.com/dianahohol97-max/content/main/output/carousels/week_27/CR_W27_WED_08.jpg"
+      }
+    ]
+  },
+  {
+    "slides": [
+      {
+        "type": "hook",
+        "headline": "Why your brain makes easy things exhausting",
+        "sub": "scroll through — you'll recognize yourself.",
+        "kicker": "...it's not laziness"
+      },
+      {
+        "type": "chapter",
+        "idx": 1,
+        "headline": "Task Switching Cost",
+        "body": "Your brain doesn't switch tasks — it reboots. Every transition costs real cognitive energy that neurotypical brains spend on almost nothing.\n\nYou finally get into a flow state and someone asks you a question. You lose the next 45 minutes.\nYou meant to start the report after lunch. Lunch ended three hours ago and you still haven't started.\nYou change your driving route and feel inexplicably irritable for the rest of the trip."
+      },
+      {
+        "type": "chapter",
+        "idx": 2,
+        "headline": "Working Memory Gaps",
+        "body": "Working memory is the mental sticky note that holds information while you use it. In ADHD, that note falls off constantly — not because you're careless, but because the adhesive is different.\n\nYou walk into a room and have absolutely no idea why.\nYou read the same paragraph four times and retain nothing.\nSomeone gives you two instructions at once and you nod, then immediately remember only the last one."
+      },
+      {
+        "type": "chapter",
+        "idx": 3,
+        "headline": "Sensory Overload",
+        "body": "The ADHD nervous system often can't filter sensory input the way other brains do. Everything arrives at the same volume — the important and the irrelevant.\n\nYou cannot think straight when the TV is on in another room.\nA tag on your shirt ruins your entire ability to focus during a meeting.\nYou leave a crowded grocery store feeling like you ran a 5K."
+      },
+      {
+        "type": "chapter",
+        "idx": 4,
+        "headline": "Demand Avoidance",
+        "body": "When your brain perceives a demand — even one you want to do — it can trigger an automatic resistance response. This isn't stubbornness. It's a nervous system thing.\n\nYou've been excited about a hobby for weeks. The second someone tells you to do it, you don't want to anymore.\nYou avoid opening an email you already know the contents of because it feels like a trap.\nYou can do a task for yourself no problem. The moment it becomes an obligation, it's immovable."
+      },
+      {
+        "type": "chapter",
+        "idx": 5,
+        "headline": "Revenge Bedtime Procrastination",
+        "body": "After a day of meeting external demands, the ADHD brain craves reclaimed autonomy. Staying up late — even when exhausted — is often the only time that feels like yours.\n\nIt's 1am. You have to be up at 6. You are watching a video essay about the history of escalators and feel weirdly peaceful.\nYou told yourself you'd sleep by 10. You did not sleep by 10. You have not slept by 12.\nEvery morning you swear tonight will be different. Tonight is not different."
+      },
+      {
+        "type": "cta",
+        "headline": "You're not broken.",
+        "body": "Every trait here was explained to you as a character flaw. It wasn't. It isn't.",
+        "commentPrompt": "Which one hit hardest? Drop the number in the comments — we actually read every one."
+      }
+    ],
+    "caption": "Your brain isn't making easy things hard on purpose. Task switching, working memory, sensory overload, demand avoidance, revenge bedtime procrastination — these aren't personality flaws or excuses. They're documented, researched patterns in how the ADHD nervous system processes the world. The report card said 'doesn't apply herself.' The parent-teacher conference said 'so bright, if only she'd try.' Nobody said any of this. Which of these five do you spend the most energy pretending isn't happening? Save this and follow @bloomfocus.adhd for daily ADHD content.",
+    "hashtags": [
+      "#ADHD",
+      "#ADHDbrain",
+      "#neurodivergent",
+      "#ADHDawareness",
+      "#adultADHD",
+      "#ADHDwomen",
       "#workingmemory",
+      "#sensoryoverload",
       "#ADHDeducation",
       "#neurodivergentlife",
-      "#ADHDtips",
+      "#ADHDthings",
       "#bloomfocus"
     ],
-    "funnel": "follow",
-    "format": "educational",
-    "id": "CR_W27_04",
+    "id": "CR_W27_THU",
     "week": 27,
+    "day": "THU",
+    "rubric": "chapters",
     "status": "pending",
     "slideImageURLs": [
-      "https://raw.githubusercontent.com/dianahohol97-max/content/main/output/carousels/week_27/CR_W27_04_01.jpg",
-      "https://raw.githubusercontent.com/dianahohol97-max/content/main/output/carousels/week_27/CR_W27_04_02.jpg",
-      "https://raw.githubusercontent.com/dianahohol97-max/content/main/output/carousels/week_27/CR_W27_04_03.jpg",
-      "https://raw.githubusercontent.com/dianahohol97-max/content/main/output/carousels/week_27/CR_W27_04_04.jpg",
-      "https://raw.githubusercontent.com/dianahohol97-max/content/main/output/carousels/week_27/CR_W27_04_05.jpg",
-      "https://raw.githubusercontent.com/dianahohol97-max/content/main/output/carousels/week_27/CR_W27_04_06.jpg",
-      "https://raw.githubusercontent.com/dianahohol97-max/content/main/output/carousels/week_27/CR_W27_04_07.jpg",
-      "https://raw.githubusercontent.com/dianahohol97-max/content/main/output/carousels/week_27/CR_W27_04_08.jpg"
+      "https://raw.githubusercontent.com/dianahohol97-max/content/main/output/carousels/week_27/CR_W27_THU_01.jpg",
+      "https://raw.githubusercontent.com/dianahohol97-max/content/main/output/carousels/week_27/CR_W27_THU_02.jpg",
+      "https://raw.githubusercontent.com/dianahohol97-max/content/main/output/carousels/week_27/CR_W27_THU_03.jpg",
+      "https://raw.githubusercontent.com/dianahohol97-max/content/main/output/carousels/week_27/CR_W27_THU_04.jpg",
+      "https://raw.githubusercontent.com/dianahohol97-max/content/main/output/carousels/week_27/CR_W27_THU_05.jpg",
+      "https://raw.githubusercontent.com/dianahohol97-max/content/main/output/carousels/week_27/CR_W27_THU_06.jpg",
+      "https://raw.githubusercontent.com/dianahohol97-max/content/main/output/carousels/week_27/CR_W27_THU_07.jpg"
     ],
     "files": [
       {
         "media_type": "IMAGE",
-        "image_url": "https://raw.githubusercontent.com/dianahohol97-max/content/main/output/carousels/week_27/CR_W27_04_01.jpg"
+        "image_url": "https://raw.githubusercontent.com/dianahohol97-max/content/main/output/carousels/week_27/CR_W27_THU_01.jpg"
       },
       {
         "media_type": "IMAGE",
-        "image_url": "https://raw.githubusercontent.com/dianahohol97-max/content/main/output/carousels/week_27/CR_W27_04_02.jpg"
+        "image_url": "https://raw.githubusercontent.com/dianahohol97-max/content/main/output/carousels/week_27/CR_W27_THU_02.jpg"
       },
       {
         "media_type": "IMAGE",
-        "image_url": "https://raw.githubusercontent.com/dianahohol97-max/content/main/output/carousels/week_27/CR_W27_04_03.jpg"
+        "image_url": "https://raw.githubusercontent.com/dianahohol97-max/content/main/output/carousels/week_27/CR_W27_THU_03.jpg"
       },
       {
         "media_type": "IMAGE",
-        "image_url": "https://raw.githubusercontent.com/dianahohol97-max/content/main/output/carousels/week_27/CR_W27_04_04.jpg"
+        "image_url": "https://raw.githubusercontent.com/dianahohol97-max/content/main/output/carousels/week_27/CR_W27_THU_04.jpg"
       },
       {
         "media_type": "IMAGE",
-        "image_url": "https://raw.githubusercontent.com/dianahohol97-max/content/main/output/carousels/week_27/CR_W27_04_05.jpg"
+        "image_url": "https://raw.githubusercontent.com/dianahohol97-max/content/main/output/carousels/week_27/CR_W27_THU_05.jpg"
       },
       {
         "media_type": "IMAGE",
-        "image_url": "https://raw.githubusercontent.com/dianahohol97-max/content/main/output/carousels/week_27/CR_W27_04_06.jpg"
+        "image_url": "https://raw.githubusercontent.com/dianahohol97-max/content/main/output/carousels/week_27/CR_W27_THU_06.jpg"
       },
       {
         "media_type": "IMAGE",
-        "image_url": "https://raw.githubusercontent.com/dianahohol97-max/content/main/output/carousels/week_27/CR_W27_04_07.jpg"
+        "image_url": "https://raw.githubusercontent.com/dianahohol97-max/content/main/output/carousels/week_27/CR_W27_THU_07.jpg"
+      }
+    ]
+  },
+  {
+    "slides": [
+      {
+        "type": "hook",
+        "headline": "dear diary: i just had one errand",
+        "sub": "a completely true story. unfortunately.",
+        "kicker": "...it took four days."
+      },
+      {
+        "type": "diary",
+        "dateLine": "saturday, 10:47am",
+        "body": "Need to return the library book. It's literally on the table by the door. I have shoes on. I am READY. I just need to check if the library is open first, which means finding my phone, which is dead, which means finding my charger."
+      },
+      {
+        "type": "diary",
+        "dateLine": "saturday, 11:23am",
+        "body": "Found three chargers that are not mine, one chapstick I thought I lost in 2022, and a very important article I saved about dopamine that I need to read right now. The library is probably still open. Probably."
+      },
+      {
+        "type": "diary",
+        "dateLine": "saturday, 2:51pm",
+        "body": "I am sitting on the floor surrounded by things from a drawer I didn't mean to open. The book is still on the table. I have moved it zero times. I did reorganize the drawer though, so the day isn't a total loss."
+      },
+      {
+        "type": "diary",
+        "dateLine": "sunday, 7:18pm",
+        "body": "Remembered the book. Got in the car. Drove to the library. It's closed Sundays. I knew this. I definitely knew this at some point and then immediately forgot it existed as a fact."
+      },
+      {
+        "type": "diary",
+        "dateLine": "tuesday, 6:43am",
+        "body": "Woke up in a cold sweat about the library book. It is now overdue. The fine is probably 30 cents but it feels like I owe a debt to society. I have added 'BOOK' to my phone in all caps with four alarms and an emoji of a book, just to be safe."
+      },
+      {
+        "type": "truth",
+        "idx": 1,
+        "headline": "it was never laziness",
+        "body": "What looked like avoidance was your brain genuinely struggling to initiate, sequence, and follow through — all things that live in the executive function system that ADHD directly affects. The errand wasn't hard because you're careless. It was hard because your brain had to work three times as hard just to get to the door.\n\nYou did eventually return the book, by the way. That counts."
+      },
+      {
+        "type": "cta",
+        "headline": "if this was uncomfortably accurate",
+        "body": "send it to someone who gets it.",
+        "commentPrompt": "which day was you? (be honest, this is a safe space)"
+      }
+    ],
+    "caption": "dear diary: i just had one errand to do.\n\nIt was a library book. It was already by the door. I had shoes on. What followed was four days of charger archaeology, a drawer reorganization no one asked for, and one very dramatic 6am moment of guilt over a 30-cent fine.\n\nThis is what ADHD task initiation actually looks like — not laziness, not bad time management, not 'just forgetting.' It's an executive function system that makes the smallest tasks feel like they require a full project plan.\n\nWhich entry was you? Drop the day in the comments.\n\nSave this and follow @bloomfocus.adhd for daily ADHD content.",
+    "hashtags": [
+      "#ADHD",
+      "#ADHDbrain",
+      "#neurodivergent",
+      "#ADHDlife",
+      "#executivefunction",
+      "#ADHDhumor",
+      "#taskinitiation",
+      "#neurodivergentlife",
+      "#ADHDawareness",
+      "#actuallyadhd",
+      "#ADHDwomen",
+      "#neurodivergenthumor"
+    ],
+    "id": "CR_W27_FRI",
+    "week": 27,
+    "day": "FRI",
+    "rubric": "diary",
+    "status": "pending",
+    "slideImageURLs": [
+      "https://raw.githubusercontent.com/dianahohol97-max/content/main/output/carousels/week_27/CR_W27_FRI_01.jpg",
+      "https://raw.githubusercontent.com/dianahohol97-max/content/main/output/carousels/week_27/CR_W27_FRI_02.jpg",
+      "https://raw.githubusercontent.com/dianahohol97-max/content/main/output/carousels/week_27/CR_W27_FRI_03.jpg",
+      "https://raw.githubusercontent.com/dianahohol97-max/content/main/output/carousels/week_27/CR_W27_FRI_04.jpg",
+      "https://raw.githubusercontent.com/dianahohol97-max/content/main/output/carousels/week_27/CR_W27_FRI_05.jpg",
+      "https://raw.githubusercontent.com/dianahohol97-max/content/main/output/carousels/week_27/CR_W27_FRI_06.jpg",
+      "https://raw.githubusercontent.com/dianahohol97-max/content/main/output/carousels/week_27/CR_W27_FRI_07.jpg",
+      "https://raw.githubusercontent.com/dianahohol97-max/content/main/output/carousels/week_27/CR_W27_FRI_08.jpg"
+    ],
+    "files": [
+      {
+        "media_type": "IMAGE",
+        "image_url": "https://raw.githubusercontent.com/dianahohol97-max/content/main/output/carousels/week_27/CR_W27_FRI_01.jpg"
       },
       {
         "media_type": "IMAGE",
-        "image_url": "https://raw.githubusercontent.com/dianahohol97-max/content/main/output/carousels/week_27/CR_W27_04_08.jpg"
+        "image_url": "https://raw.githubusercontent.com/dianahohol97-max/content/main/output/carousels/week_27/CR_W27_FRI_02.jpg"
+      },
+      {
+        "media_type": "IMAGE",
+        "image_url": "https://raw.githubusercontent.com/dianahohol97-max/content/main/output/carousels/week_27/CR_W27_FRI_03.jpg"
+      },
+      {
+        "media_type": "IMAGE",
+        "image_url": "https://raw.githubusercontent.com/dianahohol97-max/content/main/output/carousels/week_27/CR_W27_FRI_04.jpg"
+      },
+      {
+        "media_type": "IMAGE",
+        "image_url": "https://raw.githubusercontent.com/dianahohol97-max/content/main/output/carousels/week_27/CR_W27_FRI_05.jpg"
+      },
+      {
+        "media_type": "IMAGE",
+        "image_url": "https://raw.githubusercontent.com/dianahohol97-max/content/main/output/carousels/week_27/CR_W27_FRI_06.jpg"
+      },
+      {
+        "media_type": "IMAGE",
+        "image_url": "https://raw.githubusercontent.com/dianahohol97-max/content/main/output/carousels/week_27/CR_W27_FRI_07.jpg"
+      },
+      {
+        "media_type": "IMAGE",
+        "image_url": "https://raw.githubusercontent.com/dianahohol97-max/content/main/output/carousels/week_27/CR_W27_FRI_08.jpg"
+      }
+    ]
+  },
+  {
+    "slides": [
+      {
+        "type": "hook",
+        "headline": "there's a word for that thing you do",
+        "sub": "when you can't start anything else because your whole brain is parked in front of one future event like a dog waiting at the door",
+        "kicker": "...we see you"
+      },
+      {
+        "type": "dict",
+        "word": "waiting mode",
+        "pos": "noun",
+        "phonetic": "/ˈweɪtɪŋ moʊd/",
+        "defs": [
+          "the ADHD phenomenon in which a single upcoming event — no matter how small — colonizes your entire working memory and makes it neurologically impossible to start, finish, or care about anything else until that event has passed",
+          "having a 3pm dentist appointment at 9am on a Tuesday and essentially ceasing to exist as a functional person for six hours"
+        ],
+        "example": "\"I had one thing at 4:00. One thing. And somehow I lost the entire day to sitting on the couch, half-dressed, refreshing my phone like the appointment might move itself.\""
+      },
+      {
+        "type": "chapter",
+        "idx": 1,
+        "headline": "the morning that evaporates",
+        "body": "Your therapist is at 2pm. It's 9am. You tell yourself you'll answer emails, do laundry, eat something real — but your brain is already in the waiting room. You end up scrolling until 1:45, then sprint out the door with a granola bar and a lot of feelings about your productivity."
+      },
+      {
+        "type": "chapter",
+        "idx": 2,
+        "headline": "the flight that ate a whole day",
+        "body": "Your flight is at 7pm. It's 10am. Friends ask if you want to grab lunch — 'I can't, I have a flight later.' You know, logically, that later is nine hours away. Your nervous system does not know this. You sit near your suitcase. You wait."
+      },
+      {
+        "type": "chapter",
+        "idx": 3,
+        "headline": "the work call that rewrote your week",
+        "body": "There's a 'quick check-in' with your manager on Thursday at noon. You spend Wednesday night rehearsing every possible version of the conversation. Thursday morning: no emails sent, no tasks touched, just you and the clock and the meeting that hasn't happened yet."
+      },
+      {
+        "type": "truth",
+        "idx": 1,
+        "headline": "naming it changes it",
+        "body": "For years, people with ADHD called this laziness, avoidance, or just a character flaw — and believed it. But when you have a name for it, you stop blaming yourself and start asking 'okay, how do I work with this brain today?' Research on ADHD time perception shows this isn't a motivation problem — it's that our brains struggle to hold future events in proportion, making 'later' feel like 'now' until it actually is. That's not a flaw in your character. That's a difference in your neurological clock."
+      },
+      {
+        "type": "cta",
+        "headline": "now you have the word",
+        "body": "use it. share it. save it for the next time someone says 'just leave earlier'.",
+        "commentPrompt": "What word would YOU add to the ADHD dictionary? Drop it in the comments — we're building the whole glossary."
+      }
+    ],
+    "caption": "your brain isn't broken. it just doesn't have a word for what it does — yet.\n\nWaiting mode is that thing where one appointment at 3pm makes the entire day before it completely unusable. Not because you're lazy. Not because you don't care. But because the ADHD brain genuinely struggles to hold a future event at the right emotional distance — so it just... parks there and idles until it's over.\n\nIf you've ever lost a whole morning to a single afternoon commitment, or felt like you couldn't 'start anything real' before a call — this one's for you.\n\nWhat's the waiting mode event that wrecks your day the most? A doctor's appointment? A flight? A work call you're dreading? Tell us in the comments.\n\nSave this and follow @bloomfocus.adhd for daily ADHD content.",
+    "hashtags": [
+      "#ADHD",
+      "#ADHDbrain",
+      "#neurodivergent",
+      "#ADHDawareness",
+      "#ADHDadult",
+      "#timeblindness",
+      "#ADHDlife",
+      "#waitingmode",
+      "#ADHDdictionary",
+      "#executivedysfunction",
+      "#ADHDcommunity",
+      "#neurodivergentlife"
+    ],
+    "id": "CR_W27_SAT",
+    "week": 27,
+    "day": "SAT",
+    "rubric": "dictionary",
+    "status": "pending",
+    "slideImageURLs": [
+      "https://raw.githubusercontent.com/dianahohol97-max/content/main/output/carousels/week_27/CR_W27_SAT_01.jpg",
+      "https://raw.githubusercontent.com/dianahohol97-max/content/main/output/carousels/week_27/CR_W27_SAT_02.jpg",
+      "https://raw.githubusercontent.com/dianahohol97-max/content/main/output/carousels/week_27/CR_W27_SAT_03.jpg",
+      "https://raw.githubusercontent.com/dianahohol97-max/content/main/output/carousels/week_27/CR_W27_SAT_04.jpg",
+      "https://raw.githubusercontent.com/dianahohol97-max/content/main/output/carousels/week_27/CR_W27_SAT_05.jpg",
+      "https://raw.githubusercontent.com/dianahohol97-max/content/main/output/carousels/week_27/CR_W27_SAT_06.jpg",
+      "https://raw.githubusercontent.com/dianahohol97-max/content/main/output/carousels/week_27/CR_W27_SAT_07.jpg"
+    ],
+    "files": [
+      {
+        "media_type": "IMAGE",
+        "image_url": "https://raw.githubusercontent.com/dianahohol97-max/content/main/output/carousels/week_27/CR_W27_SAT_01.jpg"
+      },
+      {
+        "media_type": "IMAGE",
+        "image_url": "https://raw.githubusercontent.com/dianahohol97-max/content/main/output/carousels/week_27/CR_W27_SAT_02.jpg"
+      },
+      {
+        "media_type": "IMAGE",
+        "image_url": "https://raw.githubusercontent.com/dianahohol97-max/content/main/output/carousels/week_27/CR_W27_SAT_03.jpg"
+      },
+      {
+        "media_type": "IMAGE",
+        "image_url": "https://raw.githubusercontent.com/dianahohol97-max/content/main/output/carousels/week_27/CR_W27_SAT_04.jpg"
+      },
+      {
+        "media_type": "IMAGE",
+        "image_url": "https://raw.githubusercontent.com/dianahohol97-max/content/main/output/carousels/week_27/CR_W27_SAT_05.jpg"
+      },
+      {
+        "media_type": "IMAGE",
+        "image_url": "https://raw.githubusercontent.com/dianahohol97-max/content/main/output/carousels/week_27/CR_W27_SAT_06.jpg"
+      },
+      {
+        "media_type": "IMAGE",
+        "image_url": "https://raw.githubusercontent.com/dianahohol97-max/content/main/output/carousels/week_27/CR_W27_SAT_07.jpg"
+      }
+    ]
+  },
+  {
+    "slides": [
+      {
+        "type": "hook",
+        "headline": "rest is not something you earn",
+        "sub": "You don't have to finish the list first.",
+        "kicker": "...it was always yours"
+      },
+      {
+        "type": "reset",
+        "headline": "you are allowed to do nothing today",
+        "body": "Not productive nothing. Just nothing."
+      },
+      {
+        "type": "reset",
+        "headline": "the mess can wait until tomorrow",
+        "body": "It will still be there. You already know this."
+      },
+      {
+        "type": "reset",
+        "headline": "tired is information, not failure",
+        "body": "Your nervous system has been working hard all week."
+      },
+      {
+        "type": "reset",
+        "headline": "a quiet Sunday is not wasted time",
+        "body": "Rest is what makes next week survivable, not optional."
+      },
+      {
+        "type": "reset",
+        "headline": "your permission slip for this week",
+        "body": "You are allowed to leave the dishes in the sink tonight."
+      },
+      {
+        "type": "cta",
+        "headline": "see you monday",
+        "body": "same brain. no new you required.",
+        "commentPrompt": "What's one thing you're NOT doing today? Drop it below — no guilt, just honesty."
+      }
+    ],
+    "caption": "Rest is not something you earn.\n\nFor a lot of ADHD brains, Sunday turns into a second Monday — catching up, prepping, guilt-scrolling through everything that didn't get done. But your nervous system doesn't restore itself on a productivity schedule.\n\nYou don't have to optimize this day. You don't have to meal prep or clean the bathroom or finally reply to that text. Rest isn't the reward at the end of the to-do list. It's something you were already allowed to have.\n\nWhat's one thing you're NOT doing today? Tell us in the comments — seriously, brag about it.\n\nSave this and follow @bloomfocus.adhd for daily ADHD content.",
+    "hashtags": [
+      "#ADHD",
+      "#ADHDbrain",
+      "#neurodivergent",
+      "#ADHDrest",
+      "#ADHDwomen",
+      "#neurodivergentlife",
+      "#ADHDawareness",
+      "#sundayreset",
+      "#ADHDadults",
+      "#restisproductive",
+      "#slowsunday",
+      "#ADHDcommunity"
+    ],
+    "id": "CR_W27_SUN",
+    "week": 27,
+    "day": "SUN",
+    "rubric": "reset",
+    "status": "pending",
+    "slideImageURLs": [
+      "https://raw.githubusercontent.com/dianahohol97-max/content/main/output/carousels/week_27/CR_W27_SUN_01.jpg",
+      "https://raw.githubusercontent.com/dianahohol97-max/content/main/output/carousels/week_27/CR_W27_SUN_02.jpg",
+      "https://raw.githubusercontent.com/dianahohol97-max/content/main/output/carousels/week_27/CR_W27_SUN_03.jpg",
+      "https://raw.githubusercontent.com/dianahohol97-max/content/main/output/carousels/week_27/CR_W27_SUN_04.jpg",
+      "https://raw.githubusercontent.com/dianahohol97-max/content/main/output/carousels/week_27/CR_W27_SUN_05.jpg",
+      "https://raw.githubusercontent.com/dianahohol97-max/content/main/output/carousels/week_27/CR_W27_SUN_06.jpg",
+      "https://raw.githubusercontent.com/dianahohol97-max/content/main/output/carousels/week_27/CR_W27_SUN_07.jpg"
+    ],
+    "files": [
+      {
+        "media_type": "IMAGE",
+        "image_url": "https://raw.githubusercontent.com/dianahohol97-max/content/main/output/carousels/week_27/CR_W27_SUN_01.jpg"
+      },
+      {
+        "media_type": "IMAGE",
+        "image_url": "https://raw.githubusercontent.com/dianahohol97-max/content/main/output/carousels/week_27/CR_W27_SUN_02.jpg"
+      },
+      {
+        "media_type": "IMAGE",
+        "image_url": "https://raw.githubusercontent.com/dianahohol97-max/content/main/output/carousels/week_27/CR_W27_SUN_03.jpg"
+      },
+      {
+        "media_type": "IMAGE",
+        "image_url": "https://raw.githubusercontent.com/dianahohol97-max/content/main/output/carousels/week_27/CR_W27_SUN_04.jpg"
+      },
+      {
+        "media_type": "IMAGE",
+        "image_url": "https://raw.githubusercontent.com/dianahohol97-max/content/main/output/carousels/week_27/CR_W27_SUN_05.jpg"
+      },
+      {
+        "media_type": "IMAGE",
+        "image_url": "https://raw.githubusercontent.com/dianahohol97-max/content/main/output/carousels/week_27/CR_W27_SUN_06.jpg"
+      },
+      {
+        "media_type": "IMAGE",
+        "image_url": "https://raw.githubusercontent.com/dianahohol97-max/content/main/output/carousels/week_27/CR_W27_SUN_07.jpg"
       }
     ]
   }
