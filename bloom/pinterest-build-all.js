@@ -96,13 +96,26 @@ LAYOUT: Keep ALL content (title, full numbered list, footer) safely centered wit
 async function geminiBackground(prompt) {
   const response = await gemini.models.generateContent({
     model: "gemini-2.5-flash-image",
-    contents: prompt + "\n\nVertical 2:3 portrait aspect ratio.",
+    contents: prompt + "\n\nVertical 2:3 portrait aspect ratio, taller than wide." +
+      "\nCRITICAL: absolutely NO text, NO letters, NO readable writing anywhere in the image —" +
+      " no writing in notebooks or planners, no text on phone/laptop screens (screens show only abstract" +
+      " blurred shapes), no labels, no signs, no packaging text. High detail, sharp focus, professional photography quality.",
   });
   const parts = response.candidates?.[0]?.content?.parts ?? [];
   for (const part of parts) {
     if (part.inlineData?.data) return Buffer.from(part.inlineData.data, "base64");
   }
   throw new Error("No Gemini image");
+}
+
+// Cover-resize a Gemini background to the pin frame with mild sharpening —
+// Gemini returns ~1024px images, so the ~1.5x upscale to 1500px softens them;
+// a gentle sharpen after resize restores crispness.
+async function fitBackground(bgBuffer) {
+  return sharp(bgBuffer)
+    .resize(W, H, { fit: "cover", position: "centre" })
+    .sharpen({ sigma: 1.1 })
+    .toBuffer();
 }
 
 function esc(s) {
@@ -186,7 +199,7 @@ function buildMemeOverlay(memeText) {
 async function buildMeme(pin, outDir) {
   const outPath = path.join(outDir, `${pin.id}.png`);
   const bgBuffer = await geminiBackground(pin.imagePrompt);
-  const bg = await sharp(bgBuffer).resize(W, H, { fit: "cover", position: "centre" }).toBuffer();
+  const bg = await fitBackground(bgBuffer);
   const overlay = buildMemeOverlay(pin.memeText ?? pin.overlayTitle ?? pin.title);
   await sharp(bg).composite([{ input: overlay, top: 0, left: 0 }]).png().toFile(outPath);
   return outPath;
@@ -195,7 +208,7 @@ async function buildMeme(pin, outDir) {
 async function buildHookOrProduct(pin, outDir) {
   const outPath = path.join(outDir, `${pin.id}.png`);
   const bgBuffer = await geminiBackground(pin.imagePrompt);
-  const bg = await sharp(bgBuffer).resize(W, H, { fit: "cover", position: "centre" }).toBuffer();
+  const bg = await fitBackground(bgBuffer);
   const shortCta = { quiz: "Take the ADHD test →", app: "Try the free app →", etsy: "Shop on Etsy →", blog: "Read more →" }[pin.funnel] ?? "Learn more →";
   const overlay = buildHookOverlay(pin.overlayTitle ?? pin.title, pin.overlaySigns, shortCta);
   await sharp(bg).composite([{ input: overlay, top: 0, left: 0 }]).png().toFile(outPath);
