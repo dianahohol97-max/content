@@ -1,0 +1,7 @@
+2026-07-03T18:32:01.823Z SH_W27_11 (quiztest): Gemini image failed after 5 attempts (last: 500)
+Error: Gemini image failed after 5 attempts (last: 500)
+    at geminiBackground (file:///home/runner/work/content/content/bloom/shorts-build.js:96:40)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async buildQuizGrid (file:///home/runner/work/content/content/bloom/shorts-build.js:286:17)
+    at async main (file:///home/runner/work/content/content/bloom/shorts-build.js:568:9)
+
