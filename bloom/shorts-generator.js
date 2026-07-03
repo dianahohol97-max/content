@@ -161,11 +161,14 @@ CONCRETENESS IS NON-NEGOTIABLE. Every short must be built on SPECIFIC, TANGIBLE 
 4. NUMBERS AND SPECIFICS over adjectives. "four unread days", "the third tab", "2am", "one fork" — concrete nouns beat 'often', 'sometimes', 'a lot'.
 If a line could appear on any generic ADHD account, REWRITE IT until it could only be bloom focus.`;
 
-// Single fixed illustration style across ALL scenes — hand-drawn warm pastel.
-const ART_STYLE = `Elegant minimal line art illustration: confident continuous ink lines in deep violet on warm cream paper, with soft washes of lavender, blush pink and sage green as sparse color accents. Generous negative space, sophisticated, calm, adult wellness aesthetic. No people, no faces, no text, no letters. Vertical 9:16 composition.`;
+// Muted-noir editorial style: cinematic, adult, atmospheric. Two brightness modes.
+const ART_STYLE = `Moody atmospheric editorial illustration, cinematic low light, deep shadows and restrained muted colour, sophisticated grown-up mood, subtle film-grain texture. Palette: deep violet, charcoal, dusty rose, hints of cream. NO people, no figures, no faces, no text, no letters. Keep a clear darker open area in the lower third for caption legibility. NOT cute, NOT cartoon, NOT pastel-bright, NOT childish. Vertical 9:16 composition.`;
+
+// Per-scene brightness: darker for painful/heavy beats, warmer light for hopeful/practical beats.
+const ART_MOOD = `Choose the scene's lighting to match the narration beat: for painful, heavy, or exhausting moments use darker shadow and cooler tone; for hopeful, calming, or practical "here's the fix" moments introduce a warm pool of light (a lamp, dawn, a glow) while keeping the same cinematic muted style. Never bright or cheerful — always cinematic and adult.`;
 
 const SCENE_SPEC = `    - tag: a SHORT category slug for this scene's main subject (lowercase, underscores) from a small reusable vocabulary so images can be cached/reused. Prefer ONE of: brain, desk_messy, desk_tidy, desk_empty, coffee, journal, window_light, bed, clock, plant, books, phone, path, lamp, calendar, sparks, cozy_room, sky. If none fit, make a simple 1-2 word slug. Scenes about the same thing MUST share the same tag.
-    - imagePrompt: ALWAYS begin with exactly this style: "${ART_STYLE}" Then describe ONE clear line-art scene that ILLUSTRATES EXACTLY what the narration says during this scene — the drawing must visually tell that beat of the story. Give the whole video ONE recurring visual motif that evolves scene by scene (e.g. a tangled violet thread gradually untangling; a wind-up clock unwinding into a calm line; scattered paper notes assembling into a stack). State the motif's current state in each prompt so the story reads as a progression.
+    - imagePrompt: ALWAYS begin with exactly this style: "${ART_STYLE}" ${ART_MOOD} Then describe ONE clear cinematic scene (objects, spaces, light — NO people) that ILLUSTRATES EXACTLY what the narration says during this beat. Prefer concrete filmable objects over abstraction (an unmade bed lit by phone glow; a single lamp over a notebook; clean dishes in a rack; a coffee cup at dawn). Keep the lower third darker/cleaner so captions stay readable.
     - caption: leave "" (on-screen text comes from synced subtitles).`;
 
 const CTA_LINE = `"Follow for daily ADHD content."`;
