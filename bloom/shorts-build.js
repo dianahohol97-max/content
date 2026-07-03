@@ -365,18 +365,15 @@ function ffprobeDuration(file) {
 // zero API cost. Returns path to an mp4 segment of `drawDur` seconds.
 async function selfDrawSegment(scenePath, tmp, idx, sceneDur) {
   const sharp = (await import("sharp")).default;
-  // Render draw frames at FULL WxH so there is no sharpness jump anywhere.
   const { data } = await sharp(scenePath).resize(W, H, { fit: "cover" })
     .removeAlpha().raw().toBuffer({ resolveWithObject: true });
   const P = W * H;
   const paper = [252, 247, 240];
 
-  // serpentine reveal order (line + color arrive together, one wave)
   const order = new Float32Array(P);
   const bands = 11;
   for (let y = 0; y < H; y++) {
-    const band = Math.floor(y / H * bands);
-    const wobY = 0.02 * Math.sin(y / 34);
+    const band = Math.floor(y / H * bands), wobY = 0.02 * Math.sin(y / 34);
     for (let x = 0; x < W; x++) {
       const frac = band % 2 === 0 ? x / W : 1 - x / W;
       let v = (band + frac) / bands + wobY + 0.015 * Math.sin(x / 46);
@@ -386,39 +383,38 @@ async function selfDrawSegment(scenePath, tmp, idx, sceneDur) {
 
   const FPS = 30;
   const total = Math.round(sceneDur * FPS);
-  const drawFrames = Math.round(total * 0.62);   // reveal completes at 62% of scene
+  const drawFrames = Math.round(total * 0.62);
   const soft = 0.08;
-  const framesDir = path.join(tmp, `draw_${idx}`);
-  fs.mkdirSync(framesDir, { recursive: true });
+  const seg = `seg_draw_${idx}.mp4`;
 
-  // continuous gentle zoom across the WHOLE scene (applied as center crop scale),
-  // so motion never "starts" — it's one smooth push from 1.00 to 1.06.
-  const out = Buffer.alloc(P * 3);
-  for (let f = 0; f < total; f++) {
-    const prog = (f + 1) / drawFrames;   // reveal progress (caps at 1 after drawFrames)
-    for (let i = 0; i < P; i++) {
-      let a = (prog - order[i]) / soft;
-      a = a < 0 ? 0 : a > 1 ? 1 : a;
-      if (a === 0) { out[i*3]=paper[0]; out[i*3+1]=paper[1]; out[i*3+2]=paper[2]; }
-      else if (a === 1) { out[i*3]=data[i*3]; out[i*3+1]=data[i*3+1]; out[i*3+2]=data[i*3+2]; }
-      else for (let c = 0; c < 3; c++) out[i*3+c] = paper[c] + (data[i*3+c]-paper[c])*a;
-    }
-    await sharp(out, { raw: { width: W, height: H, channels: 3 } })
-      .jpeg({ quality: 90 }).toFile(path.join(framesDir, `f_${String(f).padStart(4,"0")}.jpg`));
-  }
-
-  // encode with a single smooth zoompan over ALL frames — one continuous motion,
-  // no second segment, no seam.
+  // Stream raw RGB frames straight into ffmpeg stdin — no thousands of JPEG files.
+  // ~10-15x faster than per-frame sharp writes, keeps full resolution.
   const z = idx % 2 === 0
     ? `'min(1.00+0.06*on/${total},1.06)'`
     : `'max(1.06-0.06*on/${total},1.00)'`;
-  const seg = `seg_draw_${idx}.mp4`;
-  execSync(
-    `ffmpeg -y -framerate ${FPS} -i "${path.join(`draw_${idx}`, "f_%04d.jpg")}" ` +
-    `-vf "scale=${W*1.12}:${H*1.12},zoompan=z=${z}:x='iw/2-(iw/zoom/2)':y='ih/2-(ih/zoom/2)':d=1:s=${W}x${H}:fps=${FPS},format=yuv420p" ` +
-    `-frames:v ${total} -c:v libx264 -preset veryfast -crf 19 -pix_fmt yuv420p "${seg}"`,
-    { stdio: "inherit", cwd: tmp }
-  );
+  const { spawn } = await import("child_process");
+  const ff = spawn("ffmpeg", [
+    "-y", "-f", "rawvideo", "-pix_fmt", "rgb24", "-s", `${W}x${H}`, "-r", `${FPS}`, "-i", "pipe:0",
+    "-vf", `scale=${Math.round(W*1.12)}:${Math.round(H*1.12)},zoompan=z=${z}:x='iw/2-(iw/zoom/2)':y='ih/2-(ih/zoom/2)':d=1:s=${W}x${H}:fps=${FPS},format=yuv420p`,
+    "-frames:v", `${total}`, "-c:v", "libx264", "-preset", "veryfast", "-crf", "19", "-pix_fmt", "yuv420p", seg
+  ], { cwd: tmp, stdio: ["pipe", "inherit", "inherit"] });
+
+  const frame = Buffer.allocUnsafe(P * 3);
+  const done = new Promise((res, rej) => { ff.on("close", (c) => c === 0 ? res() : rej(new Error("ffmpeg draw exit " + c))); ff.on("error", rej); });
+
+  for (let f = 0; f < total; f++) {
+    const prog = (f + 1) / drawFrames;
+    for (let i = 0; i < P; i++) {
+      let a = (prog - order[i]) / soft;
+      a = a < 0 ? 0 : a > 1 ? 1 : a;
+      if (a === 0) { frame[i*3]=paper[0]; frame[i*3+1]=paper[1]; frame[i*3+2]=paper[2]; }
+      else if (a === 1) { frame[i*3]=data[i*3]; frame[i*3+1]=data[i*3+1]; frame[i*3+2]=data[i*3+2]; }
+      else for (let c = 0; c < 3; c++) frame[i*3+c] = paper[c] + (data[i*3+c]-paper[c])*a;
+    }
+    if (!ff.stdin.write(frame)) await new Promise((r) => ff.stdin.once("drain", r));
+  }
+  ff.stdin.end();
+  await done;
   return seg;
 }
 
