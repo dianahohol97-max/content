@@ -370,55 +370,6 @@
     "postedAt": null
   },
   {
-    "id": "SH_W27_11",
-    "week": 27,
-    "question": "Which pile is living on your desk?",
-    "options": [
-      {
-        "label": "The avalanche",
-        "imagePrompt": "Elegant minimal line art illustration: confident continuous ink lines in deep violet on warm cream paper, with soft washes of lavender, blush pink and sage green as sparse color accents. Generous negative space, sophisticated, calm, adult wellness aesthetic. No people, no faces, no text, no letters. Vertical 9:16 composition. A wooden desk overflowing with towering stacks of papers, notebooks, and folders cascading sideways, a coffee mug perched precariously on top, sticky notes clinging to every surface, small potted succulent barely visible under the chaos.",
-        "result": "Your brain runs on visible reminders - buried means forgotten, full stop."
-      },
-      {
-        "label": "The museum",
-        "imagePrompt": "Elegant minimal line art illustration: confident continuous ink lines in deep violet on warm cream paper, with soft washes of lavender, blush pink and sage green as sparse color accents. Generous negative space, sophisticated, calm, adult wellness aesthetic. No people, no faces, no text, no letters. Vertical 9:16 composition. A clean minimal wooden desk with only a few perfectly placed objects - one open notebook, a single pen, a small plant, and a coaster with a mug, everything spaced deliberately with lots of open surface visible.",
-        "result": "You hyperfocus-clean when anxious - that tidy desk hides a very loud inner storm."
-      },
-      {
-        "label": "The project graveyard",
-        "imagePrompt": "Elegant minimal line art illustration: confident continuous ink lines in deep violet on warm cream paper, with soft washes of lavender, blush pink and sage green as sparse color accents. Generous negative space, sophisticated, calm, adult wellness aesthetic. No people, no faces, no text, no letters. Vertical 9:16 composition. A desk covered with half-finished projects - an open sketchbook with drawings mid-page, a partially assembled craft, an unfinished puzzle pushed to one corner, tangled earbuds, and three different notebooks all open to different pages.",
-        "result": "You start with full-force excitement and your desk is the evidence trail."
-      },
-      {
-        "label": "The floor desk",
-        "imagePrompt": "Elegant minimal line art illustration: confident continuous ink lines in deep violet on warm cream paper, with soft washes of lavender, blush pink and sage green as sparse color accents. Generous negative space, sophisticated, calm, adult wellness aesthetic. No people, no faces, no text, no letters. Vertical 9:16 composition. A wooden desk that is almost entirely bare and unused, while the floor directly beside it is covered in a cozy spread of notebooks, a blanket, scattered pens, an open book, and a snack wrapper - clearly where all the real work happens.",
-        "result": "The desk is decorative. Your floor is your actual executive function headquarters."
-      }
-    ],
-    "introVoiceover": "Pick the desk that matches yours right now - no cleaning it up first. Your choice actually says something real about how your ADHD brain processes the world. Drop your letter in the comments.",
-    "outroVoiceover": "None of these are wrong - they are all just different ADHD brains doing their thing. Follow for daily ADHD content.",
-    "title": "Pick your desk - what it says about your ADHD brain #Shorts",
-    "description": "Four desks, four ADHD patterns - pick the one that looks most like yours and watch what your choice reveals about how your brain actually works. The answers are in the video.\nFollow for daily ADHD content.",
-    "tags": [
-      "ADHD",
-      "ADHDtest",
-      "ADHDtips",
-      "neurodivergent",
-      "focustips",
-      "ADHDawareness",
-      "bloomfocus",
-      "ADHDlife",
-      "executivefunction",
-      "ADHDorganization",
-      "shorts"
-    ],
-    "funnel": "follow",
-    "shortType": "quiztest",
-    "status": "pending",
-    "videoUrl": null,
-    "postedAt": null
-  },
-  {
     "id": "SH_W27_13",
     "week": 27,
     "voiceover": "You see the task. You know it takes two minutes. You still don't do it. That's ADHD task paralysis. Here's the fix. The two-minute rule: if something takes under two minutes, do it the second you think of it. Don't schedule it, don't add it to a list. Do it now. Because for the ADHD brain, delayed tasks become invisible tasks. That two-minute window is the only moment your brain believes it's real. Use it. Follow for daily ADHD content.",
