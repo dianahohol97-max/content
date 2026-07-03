@@ -335,28 +335,42 @@ async function buildInfographicJournal(pin, outDir) {
 async function buildExplainerJournal(pin, outDir) {
   const outPath = path.join(outDir, `${pin.id}.png`);
   const term = pin.term ?? pin.title;
-  const tLines = wrapText(term, 14);
-  const tFont = tLines.length > 1 ? 74 : 88;
-  const tLH = tFont * 1.12;
-  const dLines = wrapText(pin.definition ?? "", 30);
-  const dFont = 40, dLH = dFont * 1.5;
-  const eLines = wrapText(`"${pin.example ?? ""}"`, 30);
-  const eFont = 44, eLH = eFont * 1.35;
-  const cardY = 280, cardH = H - 580;
-  let y = cardY + 100;
+
+  // measure all blocks first, then size the card to fit — nothing can overflow
+  let tFont = 84, dFont = 40, eFont = 44;
+  let tLines = wrapText(term, 16);
+  if (tLines.length > 2) { tFont = 68; tLines = wrapText(term, 20); }
+  const tLH = tFont * 1.14;
+  let dLines = wrapText(pin.definition ?? "", 32);
+  let eLines = wrapText(`"${pin.example ?? ""}"`, 34);
+
+  const pillH = 56;
+  const measure = () =>
+    90 + pillH + 64 + tLines.length * tLH + 14 + 44 + 34 + 6 +
+    (50 + dFont * 0.8) + (dLines.length - 1) * dFont * 1.5 + 64 + eFont * 0.8 +
+    (eLines.length - 1) * eFont * 1.35 + 80;
+
+  const cardY = 270;
+  const maxCardH = H - cardY - 240;
+  if (measure() > maxCardH) { dFont = 36; eFont = 40; }
+  const cardH = Math.min(maxCardH, Math.max(700, measure()));
+
+  let y = cardY + 90;
   const pillText = "\u2726 the ADHD dictionary";
-  const pillW = 380, pillH = 56;
+  const pillW = 380;
   const pillSvg = `<rect x="150" y="${y}" width="${pillW}" height="${pillH}" rx="${pillH/2}" fill="${J_GRADS[jHash(pin.id) % J_GRADS.length][0]}"/>
-  <text x="${150 + pillW/2}" y="${y + 38}" font-family="Poppins" font-weight="500" font-size="26" fill="${J_INK}" text-anchor="middle">${esc(pillText)}</text>
-  <text x="${150 + pillW + 30}" y="${y + 40}" font-family="Caveat" font-weight="700" font-size="40" fill="rgba(61,44,110,0.55)">(noun)</text>`;
-  y += pillH + 70 + tFont * 0.75;
+  <text x="${150 + pillW/2}" y="${y + 38}" font-family="Poppins" font-weight="500" font-size="26" fill="${J_INK}" text-anchor="middle">${esc(pillText)}</text>`;
+  y += pillH + 64 + tFont * 0.78;
   const termSvg = `<text x="150" y="${y}" font-family="Playfair Display" font-weight="700" font-size="${tFont}" fill="${J_INK}" style="letter-spacing:-1px;">${jSpans(tLines, 150, tLH)}</text>`;
-  y += (tLines.length - 1) * tLH + 40;
+  y += (tLines.length - 1) * tLH + 14 + 40;
+  const nounSvg = `<text x="152" y="${y}" font-family="Caveat" font-weight="700" font-size="40" fill="rgba(61,44,110,0.55)">(noun)</text>`;
+  y += 34;
   const dividerSvg = `<rect x="150" y="${y}" width="110" height="6" rx="3" fill="${J_CIRCLES[jHash(pin.id) % J_CIRCLES.length]}"/>`;
-  y += 60 + dFont * 0.8;
-  const defSvg = `<text x="150" y="${y}" font-family="Poppins" font-weight="500" font-size="${dFont}" fill="#4a3a7a">${jSpans(dLines, 150, dLH)}</text>`;
-  y += (dLines.length - 1) * dLH + 90;
-  const exSvg = `<text x="150" y="${y}" font-family="Caveat" font-weight="700" font-size="${eFont}" fill="${J_INK}">${jSpans(eLines, 150, eLH)}</text>`;
+  y += 50 + dFont * 0.8;
+  const defSvg = `<text x="150" y="${y}" font-family="Poppins" font-weight="500" font-size="${dFont}" fill="#4a3a7a">${jSpans(dLines, 150, dFont * 1.5)}</text>`;
+  y += (dLines.length - 1) * dFont * 1.5 + 64 + eFont * 0.8;
+  const exSvg = `<text x="150" y="${y}" font-family="Caveat" font-weight="700" font-size="${eFont}" fill="${J_INK}">${jSpans(eLines, 150, eFont * 1.35)}</text>`;
+
   const tilt = jHash(pin.id) % 2 === 0 ? -0.8 : 0.8;
   const svg = Buffer.from(`<svg width="${W}" height="${H}" xmlns="http://www.w3.org/2000/svg">
   ${jGrad(pin.id)}
@@ -366,15 +380,17 @@ async function buildExplainerJournal(pin, outDir) {
   ${jTape(W / 2, cardY - 2, J_TAPES[jHash(pin.id) % J_TAPES.length], -3)}
   ${pillSvg}
   ${termSvg}
+  ${nounSvg}
   ${dividerSvg}
   ${defSvg}
   ${exSvg}
-  <text x="90" y="${H - 130}" font-family="Caveat" font-weight="700" font-size="56" fill="${J_INK}">sound familiar? \u2192</text>
-  <text x="${W / 2}" y="${H - 55}" font-family="Poppins" font-weight="500" font-size="26" fill="rgba(61,44,110,0.5)" text-anchor="middle">bloomfocus.org</text>
+  <text x="90" y="${H - 110}" font-family="Caveat" font-weight="700" font-size="56" fill="${J_INK}">sound familiar? \u2192</text>
+  <text x="${W / 2}" y="${H - 50}" font-family="Poppins" font-weight="500" font-size="26" fill="rgba(61,44,110,0.5)" text-anchor="middle">bloomfocus.org</text>
 </svg>`);
   await sharp(svg).png().toFile(outPath);
   return outPath;
 }
+
 
 async function main() {
   await ensureFonts();
