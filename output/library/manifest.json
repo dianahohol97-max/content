@@ -408,6 +408,18 @@
     "url": "https://raw.githubusercontent.com/dianahohol97-max/content/main/output/library/vertical/v2_brain_1.png"
   },
   {
+    "id": "vertical_v2_brain_2.png",
+    "aspect": "vertical",
+    "filename": "v2_brain_2.png",
+    "url": "https://raw.githubusercontent.com/dianahohol97-max/content/main/output/library/vertical/v2_brain_2.png"
+  },
+  {
+    "id": "vertical_v2_clock_1.png",
+    "aspect": "vertical",
+    "filename": "v2_clock_1.png",
+    "url": "https://raw.githubusercontent.com/dianahohol97-max/content/main/output/library/vertical/v2_clock_1.png"
+  },
+  {
     "id": "vertical_v2_cozy_room_1.png",
     "aspect": "vertical",
     "filename": "v2_cozy_room_1.png",
@@ -420,16 +432,46 @@
     "url": "https://raw.githubusercontent.com/dianahohol97-max/content/main/output/library/vertical/v2_desk_tidy_1.png"
   },
   {
+    "id": "vertical_v2_desk_tidy_2.png",
+    "aspect": "vertical",
+    "filename": "v2_desk_tidy_2.png",
+    "url": "https://raw.githubusercontent.com/dianahohol97-max/content/main/output/library/vertical/v2_desk_tidy_2.png"
+  },
+  {
+    "id": "vertical_v2_journal_1.png",
+    "aspect": "vertical",
+    "filename": "v2_journal_1.png",
+    "url": "https://raw.githubusercontent.com/dianahohol97-max/content/main/output/library/vertical/v2_journal_1.png"
+  },
+  {
     "id": "vertical_v2_plant_1.png",
     "aspect": "vertical",
     "filename": "v2_plant_1.png",
     "url": "https://raw.githubusercontent.com/dianahohol97-max/content/main/output/library/vertical/v2_plant_1.png"
   },
   {
+    "id": "vertical_v2_plant_2.png",
+    "aspect": "vertical",
+    "filename": "v2_plant_2.png",
+    "url": "https://raw.githubusercontent.com/dianahohol97-max/content/main/output/library/vertical/v2_plant_2.png"
+  },
+  {
     "id": "vertical_v2_sparks_1.png",
     "aspect": "vertical",
     "filename": "v2_sparks_1.png",
     "url": "https://raw.githubusercontent.com/dianahohol97-max/content/main/output/library/vertical/v2_sparks_1.png"
+  },
+  {
+    "id": "vertical_v2_sparks_2.png",
+    "aspect": "vertical",
+    "filename": "v2_sparks_2.png",
+    "url": "https://raw.githubusercontent.com/dianahohol97-max/content/main/output/library/vertical/v2_sparks_2.png"
+  },
+  {
+    "id": "vertical_v2_window_light_1.png",
+    "aspect": "vertical",
+    "filename": "v2_window_light_1.png",
+    "url": "https://raw.githubusercontent.com/dianahohol97-max/content/main/output/library/vertical/v2_window_light_1.png"
   },
   {
     "id": "vertical_window_light_1.png",
