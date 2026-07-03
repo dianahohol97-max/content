@@ -201,7 +201,7 @@ const PIN_PATTERNS = [
   "ADHD Hyperfixation", "ADHD Wall of Awful", "ADHD Executive Dysfunction",
 ];
 
-async function generateInfographicBatch({ funnel, url, theme, weekNum, dayNum, count = 4, attempt = 1, patternMode = false, patterns = [] }) {
+async function generateInfographicBatch({ funnel, url, theme, weekNum, dayNum, count = 4, attempt = 1, patternMode = false, patterns = [], copingMode = false }) {
   const strictness = attempt === 1 ? "" : attempt === 2
     ? " CRITICAL: Use only straight ASCII apostrophes never curly quotes."
     : " ULTRA STRICT: Plain ASCII only. No apostrophes.";
@@ -212,6 +212,13 @@ async function generateInfographicBatch({ funnel, url, theme, weekNum, dayNum, c
     etsy: "Shop ADHD tools at etsy.com/shop/BloomfocusShop",
     blog: "Read the full guide at bloomfocus.org/blog",
   };
+
+  const copingGuide = copingMode ? `
+SPECIAL FORMAT — "how to cope" pins (practical help for a specific ADHD manifestation):
+Each pin targets ONE concrete ADHD manifestation connected to the theme (examples: task paralysis, time blindness, doom piles, ADHD shutdown, forgetting to eat, waiting mode, revenge bedtime procrastination).
+- headline: "How to Handle [Manifestation]" / "When [Manifestation] Hits" — SIMPLE searchable words, no hard-to-spell terms.
+- items: 4-5 CONCRETE in-the-moment micro-strategies (each max 7 words), realistic for ADHD brains: tiny first steps, dopamine-friendly, body-based. NEVER "just try harder" or "stay consistent".
+- description MUST name the manifestation and include "ADHD coping strategies" as a keyword.` : "";
 
   const patternGuide = patternMode ? `
 SPECIAL FORMAT — "named pattern" pins (great for Pinterest search, since the pattern name is itself a search term):
@@ -226,7 +233,7 @@ Generate exactly ${count} INFOGRAPHIC-style Pinterest pins for the "${funnel}" f
 Week: ${weekNum}, Day: ${dayNum}. Theme: ${theme}. URL: ${url}
 
 These pins put VALUE directly on the image — a numbered list or steps the user can read and save.
-${patternGuide}
+${patternGuide}${copingGuide}
 
 RULES:
 - headline: ${patternMode ? "the pattern name as a searchable hook (keep the exact term)" : 'a number-driven hook, 4-7 words. Examples: "5 ADHD Morning Tricks", "7 Signs of ADHD Burnout", "4 Ways to Start Any Task". Use a number.'}
@@ -425,7 +432,7 @@ Generate exactly ${count} relatable ADHD MEME pins. Week ${weekNum}, Day ${dayNu
 WHAT A MEME PIN IS:
 A short, funny, instantly relatable ADHD moment that makes people think "this is SO me" and tag a friend. Humor WITH the ADHD experience, never mocking it. Warm and self-aware, like an inside joke among people who get it.
 
-GOOD meme topics: racing thoughts at 3am, task paralysis on tiny tasks, hyperfocus on the wrong thing, time blindness, starting 5 things finishing 0, "I'll do it in 5 minutes" (3 hours pass), rejection sensitivity, the doom pile, object permanence ("out of sight out of mind").
+PRIORITIZE universally familiar phrases — lines every ADHD person has literally said or heard ("I'll do it in 5 minutes", "I was listening, I just didn't hear you", "I work best under pressure"). Recognition = shares.\n\nGOOD meme topics: racing thoughts at 3am, task paralysis on tiny tasks, hyperfocus on the wrong thing, time blindness, starting 5 things finishing 0, "I'll do it in 5 minutes" (3 hours pass), rejection sensitivity, the doom pile, object permanence ("out of sight out of mind").
 
 TONE: like a friend who has ADHD and lost their keys this morning. Funny, kind, never "ADHD is a superpower", never cruel.
 
@@ -500,6 +507,65 @@ async function generateMemeWithRetry(params) {
 //   2 meme        → site       (relatable ADHD humor, drives shares + reach)
 //   = 12 pins/day
 
+// ── EXPLAINER pins: "what is X" — simple definitions of ADHD terms people see
+// everywhere but nobody explains. High search value + high save value.
+async function generateExplainerBatch({ theme, weekNum, dayNum, count = 2, attempt = 1 }) {
+  const strictness = attempt === 1 ? "" :
+    " CRITICAL: Use only straight ASCII apostrophes ('), never curly quotes.";
+
+  const prompt = `You are a Pinterest SEO expert for bloom focus, an ADHD brand.
+
+Generate exactly ${count} EXPLAINER ("what is...") Pinterest pins. Week ${weekNum}, Day ${dayNum}. Theme: ${theme}.
+
+WHAT AN EXPLAINER PIN IS:
+A dictionary-style card that explains ONE ADHD term in plain, warm language. People constantly see these terms online but nobody explains them simply. Pick terms connected to the theme (examples: executive dysfunction, body doubling, time blindness, dopamine menu, task paralysis, waiting mode, object permanence, ADHD tax, hyperfocus, doom pile, ADHD masking, rejection sensitivity).
+
+For each pin:
+- term: the term itself, 1-3 words (this is a search keyword — keep the exact common phrasing)
+- definition: plain-words explanation in max 26 words, warm and validating, like a friend explaining. NO clinical jargon.
+- example: one instantly familiar everyday line showing the term in action, max 14 words, first person.
+- title: Pinterest SEO title 40-60 chars containing the term
+- description: 150-250 chars with the term + 2-3 ADHD keywords, ends with "More at bloomfocus.org"
+- board: Choose from: ${BOARDS.join(" | ")}${strictness}
+
+Return ONLY a valid JSON array, no markdown:
+[
+  {
+    "term": "...",
+    "definition": "...",
+    "example": "...",
+    "title": "...",
+    "description": "...",
+    "board": "...",
+    "destinationUrl": "${URLS.quiz}",
+    "funnel": "quiz",
+    "pinType": "explainer"
+  }
+]`;
+
+  const response = await client.messages.create({
+    model: "claude-sonnet-4-6",
+    max_tokens: 1500,
+    messages: [{ role: "user", content: prompt + avoidBlock(PREV_PHRASES) }],
+  });
+
+  return parseJSON(response.content[0].text);
+}
+
+async function generateExplainerWithRetry(params) {
+  for (let attempt = 1; attempt <= 3; attempt++) {
+    try {
+      const pins = await generateExplainerBatch({ ...params, attempt });
+      if (!Array.isArray(pins) || pins.length === 0) throw new Error("Empty array");
+      console.log(`    \u2713 explainer batch — ${pins.length} pins`);
+      return pins.map((p) => ({ ...p, pinType: "explainer" }));
+    } catch (err) {
+      console.warn(`    \u2717 explainer attempt ${attempt} failed: ${err.message}`);
+      if (attempt === 3) { console.warn("    \u26a0 skipping explainers this day"); return []; }
+    }
+  }
+}
+
 async function generateDay(weekNum, dayNum) {
   const theme = themeFor(weekNum, dayNum);
   console.log(`\n📅 Day ${dayNum} (week ${weekNum}) — theme: ${theme}`);
@@ -515,11 +581,8 @@ async function generateDay(weekNum, dayNum) {
 
   // ── 4 INFOGRAPHIC pins (list/value on image) ──
   console.log(`  📊 Infographic pins...`);
-  const infoQuiz = await generateInfographicWithRetry({
-    funnel: "quiz", url: URLS.quiz, theme, weekNum, dayNum, count: 1,
-  });
-  const infoApp = await generateInfographicWithRetry({
-    funnel: "app", url: URLS.app, theme, weekNum, dayNum, count: 1,
+  const infoCoping = await generateInfographicWithRetry({
+    funnel: "quiz", url: URLS.quiz, theme, weekNum, dayNum, count: 2, copingMode: true,
   });
   const infoBlog = await generateInfographicWithRetry({
     funnel: "blog", url: URLS.blog, theme, weekNum, dayNum, count: 1,
@@ -541,6 +604,9 @@ async function generateDay(weekNum, dayNum) {
 
   // ── 2 MEME pins (relatable ADHD humor → site) ──
   console.log(`  😄 Meme pins...`);
+  console.log(`  📖 Explainer pins...`);
+  const explainers = await generateExplainerWithRetry({ theme, weekNum, dayNum, count: 2 });
+
   const memes = await generateMemeWithRetry({
     theme, weekNum, dayNum, count: 2,
   });
@@ -551,9 +617,9 @@ async function generateDay(weekNum, dayNum) {
   const allPins = [
     ...tagHook(hookQuiz),
     ...tagHook(hookApp),
-    ...infoQuiz,
-    ...infoApp,
+    ...infoCoping,
     ...infoBlog,
+    ...explainers,
     ...infoPattern,
     ...tagHook(product),
     ...memes,
