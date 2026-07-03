@@ -15,6 +15,8 @@ import { GoogleGenAI } from "@google/genai";
 import sharp from "sharp";
 import fs from "fs";
 import path from "path";
+import os from "os";
+import { execSync } from "child_process";
 import { fileURLToPath } from "url";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
@@ -216,7 +218,122 @@ async function buildHookOrProduct(pin, outDir) {
 }
 
 // ═══ Main ═════════════════════════════════════════════════════════════════════
+
+// ═══════════════════════════════════════════════════════════════════════════
+// Journal-style code renderers (same design system as carousels) — memes and
+// infographics are drawn entirely in SVG+sharp: zero Gemini cost, brand fonts
+// (Playfair Display / Poppins / Caveat), pastel gradients, tape cards.
+// ═══════════════════════════════════════════════════════════════════════════
+const FONTS = [
+  ["PlayfairDisplay.ttf", "https://raw.githubusercontent.com/google/fonts/main/ofl/playfairdisplay/PlayfairDisplay%5Bwght%5D.ttf"],
+  ["Poppins-ExtraBold.ttf", "https://raw.githubusercontent.com/google/fonts/main/ofl/poppins/Poppins-ExtraBold.ttf"],
+  ["Poppins-Medium.ttf", "https://raw.githubusercontent.com/google/fonts/main/ofl/poppins/Poppins-Medium.ttf"],
+  ["Caveat.ttf", "https://raw.githubusercontent.com/google/fonts/main/ofl/caveat/Caveat%5Bwght%5D.ttf"],
+];
+async function ensureFonts() {
+  const dir = path.join(os.homedir(), ".fonts");
+  fs.mkdirSync(dir, { recursive: true });
+  for (const [name, url] of FONTS) {
+    const p = path.join(dir, name);
+    if (fs.existsSync(p) && fs.statSync(p).size > 10000) continue;
+    console.log(`  ⬇ font ${name}`);
+    const res = await fetch(url);
+    if (!res.ok) throw new Error(`font ${name}: HTTP ${res.status}`);
+    fs.writeFileSync(p, Buffer.from(await res.arrayBuffer()));
+  }
+  try { execSync("fc-cache -f", { stdio: "ignore" }); } catch { /* fine locally */ }
+}
+
+const J_INK = "#3d2c6e";
+const J_TAPES = ["#F2D9A0", "#C9E4D0", "#F4C9D8", "#CFE3F5"];
+const J_CIRCLES = ["#B79CE8", "#8FBF9F", "#E8A0BC", "#8FB8D8", "#D8B27C"];
+const J_GRADS = [
+  ["#E8DEFF", "#FFE9F1", "#D4EEFF"],
+  ["#DFF0E4", "#FFF4E2", "#D4EEFF"],
+  ["#FFE9F1", "#F3E8FF", "#D4EEFF"],
+  ["#FFEFE2", "#FFE9F1", "#E8DEFF"],
+  ["#D8E6F5", "#E8E4F8", "#EAF4EF"],
+];
+function jHash(s) { let h = 0; for (const ch of String(s)) h = (h * 31 + ch.charCodeAt(0)) >>> 0; return h; }
+function jGrad(seed) {
+  const g = J_GRADS[jHash(seed) % J_GRADS.length];
+  return `<defs><linearGradient id="jg" x1="0" y1="0" x2="1" y2="1">
+    <stop offset="0%" stop-color="${g[0]}"/><stop offset="50%" stop-color="${g[1]}"/><stop offset="100%" stop-color="${g[2]}"/>
+  </linearGradient></defs><rect width="${W}" height="${H}" fill="url(#jg)"/>`;
+}
+function jTape(cx, cy, fill, angle) {
+  return `<rect x="${cx - 100}" y="${cy - 26}" width="200" height="52" rx="8" fill="${fill}" opacity="0.85" transform="rotate(${angle} ${cx} ${cy})"/>`;
+}
+function jSpans(lines, x, lh) { return lines.map((l, i) => `<tspan x="${x}" dy="${i === 0 ? 0 : lh}">${esc(l)}</tspan>`).join(""); }
+const J_CTA = { quiz: "take the ADHD test \u2192", app: "try the free app \u2192", etsy: "shop on Etsy \u2192", blog: "read more \u2192" };
+
+async function buildMemeJournal(pin, outDir) {
+  const outPath = path.join(outDir, `${pin.id}.png`);
+  const text = pin.memeText ?? pin.overlayTitle ?? pin.title;
+  const rawLines = String(text).split("\n");
+  const lines = [];
+  for (const rl of rawLines) for (const w of wrapText(rl, 20)) lines.push(w);
+  const font = lines.length > 5 ? 58 : lines.length > 3 ? 66 : 76;
+  const lh = font * 1.28;
+  const cardY = 300, cardH = H - 620;
+  const blockH = lines.length * lh;
+  const startY = cardY + Math.max(70, (cardH - blockH) / 2) + font * 0.75;
+  const tilt = jHash(pin.id) % 2 === 0 ? -1 : 1;
+  const svg = Buffer.from(`<svg width="${W}" height="${H}" xmlns="http://www.w3.org/2000/svg">
+  ${jGrad(pin.id)}
+  <text x="90" y="150" font-family="Caveat" font-weight="700" font-size="66" fill="${J_INK}">bloom focus</text>
+  <text x="${W - 90}" y="146" font-family="Poppins" font-weight="500" font-size="26" fill="rgba(61,44,110,0.55)" text-anchor="end">@bloomfocus.adhd</text>
+  <rect x="80" y="${cardY}" width="${W - 160}" height="${cardH}" rx="24" fill="rgba(255,252,248,0.95)" transform="rotate(${tilt} ${W / 2} ${cardY + cardH / 2})"/>
+  ${jTape(W / 2, cardY - 2, J_TAPES[jHash(pin.id) % J_TAPES.length], -3)}
+  <text x="${W / 2}" y="${startY}" font-family="Playfair Display" font-weight="700" font-size="${font}" fill="${J_INK}" text-anchor="middle" style="letter-spacing:-1px;">${jSpans(lines, W / 2, lh)}</text>
+  <text x="90" y="${H - 140}" font-family="Caveat" font-weight="700" font-size="56" fill="${J_INK}">it's not just you \u2192</text>
+  <text x="${W / 2}" y="${H - 60}" font-family="Poppins" font-weight="500" font-size="26" fill="rgba(61,44,110,0.5)" text-anchor="middle">bloomfocus.org</text>
+</svg>`);
+  await sharp(svg).png().toFile(outPath);
+  return outPath;
+}
+
+async function buildInfographicJournal(pin, outDir) {
+  const outPath = path.join(outDir, `${pin.id}.png`);
+  const items = (pin.items ?? []).slice(0, 6);
+  const hLines = wrapText(pin.headline ?? pin.title, 18);
+  const hFont = hLines.length > 2 ? 60 : 70;
+  const hLH = hFont * 1.18;
+  const cardY = 260;
+  const cardH = H - 500;
+  const headBlock = hLines.length * hLH;
+  const rowH = Math.min(150, Math.floor((cardH - headBlock - 260) / Math.max(items.length, 1)));
+  const dividerY = cardY + 100 + headBlock + 14;
+  const listStartY = dividerY + 96;
+  const rows = items.map((it, i) => {
+    const y = listStartY + i * rowH;
+    const circle = J_CIRCLES[i % J_CIRCLES.length];
+    const itemLines = wrapText(it, 26);
+    return `
+    <circle cx="185" cy="${y - 12}" r="34" fill="${circle}"/>
+    <text x="185" y="${y + 2}" font-family="Poppins" font-weight="800" font-size="36" fill="#ffffff" text-anchor="middle">${i + 1}</text>
+    <text x="250" y="${y}" font-family="Poppins" font-weight="500" font-size="36" fill="#4a3a7a">${jSpans(itemLines, 250, 44)}</text>`;
+  }).join("");
+  const tilt = jHash(pin.id) % 2 === 0 ? 1 : -1;
+  const shortCta = J_CTA[pin.funnel] ?? "learn more \u2192";
+  const svg = Buffer.from(`<svg width="${W}" height="${H}" xmlns="http://www.w3.org/2000/svg">
+  ${jGrad(pin.id)}
+  <text x="90" y="150" font-family="Caveat" font-weight="700" font-size="66" fill="${J_INK}">bloom focus</text>
+  <text x="${W - 90}" y="146" font-family="Poppins" font-weight="500" font-size="26" fill="rgba(61,44,110,0.55)" text-anchor="end">@bloomfocus.adhd</text>
+  <rect x="80" y="${cardY}" width="${W - 160}" height="${cardH}" rx="24" fill="rgba(255,252,248,0.95)" transform="rotate(${tilt * 0.6} ${W / 2} ${cardY + cardH / 2})"/>
+  ${jTape(W / 2, cardY - 2, J_TAPES[jHash(pin.id) % J_TAPES.length], 3)}
+  <text x="150" y="${cardY + 90 + hFont * 0.8}" font-family="Playfair Display" font-weight="700" font-size="${hFont}" fill="${J_INK}" style="letter-spacing:-1px;">${jSpans(hLines, 150, hLH)}</text>
+  <rect x="150" y="${dividerY}" width="110" height="6" rx="3" fill="${J_CIRCLES[jHash(pin.id) % J_CIRCLES.length]}"/>
+  ${rows}
+  <text x="90" y="${H - 130}" font-family="Caveat" font-weight="700" font-size="56" fill="${J_INK}">${esc(shortCta)}</text>
+  <text x="${W / 2}" y="${H - 55}" font-family="Poppins" font-weight="500" font-size="26" fill="rgba(61,44,110,0.5)" text-anchor="middle">bloomfocus.org</text>
+</svg>`);
+  await sharp(svg).png().toFile(outPath);
+  return outPath;
+}
+
 async function main() {
+  await ensureFonts();
   console.log(`\n📌 bloom focus — Pinterest build all — Week ${WEEK}\n${"━".repeat(50)}`);
 
   let pins = loadPins(WEEK);
@@ -250,8 +367,8 @@ async function main() {
 
     process.stdout.write(`   [${i+1}/${pins.length}] ${pin.id} (${engine}) "${label}"... `);
     try {
-      if (pin.pinType === "infographic") await buildInfographic(pin, outDir);
-      else if (pin.pinType === "meme") await buildMeme(pin, outDir);
+      if (pin.pinType === "infographic") await buildInfographicJournal(pin, outDir);
+      else if (pin.pinType === "meme") await buildMemeJournal(pin, outDir);
       else await buildHookOrProduct(pin, outDir);
       // Record the public GitHub raw URL of the finished image into the pin
       pin.imageUrl = `${REPO_RAW}/output/pinterest/week_${WEEK}/${pin.id}.png`;
