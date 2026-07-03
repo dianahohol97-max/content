@@ -332,6 +332,50 @@ async function buildInfographicJournal(pin, outDir) {
   return outPath;
 }
 
+async function buildExplainerJournal(pin, outDir) {
+  const outPath = path.join(outDir, `${pin.id}.png`);
+  const term = pin.term ?? pin.title;
+  const tLines = wrapText(term, 14);
+  const tFont = tLines.length > 1 ? 74 : 88;
+  const tLH = tFont * 1.12;
+  const dLines = wrapText(pin.definition ?? "", 30);
+  const dFont = 40, dLH = dFont * 1.5;
+  const eLines = wrapText(`"${pin.example ?? ""}"`, 30);
+  const eFont = 44, eLH = eFont * 1.35;
+  const cardY = 280, cardH = H - 580;
+  let y = cardY + 100;
+  const pillText = "\u2726 the ADHD dictionary";
+  const pillW = 380, pillH = 56;
+  const pillSvg = `<rect x="150" y="${y}" width="${pillW}" height="${pillH}" rx="${pillH/2}" fill="${J_GRADS[jHash(pin.id) % J_GRADS.length][0]}"/>
+  <text x="${150 + pillW/2}" y="${y + 38}" font-family="Poppins" font-weight="500" font-size="26" fill="${J_INK}" text-anchor="middle">${esc(pillText)}</text>`;
+  y += pillH + 70 + tFont * 0.75;
+  const termSvg = `<text x="150" y="${y}" font-family="Playfair Display" font-weight="700" font-size="${tFont}" fill="${J_INK}" style="letter-spacing:-1px;">${jSpans(tLines, 150, tLH)}</text>
+  <text x="${150 + Math.min(term.length * tFont * 0.52, W - 340)}" y="${y}" font-family="Caveat" font-weight="700" font-size="42" fill="rgba(61,44,110,0.55)"> (noun)</text>`;
+  y += (tLines.length - 1) * tLH + 40;
+  const dividerSvg = `<rect x="150" y="${y}" width="110" height="6" rx="3" fill="${J_CIRCLES[jHash(pin.id) % J_CIRCLES.length]}"/>`;
+  y += 60 + dFont * 0.8;
+  const defSvg = `<text x="150" y="${y}" font-family="Poppins" font-weight="500" font-size="${dFont}" fill="#4a3a7a">${jSpans(dLines, 150, dLH)}</text>`;
+  y += (dLines.length - 1) * dLH + 90;
+  const exSvg = `<text x="150" y="${y}" font-family="Caveat" font-weight="700" font-size="${eFont}" fill="${J_INK}">${jSpans(eLines, 150, eLH)}</text>`;
+  const tilt = jHash(pin.id) % 2 === 0 ? -0.8 : 0.8;
+  const svg = Buffer.from(`<svg width="${W}" height="${H}" xmlns="http://www.w3.org/2000/svg">
+  ${jGrad(pin.id)}
+  <text x="90" y="150" font-family="Caveat" font-weight="700" font-size="66" fill="${J_INK}">bloom focus</text>
+  <text x="${W - 90}" y="146" font-family="Poppins" font-weight="500" font-size="26" fill="rgba(61,44,110,0.55)" text-anchor="end">@bloomfocus.adhd</text>
+  <rect x="80" y="${cardY}" width="${W - 160}" height="${cardH}" rx="24" fill="rgba(255,252,248,0.95)" transform="rotate(${tilt} ${W / 2} ${cardY + cardH / 2})"/>
+  ${jTape(W / 2, cardY - 2, J_TAPES[jHash(pin.id) % J_TAPES.length], -3)}
+  ${pillSvg}
+  ${termSvg}
+  ${dividerSvg}
+  ${defSvg}
+  ${exSvg}
+  <text x="90" y="${H - 130}" font-family="Caveat" font-weight="700" font-size="56" fill="${J_INK}">sound familiar? \u2192</text>
+  <text x="${W / 2}" y="${H - 55}" font-family="Poppins" font-weight="500" font-size="26" fill="rgba(61,44,110,0.5)" text-anchor="middle">bloomfocus.org</text>
+</svg>`);
+  await sharp(svg).png().toFile(outPath);
+  return outPath;
+}
+
 async function main() {
   await ensureFonts();
   console.log(`\n📌 bloom focus — Pinterest build all — Week ${WEEK}\n${"━".repeat(50)}`);
@@ -368,6 +412,7 @@ async function main() {
     process.stdout.write(`   [${i+1}/${pins.length}] ${pin.id} (${engine}) "${label}"... `);
     try {
       if (pin.pinType === "infographic") await buildInfographicJournal(pin, outDir);
+      else if (pin.pinType === "explainer") await buildExplainerJournal(pin, outDir);
       else if (pin.pinType === "meme") await buildMemeJournal(pin, outDir);
       else await buildHookOrProduct(pin, outDir);
       // Record the public GitHub raw URL of the finished image into the pin
