@@ -152,7 +152,14 @@ NEVER open with a slow wind-up ("You meant to pay that bill for three weeks"). O
 
 IMPORTANT — what makes these perform:
 - Lead with RECOGNITION + a sting. Specific lived moments beat clinical definitions.
-- Relatable AND accurate. bloom focus wins trust by being correct. "common in ADHD" not "if you do this you have ADHD".`;
+- Relatable AND accurate. bloom focus wins trust by being correct. "common in ADHD" not "if you do this you have ADHD".
+
+CONCRETENESS IS NON-NEGOTIABLE. Every short must be built on SPECIFIC, TANGIBLE detail — never generic. Enforce all four:
+1. ONE named, filmable scenario the viewer has literally lived — not a category. BAD: "you struggle to start tasks." GOOD: "there are clean dishes in the drying rack from four days ago and you keep buying new forks."
+2. THE REAL MECHANISM, named plainly. Not "your brain works differently" — say WHAT: interest-based nervous system, low dopamine transporter density, time blindness = no internal sense of duration, working-memory drop when a thought leaves view. One precise cause, in human words.
+3. A NON-OBVIOUS, specific tactic that works WITH the wiring — not "make a list", "try harder", "use a timer". Give the twist: WHY the usual advice fails for ADHD and what to do instead ("don't schedule it for 3pm — 'later' doesn't exist to your brain; do it in the next 10 minutes or attach it to something you already do without thinking").
+4. NUMBERS AND SPECIFICS over adjectives. "four unread days", "the third tab", "2am", "one fork" — concrete nouns beat 'often', 'sometimes', 'a lot'.
+If a line could appear on any generic ADHD account, REWRITE IT until it could only be bloom focus.`;
 
 // Single fixed illustration style across ALL scenes — hand-drawn warm pastel.
 const ART_STYLE = `Elegant minimal line art illustration: confident continuous ink lines in deep violet on warm cream paper, with soft washes of lavender, blush pink and sage green as sparse color accents. Generous negative space, sophisticated, calm, adult wellness aesthetic. No people, no faces, no text, no letters. Vertical 9:16 composition.`;
