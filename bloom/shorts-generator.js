@@ -348,12 +348,21 @@ async function main() {
     try { existing = JSON.parse(fs.readFileSync(outPath, "utf8")); } catch {}
     if (!Array.isArray(existing)) existing = [];
   }
-  // Drop newly generated shorts whose title duplicates an existing one
-  const norm = (t) => String(t || "").toLowerCase().replace(/#shorts?/g, "").replace(/[^a-z0-9 ]/g, "").replace(/\s+/g, " ").trim();
-  const existingTitles = new Set(existing.map((e) => norm(e.title)));
+  // Drop newly generated shorts whose title duplicates an existing one —
+  // FUZZY match (token overlap), because regeneration paraphrases the same
+  // topics ("Why ADHD Feelings Hit Harder" vs "Why ADHD Emotions Hit Harder").
+  const STOP = new Set(["the","a","an","to","of","for","with","your","you","how","why","what","so","much","and","or","that","it","its","is","are"]);
+  const tokens = (t) => new Set(String(t || "").toLowerCase().replace(/#shorts?/g, "")
+    .replace(/[^a-z0-9 ]/g, " ").split(/\s+/).filter((w) => w && !STOP.has(w)));
+  const similar = (a, b) => {
+    const A = tokens(a), B = tokens(b);
+    if (!A.size || !B.size) return false;
+    let inter = 0; for (const w of A) if (B.has(w)) inter++;
+    return inter / Math.min(A.size, B.size) >= 0.6;
+  };
   const before = shorts.length;
-  shorts = shorts.filter((s) => !existingTitles.has(norm(s.title)));
-  if (shorts.length < before) console.log(`  \u{1F6AB} dropped ${before - shorts.length} duplicate-title shorts`);
+  shorts = shorts.filter((s) => !existing.some((e) => similar(s.title, e.title)));
+  if (shorts.length < before) console.log(`  \u{1F6AB} dropped ${before - shorts.length} duplicate-topic shorts (fuzzy title match)`);
 
   const offset = existing.length;
   if (offset) console.log(`  ↩ merging: ${offset} existing shorts kept, new IDs start at ${offset + 1}`);
