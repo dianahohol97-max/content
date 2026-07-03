@@ -347,10 +347,10 @@ async function buildExplainerJournal(pin, outDir) {
   const pillText = "\u2726 the ADHD dictionary";
   const pillW = 380, pillH = 56;
   const pillSvg = `<rect x="150" y="${y}" width="${pillW}" height="${pillH}" rx="${pillH/2}" fill="${J_GRADS[jHash(pin.id) % J_GRADS.length][0]}"/>
-  <text x="${150 + pillW/2}" y="${y + 38}" font-family="Poppins" font-weight="500" font-size="26" fill="${J_INK}" text-anchor="middle">${esc(pillText)}</text>`;
+  <text x="${150 + pillW/2}" y="${y + 38}" font-family="Poppins" font-weight="500" font-size="26" fill="${J_INK}" text-anchor="middle">${esc(pillText)}</text>
+  <text x="${150 + pillW + 30}" y="${y + 40}" font-family="Caveat" font-weight="700" font-size="40" fill="rgba(61,44,110,0.55)">(noun)</text>`;
   y += pillH + 70 + tFont * 0.75;
-  const termSvg = `<text x="150" y="${y}" font-family="Playfair Display" font-weight="700" font-size="${tFont}" fill="${J_INK}" style="letter-spacing:-1px;">${jSpans(tLines, 150, tLH)}</text>
-  <text x="${150 + Math.min(term.length * tFont * 0.52, W - 340)}" y="${y}" font-family="Caveat" font-weight="700" font-size="42" fill="rgba(61,44,110,0.55)"> (noun)</text>`;
+  const termSvg = `<text x="150" y="${y}" font-family="Playfair Display" font-weight="700" font-size="${tFont}" fill="${J_INK}" style="letter-spacing:-1px;">${jSpans(tLines, 150, tLH)}</text>`;
   y += (tLines.length - 1) * tLH + 40;
   const dividerSvg = `<rect x="150" y="${y}" width="110" height="6" rx="3" fill="${J_CIRCLES[jHash(pin.id) % J_CIRCLES.length]}"/>`;
   y += 60 + dFont * 0.8;
