@@ -27,6 +27,10 @@ on:
         required: false
         default: "elevenlabs"
 
+concurrency:
+  group: shorts-pipeline
+  cancel-in-progress: false
+
 permissions:
   contents: write
 
