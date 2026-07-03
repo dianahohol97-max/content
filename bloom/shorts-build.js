@@ -363,58 +363,24 @@ function ffprobeDuration(file) {
 // Self-drawing reveal: violet lines draw themselves in a serpentine sweep,
 // then color washes fade in. Pure pixel math over the finished illustration —
 // zero API cost. Returns path to an mp4 segment of `drawDur` seconds.
+// Clean scene: illustration fades in over the paper, then a gentle continuous
+// Ken Burns push. No drawing, no wave — just a calm, professional appearance.
 async function selfDrawSegment(scenePath, tmp, idx, sceneDur) {
-  const sharp = (await import("sharp")).default;
-  const { data } = await sharp(scenePath).resize(W, H, { fit: "cover" })
-    .removeAlpha().raw().toBuffer({ resolveWithObject: true });
-  const P = W * H;
-  const paper = [252, 247, 240];
-
-  const order = new Float32Array(P);
-  const bands = 11;
-  for (let y = 0; y < H; y++) {
-    const band = Math.floor(y / H * bands), wobY = 0.02 * Math.sin(y / 34);
-    for (let x = 0; x < W; x++) {
-      const frac = band % 2 === 0 ? x / W : 1 - x / W;
-      let v = (band + frac) / bands + wobY + 0.015 * Math.sin(x / 46);
-      order[y*W + x] = v < 0 ? 0 : v > 1 ? 1 : v;
-    }
-  }
-
-  const FPS = 30;
-  const total = Math.round(sceneDur * FPS);
-  const drawFrames = Math.round(total * 0.62);
-  const soft = 0.08;
-  const seg = `seg_draw_${idx}.mp4`;
-
-  // Stream raw RGB frames straight into ffmpeg stdin — no thousands of JPEG files.
-  // ~10-15x faster than per-frame sharp writes, keeps full resolution.
+  const seg = `seg_${idx}.mp4`;
+  const total = Math.max(1.5, sceneDur);
+  const N = Math.round(total * 30);
+  const fadeDur = Math.min(0.6, total * 0.25);
+  // alternate slow zoom in / out per scene for subtle variety
   const z = idx % 2 === 0
-    ? `'min(1.00+0.06*on/${total},1.06)'`
-    : `'max(1.06-0.06*on/${total},1.00)'`;
-  const { spawn } = await import("child_process");
-  const ff = spawn("ffmpeg", [
-    "-y", "-f", "rawvideo", "-pix_fmt", "rgb24", "-s", `${W}x${H}`, "-r", `${FPS}`, "-i", "pipe:0",
-    "-vf", `scale=${Math.round(W*1.12)}:${Math.round(H*1.12)},zoompan=z=${z}:x='iw/2-(iw/zoom/2)':y='ih/2-(ih/zoom/2)':d=1:s=${W}x${H}:fps=${FPS},format=yuv420p`,
-    "-frames:v", `${total}`, "-c:v", "libx264", "-preset", "veryfast", "-crf", "19", "-pix_fmt", "yuv420p", seg
-  ], { cwd: tmp, stdio: ["pipe", "inherit", "inherit"] });
-
-  const frame = Buffer.allocUnsafe(P * 3);
-  const done = new Promise((res, rej) => { ff.on("close", (c) => c === 0 ? res() : rej(new Error("ffmpeg draw exit " + c))); ff.on("error", rej); });
-
-  for (let f = 0; f < total; f++) {
-    const prog = (f + 1) / drawFrames;
-    for (let i = 0; i < P; i++) {
-      let a = (prog - order[i]) / soft;
-      a = a < 0 ? 0 : a > 1 ? 1 : a;
-      if (a === 0) { frame[i*3]=paper[0]; frame[i*3+1]=paper[1]; frame[i*3+2]=paper[2]; }
-      else if (a === 1) { frame[i*3]=data[i*3]; frame[i*3+1]=data[i*3+1]; frame[i*3+2]=data[i*3+2]; }
-      else for (let c = 0; c < 3; c++) frame[i*3+c] = paper[c] + (data[i*3+c]-paper[c])*a;
-    }
-    if (!ff.stdin.write(frame)) await new Promise((r) => ff.stdin.once("drain", r));
-  }
-  ff.stdin.end();
-  await done;
+    ? `'min(1.00+0.06*on/${N},1.06)'`
+    : `'max(1.06-0.06*on/${N},1.00)'`;
+  const drift = idx % 4 < 2 ? "+" : "-";
+  const cmd = `ffmpeg -y -loop 1 -i "${path.basename(scenePath)}" ` +
+    `-vf "scale=${Math.round(W*1.12)}:${Math.round(H*1.12)},` +
+    `zoompan=z=${z}:x='iw/2-(iw/zoom/2)${drift}20*on/${N}':y='ih/2-(ih/zoom/2)':d=${N}:s=${W}x${H}:fps=30,` +
+    `fade=t=in:st=0:d=${fadeDur.toFixed(2)},format=yuv420p" ` +
+    `-frames:v ${N} -c:v libx264 -preset veryfast -crf 19 -pix_fmt yuv420p "${seg}"`;
+  execSync(cmd, { stdio: "inherit", cwd: tmp });
   return seg;
 }
 
