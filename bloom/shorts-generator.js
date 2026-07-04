@@ -168,7 +168,7 @@ const ART_STYLE = `Atmospheric editorial illustration with soft cinematic light 
 const ART_MOOD = `Choose the scene's lighting to match the narration beat: for painful, heavy, or exhausting moments use a dim cool tone (soft shadow, still legible — never pitch black); for hopeful, calming, or practical "here's the fix" moments introduce a warm pool of light (a lamp, dawn, a glow) while keeping the same cinematic muted style. Never bright or cheerful — always cinematic and adult.`;
 
 const SCENE_SPEC = `    - tag: a SHORT category slug for this scene's main subject (lowercase, underscores) from a small reusable vocabulary so images can be cached/reused. Prefer ONE of: brain, desk_messy, desk_tidy, desk_empty, coffee, journal, window_light, bed, clock, plant, books, phone, path, lamp, calendar, sparks, cozy_room, sky. If none fit, make a simple 1-2 word slug. Scenes about the same thing MUST share the same tag.
-    - imagePrompt: ALWAYS begin with exactly this style: "${ART_STYLE}" ${ART_MOOD} Then describe ONE clear cinematic scene (objects, spaces, light — NO people) that ILLUSTRATES EXACTLY what the narration says during this beat. Prefer concrete filmable objects over abstraction (an unmade bed lit by phone glow; a single lamp over a notebook; clean dishes in a rack; a coffee cup at dawn). Keep the lower third darker/cleaner so captions stay readable.
+    - imagePrompt: ALWAYS begin with exactly this style: "${ART_STYLE}" ${ART_MOOD} Then describe ONE clear cinematic scene (objects, spaces, light — NO people) that ILLUSTRATES EXACTLY what the narration says during this beat. Prefer concrete filmable objects over abstraction (an unmade bed lit by phone glow; a single lamp over a notebook; clean dishes in a rack; a coffee cup at dawn). Each scene shows a DIFFERENT object/setting than the previous one — never repeat the same item in a row. Keep the lower third darker/cleaner so captions stay readable.
     - caption: leave "" (on-screen text comes from synced subtitles).`;
 
 const CTA_LINE = `"Follow for daily ADHD content."`;
@@ -205,7 +205,7 @@ STRUCTURE:
 
 For EACH Short return:
 - voiceover: FULL narration as one flowing text (${isFlag ? "~110-135 words for ~42s" : "~75-90 words for ~30s"}). Natural spoken rhythm. End with: Follow for daily ADHD content.
-- scenes: array of ${isFlag ? "8-10" : "5-7"} scenes. Each:
+- scenes: array of ${isFlag ? "8-10" : "5-7"} scenes. CRITICAL: every scene must be VISUALLY DISTINCT from its neighbours — a different object, setting, or angle. NEVER show the same main object (e.g. a laptop) in two consecutive scenes. Vary the subject across the video: e.g. a window, then a coffee cup, then a tangled cord, then a calendar, then an open door. Each scene:
 ${SCENE_SPEC}
 - title: 40-70 chars, search-friendly, ends with #Shorts.
 - description: 2-3 sentences with keywords. Then on its own line: "Follow for daily ADHD content."
