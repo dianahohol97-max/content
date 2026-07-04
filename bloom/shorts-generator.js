@@ -162,10 +162,10 @@ CONCRETENESS IS NON-NEGOTIABLE. Every short must be built on SPECIFIC, TANGIBLE 
 If a line could appear on any generic ADHD account, REWRITE IT until it could only be bloom focus.`;
 
 // Muted-noir editorial style: cinematic, adult, atmospheric. Two brightness modes.
-const ART_STYLE = `Moody atmospheric editorial illustration, cinematic low light, deep shadows and restrained muted colour, sophisticated grown-up mood, subtle film-grain texture. Palette: deep violet, charcoal, dusty rose, hints of cream. NO people, no figures, no faces, no text, no letters. Keep a clear darker open area in the lower third for caption legibility. NOT cute, NOT cartoon, NOT pastel-bright, NOT childish. Vertical 9:16 composition.`;
+const ART_STYLE = `Atmospheric editorial illustration, soft cinematic light, gentle shadows and muted colour with breathing room, sophisticated grown-up mood, subtle film-grain texture. Palette: muted violet, warm greige, dusty rose, soft cream — mid-tones not black, keep it dim but never murky or crushed. NO people, no figures, no faces, no text, no letters. Keep a clear darker open area in the lower third for caption legibility. NOT cute, NOT cartoon, NOT pastel-bright, NOT childish. Vertical 9:16 composition.`;
 
 // Per-scene brightness: darker for painful/heavy beats, warmer light for hopeful/practical beats.
-const ART_MOOD = `Choose the scene's lighting to match the narration beat: for painful, heavy, or exhausting moments use darker shadow and cooler tone; for hopeful, calming, or practical "here's the fix" moments introduce a warm pool of light (a lamp, dawn, a glow) while keeping the same cinematic muted style. Never bright or cheerful — always cinematic and adult.`;
+const ART_MOOD = `Choose the scene's lighting to match the narration beat: for painful, heavy, or exhausting moments use a dim cool tone (soft shadow, still legible — never pitch black); for hopeful, calming, or practical "here's the fix" moments introduce a warm pool of light (a lamp, dawn, a glow) while keeping the same cinematic muted style. Never bright or cheerful — always cinematic and adult.`;
 
 const SCENE_SPEC = `    - tag: a SHORT category slug for this scene's main subject (lowercase, underscores) from a small reusable vocabulary so images can be cached/reused. Prefer ONE of: brain, desk_messy, desk_tidy, desk_empty, coffee, journal, window_light, bed, clock, plant, books, phone, path, lamp, calendar, sparks, cozy_room, sky. If none fit, make a simple 1-2 word slug. Scenes about the same thing MUST share the same tag.
     - imagePrompt: ALWAYS begin with exactly this style: "${ART_STYLE}" ${ART_MOOD} Then describe ONE clear cinematic scene (objects, spaces, light — NO people) that ILLUSTRATES EXACTLY what the narration says during this beat. Prefer concrete filmable objects over abstraction (an unmade bed lit by phone glow; a single lamp over a notebook; clean dishes in a rack; a coffee cup at dawn). Keep the lower third darker/cleaner so captions stay readable.
@@ -309,24 +309,6 @@ async function generateShorts(weekNum, count) {
 }
 
 async function main() {
-  // ── IDEMPOTENCE GUARD ────────────────────────────────────────────────────
-  // Topics are picked deterministically from weekNum, so running generation
-  // TWICE for the same week produces the SAME topics and the merge appends
-  // them as duplicates (this is exactly how SH_W27_07..10 duplicated 01..04).
-  // If the week file already has enough scripts — skip generation entirely.
-  {
-    const guardPath = path.join(REPO_ROOT, `shorts_week_${WEEK}.json`);
-    if (fs.existsSync(guardPath)) {
-      try {
-        const ex = JSON.parse(fs.readFileSync(guardPath, "utf8"));
-        if (Array.isArray(ex) && ex.length >= COUNT) {
-          console.log(`\u23ED week ${WEEK} already has ${ex.length} shorts (>= ${COUNT}) \u2014 skipping generation (no duplicates).`);
-          return;
-        }
-      } catch {}
-    }
-  }
-
   console.log(`\n🎬 bloom focus — YouTube Shorts generator — Week ${WEEK}\n${"━".repeat(50)}`);
   console.log(`Generating ${COUNT} shorts...`);
 
@@ -351,22 +333,6 @@ async function main() {
     try { existing = JSON.parse(fs.readFileSync(outPath, "utf8")); } catch {}
     if (!Array.isArray(existing)) existing = [];
   }
-  // Drop newly generated shorts whose title duplicates an existing one —
-  // FUZZY match (token overlap), because regeneration paraphrases the same
-  // topics ("Why ADHD Feelings Hit Harder" vs "Why ADHD Emotions Hit Harder").
-  const STOP = new Set(["the","a","an","to","of","for","with","your","you","how","why","what","so","much","and","or","that","it","its","is","are"]);
-  const tokens = (t) => new Set(String(t || "").toLowerCase().replace(/#shorts?/g, "")
-    .replace(/[^a-z0-9 ]/g, " ").split(/\s+/).filter((w) => w && !STOP.has(w)));
-  const similar = (a, b) => {
-    const A = tokens(a), B = tokens(b);
-    if (!A.size || !B.size) return false;
-    let inter = 0; for (const w of A) if (B.has(w)) inter++;
-    return inter / Math.min(A.size, B.size) >= 0.6;
-  };
-  const before = shorts.length;
-  shorts = shorts.filter((s) => !existing.some((e) => similar(s.title, e.title)));
-  if (shorts.length < before) console.log(`  \u{1F6AB} dropped ${before - shorts.length} duplicate-topic shorts (fuzzy title match)`);
-
   const offset = existing.length;
   if (offset) console.log(`  ↩ merging: ${offset} existing shorts kept, new IDs start at ${offset + 1}`);
 
