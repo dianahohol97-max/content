@@ -535,7 +535,16 @@ async function main() {
           if (words) writeSRTfromWords(words, segSrt, 5);
           else writeSRT(splitIntoSubtitles(voText, 5), segDur, segSrt, segVoice);
           const segMp4 = path.join(workDir, `seg_${idx}.mp4`);
-          await buildVideo([img], [segDur], segVoice, segMp4, true, segSrt);
+          // lightweight: static image + subtitle + audio, gentle zoom, NO heavy pipeline
+          const fontsDir2 = ensureSubFont(workDir);
+          const N = Math.round(segDur * 30);
+          const subF = fs.existsSync(segSrt) ? `,subtitles=${path.basename(segSrt)}:fontsdir=${fontsDir2}:force_style='${SUB_STYLE}'` : "";
+          execSync(
+            `ffmpeg -y -loop 1 -i "${path.basename(img)}" -i "${path.basename(segVoice)}" ` +
+            `-vf "scale=${Math.round(W*1.06)}:${Math.round(H*1.06)},zoompan=z='min(1.00+0.03*on/${N},1.03)':x='iw/2-(iw/zoom/2)':y='ih/2-(ih/zoom/2)':d=${N}:s=${W}x${H}:fps=30${subF},format=yuv420p" ` +
+            `-c:v libx264 -preset veryfast -crf 21 -c:a aac -b:a 192k -ar 44100 -shortest -pix_fmt yuv420p "${path.basename(segMp4)}"`,
+            { stdio: "inherit", cwd: workDir }
+          );
           segVideos.push(segMp4);
         };
 
