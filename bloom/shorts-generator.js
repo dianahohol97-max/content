@@ -247,9 +247,10 @@ For EACH test short return:
 - options: an array of EXACTLY 4 options, each:
     - label: short label shown on the tile (max 3 words), e.g. "The avalanche".
     - imagePrompt: ALWAYS begin with exactly this style: "${ART_STYLE}" Then add ONE distinct cinematic object/scene for this tile (no people). All 4 tiles share the SAME brandnoir style but show 4 CLEARLY DIFFERENT objects/settings so the grid reads as four real choices.
-    - result: ONE short sentence (max 16 words) revealing what picking this option says about the viewer's ADHD brain. Playful, validating, accurate (not fake-clinical). e.g. "You thrive in visible chaos - out of sight really is out of mind for you."
+    - result: REQUIRED, never empty. ONE punchy sentence (8-16 words) revealing what picking this option says about the viewer's ADHD brain. Playful, validating, accurate. Every option MUST have a distinct result. e.g. "You run on visible chaos - out of sight really is out of mind for you."
 - introVoiceover: short narration (~20-30 words) for the GRID phase: read the question, tease "your pick says something about how your ADHD brain works - let's see", invite a comment.
 - outroVoiceover: short closing line (~10-15 words) after the reveals, ending with: Follow for daily ADHD content.
+- CRITICAL: every option needs a NON-EMPTY "result" and "label". Never leave them blank.
 - title: 40-70 chars, ends with #Shorts. e.g. "Which desk is yours? (ADHD test) #Shorts"
 - description: 1-2 sentence intro (do NOT reveal answers - they're in the video), then on its own line: "Follow for daily ADHD content."
 - tags: 8-12 tags.
