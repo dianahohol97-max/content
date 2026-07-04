@@ -56,5 +56,63 @@
     "status": "pending",
     "videoUrl": "https://raw.githubusercontent.com/dianahohol97-max/content/main/output/shorts/week_28/SH_W28_01.mp4",
     "postedAt": null
+  },
+  {
+    "id": "SH_W28_02",
+    "week": 28,
+    "voiceover": "Your brain won't start the task. So bribe it. A dopamine menu is a short list of small rewards your brain actually likes — not 'healthy treats', real ones. Before you open that thing you've been avoiding, you pick one item off the menu. Maybe it's a specific playlist, a good drink, a candle, five minutes outside. You're not rewarding yourself after — you're front-loading the dopamine so your brain has a reason to launch. Write three to five items tonight. Keep the list visible. Then next time you can't start, you don't negotiate — you just pick. Follow for daily ADHD content.",
+    "scenes": [
+      {
+        "tag": "desk_messy",
+        "imagePrompt": "Atmospheric editorial illustration with soft cinematic light and gentle depth, subtle film grain, sophisticated adult mood. STRICTLY brand palette only: lavender, blush pink, sage green, warm cream, deep violet — absolutely NO grey, NO charcoal, NO greige, NO black. Warm and calm but grown-up, like a refined wellness brand. NO people, no faces, no text, no letters. Keep the lower third calm and uncluttered for caption legibility. NOT cute, NOT cartoon, NOT childish. Vertical 9:16 composition. Dim cool tone, soft shadow. A cluttered desk seen from above — a closed laptop surrounded by scattered sticky notes, an empty mug, and a pen lid without a pen, lit by a single cold overhead light that makes the whole surface feel heavy and still. Lower third is deep violet shadow fading to calm.",
+        "caption": ""
+      },
+      {
+        "tag": "sparks",
+        "imagePrompt": "Atmospheric editorial illustration with soft cinematic light and gentle depth, subtle film grain, sophisticated adult mood. STRICTLY brand palette only: lavender, blush pink, sage green, warm cream, deep violet — absolutely NO grey, NO charcoal, NO greige, NO black. Warm and calm but grown-up, like a refined wellness brand. NO people, no faces, no text, no letters. Keep the lower third calm and uncluttered for caption legibility. NOT cute, NOT cartoon, NOT childish. Vertical 9:16 composition. A warm amber glow begins to emerge. A small illustrated brain shape rendered in soft lavender sits at the center of the frame, surrounded by tiny gentle sparks of blush pink and sage light radiating outward like a slow ignition, against a deep violet background. Lower third fades to dark violet.",
+        "caption": ""
+      },
+      {
+        "tag": "journal",
+        "imagePrompt": "Atmospheric editorial illustration with soft cinematic light and gentle depth, subtle film grain, sophisticated adult mood. STRICTLY brand palette only: lavender, blush pink, sage green, warm cream, deep violet — absolutely NO grey, NO charcoal, NO greige, NO black. Warm and calm but grown-up, like a refined wellness brand. NO people, no faces, no text, no letters. Keep the lower third calm and uncluttered for caption legibility. NOT cute, NOT cartoon, NOT childish. Vertical 9:16 composition. Warm lamp light pools from the upper right. A cream-colored open notebook on a tidy surface, with a short handwritten-style illustrated list of three to five small items rendered as abstract marks — no readable letters — beside a sage green pen. The light is intimate and warm, the mood is purposeful. Lower third is calm warm cream fading to shadow.",
+        "caption": ""
+      },
+      {
+        "tag": "coffee",
+        "imagePrompt": "Atmospheric editorial illustration with soft cinematic light and gentle depth, subtle film grain, sophisticated adult mood. STRICTLY brand palette only: lavender, blush pink, sage green, warm cream, deep violet — absolutely NO grey, NO charcoal, NO greige, NO black. Warm and calm but grown-up, like a refined wellness brand. NO people, no faces, no text, no letters. Keep the lower third calm and uncluttered for caption legibility. NOT cute, NOT cartoon, NOT childish. Vertical 9:16 composition. A warm golden backlight glows behind a single ceramic mug of coffee or tea on a minimal surface, steam curling upward in soft lavender wisps, a small unlit candle and a pair of headphones resting nearby — each object a quiet pleasure, lit like a still life. Lower third dims to deep violet.",
+        "caption": ""
+      },
+      {
+        "tag": "window_light",
+        "imagePrompt": "Atmospheric editorial illustration with soft cinematic light and gentle depth, subtle film grain, sophisticated adult mood. STRICTLY brand palette only: lavender, blush pink, sage green, warm cream, deep violet — absolutely NO grey, NO charcoal, NO greige, NO black. Warm and calm but grown-up, like a refined wellness brand. NO people, no faces, no text, no letters. Keep the lower third calm and uncluttered for caption legibility. NOT cute, NOT cartoon, NOT childish. Vertical 9:16 composition. Hopeful warm morning light. A window casting a soft blush and sage rectangle of early light across a plain surface, a small plant in the corner catching the glow, the scene quiet and ready — the feeling of a moment just before something begins. Lower third is calm cream shadow.",
+        "caption": ""
+      },
+      {
+        "tag": "desk_tidy",
+        "imagePrompt": "Atmospheric editorial illustration with soft cinematic light and gentle depth, subtle film grain, sophisticated adult mood. STRICTLY brand palette only: lavender, blush pink, sage green, warm cream, deep violet — absolutely NO grey, NO charcoal, NO greige, NO black. Warm and calm but grown-up, like a refined wellness brand. NO people, no faces, no text, no letters. Keep the lower third calm and uncluttered for caption legibility. NOT cute, NOT cartoon, NOT childish. Vertical 9:16 composition. Warm lamp glow from upper left. An open laptop on a clean desk, the notebook with the short illustrated list propped visibly beside it, the ceramic mug close at hand, candle now lit with a tiny blush flame — everything arranged as if the task is finally, actually about to happen. Lower third fades to deep violet calm.",
+        "caption": ""
+      }
+    ],
+    "title": "How To Use a Dopamine Menu To Actually Start Tasks #Shorts",
+    "description": "If your ADHD brain refuses to start hard tasks, the problem isn't willpower — it's that your brain needs a dopamine reason to launch. A dopamine menu front-loads the reward so you can actually begin. Learn how to build one in under a minute.",
+    "tags": [
+      "ADHD tips",
+      "dopamine menu",
+      "ADHD productivity",
+      "how to start tasks ADHD",
+      "ADHD motivation",
+      "executive dysfunction",
+      "ADHD brain",
+      "task initiation ADHD",
+      "ADHD hacks",
+      "bloom focus",
+      "ADHD education",
+      "neurodivergent tips"
+    ],
+    "funnel": "follow",
+    "shortType": "practical",
+    "status": "pending",
+    "videoUrl": "https://raw.githubusercontent.com/dianahohol97-max/content/main/output/shorts/week_28/SH_W28_02.mp4",
+    "postedAt": null
   }
 ]
