@@ -290,7 +290,9 @@ async function buildQuizGrid(short, outPath) {
   const tiles = [];
   for (let i = 0; i < 4; i++) {
     const opt = short.options[i];
-    const raw = await geminiBackground(opt.imagePrompt);
+    let raw;
+    try { raw = await geminiBackground(opt.imagePrompt); }
+    catch (e) { console.log(`   ⚠ quiz tile ${i+1} fallback:`, e.message.slice(0,50)); raw = await brandFallback(); }
     const tile = await sharp(raw).resize(tileW, tileH, { fit: "cover", position: "centre" }).toBuffer();
     const badge = Buffer.from(`
 <svg width="${tileW}" height="${tileH}" xmlns="http://www.w3.org/2000/svg">
@@ -331,7 +333,9 @@ async function buildQuizGrid(short, outPath) {
 // number badge + the label, with a bottom scrim (the result text is burned as
 // a synced subtitle, like other shorts).
 async function buildResultImage(opt, number, outPath) {
-  const raw = await geminiBackground(opt.imagePrompt);
+  let raw;
+  try { raw = await geminiBackground(opt.imagePrompt); }
+  catch (e) { console.log("   ⚠ result img fallback:", e.message.slice(0,50)); raw = await brandFallback(); }
   const base = await sharp(raw).resize(W, H, { fit: "cover", position: "centre" }).toBuffer();
   const badge = Buffer.from(`
 <svg width="${W}" height="${H}" xmlns="http://www.w3.org/2000/svg">
