@@ -25,7 +25,7 @@ export const MAX_VARIANTS = 5;
 
 // Bump when the ART_STYLE changes: old-style cached images are then ignored
 // (kept on disk but never reused), and the library refills in the new style.
-export const STYLE_VERSION = 3;  // v3 = muted noir
+export const STYLE_VERSION = 4;  // v4 = lighter noir
 
 function libDir(aspect) {
   // aspect: "vertical" (9:16 shorts/stories) | "wide" (16:9 longform) | "square" (1:1 carousels)
