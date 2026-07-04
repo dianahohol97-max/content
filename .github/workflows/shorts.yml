@@ -66,12 +66,12 @@ jobs:
               echo "mode=video-only" >> $GITHUB_OUTPUT
               echo "limit=1"         >> $GITHUB_OUTPUT
             fi
-            echo "count=18"  >> $GITHUB_OUTPUT
+            echo "count=14"  >> $GITHUB_OUTPUT
             echo "voice=elevenlabs" >> $GITHUB_OUTPUT
             echo "week=" >> $GITHUB_OUTPUT
           else
             echo "mode=${{ inputs.mode || 'full' }}"   >> $GITHUB_OUTPUT
-            echo "count=${{ inputs.count || '18' }}"   >> $GITHUB_OUTPUT
+            echo "count=${{ inputs.count || '14' }}"   >> $GITHUB_OUTPUT
             echo "voice=${{ inputs.voice_engine || 'elevenlabs' }}" >> $GITHUB_OUTPUT
             echo "week=${{ inputs.week || '' }}"       >> $GITHUB_OUTPUT
             echo "limit=${{ inputs.limit || '' }}"     >> $GITHUB_OUTPUT
