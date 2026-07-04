@@ -71,6 +71,13 @@ function wrapText(text, maxChars) {
 // ─── Voiceover via shared engine (ElevenLabs or Gemini, see tts.js) ─────────
 
 // ─── Gemini background ──────────────────────────────────────────────────────
+// Solid brand-cream fallback frame if an illustration fails — keeps a build alive.
+async function brandFallback() {
+  const sharp = (await import("sharp")).default;
+  return await sharp({ create: { width: 1080, height: 1920, channels: 3, background: "#F0E9F7" } })
+    .jpeg({ quality: 90 }).toBuffer();
+}
+
 async function geminiBackground(prompt) {
   if (!GEMINI_KEY) throw new Error("GEMINI_API_KEY missing");
   const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-image:generateContent?key=${GEMINI_KEY}`;
@@ -142,7 +149,7 @@ async function buildSceneImage(scene, outPath) {
   // reuse is a plain copy. Tag falls back to a prompt hash if missing.
   const tag = scene.tag || normalizeTag((scene.imagePrompt || "scene").slice(0, 30));
   await getOrCreate(tag, "vertical", async () => {
-    const bg = await geminiBackground(scene.imagePrompt);
+    let bg; try { bg = await geminiBackground(scene.imagePrompt); } catch (e) { console.log("   ⚠ image fallback:", e.message.slice(0,60)); bg = await brandFallback(); }
     const base = await sharp(bg).resize(W, H, { fit: "cover", position: "centre" }).toBuffer();
     return await sharp(base).composite([{ input: bottomScrim(), top: 0, left: 0 }]).png().toBuffer();
   }, outPath);
