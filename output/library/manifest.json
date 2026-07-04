@@ -618,6 +618,12 @@
     "url": "https://raw.githubusercontent.com/dianahohol97-max/content/main/output/library/vertical/v5_bed_3.png"
   },
   {
+    "id": "vertical_v5_books_1.png",
+    "aspect": "vertical",
+    "filename": "v5_books_1.png",
+    "url": "https://raw.githubusercontent.com/dianahohol97-max/content/main/output/library/vertical/v5_books_1.png"
+  },
+  {
     "id": "vertical_v5_brain_1.png",
     "aspect": "vertical",
     "filename": "v5_brain_1.png",
@@ -906,6 +912,12 @@
     "url": "https://raw.githubusercontent.com/dianahohol97-max/content/main/output/library/vertical/v5_phone_4.png"
   },
   {
+    "id": "vertical_v5_phone_5.png",
+    "aspect": "vertical",
+    "filename": "v5_phone_5.png",
+    "url": "https://raw.githubusercontent.com/dianahohol97-max/content/main/output/library/vertical/v5_phone_5.png"
+  },
+  {
     "id": "vertical_v5_plant_1.png",
     "aspect": "vertical",
     "filename": "v5_plant_1.png",
@@ -916,6 +928,12 @@
     "aspect": "vertical",
     "filename": "v5_plant_2.png",
     "url": "https://raw.githubusercontent.com/dianahohol97-max/content/main/output/library/vertical/v5_plant_2.png"
+  },
+  {
+    "id": "vertical_v5_plant_3.png",
+    "aspect": "vertical",
+    "filename": "v5_plant_3.png",
+    "url": "https://raw.githubusercontent.com/dianahohol97-max/content/main/output/library/vertical/v5_plant_3.png"
   },
   {
     "id": "vertical_v5_sparks_1.png",
