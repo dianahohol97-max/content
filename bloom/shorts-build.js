@@ -463,7 +463,68 @@ function loadShorts(week) {
   return JSON.parse(fs.readFileSync(p, "utf8"));
 }
 
+
+// ── Branded Reel/Short cover (muted-noir) ────────────────────────────────────
+// Rendered for every built video: {id}_cover.jpg next to the mp4. Used by the
+// Instagram Reels poster as cover_url so the profile grid shows a designed
+// card instead of a black first frame.
+import os from "os";
+import { execSync as _execSyncCover } from "child_process";
+const COVER_FONTS = [
+  ["PlayfairDisplay.ttf", "https://raw.githubusercontent.com/google/fonts/main/ofl/playfairdisplay/PlayfairDisplay%5Bwght%5D.ttf"],
+  ["Poppins-Medium.ttf", "https://raw.githubusercontent.com/google/fonts/main/ofl/poppins/Poppins-Medium.ttf"],
+  ["Caveat.ttf", "https://raw.githubusercontent.com/google/fonts/main/ofl/caveat/Caveat%5Bwght%5D.ttf"],
+];
+async function ensureCoverFonts() {
+  const dir = path.join(os.homedir(), ".fonts");
+  fs.mkdirSync(dir, { recursive: true });
+  for (const [name, url] of COVER_FONTS) {
+    const p = path.join(dir, name);
+    if (fs.existsSync(p) && fs.statSync(p).size > 10000) continue;
+    const res = await fetch(url);
+    if (!res.ok) { console.warn(`  cover font ${name}: HTTP ${res.status}`); continue; }
+    fs.writeFileSync(p, Buffer.from(await res.arrayBuffer()));
+  }
+  try { _execSyncCover("fc-cache -f", { stdio: "ignore" }); } catch {}
+}
+function coverEsc(s){return String(s||"").replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");}
+function coverWrap(t,max){const w=String(t).split(" ");const l=[];let cur="";for(const x of w){if((cur+" "+x).trim().length>max){if(cur)l.push(cur.trim());cur=x;}else cur=(cur+" "+x).trim();}if(cur)l.push(cur.trim());return l;}
+function coverHash(s){let h=0;for(const ch of String(s))h=(h*31+ch.charCodeAt(0))>>>0;return h;}
+async function buildCover(short, outDir) {
+  const CW = 1080, CH = 1920, CREAM = "#FFF8F0";
+  const GRADS = [["#241b3a","#3d2c6e","#1c1626"],["#1e1830","#4a3560","#2a1f3d"],["#2a2138","#3d2c6e","#241b3a"]];
+  const g = GRADS[coverHash(short.id) % GRADS.length];
+  const title = String(short.title).replace(/#Shorts?/gi, "").trim();
+  const lines = coverWrap(title, 16);
+  const font = lines.length > 4 ? 88 : lines.length > 3 ? 100 : 112;
+  const lh = font * 1.22;
+  const startY = CH/2 - (lines.length*lh)/2 + font*0.8 - 60;
+  const spans = lines.map((l,i)=>`<tspan x="${CW/2}" dy="${i===0?0:lh}">${coverEsc(l)}</tspan>`).join("");
+  let grain = ""; let seed = coverHash(short.id);
+  for (let i=0;i<70;i++){ seed=(seed*1103515245+12345)>>>0; const x=seed%CW; seed=(seed*1103515245+12345)>>>0; const y=seed%CH;
+    grain += `<circle cx="${x}" cy="${y}" r="1.2" fill="#ffffff" opacity="0.05"/>`; }
+  const svg = Buffer.from(`<svg width="${CW}" height="${CH}" xmlns="http://www.w3.org/2000/svg">
+  <defs><linearGradient id="g" x1="0" y1="0" x2="0.7" y2="1">
+    <stop offset="0%" stop-color="${g[0]}"/><stop offset="55%" stop-color="${g[1]}"/><stop offset="100%" stop-color="${g[2]}"/>
+  </linearGradient>
+  <radialGradient id="glow" cx="0.5" cy="0.42" r="0.55">
+    <stop offset="0%" stop-color="#f4c9d8" stop-opacity="0.13"/><stop offset="100%" stop-color="#000000" stop-opacity="0"/>
+  </radialGradient></defs>
+  <rect width="${CW}" height="${CH}" fill="url(#g)"/>
+  <rect width="${CW}" height="${CH}" fill="url(#glow)"/>
+  ${grain}
+  <text x="${CW/2}" y="210" font-family="Caveat" font-weight="700" font-size="88" fill="${CREAM}" text-anchor="middle">bloom focus</text>
+  <rect x="${CW/2-60}" y="${startY - font - 60}" width="120" height="6" rx="3" fill="#D8A0B4"/>
+  <text x="${CW/2}" y="${startY}" font-family="Playfair Display" font-weight="700" font-size="${font}" fill="${CREAM}" text-anchor="middle" style="letter-spacing:-1px;">${spans}</text>
+  <text x="${CW/2}" y="${CH-200}" font-family="Poppins" font-weight="500" font-size="40" letter-spacing="8" fill="rgba(255,248,240,0.65)" text-anchor="middle">WATCH \u2192</text>
+</svg>`);
+  const coverPath = path.join(outDir, `${short.id}_cover.jpg`);
+  await sharp(svg).jpeg({ quality: 90 }).toFile(coverPath);
+  return coverPath;
+}
+
 async function main() {
+  await ensureCoverFonts();
   console.log(`\n🎬 bloom focus — Shorts build — Week ${WEEK}\n${"━".repeat(50)}`);
   if (!ffmpegAvailable()) throw new Error("ffmpeg not found on PATH");
 
@@ -485,6 +546,7 @@ async function main() {
     const mp4Path = path.join(outDir, `${short.id}.mp4`);
     if (SKIP_EXISTING && fs.existsSync(mp4Path) && fs.statSync(mp4Path).size > 10000) {
       short.videoUrl = `${REPO_RAW}/output/shorts/week_${WEEK}/${short.id}.mp4`;
+      try { await buildCover(short, outDir); short.coverUrl = `${REPO_RAW}/output/shorts/week_${WEEK}/${short.id}_cover.jpg`; } catch (e) { console.warn(`   cover: ${e.message}`); }
       skipped++; console.log(`   ${short.id} — exists, skip`); continue;
     }
     console.log(`\n▶ ${short.id}: ${short.title}`);
@@ -616,6 +678,7 @@ async function main() {
       }
 
       short.videoUrl = `${REPO_RAW}/output/shorts/week_${WEEK}/${short.id}.mp4`;
+      try { await buildCover(short, outDir); short.coverUrl = `${REPO_RAW}/output/shorts/week_${WEEK}/${short.id}_cover.jpg`; } catch (e) { console.warn(`   cover: ${e.message}`); }
       done++;
     } catch (err) {
       failed++;
@@ -636,7 +699,11 @@ async function main() {
   // rewrite JSON with videoUrl filled in
   const full = loadShorts(WEEK);
   const byId = Object.fromEntries(shorts.filter(s => s.videoUrl).map(s => [s.id, s.videoUrl]));
-  for (const s of full) if (byId[s.id]) s.videoUrl = byId[s.id];
+  const byCover = Object.fromEntries(shorts.filter(s => s.coverUrl).map(s => [s.id, s.coverUrl]));
+  for (const s of full) {
+    if (byId[s.id]) s.videoUrl = byId[s.id];
+    if (byCover[s.id]) s.coverUrl = byCover[s.id];
+  }
   fs.writeFileSync(path.join(REPO_ROOT, `shorts_week_${WEEK}.json`), JSON.stringify(full, null, 2));
   fs.writeFileSync(path.join(REPO_ROOT, "shorts_current.json"), JSON.stringify(full, null, 2));
 
