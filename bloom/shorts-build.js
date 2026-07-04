@@ -283,8 +283,8 @@ function writeSRT(chunks, totalDur, outPath, voicePath = null) {
 // ─── Quiz-test 2x2 grid image (4 options + question + numbers) ───────────────
 async function buildQuizGrid(short, outPath) {
   // Layout: question (top) + 2x2 grid (middle) + CTA (bottom), no overlap.
-  const gridTop = 340;
-  const bottomReserve = 240;                          // space for bottom text
+  const gridTop = 360;
+  const bottomReserve = 300;                          // more space so CTA never overlaps tiles
   const tileW = Math.floor(W / 2);                    // 540
   const tileH = Math.floor((H - gridTop - bottomReserve) / 2);
   const tiles = [];
@@ -312,9 +312,9 @@ async function buildQuizGrid(short, outPath) {
   <rect x="0" y="0" width="${W}" height="${H}" fill="#FFF8F0"/>
   <text x="${W/2}" y="150" font-family="Georgia, serif" font-size="${qFont}" font-weight="800"
         fill="#3d2c6e" text-anchor="middle">${qSpans}</text>
-  <text x="${W/2}" y="${H-130}" font-family="Arial, sans-serif" font-size="44" font-weight="800"
-        fill="#3d2c6e" text-anchor="middle">Pick yours - watch for your result</text>
-  <text x="${W/2}" y="${H-70}" font-family="Arial, sans-serif" font-size="38" font-weight="600"
+  <text x="${W/2}" y="${H-160}" font-family="Arial, sans-serif" font-size="46" font-weight="800"
+        fill="#3d2c6e" text-anchor="middle">Keep watching for your result</text>
+  <text x="${W/2}" y="${H-100}" font-family="Arial, sans-serif" font-size="36" font-weight="600"
         fill="#7c6bb0" text-anchor="middle">Free ADHD test - bloomfocus.org</text>
 </svg>`);
 
