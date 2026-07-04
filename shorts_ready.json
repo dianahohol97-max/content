@@ -1,363 +1,498 @@
 [
   {
-    "id": "SH_W30_01",
-    "week": 30,
-    "voiceover": "Your keys are gone again — not because you're careless, but because your brain only stores things it saw you put down. That's a working memory gap, not a character flaw. The fix is called a launch pad: one single spot by the door — a tray, a hook, a square of tape on the floor — where everything you need tomorrow lives tonight. Not a drawer. Not 'somewhere logical.' One unmissable spot you walk past anyway. You're not building a habit, you're building a trap your brain can't avoid. Follow for daily ADHD content.",
+    "id": "SH_W27_01",
+    "week": 27,
+    "voiceover": "You're anxious about everything AND you can't get anything done. So which one is it — ADHD or anxiety? Here's the thing: they look almost identical from the outside. Both cause avoidance. Both cause racing thoughts. Both make you stare at a task and freeze. But the reason is different. Anxiety avoids because it fears something bad will happen. ADHD avoids because the brain genuinely can't generate the activation to start. One is dread. One is a dead engine. If your avoidance comes with specific 'what ifs', lean anxiety. If it's more like blankness — no fear, just nothing — that's more ADHD. And a lot of people have both. So stop blaming your character. Your brain is working against a biology, not a personality flaw. Follow for daily ADHD content.",
     "scenes": [
       {
-        "tag": "desk_messy",
-        "imagePrompt": "Atmospheric editorial illustration with soft cinematic light and gentle depth, subtle film grain, sophisticated adult mood. STRICTLY brand palette only: lavender, blush pink, sage green, warm cream, deep violet — absolutely NO grey, NO charcoal, NO greige, NO black. Warm and calm but grown-up, like a refined wellness brand. NO people, no faces, no text, no letters. Keep the lower third calm and uncluttered for caption legibility. NOT cute, NOT cartoon, NOT childish. Vertical 9:16 composition. Dim cool light, early morning stillness. A close-up of a couch cushion with a set of keys half-buried underneath it, a faded blush pink throw draped over the armrest, and a half-drunk glass of water on the floor beside it — the scene communicates the exhausted end of a frantic search. Lower third is a clean deep violet shadow.",
-        "caption": ""
-      },
-      {
         "tag": "brain",
-        "imagePrompt": "Atmospheric editorial illustration with soft cinematic light and gentle depth, subtle film grain, sophisticated adult mood. STRICTLY brand palette only: lavender, blush pink, sage green, warm cream, deep violet — absolutely NO grey, NO charcoal, NO greige, NO black. Warm and calm but grown-up, like a refined wellness brand. NO people, no faces, no text, no letters. Keep the lower third calm and uncluttered for caption legibility. NOT cute, NOT cartoon, NOT childish. Vertical 9:16 composition. Soft cool lavender ambient light. An abstract botanical illustration of a single delicate brain-shaped cluster of pale sage leaves with thin violet veins, floating against a deep cream background, one petal visibly detaching and drifting — representing a thought leaving working memory. Lower third is calm and uncluttered.",
-        "caption": ""
-      },
-      {
-        "tag": "lamp",
-        "imagePrompt": "Atmospheric editorial illustration with soft cinematic light and gentle depth, subtle film grain, sophisticated adult mood. STRICTLY brand palette only: lavender, blush pink, sage green, warm cream, deep violet — absolutely NO grey, NO charcoal, NO greige, NO black. Warm and calm but grown-up, like a refined wellness brand. NO people, no faces, no text, no letters. Keep the lower third calm and uncluttered for caption legibility. NOT cute, NOT cartoon, NOT childish. Vertical 9:16 composition. A warm pool of amber-blush light from a small ceramic table lamp illuminating a neat entryway corner — a small round lavender tray sits on a slim wooden shelf beside the lamp, completely empty and waiting, the circle of light landing directly on it like a spotlight. Lower third is a calm deep violet shadow.",
+        "imagePrompt": "Elegant minimal line art illustration: confident continuous ink lines in deep violet on warm cream paper, with soft washes of lavender, blush pink and sage green as sparse color accents. Generous negative space, sophisticated, calm, adult wellness aesthetic. No people, no faces, no text, no letters. Vertical 9:16 composition. An abstract brain made of soft clouds with two small distinct swirling zones, one tinged stormy lavender and one a quiet pale cream, side by side.",
         "caption": ""
       },
       {
         "tag": "desk_empty",
-        "imagePrompt": "Atmospheric editorial illustration with soft cinematic light and gentle depth, subtle film grain, sophisticated adult mood. STRICTLY brand palette only: lavender, blush pink, sage green, warm cream, deep violet — absolutely NO grey, NO charcoal, NO greige, NO black. Warm and calm but grown-up, like a refined wellness brand. NO people, no faces, no text, no letters. Keep the lower third calm and uncluttered for caption legibility. NOT cute, NOT cartoon, NOT childish. Vertical 9:16 composition. Warm dawn light from off-frame. A close-up of a small square of sage green painter's tape marking a clean zone on a hardwood floor directly beside a front door — keys, a transit card, and earbuds are placed neatly inside the square, lit by a slant of warm morning light. Lower third is uncluttered cream.",
+        "imagePrompt": "Elegant minimal line art illustration: confident continuous ink lines in deep violet on warm cream paper, with soft washes of lavender, blush pink and sage green as sparse color accents. Generous negative space, sophisticated, calm, adult wellness aesthetic. No people, no faces, no text, no letters. Vertical 9:16 composition. A bare empty desk with a single unlit lamp, the surface completely clear, suggesting stillness and inability to begin.",
+        "caption": ""
+      },
+      {
+        "tag": "sparks",
+        "imagePrompt": "Elegant minimal line art illustration: confident continuous ink lines in deep violet on warm cream paper, with soft washes of lavender, blush pink and sage green as sparse color accents. Generous negative space, sophisticated, calm, adult wellness aesthetic. No people, no faces, no text, no letters. Vertical 9:16 composition. Soft abstract sparks and small swirling thought-cloud shapes floating in the air, some shaped like tiny jagged bolts of anxiety, others like faded dim clouds of blankness.",
         "caption": ""
       },
       {
         "tag": "path",
-        "imagePrompt": "Atmospheric editorial illustration with soft cinematic light and gentle depth, subtle film grain, sophisticated adult mood. STRICTLY brand palette only: lavender, blush pink, sage green, warm cream, deep violet — absolutely NO grey, NO charcoal, NO greige, NO black. Warm and calm but grown-up, like a refined wellness brand. NO people, no faces, no text, no letters. Keep the lower third calm and uncluttered for caption legibility. NOT cute, NOT cartoon, NOT childish. Vertical 9:16 composition. Warm hopeful morning light. A wide shot of a calm apartment entryway hallway viewed from above at a slight angle — a single visible path from an interior room to the front door, with the small glowing tray on the shelf unmissable along the route, the only lit object in the frame. Lower third is calm and deep violet.",
+        "imagePrompt": "Elegant minimal line art illustration: confident continuous ink lines in deep violet on warm cream paper, with soft washes of lavender, blush pink and sage green as sparse color accents. Generous negative space, sophisticated, calm, adult wellness aesthetic. No people, no faces, no text, no letters. Vertical 9:16 composition. A soft winding path that splits into two gentle forks, one side slightly stormy with small swirling lavender clouds, the other side misty and quiet like a fog, both calm and non-threatening.",
         "caption": ""
       },
       {
-        "tag": "coffee",
-        "imagePrompt": "Atmospheric editorial illustration with soft cinematic light and gentle depth, subtle film grain, sophisticated adult mood. STRICTLY brand palette only: lavender, blush pink, sage green, warm cream, deep violet — absolutely NO grey, NO charcoal, NO greige, NO black. Warm and calm but grown-up, like a refined wellness brand. NO people, no faces, no text, no letters. Keep the lower third calm and uncluttered for caption legibility. NOT cute, NOT cartoon, NOT childish. Vertical 9:16 composition. Warm golden morning light. A sage green ceramic mug of coffee steaming gently on a kitchen counter, and in the soft background blur a blush pink tray near the door holds a set of keys clearly visible — the mood is calm, unhurried, the morning going right for once. Lower third is clean and uncluttered.",
+        "tag": "journal",
+        "imagePrompt": "Elegant minimal line art illustration: confident continuous ink lines in deep violet on warm cream paper, with soft washes of lavender, blush pink and sage green as sparse color accents. Generous negative space, sophisticated, calm, adult wellness aesthetic. No people, no faces, no text, no letters. Vertical 9:16 composition. A soft open journal on a cozy surface with a small pencil resting beside it, the pages blank and inviting, a gentle plant nearby.",
+        "caption": ""
+      },
+      {
+        "tag": "plant",
+        "imagePrompt": "Elegant minimal line art illustration: confident continuous ink lines in deep violet on warm cream paper, with soft washes of lavender, blush pink and sage green as sparse color accents. Generous negative space, sophisticated, calm, adult wellness aesthetic. No people, no faces, no text, no letters. Vertical 9:16 composition. A small potted plant with soft rounded sage green leaves sitting in warm window light, looking steady and quietly alive, suggesting gentle resilience.",
         "caption": ""
       }
     ],
-    "title": "Why ADHD Brains Lose Keys Every Day (The Fix) #Shorts",
-    "description": "ADHD working memory means your brain literally does not store where you put things unless it watched you do it intentionally. The launch pad trick exploits your environment instead of fighting your memory. One tray, one spot, one rule — here is why it actually works for ADHD brains.\n\nFollow for daily ADHD content.",
+    "title": "ADHD or Anxiety? How to Tell the Difference #Shorts",
+    "description": "ADHD and anxiety look almost identical — avoidance, racing thoughts, freezing up. But the reason behind the behavior is completely different, and knowing which one is driving you changes everything. This video breaks down the key difference in a simple, science-backed way common in ADHD and anxiety research. Follow for daily ADHD content.",
     "tags": [
-      "ADHD tips",
-      "ADHD working memory",
-      "ADHD organization",
-      "lost keys ADHD",
-      "ADHD hacks",
-      "launch pad ADHD",
-      "ADHD executive function",
+      "ADHD",
+      "anxiety",
+      "ADHD vs anxiety",
       "ADHD education",
-      "neurodivergent tips",
-      "ADHD daily life",
-      "ADHD focus",
+      "ADHD awareness",
+      "mental health",
+      "neurodivergent",
+      "ADHD tips",
+      "ADHD brain",
+      "anxiety explained",
+      "ADHD shorts",
       "bloom focus"
     ],
     "funnel": "follow",
     "shortType": "educational",
     "status": "pending",
-    "videoUrl": "https://raw.githubusercontent.com/dianahohol97-max/content/main/output/shorts/week_30/SH_W30_01.mp4",
-    "postedAt": null,
-    "coverUrl": "https://raw.githubusercontent.com/dianahohol97-max/content/main/output/shorts/week_30/SH_W30_01_cover.jpg"
+    "videoUrl": "https://raw.githubusercontent.com/dianahohol97-max/content/main/output/shorts/week_27/SH_W27_01.mp4",
+    "postedAt": null
   },
   {
-    "id": "SH_W30_02",
-    "week": 30,
-    "voiceover": "Your brain won't start the task. So bribe it. A dopamine menu is a short list of tiny rewards your brain actually responds to — not junk food, not doom scrolling. Think: one song you love, a specific fancy coffee, five minutes outside. Before you open the hard thing, you pick one item off the menu. Not after. Before. Because ADHD brains don't run on importance — they run on interest and reward. You're not being lazy. You're just negotiating with a low-dopamine nervous system. Give it something first. Follow for daily ADHD content.",
+    "id": "SH_W27_02",
+    "week": 27,
+    "voiceover": "Your brain won't start? Stop forcing it. Bribe it. A dopamine menu is a short list of tiny rewards you actually look forward to. You pick one before a hard task. Not after. Before. So your brain has something to chase. Step one: write down five to ten things that genuinely feel good. Coffee, a playlist, a snack, ten minutes outside. Step two: before a task you keep avoiding, pick one from the list. Step three: start the task with that reward already happening. Music on, coffee in hand. You are not cheating. You are finally speaking your brain's language. Follow for daily ADHD content.",
     "scenes": [
       {
-        "tag": "desk_messy",
-        "imagePrompt": "Atmospheric editorial illustration with soft cinematic light and gentle depth, subtle film grain, sophisticated adult mood. STRICTLY brand palette only: lavender, blush pink, sage green, warm cream, deep violet — absolutely NO grey, NO charcoal, NO greige, NO black. Warm and calm but grown-up, like a refined wellness brand. NO people, no faces, no text, no letters. Keep the lower third calm and uncluttered for caption legibility. NOT cute, NOT cartoon, NOT childish. Vertical 9:16 composition. A dim, still desk seen from above — a laptop closed shut, a pen resting untouched beside a blank notebook, a cold cup of coffee casting a faint shadow. Cool lavender shadow light fills the scene, heavy and stalled, like nothing has moved in an hour.",
-        "caption": ""
-      },
-      {
         "tag": "brain",
-        "imagePrompt": "Atmospheric editorial illustration with soft cinematic light and gentle depth, subtle film grain, sophisticated adult mood. STRICTLY brand palette only: lavender, blush pink, sage green, warm cream, deep violet — absolutely NO grey, NO charcoal, NO greige, NO black. Warm and calm but grown-up, like a refined wellness brand. NO people, no faces, no text, no letters. Keep the lower third calm and uncluttered for caption legibility. NOT cute, NOT cartoon, NOT childish. Vertical 9:16 composition. A close-up illustration of an abstract brain shape rendered in soft deep violet and blush pink brushstrokes, small sparks of warm gold light flickering faintly at its edges, suggesting low energy rather than explosion. Background is deep violet shadow, cool and cinematic.",
+        "imagePrompt": "Elegant minimal line art illustration: confident continuous ink lines in deep violet on warm cream paper, with soft washes of lavender, blush pink and sage green as sparse color accents. Generous negative space, sophisticated, calm, adult wellness aesthetic. No people, no faces, no text, no letters. Vertical 9:16 composition. An abstract brain made of soft pastel clouds with tiny golden sparks floating gently around it.",
         "caption": ""
       },
       {
         "tag": "journal",
-        "imagePrompt": "Atmospheric editorial illustration with soft cinematic light and gentle depth, subtle film grain, sophisticated adult mood. STRICTLY brand palette only: lavender, blush pink, sage green, warm cream, deep violet — absolutely NO grey, NO charcoal, NO greige, NO black. Warm and calm but grown-up, like a refined wellness brand. NO people, no faces, no text, no letters. Keep the lower third calm and uncluttered for caption legibility. NOT cute, NOT cartoon, NOT childish. Vertical 9:16 composition. A small open notebook lying on a warm cream surface, lit by a single warm lamp from the upper left. Three short handwritten-style marks on the page suggest a brief list — no legible letters. A blush pink pen rests beside it. The light is intimate and hopeful, introducing warmth for the first time.",
+        "imagePrompt": "Elegant minimal line art illustration: confident continuous ink lines in deep violet on warm cream paper, with soft washes of lavender, blush pink and sage green as sparse color accents. Generous negative space, sophisticated, calm, adult wellness aesthetic. No people, no faces, no text, no letters. Vertical 9:16 composition. A soft open journal lying flat on a light wooden surface with a gentle pencil resting beside it.",
         "caption": ""
       },
       {
         "tag": "coffee",
-        "imagePrompt": "Atmospheric editorial illustration with soft cinematic light and gentle depth, subtle film grain, sophisticated adult mood. STRICTLY brand palette only: lavender, blush pink, sage green, warm cream, deep violet — absolutely NO grey, NO charcoal, NO greige, NO black. Warm and calm but grown-up, like a refined wellness brand. NO people, no faces, no text, no letters. Keep the lower third calm and uncluttered for caption legibility. NOT cute, NOT cartoon, NOT childish. Vertical 9:16 composition. A single ceramic mug of fresh hot coffee on a windowsill, steam rising gently into warm morning light. The mug is a deep sage green, the light coming through the window is soft blush gold. The scene feels like a small deliberate pleasure, calm and specific.",
+        "imagePrompt": "Elegant minimal line art illustration: confident continuous ink lines in deep violet on warm cream paper, with soft washes of lavender, blush pink and sage green as sparse color accents. Generous negative space, sophisticated, calm, adult wellness aesthetic. No people, no faces, no text, no letters. Vertical 9:16 composition. A cozy ceramic mug with soft steam curling upward, sitting on a small saucer against a warm cream background.",
         "caption": ""
       },
       {
-        "tag": "window_light",
-        "imagePrompt": "Atmospheric editorial illustration with soft cinematic light and gentle depth, subtle film grain, sophisticated adult mood. STRICTLY brand palette only: lavender, blush pink, sage green, warm cream, deep violet — absolutely NO grey, NO charcoal, NO greige, NO black. Warm and calm but grown-up, like a refined wellness brand. NO people, no faces, no text, no letters. Keep the lower third calm and uncluttered for caption legibility. NOT cute, NOT cartoon, NOT childish. Vertical 9:16 composition. A tall window with soft sheer curtains catching early morning light, a rectangle of warm blush and cream light falling across a bare wooden floor. Outside is hazy soft sage. The scene feels like five minutes of air and space — a breath before returning to work.",
+        "tag": "sparks",
+        "imagePrompt": "Elegant minimal line art illustration: confident continuous ink lines in deep violet on warm cream paper, with soft washes of lavender, blush pink and sage green as sparse color accents. Generous negative space, sophisticated, calm, adult wellness aesthetic. No people, no faces, no text, no letters. Vertical 9:16 composition. Small floating golden sparks and soft glowing dots drifting upward against a soft lavender background, like tiny reward signals blooming in the air.",
         "caption": ""
       },
       {
         "tag": "desk_tidy",
-        "imagePrompt": "Atmospheric editorial illustration with soft cinematic light and gentle depth, subtle film grain, sophisticated adult mood. STRICTLY brand palette only: lavender, blush pink, sage green, warm cream, deep violet — absolutely NO grey, NO charcoal, NO greige, NO black. Warm and calm but grown-up, like a refined wellness brand. NO people, no faces, no text, no letters. Keep the lower third calm and uncluttered for caption legibility. NOT cute, NOT cartoon, NOT childish. Vertical 9:16 composition. The same desk from the opening, now with a warm lamp switched on, casting a pool of amber-cream light over the open notebook and a steaming mug. The laptop is now open at an angle, screen glow suggesting activity has begun. The shift from cold shadow to warm lamp light is the visual payoff — the same space, but alive now.",
-        "caption": ""
-      }
-    ],
-    "title": "How To Use a Dopamine Menu To Start Hard Tasks #Shorts",
-    "description": "If your ADHD brain refuses to start a task, the trick is not pushing harder — it is bribing your nervous system first. A dopamine menu gives your low-dopamine brain a small reward before the hard thing, making it actually possible to begin. This is the science of interest-based motivation, not willpower. Follow for daily ADHD content.",
-    "tags": [
-      "ADHD tips",
-      "dopamine menu",
-      "ADHD motivation",
-      "how to start tasks ADHD",
-      "ADHD productivity",
-      "dopamine ADHD",
-      "ADHD brain",
-      "task initiation ADHD",
-      "ADHD hacks",
-      "neurodivergent tips",
-      "ADHD education",
-      "bloom focus"
-    ],
-    "funnel": "follow",
-    "shortType": "practical",
-    "status": "pending",
-    "videoUrl": "https://raw.githubusercontent.com/dianahohol97-max/content/main/output/shorts/week_30/SH_W30_02.mp4",
-    "postedAt": null,
-    "coverUrl": "https://raw.githubusercontent.com/dianahohol97-max/content/main/output/shorts/week_30/SH_W30_02_cover.jpg"
-  },
-  {
-    "id": "SH_W30_03",
-    "week": 30,
-    "voiceover": "You can scrub a stranger's bathroom for cash but can't wash your own dishes. That's not laziness — that's your brain's dopamine system. ADHD brains don't run on importance or intention. They run on interest, novelty, and reward. So boring tasks don't just feel hard — they're genuinely under-stimulated at a neurological level. The fix isn't willpower. Pair the boring task with something your brain actually wants: a specific playlist you only hear during dishes, a podcast saved for folding laundry, a weird little reward waiting at the finish line. Make the dopamine come WITH the task, not after. Sound familiar every single day? Follow for daily ADHD content.",
-    "scenes": [
-      {
-        "tag": "desk_messy",
-        "imagePrompt": "Atmospheric editorial illustration with soft cinematic light and gentle depth, subtle film grain, sophisticated adult mood. STRICTLY brand palette only: lavender, blush pink, sage green, warm cream, deep violet — absolutely NO grey, NO charcoal, NO greige, NO black. Warm and calm but grown-up, like a refined wellness brand. NO people, no faces, no text, no letters. Keep the lower third calm and uncluttered for caption legibility. NOT cute, NOT cartoon, NOT childish. Vertical 9:16 composition. A kitchen sink in dim cool lavender shadow, a stack of unwashed plates and a lone fork resting on the counter edge, a single water droplet caught mid-drip from the faucet, still and untouched, conveying quiet dread and stagnation.",
-        "caption": ""
-      },
-      {
-        "tag": "brain",
-        "imagePrompt": "Atmospheric editorial illustration with soft cinematic light and gentle depth, subtle film grain, sophisticated adult mood. STRICTLY brand palette only: lavender, blush pink, sage green, warm cream, deep violet — absolutely NO grey, NO charcoal, NO greige, NO black. Warm and calm but grown-up, like a refined wellness brand. NO people, no faces, no text, no letters. Keep the lower third calm and uncluttered for caption legibility. NOT cute, NOT cartoon, NOT childish. Vertical 9:16 composition. A soft anatomical brain shape rendered in deep violet and blush pink tones, floating in a dim cool background with faint neural pathways glowing faintly like almost-dead embers, illustrating low dopamine signal — cinematic and adult, not clinical or cartoonish.",
-        "caption": ""
-      },
-      {
-        "tag": "window_light",
-        "imagePrompt": "Atmospheric editorial illustration with soft cinematic light and gentle depth, subtle film grain, sophisticated adult mood. STRICTLY brand palette only: lavender, blush pink, sage green, warm cream, deep violet — absolutely NO grey, NO charcoal, NO greige, NO black. Warm and calm but grown-up, like a refined wellness brand. NO people, no faces, no text, no letters. Keep the lower third calm and uncluttered for caption legibility. NOT cute, NOT cartoon, NOT childish. Vertical 9:16 composition. A tall window casting a cool lavender-tinted rectangle of light onto a bare floor, outside is dull and still, the room inside feels suspended and unstimulated — evoking the paralysis of a task that holds zero interest.",
-        "caption": ""
-      },
-      {
-        "tag": "phone",
-        "imagePrompt": "Atmospheric editorial illustration with soft cinematic light and gentle depth, subtle film grain, sophisticated adult mood. STRICTLY brand palette only: lavender, blush pink, sage green, warm cream, deep violet — absolutely NO grey, NO charcoal, NO greige, NO black. Warm and calm but grown-up, like a refined wellness brand. NO people, no faces, no text, no letters. Keep the lower third calm and uncluttered for caption legibility. NOT cute, NOT cartoon, NOT childish. Vertical 9:16 composition. A smartphone resting on a sage green surface, screen glowing with a podcast waveform visualizer in warm blush tones, a single wireless earbud beside it, warm light pooling around the device — this is the dopamine tool, the pairing strategy, hopeful and practical.",
-        "caption": ""
-      },
-      {
-        "tag": "coffee",
-        "imagePrompt": "Atmospheric editorial illustration with soft cinematic light and gentle depth, subtle film grain, sophisticated adult mood. STRICTLY brand palette only: lavender, blush pink, sage green, warm cream, deep violet — absolutely NO grey, NO charcoal, NO greige, NO black. Warm and calm but grown-up, like a refined wellness brand. NO people, no faces, no text, no letters. Keep the lower third calm and uncluttered for caption legibility. NOT cute, NOT cartoon, NOT childish. Vertical 9:16 composition. A ceramic mug in warm cream glaze sitting at the edge of a clean dish rack, steam rising gently into soft lamplight, the rack now tidy and sparse — the task is done, a small reward waiting beside it, calm satisfaction in the warm glow.",
-        "caption": ""
-      },
-      {
-        "tag": "sparks",
-        "imagePrompt": "Atmospheric editorial illustration with soft cinematic light and gentle depth, subtle film grain, sophisticated adult mood. STRICTLY brand palette only: lavender, blush pink, sage green, warm cream, deep violet — absolutely NO grey, NO charcoal, NO greige, NO black. Warm and calm but grown-up, like a refined wellness brand. NO people, no faces, no text, no letters. Keep the lower third calm and uncluttered for caption legibility. NOT cute, NOT cartoon, NOT childish. Vertical 9:16 composition. Abstract tiny sparks and soft blush-pink light particles drifting upward against a deep violet background, like dopamine being released — cinematic and restrained, suggesting neurological reward without being literal or cartoonish, warm and softly luminous.",
-        "caption": ""
-      }
-    ],
-    "title": "Why Boring Tasks Feel Impossible With ADHD #Shorts",
-    "description": "If you can deep-clean for someone else but can not touch your own dishes, your ADHD dopamine system is the reason — not your character. Boring tasks are neurologically under-stimulated for ADHD brains, and the fix is pairing them with something your brain actually wants right now. This is how you make everyday tasks dopamine-friendly without forcing willpower that was never the answer. Follow for daily ADHD content.",
-    "tags": [
-      "ADHD",
-      "ADHD tips",
-      "dopamine ADHD",
-      "ADHD boring tasks",
-      "ADHD productivity",
-      "ADHD brain",
-      "ADHD motivation",
-      "neurodivergent",
-      "ADHD hacks",
-      "ADHD education",
-      "adult ADHD",
-      "ADHD explained"
-    ],
-    "funnel": "follow",
-    "shortType": "painpoint",
-    "status": "pending",
-    "videoUrl": "https://raw.githubusercontent.com/dianahohol97-max/content/main/output/shorts/week_30/SH_W30_03.mp4",
-    "postedAt": null,
-    "coverUrl": "https://raw.githubusercontent.com/dianahohol97-max/content/main/output/shorts/week_30/SH_W30_03_cover.jpg"
-  },
-  {
-    "id": "SH_W30_04",
-    "week": 30,
-    "voiceover": "Someone you love goes quiet for a day and your brain decides they hate you now. That is Emotional Permanence -- when someone is out of sight, the feeling of being loved by them disappears too. Here is what it looks like: Your best friend does not text back and suddenly three years of friendship feels like it never happened. Your partner leaves for work and you genuinely cannot feel that they care about you. You get reassurance, feel fine for an hour, then need it again. This is not insecurity. It is a working memory gap -- your brain cannot hold emotional information when the source is not in front of you. Common in ADHD. Follow for daily ADHD content.",
-    "scenes": [
-      {
-        "tag": "phone",
-        "imagePrompt": "Atmospheric editorial illustration with soft cinematic light and gentle depth, subtle film grain, sophisticated adult mood. STRICTLY brand palette only: lavender, blush pink, sage green, warm cream, deep violet -- absolutely NO grey, NO charcoal, NO greige, NO black. Warm and calm but grown-up, like a refined wellness brand. NO people, no faces, no text, no letters. Keep the lower third calm and uncluttered for caption legibility. NOT cute, NOT cartoon, NOT childish. Vertical 9:16 composition. Dim cool tone, soft shadow. A phone face-up on a wooden surface, screen dark and unlit, one small notification bubble visible as a faint lavender glow, surrounded by quiet shadow -- the silence of waiting made physical.",
-        "caption": ""
-      },
-      {
-        "tag": "window_light",
-        "imagePrompt": "Atmospheric editorial illustration with soft cinematic light and gentle depth, subtle film grain, sophisticated adult mood. STRICTLY brand palette only: lavender, blush pink, sage green, warm cream, deep violet -- absolutely NO grey, NO charcoal, NO greige, NO black. Warm and calm but grown-up, like a refined wellness brand. NO people, no faces, no text, no letters. Keep the lower third calm and uncluttered for caption legibility. NOT cute, NOT cartoon, NOT childish. Vertical 9:16 composition. Dim cool tone, still and heavy. A rain-streaked window at dusk, pale lavender light bleeding through, a single potted plant on the sill casting a long soft shadow inward -- the feeling of being alone inside a quiet room.",
-        "caption": ""
-      },
-      {
-        "tag": "journal",
-        "imagePrompt": "Atmospheric editorial illustration with soft cinematic light and gentle depth, subtle film grain, sophisticated adult mood. STRICTLY brand palette only: lavender, blush pink, sage green, warm cream, deep violet -- absolutely NO grey, NO charcoal, NO greige, NO black. Warm and calm but grown-up, like a refined wellness brand. NO people, no faces, no text, no letters. Keep the lower third calm and uncluttered for caption legibility. NOT cute, NOT cartoon, NOT childish. Vertical 9:16 composition. Dim, intimate, cool-toned shadow. An open journal on a rumpled cream bed, a blush pink pen resting diagonally across the page, small looping marks suggesting anxious re-reading, lit only by a faint lavender glow from off-screen.",
-        "caption": ""
-      },
-      {
-        "tag": "door",
-        "imagePrompt": "Atmospheric editorial illustration with soft cinematic light and gentle depth, subtle film grain, sophisticated adult mood. STRICTLY brand palette only: lavender, blush pink, sage green, warm cream, deep violet -- absolutely NO grey, NO charcoal, NO greige, NO black. Warm and calm but grown-up, like a refined wellness brand. NO people, no faces, no text, no letters. Keep the lower third calm and uncluttered for caption legibility. NOT cute, NOT cartoon, NOT childish. Vertical 9:16 composition. Cool dim tone, heavy stillness. A closed interior door in soft deep violet shadow, a sliver of warm cream light visible beneath it -- the physical metaphor of someone gone just beyond reach, their warmth inaccessible.",
-        "caption": ""
-      },
-      {
-        "tag": "brain",
-        "imagePrompt": "Atmospheric editorial illustration with soft cinematic light and gentle depth, subtle film grain, sophisticated adult mood. STRICTLY brand palette only: lavender, blush pink, sage green, warm cream, deep violet -- absolutely NO grey, NO charcoal, NO greige, NO black. Warm and calm but grown-up, like a refined wellness brand. NO people, no faces, no text, no letters. Keep the lower third calm and uncluttered for caption legibility. NOT cute, NOT cartoon, NOT childish. Vertical 9:16 composition. Slightly warmer than previous scenes, a gentle lamp glow beginning. A stylised hand-drawn brain outline in deep violet on a warm cream background, with one small glowing node in blush pink -- isolated, the rest of the network dim -- illustrating a single working memory gap made visible.",
-        "caption": ""
-      },
-      {
-        "tag": "lamp",
-        "imagePrompt": "Atmospheric editorial illustration with soft cinematic light and gentle depth, subtle film grain, sophisticated adult mood. STRICTLY brand palette only: lavender, blush pink, sage green, warm cream, deep violet -- absolutely NO grey, NO charcoal, NO greige, NO black. Warm and calm but grown-up, like a refined wellness brand. NO people, no faces, no text, no letters. Keep the lower third calm and uncluttered for caption legibility. NOT cute, NOT cartoon, NOT childish. Vertical 9:16 composition. Warm pool of soft lamp light, calming and still. A small sage green desk lamp casting a gentle warm cream glow onto a smooth surface, a folded note beside it -- the quiet comfort of something tangible left behind, an anchor of proof.",
-        "caption": ""
-      }
-    ],
-    "title": "Emotional Permanence: When Love Disappears Out of Sight #Shorts",
-    "description": "Emotional Permanence is an ADHD pattern where you lose the felt sense of being loved the moment someone is out of sight -- not because the relationship changed, but because your working memory cannot hold emotional information without a live signal. It is common in ADHD and it is not a character flaw. If you have ever needed reassurance you already received, this might explain why.",
-    "tags": [
-      "ADHD emotional permanence",
-      "ADHD relationships",
-      "ADHD working memory",
-      "ADHD anxiety",
-      "ADHD explained",
-      "ADHD patterns",
-      "ADHD education",
-      "neurodivergent relationships",
-      "ADHD tips",
-      "bloom focus",
-      "ADHD shorts",
-      "ADHD brain"
-    ],
-    "funnel": "follow",
-    "shortType": "pattern",
-    "status": "pending",
-    "videoUrl": "https://raw.githubusercontent.com/dianahohol97-max/content/main/output/shorts/week_30/SH_W30_04.mp4",
-    "postedAt": null,
-    "coverUrl": "https://raw.githubusercontent.com/dianahohol97-max/content/main/output/shorts/week_30/SH_W30_04_cover.jpg"
-  },
-  {
-    "id": "SH_W30_05",
-    "week": 30,
-    "question": "Which inbox is yours right now?",
-    "options": [
-      {
-        "label": "The avalanche",
-        "imagePrompt": "Atmospheric editorial illustration with soft cinematic light and gentle depth, subtle film grain, sophisticated adult mood. STRICTLY brand palette only: lavender, blush pink, sage green, warm cream, deep violet — absolutely NO grey, NO charcoal, NO greige, NO black. Warm and calm but grown-up, like a refined wellness brand. NO people, no faces, no text, no letters. Keep the lower third calm and uncluttered for caption legibility. NOT cute, NOT cartoon, NOT childish. Vertical 9:16 composition. A towering stack of envelopes and folded papers spilling across a warm cream desk surface, bathed in soft lavender ambient light, envelopes cascading at the edge like an about-to-collapse pile, some open, most sealed, depth-of-field blur on the far edges.",
-        "result": "You have 4,000 unread emails and zero shame — out of sight, fully out of mind."
-      },
-      {
-        "label": "The 3 tabs",
-        "imagePrompt": "Atmospheric editorial illustration with soft cinematic light and gentle depth, subtle film grain, sophisticated adult mood. STRICTLY brand palette only: lavender, blush pink, sage green, warm cream, deep violet — absolutely NO grey, NO charcoal, NO greige, NO black. Warm and calm but grown-up, like a refined wellness brand. NO people, no faces, no text, no letters. Keep the lower third calm and uncluttered for caption legibility. NOT cute, NOT cartoon, NOT childish. Vertical 9:16 composition. A single glowing laptop screen showing just three soft blush-tinted browser tab shapes illuminated in warm light on a deep violet background, minimal and intentional, the screen surface reflecting a faint sage green ambient glow, clean desk beneath it.",
-        "result": "You batch-process on your own terms — 3 tabs open means 3 things actually matter today."
-      },
-      {
-        "label": "The ignored star",
-        "imagePrompt": "Atmospheric editorial illustration with soft cinematic light and gentle depth, subtle film grain, sophisticated adult mood. STRICTLY brand palette only: lavender, blush pink, sage green, warm cream, deep violet — absolutely NO grey, NO charcoal, NO greige, NO black. Warm and calm but grown-up, like a refined wellness brand. NO people, no faces, no text, no letters. Keep the lower third calm and uncluttered for caption legibility. NOT cute, NOT cartoon, NOT childish. Vertical 9:16 composition. A single blush pink star-shaped paper bookmark resting alone on a warm cream surface, soft side-light casting a long gentle shadow, surrounded by negative space, one folded corner of an envelope just visible at the frame edge, dreamy and still.",
-        "result": "You flagged it to feel safe — and have never once gone back to the flagged folder."
-      },
-      {
-        "label": "The fresh start",
-        "imagePrompt": "Atmospheric editorial illustration with soft cinematic light and gentle depth, subtle film grain, sophisticated adult mood. STRICTLY brand palette only: lavender, blush pink, sage green, warm cream, deep violet — absolutely NO grey, NO charcoal, NO greige, NO black. Warm and calm but grown-up, like a refined wellness brand. NO people, no faces, no text, no letters. Keep the lower third calm and uncluttered for caption legibility. NOT cute, NOT cartoon, NOT childish. Vertical 9:16 composition. A pristine open notebook with a single sage green pen resting diagonally across a blank warm cream page, soft morning light pooling from the upper left, a small sprig of dried lavender tucked at the corner, the surface completely empty and intentionally reset.",
-        "result": "You archive-all every 6 months and call it a new beginning — this IS a coping strategy, actually."
-      }
-    ],
-    "introVoiceover": "Four inboxes. Pick the one that is most yours right now. Because your answer says something real about how your ADHD brain handles invisible tasks — drop your pick in the comments, let's see.",
-    "outroVoiceover": "All four are valid. None of them mean you are failing. Follow for daily ADHD content.",
-    "title": "Which inbox is yours? (ADHD brain test) #Shorts",
-    "description": "Pick the inbox that matches yours right now — then watch as we reveal what each choice says about how your ADHD brain actually processes invisible tasks. The answers are all in the video.\n\nFollow for daily ADHD content.",
-    "tags": [
-      "ADHD",
-      "ADHDtest",
-      "ADHDawareness",
-      "neurodivergent",
-      "bloomfocus",
-      "ADHDbrain",
-      "workingmemory",
-      "dopamine",
-      "ADHDtips",
-      "focuscheck",
-      "ADHDshorts",
-      "productivity"
-    ],
-    "funnel": "follow",
-    "shortType": "quiztest",
-    "status": "pending",
-    "videoUrl": "https://raw.githubusercontent.com/dianahohol97-max/content/main/output/shorts/week_30/SH_W30_05.mp4",
-    "postedAt": null,
-    "coverUrl": "https://raw.githubusercontent.com/dianahohol97-max/content/main/output/shorts/week_30/SH_W30_05_cover.jpg"
-  },
-  {
-    "id": "SH_W30_06",
-    "week": 30,
-    "voiceover": "The dishes have been in the drying rack for four days. You walk past them every single time. You know how to put dishes away. You have done it thousands of times. So why does it feel like lifting a car? This is executive dysfunction. Your prefrontal cortex — the part that starts, sequences, and launches action — runs on dopamine. And in the ADHD brain, dopamine signaling is genuinely lower. Not laziness. Not attitude. A neurological gap between knowing and doing. That gap is the whole problem. So instead of telling yourself to 'just do it,' shrink the launch cost. Pick one dish. Physically touch it. Movement creates dopamine. The first object in your hand is the ignition. You are not broken. Your starter motor just needs a different key. Follow for daily ADHD content.",
-    "scenes": [
-      {
-        "tag": "desk_messy",
-        "imagePrompt": "Atmospheric editorial illustration with soft cinematic light and gentle depth, subtle film grain, sophisticated adult mood. STRICTLY brand palette only: lavender, blush pink, sage green, warm cream, deep violet — absolutely NO grey, NO charcoal, NO greige, NO black. Warm and calm but grown-up, like a refined wellness brand. NO people, no faces, no text, no letters. Keep the lower third calm and uncluttered for caption legibility. NOT cute, NOT cartoon, NOT childish. Vertical 9:16 composition. A kitchen drying rack holding clean dishes and a single mug, lit by a dim cool overhead light that casts long shadows across a cream-colored counter, still and undisturbed, a sense of days passing around them.",
-        "caption": ""
-      },
-      {
-        "tag": "window_light",
-        "imagePrompt": "Atmospheric editorial illustration with soft cinematic light and gentle depth, subtle film grain, sophisticated adult mood. STRICTLY brand palette only: lavender, blush pink, sage green, warm cream, deep violet — absolutely NO grey, NO charcoal, NO greige, NO black. Warm and calm but grown-up, like a refined wellness brand. NO people, no faces, no text, no letters. Keep the lower third calm and uncluttered for caption legibility. NOT cute, NOT cartoon, NOT childish. Vertical 9:16 composition. A hallway threshold framed by soft lavender-tinted light coming through a distant window, the sense of walking past something repeatedly, the floor bare and quiet, cool ambient tone conveying avoidance without drama.",
-        "caption": ""
-      },
-      {
-        "tag": "brain",
-        "imagePrompt": "Atmospheric editorial illustration with soft cinematic light and gentle depth, subtle film grain, sophisticated adult mood. STRICTLY brand palette only: lavender, blush pink, sage green, warm cream, deep violet — absolutely NO grey, NO charcoal, NO greige, NO black. Warm and calm but grown-up, like a refined wellness brand. NO people, no faces, no text, no letters. Keep the lower third calm and uncluttered for caption legibility. NOT cute, NOT cartoon, NOT childish. Vertical 9:16 composition. A close-up cross-section illustration of a brain rendered in soft deep violet and blush pink tones, the prefrontal lobe faintly highlighted with a dim cool glow, surrounded by muted shadow, conveying a system that is present but under-powered.",
-        "caption": ""
-      },
-      {
-        "tag": "sparks",
-        "imagePrompt": "Atmospheric editorial illustration with soft cinematic light and gentle depth, subtle film grain, sophisticated adult mood. STRICTLY brand palette only: lavender, blush pink, sage green, warm cream, deep violet — absolutely NO grey, NO charcoal, NO greige, NO black. Warm and calm but grown-up, like a refined wellness brand. NO people, no faces, no text, no letters. Keep the lower third calm and uncluttered for caption legibility. NOT cute, NOT cartoon, NOT childish. Vertical 9:16 composition. Abstract close-up of sparse, faintly glowing lavender and sage sparks drifting in a deep violet field, minimal and sparse like a signal that is present but low in intensity, cool and quiet rather than energetic.",
-        "caption": ""
-      },
-      {
-        "tag": "bed",
-        "imagePrompt": "Atmospheric editorial illustration with soft cinematic light and gentle depth, subtle film grain, sophisticated adult mood. STRICTLY brand palette only: lavender, blush pink, sage green, warm cream, deep violet — absolutely NO grey, NO charcoal, NO greige, NO black. Warm and calm but grown-up, like a refined wellness brand. NO people, no faces, no text, no letters. Keep the lower third calm and uncluttered for caption legibility. NOT cute, NOT cartoon, NOT childish. Vertical 9:16 composition. An unmade bed with blush pink and cream linens in dim cool light, the pillow indented, a phone face-down on the nightstand, the stillness of someone who lay there thinking about tasks without starting any.",
-        "caption": ""
-      },
-      {
-        "tag": "clock",
-        "imagePrompt": "Atmospheric editorial illustration with soft cinematic light and gentle depth, subtle film grain, sophisticated adult mood. STRICTLY brand palette only: lavender, blush pink, sage green, warm cream, deep violet — absolutely NO grey, NO charcoal, NO greige, NO black. Warm and calm but grown-up, like a refined wellness brand. NO people, no faces, no text, no letters. Keep the lower third calm and uncluttered for caption legibility. NOT cute, NOT cartoon, NOT childish. Vertical 9:16 composition. A round minimalist clock on a lavender-tinted wall, hands visible but the face soft and slightly out of focus, a sense of time accumulating without action, dim and still.",
-        "caption": ""
-      },
-      {
-        "tag": "coffee",
-        "imagePrompt": "Atmospheric editorial illustration with soft cinematic light and gentle depth, subtle film grain, sophisticated adult mood. STRICTLY brand palette only: lavender, blush pink, sage green, warm cream, deep violet — absolutely NO grey, NO charcoal, NO greige, NO black. Warm and calm but grown-up, like a refined wellness brand. NO people, no faces, no text, no letters. Keep the lower third calm and uncluttered for caption legibility. NOT cute, NOT cartoon, NOT childish. Vertical 9:16 composition. A single ceramic mug on a cream surface, a warm amber glow pooling around it from a nearby lamp, the first hint of warmth and forward motion in the scene, transitioning toward action.",
+        "imagePrompt": "Elegant minimal line art illustration: confident continuous ink lines in deep violet on warm cream paper, with soft washes of lavender, blush pink and sage green as sparse color accents. Generous negative space, sophisticated, calm, adult wellness aesthetic. No people, no faces, no text, no letters. Vertical 9:16 composition. A tidy cozy desk with a steaming coffee mug, an open notebook, and soft warm lamp light glowing gently over the scene.",
         "caption": ""
       },
       {
         "tag": "plant",
-        "imagePrompt": "Atmospheric editorial illustration with soft cinematic light and gentle depth, subtle film grain, sophisticated adult mood. STRICTLY brand palette only: lavender, blush pink, sage green, warm cream, deep violet — absolutely NO grey, NO charcoal, NO greige, NO black. Warm and calm but grown-up, like a refined wellness brand. NO people, no faces, no text, no letters. Keep the lower third calm and uncluttered for caption legibility. NOT cute, NOT cartoon, NOT childish. Vertical 9:16 composition. A small sage green potted plant on a windowsill with early warm light touching its leaves, a gentle shift from the dim scenes prior, representing the smallest physical engagement with the environment as an act of starting.",
+        "imagePrompt": "Elegant minimal line art illustration: confident continuous ink lines in deep violet on warm cream paper, with soft washes of lavender, blush pink and sage green as sparse color accents. Generous negative space, sophisticated, calm, adult wellness aesthetic. No people, no faces, no text, no letters. Vertical 9:16 composition. A small potted plant with soft rounded sage green leaves sitting in a blush pink pot, quietly resting on a windowsill with warm light behind it.",
         "caption": ""
       },
       {
-        "tag": "lamp",
-        "imagePrompt": "Atmospheric editorial illustration with soft cinematic light and gentle depth, subtle film grain, sophisticated adult mood. STRICTLY brand palette only: lavender, blush pink, sage green, warm cream, deep violet — absolutely NO grey, NO charcoal, NO greige, NO black. Warm and calm but grown-up, like a refined wellness brand. NO people, no faces, no text, no letters. Keep the lower third calm and uncluttered for caption legibility. NOT cute, NOT cartoon, NOT childish. Vertical 9:16 composition. A warm cream desk lamp switched on over a clean cream surface with a single object — a dish or a small item — placed deliberately in its light, warm amber glow replacing the earlier cool shadows, the sense of one small action completed, calm and resolved.",
+        "tag": "brain",
+        "imagePrompt": "Elegant minimal line art illustration: confident continuous ink lines in deep violet on warm cream paper, with soft washes of lavender, blush pink and sage green as sparse color accents. Generous negative space, sophisticated, calm, adult wellness aesthetic. No people, no faces, no text, no letters. Vertical 9:16 composition. An abstract brain made of soft pastel clouds now glowing warmly, surrounded by more golden sparks than before, looking calm and energized.",
         "caption": ""
       }
     ],
-    "title": "Why Simple Tasks Feel Impossible With ADHD #Shorts",
-    "description": "Executive dysfunction is not laziness — it is a dopamine gap in the prefrontal cortex that breaks the bridge between knowing and doing. This short explains the real neuroscience behind why simple tasks feel impossible for ADHD brains, and gives a concrete first step that actually works with your wiring. Understanding this changed everything for a lot of people.",
+    "title": "Use a Dopamine Menu to Finally Start Hard Tasks #Shorts",
+    "description": "If your ADHD brain refuses to start tasks, a dopamine menu can help. This simple technique uses small rewards before a task to give your brain the dopamine boost it needs to get going. It is not a hack, it is neuroscience. Follow for daily ADHD content.",
     "tags": [
-      "executive dysfunction ADHD",
-      "ADHD simple tasks",
-      "why can't I do simple things ADHD",
-      "ADHD dopamine",
-      "prefrontal cortex ADHD",
-      "ADHD paralysis",
-      "task initiation ADHD",
-      "ADHD brain explained",
+      "ADHD tips",
+      "dopamine menu",
+      "ADHD productivity",
+      "ADHD motivation",
+      "how to start tasks ADHD",
+      "ADHD hacks",
+      "dopamine ADHD",
       "ADHD education",
       "bloom focus",
+      "ADHD brain",
+      "task initiation ADHD",
+      "ADHD short"
+    ],
+    "funnel": "follow",
+    "shortType": "practical",
+    "status": "pending",
+    "videoUrl": "https://raw.githubusercontent.com/dianahohol97-max/content/main/output/shorts/week_27/SH_W27_02.mp4",
+    "postedAt": null
+  },
+  {
+    "id": "SH_W27_03",
+    "week": 27,
+    "voiceover": "You were called 'so mature for your age' — but really, you were just exhausted from holding yourself together. Late-diagnosed ADHD often looks like a kid who tried twice as hard just to seem normal. You memorized social scripts. You hid your messy notes. You apologized constantly. Not because you were bad — but because your brain needed tools nobody gave you. The masking worked well enough to fool everyone, including you. And now as an adult, you're finally getting answers. That 'laziness' was never laziness. Sound familiar? Follow for daily ADHD content.",
+    "scenes": [
+      {
+        "tag": "sparks",
+        "imagePrompt": "Elegant minimal line art illustration: confident continuous ink lines in deep violet on warm cream paper, with soft washes of lavender, blush pink and sage green as sparse color accents. Generous negative space, sophisticated, calm, adult wellness aesthetic. No people, no faces, no text, no letters. Vertical 9:16 composition. Abstract swirling sparks and soft energy bursts contained inside an invisible boundary, suggesting restrained inner chaos trying to stay neat and controlled.",
+        "caption": ""
+      },
+      {
+        "tag": "journal",
+        "imagePrompt": "Elegant minimal line art illustration: confident continuous ink lines in deep violet on warm cream paper, with soft washes of lavender, blush pink and sage green as sparse color accents. Generous negative space, sophisticated, calm, adult wellness aesthetic. No people, no faces, no text, no letters. Vertical 9:16 composition. A journal open on a desk with soft eraser smudges and correction marks, suggesting careful repeated editing and hiding imperfection.",
+        "caption": ""
+      },
+      {
+        "tag": "books",
+        "imagePrompt": "Elegant minimal line art illustration: confident continuous ink lines in deep violet on warm cream paper, with soft washes of lavender, blush pink and sage green as sparse color accents. Generous negative space, sophisticated, calm, adult wellness aesthetic. No people, no faces, no text, no letters. Vertical 9:16 composition. A neat stack of books arranged very precisely on a shelf, with a small hidden messy pile tucked behind them, suggesting effort to appear organized.",
+        "caption": ""
+      },
+      {
+        "tag": "brain",
+        "imagePrompt": "Elegant minimal line art illustration: confident continuous ink lines in deep violet on warm cream paper, with soft washes of lavender, blush pink and sage green as sparse color accents. Generous negative space, sophisticated, calm, adult wellness aesthetic. No people, no faces, no text, no letters. Vertical 9:16 composition. An abstract brain made of soft clouds and gentle sparks, with a thin delicate shell around it like a fragile mask or eggshell, suggesting hidden inner complexity.",
+        "caption": ""
+      },
+      {
+        "tag": "clock",
+        "imagePrompt": "Elegant minimal line art illustration: confident continuous ink lines in deep violet on warm cream paper, with soft washes of lavender, blush pink and sage green as sparse color accents. Generous negative space, sophisticated, calm, adult wellness aesthetic. No people, no faces, no text, no letters. Vertical 9:16 composition. A soft surreal melting clock gently dissolving at the edges, suggesting a lifetime of quietly struggling with time that nobody noticed.",
+        "caption": ""
+      },
+      {
+        "tag": "window_light",
+        "imagePrompt": "Elegant minimal line art illustration: confident continuous ink lines in deep violet on warm cream paper, with soft washes of lavender, blush pink and sage green as sparse color accents. Generous negative space, sophisticated, calm, adult wellness aesthetic. No people, no faces, no text, no letters. Vertical 9:16 composition. A window with soft morning light streaming in and a warm mug on the sill, suggesting a quiet moment of gentle self-recognition and dawning clarity.",
+        "caption": ""
+      },
+      {
+        "tag": "plant",
+        "imagePrompt": "Elegant minimal line art illustration: confident continuous ink lines in deep violet on warm cream paper, with soft washes of lavender, blush pink and sage green as sparse color accents. Generous negative space, sophisticated, calm, adult wellness aesthetic. No people, no faces, no text, no letters. Vertical 9:16 composition. A small potted plant beginning to bloom, one gentle flower opening, suggesting late but real growth and finally receiving understanding and care.",
+        "caption": ""
+      }
+    ],
+    "title": "Signs You Grew Up Masking ADHD Without Knowing #Shorts",
+    "description": "If you were always called 'mature' or 'too hard on yourself,' you might have been masking undiagnosed ADHD your whole life. Late-diagnosed ADHD is incredibly common, especially in people who learned to hide their struggles early. This is what it actually looks like — and why it was never a character flaw. Follow for daily ADHD content.",
+    "tags": [
+      "late diagnosed ADHD",
+      "ADHD masking",
+      "undiagnosed ADHD",
+      "ADHD in adults",
+      "ADHD signs",
+      "ADHD awareness",
+      "neurodivergent",
+      "ADHD explained",
+      "ADHD education",
+      "adult ADHD symptoms",
+      "ADHD validation",
+      "bloom focus"
+    ],
+    "funnel": "follow",
+    "shortType": "painpoint",
+    "status": "pending",
+    "videoUrl": "https://raw.githubusercontent.com/dianahohol97-max/content/main/output/shorts/week_27/SH_W27_03.mp4",
+    "postedAt": null
+  },
+  {
+    "id": "SH_W27_04",
+    "week": 27,
+    "voiceover": "You become a different person depending on who you're with. That's Rejection Masking — changing yourself so no one has a reason to leave. It's exhausting, and it's incredibly common in ADHD. Here's what it looks like: You laugh at jokes you hate because disagreeing feels too risky. You shrink your opinions down to nothing in group chats. You say yes to plans you're dreading just to keep the peace. And alone, you can't even remember who you actually are anymore. If this is you, you're not fake — you're just wired to feel rejection really, really hard. Follow for daily ADHD content.",
+    "scenes": [
+      {
+        "tag": "sparks",
+        "imagePrompt": "Elegant minimal line art illustration: confident continuous ink lines in deep violet on warm cream paper, with soft washes of lavender, blush pink and sage green as sparse color accents. Generous negative space, sophisticated, calm, adult wellness aesthetic. No people, no faces, no text, no letters. Vertical 9:16 composition. Two soft abstract silhouette-free masks side by side, one bright and vivid in blush pink, one muted and faded in grey, surrounded by tiny delicate sparks and dots suggesting hidden energy underneath.",
+        "caption": ""
+      },
+      {
+        "tag": "brain",
+        "imagePrompt": "Elegant minimal line art illustration: confident continuous ink lines in deep violet on warm cream paper, with soft washes of lavender, blush pink and sage green as sparse color accents. Generous negative space, sophisticated, calm, adult wellness aesthetic. No people, no faces, no text, no letters. Vertical 9:16 composition. An abstract brain made of soft lavender clouds and gentle sparks, with a small crack running through it that glows blush pink at the edges, suggesting hidden inner pressure.",
+        "caption": ""
+      },
+      {
+        "tag": "phone",
+        "imagePrompt": "Elegant minimal line art illustration: confident continuous ink lines in deep violet on warm cream paper, with soft washes of lavender, blush pink and sage green as sparse color accents. Generous negative space, sophisticated, calm, adult wellness aesthetic. No people, no faces, no text, no letters. Vertical 9:16 composition. A phone lying on a cream surface with a soft chat bubble floating above it, the bubble filled with tiny ellipsis dots and a small faded heart, surrounded by gentle watercolor swirls suggesting anxiety.",
+        "caption": ""
+      },
+      {
+        "tag": "journal",
+        "imagePrompt": "Elegant minimal line art illustration: confident continuous ink lines in deep violet on warm cream paper, with soft washes of lavender, blush pink and sage green as sparse color accents. Generous negative space, sophisticated, calm, adult wellness aesthetic. No people, no faces, no text, no letters. Vertical 9:16 composition. A closed journal on a soft cream surface with a small question mark doodled on its cover in lavender ink, surrounded by scattered eraser dust and a single wilting flower, suggesting self-doubt and erasure.",
+        "caption": ""
+      },
+      {
+        "tag": "cozy_room",
+        "imagePrompt": "Elegant minimal line art illustration: confident continuous ink lines in deep violet on warm cream paper, with soft washes of lavender, blush pink and sage green as sparse color accents. Generous negative space, sophisticated, calm, adult wellness aesthetic. No people, no faces, no text, no letters. Vertical 9:16 composition. A cozy small room at dusk with a single lamp glowing amber, a soft blanket draped over a chair, and a tiny potted plant on the windowsill, the scene feeling quietly lonely but safe and warm.",
+        "caption": ""
+      },
+      {
+        "tag": "window_light",
+        "imagePrompt": "Elegant minimal line art illustration: confident continuous ink lines in deep violet on warm cream paper, with soft washes of lavender, blush pink and sage green as sparse color accents. Generous negative space, sophisticated, calm, adult wellness aesthetic. No people, no faces, no text, no letters. Vertical 9:16 composition. A window with soft morning light streaming through sheer curtains, a small mug of tea on the sill with gentle steam rising, and a single tiny seedling in a pot beside it, suggesting quiet self-rediscovery and gentle hope.",
+        "caption": ""
+      }
+    ],
+    "title": "Rejection Masking: The ADHD Pattern You Hide #Shorts",
+    "description": "Rejection Masking is a common ADHD pattern where you change who you are to avoid being disliked or rejected. It's linked to Rejection Sensitive Dysphoria and can make you feel like you've lost yourself. If this sounds like you, know that it's not a character flaw — it's how your ADHD brain is wired to protect you.",
+    "tags": [
+      "ADHD",
+      "rejection masking",
+      "rejection sensitive dysphoria",
+      "RSD ADHD",
+      "ADHD patterns",
+      "ADHD explained",
+      "ADHD awareness",
+      "neurodivergent",
       "ADHD tips",
-      "ADHD shorts"
+      "ADHD in adults",
+      "ADHD brain",
+      "bloom focus"
+    ],
+    "funnel": "follow",
+    "shortType": "pattern",
+    "status": "pending",
+    "videoUrl": "https://raw.githubusercontent.com/dianahohol97-max/content/main/output/shorts/week_27/SH_W27_04.mp4",
+    "postedAt": null
+  },
+  {
+    "id": "SH_W27_05",
+    "week": 27,
+    "question": "Which inbox makes you sweat most?",
+    "options": [
+      {
+        "label": "The avalanche",
+        "imagePrompt": "Elegant minimal line art illustration: confident continuous ink lines in deep violet on warm cream paper, with soft washes of lavender, blush pink and sage green as sparse color accents. Generous negative space, sophisticated, calm, adult wellness aesthetic. No people, no faces, no text, no letters. Vertical 9:16 composition. A cozy illustrated email inbox icon overflowing with hundreds of stacked envelope shapes spilling out like an avalanche, envelopes tumbling in all directions, chaotic but softly drawn.",
+        "result": "Your brain treats every unread message as equal-priority chaos - classic ADHD overwhelm flooding."
+      },
+      {
+        "label": "The 1 email",
+        "imagePrompt": "Elegant minimal line art illustration: confident continuous ink lines in deep violet on warm cream paper, with soft washes of lavender, blush pink and sage green as sparse color accents. Generous negative space, sophisticated, calm, adult wellness aesthetic. No people, no faces, no text, no letters. Vertical 9:16 composition. A single solitary envelope sitting alone in a wide open empty inbox tray, spotlight-like glow around it, everything else perfectly bare and tidy around that one envelope.",
+        "result": "One unresolved thing loops in your brain on repeat - ADHD working memory holding it hostage."
+      },
+      {
+        "label": "The read pile",
+        "imagePrompt": "Elegant minimal line art illustration: confident continuous ink lines in deep violet on warm cream paper, with soft washes of lavender, blush pink and sage green as sparse color accents. Generous negative space, sophisticated, calm, adult wellness aesthetic. No people, no faces, no text, no letters. Vertical 9:16 composition. A neat stack of open envelopes all marked as read, arranged in a tidy pile, but a small separate corner pile of envelopes is slightly crumpled and ignored, two distinct zones visible.",
+        "result": "You start strong then stall - ADHD task-initiation wins the open, loses the follow-through."
+      },
+      {
+        "label": "All of them",
+        "imagePrompt": "Elegant minimal line art illustration: confident continuous ink lines in deep violet on warm cream paper, with soft washes of lavender, blush pink and sage green as sparse color accents. Generous negative space, sophisticated, calm, adult wellness aesthetic. No people, no faces, no text, no letters. Vertical 9:16 composition. Four small inbox trays arranged in a cozy cluster, each one showing a different level of fullness - one empty, one overflowing, one with a single envelope, one half-sorted - all sitting together warmly.",
+        "result": "Context-switching between inboxes drains you equally - your ADHD brain pays a tax every single time."
+      }
+    ],
+    "introVoiceover": "Four inboxes. Pick the one that makes your stomach drop the most. Your choice says something real about how your ADHD brain handles pressure - drop it in the comments.",
+    "outroVoiceover": "No wrong answer here - your brain is just wired differently. Follow for daily ADHD content.",
+    "title": "Which inbox stresses you out most? (ADHD test) #Shorts",
+    "description": "Pick the inbox that makes you sweat - then watch as we reveal exactly what your choice says about your ADHD brain, one option at a time. The answers are all in the video.\nFollow for daily ADHD content.",
+    "tags": [
+      "ADHD",
+      "ADHDtest",
+      "ADHDtips",
+      "neurodivergent",
+      "ADHDbrain",
+      "focustips",
+      "bloomfocus",
+      "ADHDawareness",
+      "workingmemory",
+      "dopamine",
+      "ADHDlife",
+      "mentalhealth"
+    ],
+    "funnel": "follow",
+    "shortType": "quiztest",
+    "status": "pending",
+    "videoUrl": "https://raw.githubusercontent.com/dianahohol97-max/content/main/output/shorts/week_27/SH_W27_05.mp4",
+    "postedAt": null
+  },
+  {
+    "id": "SH_W27_06",
+    "week": 27,
+    "voiceover": "You felt something five minutes ago and you're still not over it. That's not being dramatic. That's ADHD. The ADHD brain has a weak emotional brake. The prefrontal cortex, the part that says 'calm down, it's fine,' is under-connected. So when a feeling fires, it fires full volume. Rejection, frustration, embarrassment, even excitement, they all arrive like emergencies. Scientists call this emotional dysregulation, and it's one of the most exhausting parts of ADHD that almost nobody talks about. Here's what helps. First, name it fast. Saying 'this is dysregulation, not reality' interrupts the spiral before it locks in. Second, change your body state before your thoughts. Cold water on your wrists, a few slow exhales, even standing up. Your nervous system responds to physical input faster than logic. Third, give yourself a ten-minute window before you react to anything that stings. The feeling is real. The emergency usually isn't. Follow for daily ADHD content.",
+    "scenes": [
+      {
+        "tag": "sparks",
+        "imagePrompt": "Elegant minimal line art illustration: confident continuous ink lines in deep violet on warm cream paper, with soft washes of lavender, blush pink and sage green as sparse color accents. Generous negative space, sophisticated, calm, adult wellness aesthetic. No people, no faces, no text, no letters. Vertical 9:16 composition. A cluster of soft electric sparks and glowing orbs radiating outward from a warm center, suggesting an overwhelming burst of energy.",
+        "caption": ""
+      },
+      {
+        "tag": "brain",
+        "imagePrompt": "Elegant minimal line art illustration: confident continuous ink lines in deep violet on warm cream paper, with soft washes of lavender, blush pink and sage green as sparse color accents. Generous negative space, sophisticated, calm, adult wellness aesthetic. No people, no faces, no text, no letters. Vertical 9:16 composition. An abstract brain made of soft clouds and gentle sparks, with one side lit up brightly and the other side dim and quiet, suggesting imbalance.",
+        "caption": ""
+      },
+      {
+        "tag": "sparks",
+        "imagePrompt": "Elegant minimal line art illustration: confident continuous ink lines in deep violet on warm cream paper, with soft washes of lavender, blush pink and sage green as sparse color accents. Generous negative space, sophisticated, calm, adult wellness aesthetic. No people, no faces, no text, no letters. Vertical 9:16 composition. A large soft wave of blush pink and lavender energy radiating outward in concentric rings, like an emotional shockwave filling the frame.",
+        "caption": ""
+      },
+      {
+        "tag": "brain",
+        "imagePrompt": "Elegant minimal line art illustration: confident continuous ink lines in deep violet on warm cream paper, with soft washes of lavender, blush pink and sage green as sparse color accents. Generous negative space, sophisticated, calm, adult wellness aesthetic. No people, no faces, no text, no letters. Vertical 9:16 composition. An abstract brain of soft clouds with a small glowing bridge between two sections that appears fragile and faintly connected, surrounded by gentle pastel mist.",
+        "caption": ""
+      },
+      {
+        "tag": "cozy_room",
+        "imagePrompt": "Elegant minimal line art illustration: confident continuous ink lines in deep violet on warm cream paper, with soft washes of lavender, blush pink and sage green as sparse color accents. Generous negative space, sophisticated, calm, adult wellness aesthetic. No people, no faces, no text, no letters. Vertical 9:16 composition. A gently messy cozy room with a soft rumpled blanket on a chair, a lamp glowing warmly, and scattered soft objects suggesting a moment of emotional overwhelm settling.",
+        "caption": ""
+      },
+      {
+        "tag": "journal",
+        "imagePrompt": "Elegant minimal line art illustration: confident continuous ink lines in deep violet on warm cream paper, with soft washes of lavender, blush pink and sage green as sparse color accents. Generous negative space, sophisticated, calm, adult wellness aesthetic. No people, no faces, no text, no letters. Vertical 9:16 composition. An open journal with a soft pencil resting on it, surrounded by a small halo of calm pastel light, suggesting the act of naming and writing down feelings.",
+        "caption": ""
+      },
+      {
+        "tag": "window_light",
+        "imagePrompt": "Elegant minimal line art illustration: confident continuous ink lines in deep violet on warm cream paper, with soft washes of lavender, blush pink and sage green as sparse color accents. Generous negative space, sophisticated, calm, adult wellness aesthetic. No people, no faces, no text, no letters. Vertical 9:16 composition. A window with soft morning light streaming in and a small glass of water on the sill catching the light, suggesting a calming physical reset moment.",
+        "caption": ""
+      },
+      {
+        "tag": "clock",
+        "imagePrompt": "Elegant minimal line art illustration: confident continuous ink lines in deep violet on warm cream paper, with soft washes of lavender, blush pink and sage green as sparse color accents. Generous negative space, sophisticated, calm, adult wellness aesthetic. No people, no faces, no text, no letters. Vertical 9:16 composition. A soft surreal melting clock with gentle rounded edges dissolving at the bottom, surrounded by calm lavender mist, suggesting a slow ten-minute pause.",
+        "caption": ""
+      },
+      {
+        "tag": "plant",
+        "imagePrompt": "Elegant minimal line art illustration: confident continuous ink lines in deep violet on warm cream paper, with soft washes of lavender, blush pink and sage green as sparse color accents. Generous negative space, sophisticated, calm, adult wellness aesthetic. No people, no faces, no text, no letters. Vertical 9:16 composition. A single small potted plant with soft sage green leaves sitting in warm lamplight, calm and still, suggesting emotional steadiness returning.",
+        "caption": ""
+      },
+      {
+        "tag": "cozy_room",
+        "imagePrompt": "Elegant minimal line art illustration: confident continuous ink lines in deep violet on warm cream paper, with soft washes of lavender, blush pink and sage green as sparse color accents. Generous negative space, sophisticated, calm, adult wellness aesthetic. No people, no faces, no text, no letters. Vertical 9:16 composition. A gently messy cozy room now settled and soft, lamp glowing, blanket folded, a small plant on the windowsill, suggesting calm after emotional storm.",
+        "caption": ""
+      }
+    ],
+    "title": "Why ADHD Feelings Hit So Much Harder #Shorts",
+    "description": "ADHD emotional dysregulation means your brain's emotional brake is weaker than most, making every feeling arrive at full volume. This isn't being dramatic, it's neuroscience, and there are real strategies that help. Learn why ADHD emotions feel so intense and what you can actually do about it.\nFollow for daily ADHD content.",
+    "tags": [
+      "ADHD emotional dysregulation",
+      "ADHD emotions",
+      "ADHD feelings",
+      "emotional dysregulation",
+      "ADHD brain science",
+      "ADHD tips",
+      "ADHD education",
+      "rejection sensitive dysphoria",
+      "ADHD mental health",
+      "neurodivergent",
+      "ADHD explained",
+      "bloom focus"
     ],
     "funnel": "follow",
     "shortType": "flagship",
     "status": "pending",
-    "videoUrl": "https://raw.githubusercontent.com/dianahohol97-max/content/main/output/shorts/week_30/SH_W30_06.mp4",
-    "postedAt": null,
-    "coverUrl": "https://raw.githubusercontent.com/dianahohol97-max/content/main/output/shorts/week_30/SH_W30_06_cover.jpg"
+    "videoUrl": "https://raw.githubusercontent.com/dianahohol97-max/content/main/output/shorts/week_27/SH_W27_06.mp4",
+    "postedAt": null
+  },
+  {
+    "id": "SH_W27_13",
+    "week": 27,
+    "voiceover": "You see the task. You know it takes two minutes. You still don't do it. That's ADHD task paralysis. Here's the fix. The two-minute rule: if something takes under two minutes, do it the second you think of it. Don't schedule it, don't add it to a list. Do it now. Because for the ADHD brain, delayed tasks become invisible tasks. That two-minute window is the only moment your brain believes it's real. Use it. Follow for daily ADHD content.",
+    "scenes": [
+      {
+        "tag": "clock",
+        "imagePrompt": "Moody atmospheric editorial illustration, cinematic low light, deep shadows and restrained muted colour, sophisticated grown-up mood, subtle film-grain texture. Palette: deep violet, charcoal, dusty rose, hints of cream. NO people, no figures, no faces, no text, no letters. Keep a clear darker open area in the lower third for caption legibility. NOT cute, NOT cartoon, NOT pastel-bright, NOT childish. Vertical 9:16 composition. A soft surreal melting clock surrounded by gentle floating shapes, conveying the feeling of time slipping away.",
+        "caption": ""
+      },
+      {
+        "tag": "desk_messy",
+        "imagePrompt": "Moody atmospheric editorial illustration, cinematic low light, deep shadows and restrained muted colour, sophisticated grown-up mood, subtle film-grain texture. Palette: deep violet, charcoal, dusty rose, hints of cream. NO people, no figures, no faces, no text, no letters. Keep a clear darker open area in the lower third for caption legibility. NOT cute, NOT cartoon, NOT pastel-bright, NOT childish. Vertical 9:16 composition. A gently messy cozy desk with scattered papers, a coffee cup, and a notebook left open, small sticky notes curling at the edges.",
+        "caption": ""
+      },
+      {
+        "tag": "brain",
+        "imagePrompt": "Moody atmospheric editorial illustration, cinematic low light, deep shadows and restrained muted colour, sophisticated grown-up mood, subtle film-grain texture. Palette: deep violet, charcoal, dusty rose, hints of cream. NO people, no figures, no faces, no text, no letters. Keep a clear darker open area in the lower third for caption legibility. NOT cute, NOT cartoon, NOT pastel-bright, NOT childish. Vertical 9:16 composition. An abstract brain made of soft clouds and gentle sparks, with small swirling loops suggesting scattered thoughts.",
+        "caption": ""
+      },
+      {
+        "tag": "clock",
+        "imagePrompt": "Moody atmospheric editorial illustration, cinematic low light, deep shadows and restrained muted colour, sophisticated grown-up mood, subtle film-grain texture. Palette: deep violet, charcoal, dusty rose, hints of cream. NO people, no figures, no faces, no text, no letters. Keep a clear darker open area in the lower third for caption legibility. NOT cute, NOT cartoon, NOT pastel-bright, NOT childish. Vertical 9:16 composition. A soft surreal melting clock surrounded by gentle floating shapes, conveying the feeling of time slipping away.",
+        "caption": ""
+      },
+      {
+        "tag": "journal",
+        "imagePrompt": "Moody atmospheric editorial illustration, cinematic low light, deep shadows and restrained muted colour, sophisticated grown-up mood, subtle film-grain texture. Palette: deep violet, charcoal, dusty rose, hints of cream. NO people, no figures, no faces, no text, no letters. Keep a clear darker open area in the lower third for caption legibility. NOT cute, NOT cartoon, NOT pastel-bright, NOT childish. Vertical 9:16 composition. A journal lying open on a flat surface with a pencil resting across it, soft light falling gently across the pages.",
+        "caption": ""
+      },
+      {
+        "tag": "sparks",
+        "imagePrompt": "Moody atmospheric editorial illustration, cinematic low light, deep shadows and restrained muted colour, sophisticated grown-up mood, subtle film-grain texture. Palette: deep violet, charcoal, dusty rose, hints of cream. NO people, no figures, no faces, no text, no letters. Keep a clear darker open area in the lower third for caption legibility. NOT cute, NOT cartoon, NOT pastel-bright, NOT childish. Vertical 9:16 composition. A burst of soft sparks and small glowing dots radiating outward from a central point, suggesting a moment of activation and energy.",
+        "caption": ""
+      },
+      {
+        "tag": "desk_tidy",
+        "imagePrompt": "Moody atmospheric editorial illustration, cinematic low light, deep shadows and restrained muted colour, sophisticated grown-up mood, subtle film-grain texture. Palette: deep violet, charcoal, dusty rose, hints of cream. NO people, no figures, no faces, no text, no letters. Keep a clear darker open area in the lower third for caption legibility. NOT cute, NOT cartoon, NOT pastel-bright, NOT childish. Vertical 9:16 composition. A tidy desk with a coffee cup and a closed notebook neatly placed, a small plant beside them, soft warm light from the side.",
+        "caption": ""
+      }
+    ],
+    "title": "The 2-Minute Rule for ADHD Task Paralysis #Shorts",
+    "description": "If you have ADHD, task paralysis can make even tiny tasks feel impossible to start. The two-minute rule works with your brain chemistry, not against it, by closing the gap between thinking and doing. Small actions in the moment beat perfect plans you never start. Follow for daily ADHD content.",
+    "tags": [
+      "ADHD",
+      "task paralysis",
+      "ADHD tips",
+      "two minute rule",
+      "ADHD productivity",
+      "ADHD education",
+      "executive function",
+      "ADHD brain",
+      "procrastination ADHD",
+      "neurodivergent",
+      "ADHD help",
+      "focus tips"
+    ],
+    "funnel": "follow",
+    "shortType": "educational",
+    "status": "pending",
+    "videoUrl": "https://raw.githubusercontent.com/dianahohol97-max/content/main/output/shorts/week_27/SH_W27_13.mp4",
+    "postedAt": null
+  },
+  {
+    "id": "SH_W27_15",
+    "week": 27,
+    "voiceover": "You've tried every routine. Every app, every planner, every fresh start Monday. And by Wednesday it's gone. Here's the truth: ADHD brains don't run on schedules. They run on dopamine. A routine that works for you has to feel rewarding, not just logical. That means anchoring habits to things you already do, keeping it flexible enough to survive a bad day, and building in small wins your brain can actually feel. Not perfect. Just consistent enough. Sound familiar every single day? Follow for daily ADHD content.",
+    "scenes": [
+      {
+        "tag": "calendar",
+        "imagePrompt": "Elegant minimal line art illustration: confident continuous ink lines in deep violet on warm cream paper, with soft washes of lavender, blush pink and sage green as sparse color accents. Generous negative space, sophisticated, calm, adult wellness aesthetic. No people, no faces, no text, no letters. Vertical 9:16 composition. A soft pastel calendar with gentle scribble marks and little doodle stars, pages slightly crumpled at the edges, resting on a cream surface.",
+        "caption": ""
+      },
+      {
+        "tag": "brain",
+        "imagePrompt": "Elegant minimal line art illustration: confident continuous ink lines in deep violet on warm cream paper, with soft washes of lavender, blush pink and sage green as sparse color accents. Generous negative space, sophisticated, calm, adult wellness aesthetic. No people, no faces, no text, no letters. Vertical 9:16 composition. An abstract brain made of soft clouds and gentle sparks, floating in a lavender haze with small glowing dots drifting around it.",
+        "caption": ""
+      },
+      {
+        "tag": "sparks",
+        "imagePrompt": "Elegant minimal line art illustration: confident continuous ink lines in deep violet on warm cream paper, with soft washes of lavender, blush pink and sage green as sparse color accents. Generous negative space, sophisticated, calm, adult wellness aesthetic. No people, no faces, no text, no letters. Vertical 9:16 composition. Small soft golden sparks and tiny stars scattered across a cream background, with gentle radiating warmth suggesting reward and energy.",
+        "caption": ""
+      },
+      {
+        "tag": "coffee",
+        "imagePrompt": "Elegant minimal line art illustration: confident continuous ink lines in deep violet on warm cream paper, with soft washes of lavender, blush pink and sage green as sparse color accents. Generous negative space, sophisticated, calm, adult wellness aesthetic. No people, no faces, no text, no letters. Vertical 9:16 composition. A cozy ceramic mug of coffee with soft steam curling upward, sitting beside a small open journal on a warm cream tabletop.",
+        "caption": ""
+      },
+      {
+        "tag": "path",
+        "imagePrompt": "Elegant minimal line art illustration: confident continuous ink lines in deep violet on warm cream paper, with soft washes of lavender, blush pink and sage green as sparse color accents. Generous negative space, sophisticated, calm, adult wellness aesthetic. No people, no faces, no text, no letters. Vertical 9:16 composition. A gentle winding soft pastel path through small rounded hills, with a few tiny stars marking points along the way, suggesting small steps forward.",
+        "caption": ""
+      },
+      {
+        "tag": "plant",
+        "imagePrompt": "Elegant minimal line art illustration: confident continuous ink lines in deep violet on warm cream paper, with soft washes of lavender, blush pink and sage green as sparse color accents. Generous negative space, sophisticated, calm, adult wellness aesthetic. No people, no faces, no text, no letters. Vertical 9:16 composition. A small sage green potted plant with soft rounded leaves, sitting in a blush pink pot on a warm windowsill with gentle morning light.",
+        "caption": ""
+      },
+      {
+        "tag": "cozy_room",
+        "imagePrompt": "Elegant minimal line art illustration: confident continuous ink lines in deep violet on warm cream paper, with soft washes of lavender, blush pink and sage green as sparse color accents. Generous negative space, sophisticated, calm, adult wellness aesthetic. No people, no faces, no text, no letters. Vertical 9:16 composition. A gently cozy room with a soft lamp glowing, a small plant, an open journal on a desk, and a warm inviting atmosphere of calm and gentle routine.",
+        "caption": ""
+      }
+    ],
+    "title": "Why Your ADHD Routine Always Falls Apart #Shorts",
+    "description": "If every routine you build collapses by Wednesday, it is not a willpower problem. ADHD brains need dopamine-driven habits, not rigid schedules. Here is how to build a routine that actually survives real life with ADHD. Follow for daily ADHD content.",
+    "tags": [
+      "ADHD routine",
+      "ADHD tips",
+      "ADHD real life",
+      "building habits ADHD",
+      "ADHD dopamine",
+      "ADHD productivity",
+      "ADHD daily routine",
+      "ADHD struggles",
+      "neurodivergent tips",
+      "ADHD advice",
+      "ADHD education",
+      "ADHD shorts"
+    ],
+    "funnel": "follow",
+    "shortType": "painpoint",
+    "status": "pending",
+    "videoUrl": "https://raw.githubusercontent.com/dianahohol97-max/content/main/output/shorts/week_27/SH_W27_15.mp4",
+    "postedAt": null
   }
 ]
