@@ -246,7 +246,7 @@ For EACH test short return:
 - question: the on-screen question (max 8 words), shown at the top.
 - options: an array of EXACTLY 4 options, each:
     - label: short label shown on the tile (max 3 words), e.g. "The avalanche".
-    - imagePrompt: ALWAYS begin with exactly this style: "${ART_STYLE}" Then add one simple distinct line-art scene for this tile. All 4 in the SAME elegant line-art style, just different scenes.
+    - imagePrompt: ALWAYS begin with exactly this style: "${ART_STYLE}" Then add ONE distinct cinematic object/scene for this tile (no people). All 4 tiles share the SAME brandnoir style but show 4 CLEARLY DIFFERENT objects/settings so the grid reads as four real choices.
     - result: ONE short sentence (max 16 words) revealing what picking this option says about the viewer's ADHD brain. Playful, validating, accurate (not fake-clinical). e.g. "You thrive in visible chaos - out of sight really is out of mind for you."
 - introVoiceover: short narration (~20-30 words) for the GRID phase: read the question, tease "your pick says something about how your ADHD brain works - let's see", invite a comment.
 - outroVoiceover: short closing line (~10-15 words) after the reveals, ending with: Follow for daily ADHD content.
@@ -278,7 +278,7 @@ async function generateShorts(weekNum, count) {
   const nPain = Math.max(1, Math.round(count * 2 / 18));
   const nPat = Math.max(1, Math.round(count * 3 / 18));
   const nFlag = Math.max(1, Math.round(count * 4 / 18));
-  const nTest = 0;  // quiztest format retired (2x2 grid unreliable in generation)
+  const nTest = count >= 6 ? 1 : 0;  // ~1 quiz-test per full batch (4 tiles composited from separate images)
 
   // rotate topics by week
   const startIdx = ((weekNum - 1) * count) % TOPICS.length;
@@ -289,7 +289,7 @@ async function generateShorts(weekNum, count) {
   const patStart = ((weekNum - 1) * nPat) % PATTERN_TOPICS.length;
   const patTopics = Array.from({ length: nPat }, (_, i) => PATTERN_TOPICS[(patStart + i) % PATTERN_TOPICS.length]);
 
-  console.log(`  mix → ${nEdu} edu, ${nPrac} practical, ${nPain} pain-point, ${nPat} pattern, ${nFlag} flagship`);
+  console.log(`  mix → ${nEdu} edu, ${nPrac} practical, ${nPain} pain-point, ${nPat} pattern, ${nTest} quiz, ${nFlag} flagship`);
 
   const all = [];
   console.log("  ✏️  educational...");
@@ -300,6 +300,10 @@ async function generateShorts(weekNum, count) {
   all.push(...await generateVoicedShorts(topicsFor(nPain, nEdu), "painpoint"));
   console.log("  🧠 pattern...");
   all.push(...await generateVoicedShorts(patTopics, "pattern"));
+  if (nTest > 0) {
+    console.log("  🧩 quiz-test...");
+    all.push(...await generateQuizTestShorts(nTest));
+  }
   console.log("  ⭐ flagship...");
   all.push(...await generateVoicedShorts(flagTopics, "flagship"));
 
