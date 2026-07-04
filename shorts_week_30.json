@@ -55,7 +55,8 @@
     "shortType": "educational",
     "status": "pending",
     "videoUrl": "https://raw.githubusercontent.com/dianahohol97-max/content/main/output/shorts/week_30/SH_W30_01.mp4",
-    "postedAt": null
+    "postedAt": null,
+    "coverUrl": "https://raw.githubusercontent.com/dianahohol97-max/content/main/output/shorts/week_30/SH_W30_01_cover.jpg"
   },
   {
     "id": "SH_W30_02",
@@ -113,7 +114,8 @@
     "shortType": "practical",
     "status": "pending",
     "videoUrl": "https://raw.githubusercontent.com/dianahohol97-max/content/main/output/shorts/week_30/SH_W30_02.mp4",
-    "postedAt": null
+    "postedAt": null,
+    "coverUrl": "https://raw.githubusercontent.com/dianahohol97-max/content/main/output/shorts/week_30/SH_W30_02_cover.jpg"
   },
   {
     "id": "SH_W30_03",
@@ -171,7 +173,8 @@
     "shortType": "painpoint",
     "status": "pending",
     "videoUrl": "https://raw.githubusercontent.com/dianahohol97-max/content/main/output/shorts/week_30/SH_W30_03.mp4",
-    "postedAt": null
+    "postedAt": null,
+    "coverUrl": "https://raw.githubusercontent.com/dianahohol97-max/content/main/output/shorts/week_30/SH_W30_03_cover.jpg"
   },
   {
     "id": "SH_W30_04",
@@ -229,7 +232,8 @@
     "shortType": "pattern",
     "status": "pending",
     "videoUrl": "https://raw.githubusercontent.com/dianahohol97-max/content/main/output/shorts/week_30/SH_W30_04.mp4",
-    "postedAt": null
+    "postedAt": null,
+    "coverUrl": "https://raw.githubusercontent.com/dianahohol97-max/content/main/output/shorts/week_30/SH_W30_04_cover.jpg"
   },
   {
     "id": "SH_W30_05",
@@ -279,7 +283,8 @@
     "shortType": "quiztest",
     "status": "pending",
     "videoUrl": "https://raw.githubusercontent.com/dianahohol97-max/content/main/output/shorts/week_30/SH_W30_05.mp4",
-    "postedAt": null
+    "postedAt": null,
+    "coverUrl": "https://raw.githubusercontent.com/dianahohol97-max/content/main/output/shorts/week_30/SH_W30_05_cover.jpg"
   },
   {
     "id": "SH_W30_06",
@@ -352,6 +357,7 @@
     "shortType": "flagship",
     "status": "pending",
     "videoUrl": "https://raw.githubusercontent.com/dianahohol97-max/content/main/output/shorts/week_30/SH_W30_06.mp4",
-    "postedAt": null
+    "postedAt": null,
+    "coverUrl": "https://raw.githubusercontent.com/dianahohol97-max/content/main/output/shorts/week_30/SH_W30_06_cover.jpg"
   }
 ]

@@ -618,6 +618,12 @@
     "url": "https://raw.githubusercontent.com/dianahohol97-max/content/main/output/library/vertical/v5_bed_3.png"
   },
   {
+    "id": "vertical_v5_bed_4.png",
+    "aspect": "vertical",
+    "filename": "v5_bed_4.png",
+    "url": "https://raw.githubusercontent.com/dianahohol97-max/content/main/output/library/vertical/v5_bed_4.png"
+  },
+  {
     "id": "vertical_v5_books_1.png",
     "aspect": "vertical",
     "filename": "v5_books_1.png",
@@ -774,6 +780,12 @@
     "url": "https://raw.githubusercontent.com/dianahohol97-max/content/main/output/library/vertical/v5_desk_empty_2.png"
   },
   {
+    "id": "vertical_v5_desk_empty_3.png",
+    "aspect": "vertical",
+    "filename": "v5_desk_empty_3.png",
+    "url": "https://raw.githubusercontent.com/dianahohol97-max/content/main/output/library/vertical/v5_desk_empty_3.png"
+  },
+  {
     "id": "vertical_v5_desk_messy_1.png",
     "aspect": "vertical",
     "filename": "v5_desk_messy_1.png",
@@ -832,6 +844,12 @@
     "aspect": "vertical",
     "filename": "v5_desk_tidy_5.png",
     "url": "https://raw.githubusercontent.com/dianahohol97-max/content/main/output/library/vertical/v5_desk_tidy_5.png"
+  },
+  {
+    "id": "vertical_v5_door_1.png",
+    "aspect": "vertical",
+    "filename": "v5_door_1.png",
+    "url": "https://raw.githubusercontent.com/dianahohol97-max/content/main/output/library/vertical/v5_door_1.png"
   },
   {
     "id": "vertical_v5_journal_1.png",
@@ -906,6 +924,12 @@
     "url": "https://raw.githubusercontent.com/dianahohol97-max/content/main/output/library/vertical/v5_path_2.png"
   },
   {
+    "id": "vertical_v5_path_3.png",
+    "aspect": "vertical",
+    "filename": "v5_path_3.png",
+    "url": "https://raw.githubusercontent.com/dianahohol97-max/content/main/output/library/vertical/v5_path_3.png"
+  },
+  {
     "id": "vertical_v5_phone_1.png",
     "aspect": "vertical",
     "filename": "v5_phone_1.png",
@@ -952,6 +976,12 @@
     "aspect": "vertical",
     "filename": "v5_plant_3.png",
     "url": "https://raw.githubusercontent.com/dianahohol97-max/content/main/output/library/vertical/v5_plant_3.png"
+  },
+  {
+    "id": "vertical_v5_plant_4.png",
+    "aspect": "vertical",
+    "filename": "v5_plant_4.png",
+    "url": "https://raw.githubusercontent.com/dianahohol97-max/content/main/output/library/vertical/v5_plant_4.png"
   },
   {
     "id": "vertical_v5_sparks_1.png",
