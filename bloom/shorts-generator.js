@@ -278,7 +278,7 @@ async function generateShorts(weekNum, count) {
   const nPain = Math.max(1, Math.round(count * 2 / 18));
   const nPat = Math.max(1, Math.round(count * 3 / 18));
   const nFlag = Math.max(1, Math.round(count * 4 / 18));
-  const nTest = Math.max(1, count - nEdu - nPrac - nPain - nPat - nFlag);
+  const nTest = 0;  // quiztest format retired (2x2 grid unreliable in generation)
 
   // rotate topics by week
   const startIdx = ((weekNum - 1) * count) % TOPICS.length;
@@ -289,7 +289,7 @@ async function generateShorts(weekNum, count) {
   const patStart = ((weekNum - 1) * nPat) % PATTERN_TOPICS.length;
   const patTopics = Array.from({ length: nPat }, (_, i) => PATTERN_TOPICS[(patStart + i) % PATTERN_TOPICS.length]);
 
-  console.log(`  mix → ${nEdu} edu, ${nPrac} practical, ${nPain} pain-point, ${nPat} pattern, ${nTest} quiz-test, ${nFlag} flagship`);
+  console.log(`  mix → ${nEdu} edu, ${nPrac} practical, ${nPain} pain-point, ${nPat} pattern, ${nFlag} flagship`);
 
   const all = [];
   console.log("  ✏️  educational...");
@@ -300,8 +300,6 @@ async function generateShorts(weekNum, count) {
   all.push(...await generateVoicedShorts(topicsFor(nPain, nEdu), "painpoint"));
   console.log("  🧠 pattern...");
   all.push(...await generateVoicedShorts(patTopics, "pattern"));
-  console.log("  🧩 quiz-test...");
-  all.push(...await generateQuizTestShorts(nTest));
   console.log("  ⭐ flagship...");
   all.push(...await generateVoicedShorts(flagTopics, "flagship"));
 
