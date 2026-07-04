@@ -394,7 +394,7 @@ function ensureSubFont(tmp) {
   return "fonts";
 }
 
-const SUB_STYLE = "Fontname=Poppins ExtraBold,Fontsize=16,Bold=1,PrimaryColour=&H00FFFFFF,OutlineColour=&H803D2C6E,BorderStyle=1,Outline=2,Shadow=0,Alignment=2,MarginV=60";
+const SUB_STYLE = "Fontname=Poppins ExtraBold,Fontsize=14,Bold=1,PrimaryColour=&H00FFFFFF,OutlineColour=&H803D2C6E,BorderStyle=1,Outline=2,Shadow=0,Alignment=2,MarginV=60";
 
 function audioChain(hasMusic) {
   return hasMusic
