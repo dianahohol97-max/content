@@ -90,10 +90,22 @@ const TOPICS = [
   "why your ADHD brain starts 5 things and finishes none",
   "the ADHD tax: what executive dysfunction really costs you",
   "'I'll do it in 5 minutes' — the ADHD time lie",
+  // — Permission & reframing (Diana, Jul 10) —
+  "why deadlines hit different for ADHD brains (urgency-based nervous system)",
+  "the guilt trap: why ADHD brains feel bad about their own biology",
+  "you don't need to be fixed: stop chasing neurotypical productivity",
+  "hyperfocus isn't a superpower if you can't aim it when you need it",
+  "ADHD rest guilt: why you can't relax even when you're exhausted",
+  "rejection sensitive dysphoria in relationships: what's actually happening",
+  "why bullet journals fail ADHD brains (and what works instead)",
 ];
 
 // Concrete how-to techniques for practical shorts
 const PRACTICAL_TOPICS = [
+  "how to manage email without daily panic: the ADHD 3-touch rule",
+  "hyperfocus at 2am, brain fog at 9am: map your energy instead of fighting it",
+  "the ADHD conversation to have with your boss (a script that works)",
+  "color-code your tasks: the visual system ADHD brains actually keep",
   "how to use a dopamine menu to start hard tasks",
   "body doubling: how to focus by working alongside someone",
   "the 2-minute rule to beat ADHD task paralysis",
