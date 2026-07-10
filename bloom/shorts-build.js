@@ -523,6 +523,14 @@ async function buildCover(short, outDir) {
   return coverPath;
 }
 
+
+async function bakeCoverIntoVideo(videoPath, coverPath) {
+  const tmp = videoPath + ".baked.mp4";
+  const cmd = `ffmpeg -y -loglevel error -loop 1 -framerate 30 -t 0.15 -i "${coverPath}" -f lavfi -t 0.15 -i anullsrc=channel_layout=mono:sample_rate=44100 -i "${videoPath}" -filter_complex "[0:v]scale=1080:1920,setsar=1,format=yuv420p[cv];[2:v]setsar=1[mv];[cv][1:a][mv][2:a]concat=n=2:v=1:a=1[v][a]" -map "[v]" -map "[a]" -c:v libx264 -preset fast -crf 19 -pix_fmt yuv420p -c:a aac -b:a 160k -ar 44100 -movflags +faststart "${tmp}"`;
+  _execSyncCover(cmd, { stdio: "ignore" });
+  fs.renameSync(tmp, videoPath);
+}
+
 async function main() {
   await ensureCoverFonts();
   console.log(`\n🎬 bloom focus — Shorts build — Week ${WEEK}\n${"━".repeat(50)}`);
@@ -546,7 +554,7 @@ async function main() {
     const mp4Path = path.join(outDir, `${short.id}.mp4`);
     if (SKIP_EXISTING && fs.existsSync(mp4Path) && fs.statSync(mp4Path).size > 10000) {
       short.videoUrl = `${REPO_RAW}/output/shorts/week_${WEEK}/${short.id}.mp4`;
-      try { await buildCover(short, outDir); short.coverUrl = `${REPO_RAW}/output/shorts/week_${WEEK}/${short.id}_cover.jpg`; } catch (e) { console.warn(`   cover: ${e.message}`); }
+      try { await buildCover(short, outDir); short.coverUrl = `${REPO_RAW}/output/shorts/week_${WEEK}/${short.id}_cover.jpg`; console.log(`   cover OK (skip-branch): ${short.id}`); } catch (e) { console.warn(`   cover FAILED (skip-branch): ${short.id}: ${e.message}`); }
       skipped++; console.log(`   ${short.id} — exists, skip`); continue;
     }
     console.log(`\n▶ ${short.id}: ${short.title}`);
@@ -678,7 +686,17 @@ async function main() {
       }
 
       short.videoUrl = `${REPO_RAW}/output/shorts/week_${WEEK}/${short.id}.mp4`;
-      try { await buildCover(short, outDir); short.coverUrl = `${REPO_RAW}/output/shorts/week_${WEEK}/${short.id}_cover.jpg`; } catch (e) { console.warn(`   cover: ${e.message}`); }
+      try {
+        await buildCover(short, outDir);
+        short.coverUrl = `${REPO_RAW}/output/shorts/week_${WEEK}/${short.id}_cover.jpg`;
+        console.log(`   cover OK: ${short.id}`);
+        const coverPath = path.join(outDir, `${short.id}_cover.jpg`);
+        const videoPath = path.join(outDir, `${short.id}.mp4`);
+        if (fs.existsSync(coverPath) && fs.existsSync(videoPath)) {
+          await bakeCoverIntoVideo(videoPath, coverPath);
+          console.log(`   cover baked into video: ${short.id}`);
+        }
+      } catch (e) { console.warn(`   cover FAILED: ${short.id}: ${e.message}`); }
       done++;
     } catch (err) {
       failed++;
