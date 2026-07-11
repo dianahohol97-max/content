@@ -308,7 +308,9 @@ async function generateShorts(weekNum, count) {
   console.log("  ✏️  educational...");
   all.push(...await generateVoicedShorts(topicsFor(nEdu, 0), "educational"));
   console.log("  🔧 practical...");
-  all.push(...await generateVoicedShorts(PRACTICAL_TOPICS.slice(0, nPrac), "practical"));
+  const pracStart = ((weekNum - 1) * nPrac) % PRACTICAL_TOPICS.length;
+  const pracTopics = Array.from({ length: nPrac }, (_, i) => PRACTICAL_TOPICS[(pracStart + i) % PRACTICAL_TOPICS.length]);
+  all.push(...await generateVoicedShorts(pracTopics, "practical"));
   console.log("  💢 pain-point...");
   all.push(...await generateVoicedShorts(topicsFor(nPain, nEdu), "painpoint"));
   console.log("  🧠 pattern...");
@@ -326,6 +328,19 @@ async function generateShorts(weekNum, count) {
 async function main() {
   console.log(`\n🎬 bloom focus — YouTube Shorts generator — Week ${WEEK}\n${"━".repeat(50)}`);
   console.log(`Generating ${COUNT} shorts...`);
+
+  // IDEMPOTENCE GUARD: week already complete -> skip generation entirely.
+  // Prevents twice-daily cron runs from appending paraphrased duplicates.
+  const guardPath = path.join(REPO_ROOT, `shorts_week_${WEEK}.json`);
+  if (fs.existsSync(guardPath)) {
+    try {
+      const ex = JSON.parse(fs.readFileSync(guardPath, "utf8"));
+      if (Array.isArray(ex) && ex.length >= COUNT) {
+        console.log(`  ⏭ week ${WEEK} already has ${ex.length}/${COUNT} shorts — generation skipped (idempotent).`);
+        return;
+      }
+    } catch {}
+  }
 
   let shorts;
   for (let attempt = 1; attempt <= 3; attempt++) {
@@ -348,6 +363,31 @@ async function main() {
     try { existing = JSON.parse(fs.readFileSync(outPath, "utf8")); } catch {}
     if (!Array.isArray(existing)) existing = [];
   }
+  // CROSS-WEEK FUZZY DEDUPE: drop new shorts whose title keywords overlap >=55%
+  // with anything in this week's file OR the previous 3 weeks (catches paraphrases).
+  const STOP = new Set(["the","a","an","and","or","to","of","in","on","for","with","your","you","why","how","what","is","are","it","its","this","that","adhd","brain","brains","shorts"]);
+  const keywords = (t) => new Set(String(t||"").toLowerCase().replace(/[^a-z0-9\s]/g," ").split(/\s+/).filter(w => w.length > 2 && !STOP.has(w)));
+  const overlap = (a, b) => {
+    if (!a.size || !b.size) return 0;
+    let hit = 0; for (const w of a) if (b.has(w)) hit++;
+    return hit / Math.min(a.size, b.size);
+  };
+  const priorTitles = [];
+  for (const off of [0, 1, 2, 3]) {
+    const p = path.join(REPO_ROOT, `shorts_week_${WEEK - off}.json`);
+    if (!fs.existsSync(p)) continue;
+    try { for (const it of JSON.parse(fs.readFileSync(p, "utf8"))) if (it && it.title) priorTitles.push(keywords(it.title)); } catch {}
+  }
+  const before = shorts.length;
+  shorts = shorts.filter((s2) => {
+    const kw = keywords(s2.title);
+    const dup = priorTitles.some((pk) => overlap(kw, pk) >= 0.55);
+    if (dup) console.log(`  ✂ duplicate topic dropped: "${s2.title}"`);
+    else priorTitles.push(kw);
+    return !dup;
+  });
+  if (before !== shorts.length) console.log(`  ✂ fuzzy dedupe: ${before - shorts.length} dropped, ${shorts.length} kept`);
+
   const offset = existing.length;
   if (offset) console.log(`  ↩ merging: ${offset} existing shorts kept, new IDs start at ${offset + 1}`);
 
