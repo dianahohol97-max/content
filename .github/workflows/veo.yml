@@ -16,11 +16,13 @@ jobs:
       - name: Generate Veo clip
         env:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
-        run: node bloom/veo-test.js
+        run: node bloom/veo-test.js 2>&1 | tee veo_log.txt
+        continue-on-error: true
       - name: Commit result
+        if: always()
         run: |
           git config user.name "veo-bot"
           git config user.email "bot@bloomfocus.org"
           git add -A
-          git diff --cached --quiet || git commit -m "veo pilot: universal moment clip"
+          git diff --cached --quiet || git commit -m "veo pilot: attempt output + log"
           git push
