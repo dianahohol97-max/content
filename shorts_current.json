@@ -55,7 +55,8 @@
     "shortType": "educational",
     "status": "pending",
     "videoUrl": "https://raw.githubusercontent.com/dianahohol97-max/content/main/output/shorts/week_28/SH_W28_01.mp4",
-    "postedAt": null
+    "postedAt": null,
+    "coverUrl": "https://raw.githubusercontent.com/dianahohol97-max/content/main/output/shorts/week_28/SH_W28_01_cover.jpg"
   },
   {
     "id": "SH_W28_02",
@@ -113,7 +114,8 @@
     "shortType": "practical",
     "status": "pending",
     "videoUrl": "https://raw.githubusercontent.com/dianahohol97-max/content/main/output/shorts/week_28/SH_W28_02.mp4",
-    "postedAt": null
+    "postedAt": null,
+    "coverUrl": "https://raw.githubusercontent.com/dianahohol97-max/content/main/output/shorts/week_28/SH_W28_02_cover.jpg"
   },
   {
     "id": "SH_W28_03",
@@ -176,7 +178,8 @@
     "shortType": "painpoint",
     "status": "pending",
     "videoUrl": "https://raw.githubusercontent.com/dianahohol97-max/content/main/output/shorts/week_28/SH_W28_03.mp4",
-    "postedAt": null
+    "postedAt": null,
+    "coverUrl": "https://raw.githubusercontent.com/dianahohol97-max/content/main/output/shorts/week_28/SH_W28_03_cover.jpg"
   },
   {
     "id": "SH_W28_04",
@@ -234,7 +237,8 @@
     "shortType": "pattern",
     "status": "pending",
     "videoUrl": "https://raw.githubusercontent.com/dianahohol97-max/content/main/output/shorts/week_28/SH_W28_04.mp4",
-    "postedAt": null
+    "postedAt": null,
+    "coverUrl": "https://raw.githubusercontent.com/dianahohol97-max/content/main/output/shorts/week_28/SH_W28_04_cover.jpg"
   },
   {
     "id": "SH_W28_05",
@@ -307,7 +311,8 @@
     "shortType": "flagship",
     "status": "pending",
     "videoUrl": "https://raw.githubusercontent.com/dianahohol97-max/content/main/output/shorts/week_28/SH_W28_05.mp4",
-    "postedAt": null
+    "postedAt": null,
+    "coverUrl": "https://raw.githubusercontent.com/dianahohol97-max/content/main/output/shorts/week_28/SH_W28_05_cover.jpg"
   },
   {
     "id": "SH_W28_06",
@@ -370,7 +375,8 @@
     "shortType": "educational",
     "status": "pending",
     "videoUrl": "https://raw.githubusercontent.com/dianahohol97-max/content/main/output/shorts/week_28/SH_W28_06.mp4",
-    "postedAt": null
+    "postedAt": null,
+    "coverUrl": "https://raw.githubusercontent.com/dianahohol97-max/content/main/output/shorts/week_28/SH_W28_06_cover.jpg"
   },
   {
     "id": "SH_W28_07",
@@ -423,7 +429,8 @@
     "shortType": "practical",
     "status": "pending",
     "videoUrl": "https://raw.githubusercontent.com/dianahohol97-max/content/main/output/shorts/week_28/SH_W28_07.mp4",
-    "postedAt": null
+    "postedAt": null,
+    "coverUrl": "https://raw.githubusercontent.com/dianahohol97-max/content/main/output/shorts/week_28/SH_W28_07_cover.jpg"
   },
   {
     "id": "SH_W28_08",
@@ -481,7 +488,8 @@
     "shortType": "painpoint",
     "status": "pending",
     "videoUrl": "https://raw.githubusercontent.com/dianahohol97-max/content/main/output/shorts/week_28/SH_W28_08.mp4",
-    "postedAt": null
+    "postedAt": null,
+    "coverUrl": "https://raw.githubusercontent.com/dianahohol97-max/content/main/output/shorts/week_28/SH_W28_08_cover.jpg"
   },
   {
     "id": "SH_W28_09",
@@ -539,7 +547,8 @@
     "shortType": "pattern",
     "status": "pending",
     "videoUrl": "https://raw.githubusercontent.com/dianahohol97-max/content/main/output/shorts/week_28/SH_W28_09.mp4",
-    "postedAt": null
+    "postedAt": null,
+    "coverUrl": "https://raw.githubusercontent.com/dianahohol97-max/content/main/output/shorts/week_28/SH_W28_09_cover.jpg"
   },
   {
     "id": "SH_W28_10",
@@ -612,6 +621,7 @@
     "shortType": "flagship",
     "status": "pending",
     "videoUrl": "https://raw.githubusercontent.com/dianahohol97-max/content/main/output/shorts/week_28/SH_W28_10.mp4",
-    "postedAt": null
+    "postedAt": null,
+    "coverUrl": "https://raw.githubusercontent.com/dianahohol97-max/content/main/output/shorts/week_28/SH_W28_10_cover.jpg"
   }
 ]
