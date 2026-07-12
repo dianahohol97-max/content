@@ -291,7 +291,7 @@ async function generateShorts(weekNum, count) {
   const nPain = Math.max(1, Math.round(count * 2 / 18));
   const nPat = Math.max(1, Math.round(count * 3 / 18));
   const nFlag = Math.max(1, Math.round(count * 4 / 18));
-  const nTest = count >= 12 ? 2 : count >= 6 ? 1 : 0;  // ~1 quiz-test per full batch (4 tiles composited from separate images)
+  const nTest = count >= 12 ? 4 : count >= 6 ? 2 : count >= 3 ? 1 : 0;  // ~1 quiz-test per full batch (4 tiles composited from separate images)
 
   // rotate topics by week
   const startIdx = ((weekNum - 1) * count) % TOPICS.length;
