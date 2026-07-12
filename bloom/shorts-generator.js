@@ -220,7 +220,7 @@ For EACH Short return:
 - scenes: array of ${isFlag ? "8-10" : "5-7"} scenes. CRITICAL: every scene must be VISUALLY DISTINCT from its neighbours — a different object, setting, or angle. NEVER show the same main object (e.g. a laptop) in two consecutive scenes. Vary the subject across the video: e.g. a window, then a coffee cup, then a tangled cord, then a calendar, then an open door. Each scene:
 ${SCENE_SPEC}
 - title: 40-70 chars, search-friendly, ends with #Shorts.
-- description: 2-3 sentences with keywords. Then on its own line: "Follow for daily ADHD content."
+- description: 2-3 sentences with keywords. Then on its own line: "Free 2-minute ADHD brain quiz: https://bloomfocus.org/quiz". Then on its own line: "Follow for daily ADHD content."
 - tags: 8-12 YouTube tags.
 - funnel: "follow".
 - shortType: "${kind}".
@@ -291,7 +291,7 @@ async function generateShorts(weekNum, count) {
   const nPain = Math.max(1, Math.round(count * 2 / 18));
   const nPat = Math.max(1, Math.round(count * 3 / 18));
   const nFlag = Math.max(1, Math.round(count * 4 / 18));
-  const nTest = count >= 6 ? 1 : 0;  // ~1 quiz-test per full batch (4 tiles composited from separate images)
+  const nTest = count >= 12 ? 2 : count >= 6 ? 1 : 0;  // ~1 quiz-test per full batch (4 tiles composited from separate images)
 
   // rotate topics by week
   const startIdx = ((weekNum - 1) * count) % TOPICS.length;
