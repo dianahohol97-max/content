@@ -422,5 +422,69 @@
     "videoUrl": "https://raw.githubusercontent.com/dianahohol97-max/content/main/output/shorts/week_29/SH_W29_07.mp4",
     "postedAt": null,
     "coverUrl": "https://raw.githubusercontent.com/dianahohol97-max/content/main/output/shorts/week_29/SH_W29_07_cover.jpg"
+  },
+  {
+    "id": "SH_W29_08",
+    "week": 29,
+    "voiceover": "Deadline is in three weeks. So it doesn't exist yet. Deadline is tomorrow. Now it's a five-alarm emergency and you haven't slept. That's not procrastination — that's how the ADHD brain actually sees time. Not as a timeline. As two states: NOW and NOT NOW. If something isn't happening right in front of you, your brain genuinely can't feel it coming. Future-you is basically a stranger. And that stranger keeps paying the price. Sound familiar every single day? Follow for daily ADHD content.",
+    "scenes": [
+      {
+        "tag": "calendar",
+        "imagePrompt": "Atmospheric editorial illustration with soft cinematic light and gentle depth, subtle film grain, sophisticated adult mood. STRICTLY brand palette only: lavender, blush pink, sage green, warm cream, deep violet — absolutely NO grey, NO charcoal, NO greige, NO black. Warm and calm but grown-up, like a refined wellness brand. NO people, no faces, no text, no letters. Keep the lower third calm and uncluttered for caption legibility. NOT cute, NOT cartoon, NOT childish. Vertical 9:16 composition. Dim cool light. A wall calendar pinned slightly crooked, a circled date near the end of the page barely visible in soft shadow, the surrounding days empty and distant, creating a sense of vast unreachable time ahead. Lower third is clean dark violet gradient.",
+        "caption": ""
+      },
+      {
+        "tag": "lamp",
+        "imagePrompt": "Atmospheric editorial illustration with soft cinematic light and gentle depth, subtle film grain, sophisticated adult mood. STRICTLY brand palette only: lavender, blush pink, sage green, warm cream, deep violet — absolutely NO grey, NO charcoal, NO greige, NO black. Warm and calm but grown-up, like a refined wellness brand. NO people, no faces, no text, no letters. Keep the lower third calm and uncluttered for caption legibility. NOT cute, NOT cartoon, NOT childish. Vertical 9:16 composition. Tense warm-orange pool of light from a single desk lamp flooding a cluttered surface at 2am, papers spilling off the edge, a pen uncapped and rolling, the surrounding room swallowed in deep violet shadow — urgent, still, exhausting. Lower third calm and uncluttered.",
+        "caption": ""
+      },
+      {
+        "tag": "clock",
+        "imagePrompt": "Atmospheric editorial illustration with soft cinematic light and gentle depth, subtle film grain, sophisticated adult mood. STRICTLY brand palette only: lavender, blush pink, sage green, warm cream, deep violet — absolutely NO grey, NO charcoal, NO greige, NO black. Warm and calm but grown-up, like a refined wellness brand. NO people, no faces, no text, no letters. Keep the lower third calm and uncluttered for caption legibility. NOT cute, NOT cartoon, NOT childish. Vertical 9:16 composition. Cool dim light. A round analog clock on a plain wall, its hands blurred as if time is slipping, casting a faint lavender shadow, the face feeling flat and unreadable — illustrating time as an abstract, unfelt thing. Lower third is a clean deep violet fade.",
+        "caption": ""
+      },
+      {
+        "tag": "window_light",
+        "imagePrompt": "Atmospheric editorial illustration with soft cinematic light and gentle depth, subtle film grain, sophisticated adult mood. STRICTLY brand palette only: lavender, blush pink, sage green, warm cream, deep violet — absolutely NO grey, NO charcoal, NO greige, NO black. Warm and calm but grown-up, like a refined wellness brand. NO people, no faces, no text, no letters. Keep the lower third calm and uncluttered for caption legibility. NOT cute, NOT cartoon, NOT childish. Vertical 9:16 composition. Dim cool mood. A tall window at night, the glass reflecting only darkness outside, a single candle on the sill burning in blush pink warmth, the rest of the room falling into soft deep violet — a sense of being sealed in the present moment with no visible future beyond the glass. Lower third uncluttered.",
+        "caption": ""
+      },
+      {
+        "tag": "path",
+        "imagePrompt": "Atmospheric editorial illustration with soft cinematic light and gentle depth, subtle film grain, sophisticated adult mood. STRICTLY brand palette only: lavender, blush pink, sage green, warm cream, deep violet — absolutely NO grey, NO charcoal, NO greige, NO black. Warm and calm but grown-up, like a refined wellness brand. NO people, no faces, no text, no letters. Keep the lower third calm and uncluttered for caption legibility. NOT cute, NOT cartoon, NOT childish. Vertical 9:16 composition. Cool muted light. A narrow path stretching into soft lavender fog, the near ground clear and warm cream, everything beyond ten feet dissolving into formless haze — the visual metaphor of NOW visible and NOT NOW completely absent, no horizon. Lower third clean for captions.",
+        "caption": ""
+      },
+      {
+        "tag": "brain",
+        "imagePrompt": "Atmospheric editorial illustration with soft cinematic light and gentle depth, subtle film grain, sophisticated adult mood. STRICTLY brand palette only: lavender, blush pink, sage green, warm cream, deep violet — absolutely NO grey, NO charcoal, NO greige, NO black. Warm and calm but grown-up, like a refined wellness brand. NO people, no faces, no text, no letters. Keep the lower third calm and uncluttered for caption legibility. NOT cute, NOT cartoon, NOT childish. Vertical 9:16 composition. Slightly warmer and calmer light — a gentle hopeful shift. A softly glowing abstract brain form rendered in blush pink and lavender outlines, split down its centre into one bright half and one dim half, symbolising the NOW versus NOT NOW divide, floating against a deep violet warm background. Lower third clean.",
+        "caption": ""
+      },
+      {
+        "tag": "cozy_room",
+        "imagePrompt": "Atmospheric editorial illustration with soft cinematic light and gentle depth, subtle film grain, sophisticated adult mood. STRICTLY brand palette only: lavender, blush pink, sage green, warm cream, deep violet — absolutely NO grey, NO charcoal, NO greige, NO black. Warm and calm but grown-up, like a refined wellness brand. NO people, no faces, no text, no letters. Keep the lower third calm and uncluttered for caption legibility. NOT cute, NOT cartoon, NOT childish. Vertical 9:16 composition. Warm validating glow. A calm corner of a room — a small sage green plant on a low shelf, a folded cream blanket, a lamp casting a soft blush pool of light — still and quiet, gently inviting, the mood settling from urgency to understanding. Lower third uncluttered for captions.",
+        "caption": ""
+      }
+    ],
+    "title": "ADHD Time: Why It's Always Now or Never #Shorts",
+    "description": "If you have ADHD, time doesn't feel like a timeline — it feels like two states: NOW and NOT NOW. That's why deadlines three weeks away feel invisible, and deadlines tomorrow feel like emergencies. This is a real neurological difference in how the ADHD brain processes future time, not laziness or poor planning. Follow for daily ADHD content.",
+    "tags": [
+      "ADHD time blindness",
+      "now vs not now ADHD",
+      "ADHD procrastination",
+      "ADHD brain explained",
+      "ADHD deadlines",
+      "ADHD education",
+      "ADHD awareness",
+      "neurodivergent",
+      "ADHD tips",
+      "ADHD validation",
+      "ADHD shorts",
+      "bloom focus"
+    ],
+    "funnel": "follow",
+    "shortType": "painpoint",
+    "status": "pending",
+    "videoUrl": "https://raw.githubusercontent.com/dianahohol97-max/content/main/output/shorts/week_29/SH_W29_08.mp4",
+    "postedAt": null,
+    "coverUrl": "https://raw.githubusercontent.com/dianahohol97-max/content/main/output/shorts/week_29/SH_W29_08_cover.jpg"
   }
 ]

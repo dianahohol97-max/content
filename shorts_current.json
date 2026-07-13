@@ -483,8 +483,9 @@
     "funnel": "follow",
     "shortType": "painpoint",
     "status": "pending",
-    "videoUrl": null,
-    "postedAt": null
+    "videoUrl": "https://raw.githubusercontent.com/dianahohol97-max/content/main/output/shorts/week_29/SH_W29_08.mp4",
+    "postedAt": null,
+    "coverUrl": "https://raw.githubusercontent.com/dianahohol97-max/content/main/output/shorts/week_29/SH_W29_08_cover.jpg"
   },
   {
     "id": "SH_W29_09",
