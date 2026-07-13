@@ -3,9 +3,9 @@
     "slides": [
       {
         "type": "hook",
-        "headline": "3 ADHD Myths Your Report Card Believed",
-        "sub": "If you've ever been told you 'just don't try hard enough' or 'can't really have ADHD because you focus fine on some things' — this one's for you.",
-        "kicker": "we need to talk..."
+        "headline": "3 ADHD Myths That Even Doctors Get Wrong",
+        "sub": "If you've ever been told you 'don't seem like you have ADHD,' this one's for you. We're debunking three myths that kept a lot of us undiagnosed for years.",
+        "kicker": "yes, all three are lies"
       },
       {
         "type": "myth",
@@ -15,52 +15,52 @@
       {
         "type": "truth",
         "idx": 1,
-        "headline": "ADHD is attention dysregulation, not zero attention",
-        "body": "The \"deficit\" in ADHD isn't a flat shortage of attention — it's an inability to regulate where attention goes. A 2020 review in Neuroscience & Biobehavioral Reviews found that hyperfocus happens precisely because the ADHD brain struggles to disengage from high-dopamine tasks, not despite it. You're not faking the diagnosis; your brain is stuck on one channel and can't change it on command."
+        "headline": "ADHD is about regulation, not just attention",
+        "body": "ADHD isn't a shortage of attention — it's an inability to control where attention goes. The same brain that zones out during a meeting can lock onto a documentary for four hours without moving. Researchers call this 'hyperfocus,' and it's actually driven by the same dopamine dysregulation that causes distractibility: your brain chases stimulation it finds compelling and abandons everything it doesn't."
       },
       {
         "type": "myth",
         "idx": 2,
-        "headline": "ADHD means you're distracted by everything, always"
+        "headline": "ADHD means you can't focus on anything, ever"
       },
       {
         "type": "truth",
         "idx": 2,
-        "headline": "ADHD brains filter poorly, not constantly poorly",
-        "body": "The prefrontal cortex helps decide what's worth your attention — in ADHD, that filter is inconsistent, not broken in one direction. Research shows the default mode network stays active during tasks in ADHD brains, hijacking focus unpredictably. That's why you can ace a deadline at 2am with the TV on, then miss your own name being called in a quiet room."
+        "headline": "Interest and urgency hijack the ADHD brain",
+        "body": "People with ADHD have what researcher Dr. William Dodson calls an 'interest-based nervous system' — attention is controlled by novelty, passion, challenge, or deadlines, not by intention or importance. That's why the report that's due tomorrow suddenly gets done at midnight, but the one due next month is invisible. It has nothing to do with caring. It has everything to do with how the ADHD brain is wired to activate."
       },
       {
         "type": "myth",
         "idx": 3,
-        "headline": "You just need motivation — you proved it by hyperfocusing"
+        "headline": "You'd focus fine if you just tried harder"
       },
       {
         "type": "truth",
         "idx": 3,
-        "headline": "Motivation works differently in the ADHD brain",
-        "body": "Neurotypical motivation runs on importance and intention. ADHD motivation runs on interest, urgency, novelty, or challenge — a system tied to dopamine and norepinephrine signaling, not willpower. Dr. Russell Barkley's research describes this as an impaired interest-based nervous system: the report card saying 'she could do it when she wanted to' was never evidence of laziness — it was evidence of a different fuel system entirely."
+        "headline": "Effort alone cannot fix a dopamine gap",
+        "body": "ADHD involves measurable differences in dopamine and norepinephrine transmission in the prefrontal cortex — the region that governs sustained attention and task initiation. A 2021 meta-analysis in Neuroscience & Biobehavioral Reviews confirmed structural and functional brain differences in people with ADHD that willpower simply cannot override. Telling someone to 'just try harder' is like telling a person with low vision to squint more."
       },
       {
         "type": "cta",
-        "headline": "Your attention isn't broken. It's unpredictable.",
-        "body": "And unpredictable is something we can actually work with. Understanding the real science is the first step to finding strategies that fit your actual brain.",
-        "commentPrompt": "Which of these myths have you heard most — drop a 1, 2, or 3 below 👇"
+        "headline": "Your attention isn't broken. It's just different.",
+        "body": "Understanding the real science behind ADHD is the first step to actually working with your brain instead of against it. Save this for the next time someone tells you that you 'don't seem like you have ADHD.'",
+        "commentPrompt": "Which of these myths have you heard the most? Drop it below 👇"
       }
     ],
-    "caption": "The ADHD attention system isn't a volume knob — it's a broken dial that randomly locks in.\n\nHyperfocus isn't proof you're fine. It's one of the clearest signs that your brain struggles to regulate attention, not just sustain it. The prefrontal cortex in an ADHD brain has inconsistent access to dopamine and norepinephrine, which means focus is driven by neurochemistry — not choice, not character.\n\nThat teacher who wrote 'doesn't apply herself'? She was measuring effort by output, not understanding the fuel system behind it.\n\nWhich myth have you heard the most — from a parent, a teacher, or yourself? Tell me in the comments.\n\nSave this and follow @bloomfocus.adhd for daily ADHD content.",
+    "caption": "If you've ever hyperfocused for six hours straight and then wondered if your diagnosis was real — this is for you.\n\nThe biggest myth about ADHD is that it means you can never pay attention. In reality, ADHD is an attention *regulation* problem. The same brain that loses your keys also memorizes every lyric to an album it heard once.\n\nAnd no, trying harder isn't the answer. ADHD involves real, measurable differences in how dopamine moves through the prefrontal cortex — differences that show up on brain scans, not just report cards.\n\nWhich of these three myths did you believe about yourself before your diagnosis?\n\nSave this and follow @bloomfocus.adhd for daily ADHD content.",
     "hashtags": [
       "#ADHD",
       "#ADHDbrain",
       "#neurodivergent",
       "#ADHDawareness",
-      "#hyperfocus",
-      "#ADHDmyths",
-      "#attentionregulation",
       "#ADHDwomen",
-      "#ADHDadults",
+      "#ADHDmyths",
+      "#hyperfocus",
+      "#attentionregulation",
+      "#ADHDdiagnosis",
       "#neurodivergence",
       "#ADHDeducation",
-      "#executivefunction"
+      "#ADHDscience"
     ],
     "id": "CR_W29_MON",
     "week": 29,
@@ -118,37 +118,37 @@
         "type": "hook",
         "headline": "Which type of task paralysis are you?",
         "sub": "four types. one is painfully you. comment your letter.",
-        "kicker": "...you already know which one"
+        "kicker": "...this is too real"
       },
       {
         "type": "quiz",
         "letter": "A",
         "typeName": "The Overwhelm Freezer",
-        "body": "You open the task and your brain immediately produces seventeen other things that are also technically part of the task. So you close the tab. Then open it again. Then close it. The report has twelve steps and you cannot figure out which one is 'the first one,' so you do none of them and reorganize your desk instead. It's not laziness — your brain is genuinely gridlocked trying to process everything at once."
+        "body": "You open the project and there are seventeen things to do and you don't know which one is first so you close the tab. You stare at the list. You make a new list. You reorganize the new list. Forty minutes later, nothing has started and somehow you're reading about the history of staplers. It's not laziness — your brain genuinely cannot find an entry point when everything feels equally urgent and enormous."
       },
       {
         "type": "quiz",
         "letter": "B",
         "typeName": "The Perfectionist Staller",
-        "body": "You haven't started because the conditions aren't quite right yet. You need a better outline. A cleaner workspace. One more example to reference. The email has been sitting in your drafts for nine days because the opening line isn't landing and sending a bad one feels worse than sending none at all. Perfectionism and ADHD are an especially cruel combination — the bar stays impossibly high while the brain makes starting feel impossible."
+        "body": "Your fifth-grade teacher wrote 'doesn't turn in work' but what she missed was that you had three drafts in your notebook that weren't good enough yet. You'll start the email as soon as you know exactly what to say. The task isn't abandoned — it's being held hostage by a version of it that has to be perfect before anyone sees it. ADHD perfectionism isn't high standards, it's a fear response dressed in high standards' clothes."
       },
       {
         "type": "quiz",
         "letter": "C",
         "typeName": "The Novelty Chaser",
-        "body": "You start the task, genuinely. But four minutes in you remember a completely different idea that is honestly more interesting, so you pivot. By Thursday you have seven new projects in progress and the original one is still on slide one. The thing your teacher wrote on every report card — 'doesn't apply herself' — was really just this: your brain is wired to chase dopamine, and the new thing always has more of it than the current thing."
+        "body": "You signed up for the course, bought the supplies, told two people about your plan — and then the dopamine evaporated and the whole thing feels like homework now. This has happened with pottery, podcasting, Portuguese, and that business idea from March. Your brain isn't flaky, it runs on a neurotransmitter system that requires genuine novelty or urgency to activate — and 'things you already started' rarely qualify."
       },
       {
         "type": "quiz",
         "letter": "D",
         "typeName": "The Deadline Gambler",
-        "body": "You cannot start until the deadline is close enough to feel real. Not procrastination exactly — more like your nervous system needs genuine urgency to manufacture the focus your brain doesn't produce on its own. You have submitted things at 11:58pm that were genuinely good. You have also missed things entirely because the deadline never felt real enough, and then it was. This is not a moral failure. It's a dopamine and time-blindness problem with a very stressful user experience."
+        "body": "You cannot start the thing until the deadline is breathing on your neck, and you know this about yourself, and it still doesn't help you start earlier. The report gets done at 1am and it's actually good, which is confusing and also exhausting. Your nervous system needs the cortisol spike of real consequences to manufacture enough activation to work — that's not a personality flaw, that's a dysregulated dopamine system doing the only thing that reliably works."
       },
       {
         "type": "chapter",
         "idx": 1,
-        "headline": "whichever letter you picked",
-        "body": "All four of these are attention-regulation patterns — not personality flaws, not laziness, not a reflection of how much you care. The ADHD brain struggles to generate the neurochemicals that make starting and sustaining tasks feel accessible. That's a wiring difference, not a character difference. Knowing your type is actually the first useful step."
+        "headline": "Whichever letter you picked",
+        "body": "A, B, C, and D are all the same thing at the root: an attention-regulation system that struggles to initiate without the right neurochemical conditions. None of them mean you're lazy, unmotivated, or broken. They mean your brain has a harder time generating the internal 'go' signal that other people produce automatically — and that is a clinical reality, not a character flaw."
       },
       {
         "type": "cta",
@@ -157,20 +157,20 @@
         "commentPrompt": "A, B, C or D?"
       }
     ],
-    "caption": "Your task paralysis has a type — and knowing which one changes everything.\n\nMost people assume they're just lazy or disorganized. But there are actually four distinct patterns of ADHD task paralysis, and each one has a different neurological reason behind it. The Overwhelm Freezer can't find step one. The Perfectionist Staller is waiting for conditions that will never be perfect. The Novelty Chaser keeps pivoting because dopamine demands it. The Deadline Gambler physically cannot start until the urgency is real.\n\nNone of these are character flaws. All of them are attention-regulation problems — which means they respond to the right strategies, not harder trying.\n\nWhich letter are you? Drop it in the comments — I genuinely want to know which type is most common here.\n\nSave this and follow @bloomfocus.adhd for daily ADHD content.",
+    "caption": "Which type of task paralysis keeps you stuck?\n\nBecause 'just start' is genuinely useless advice when your brain can't locate the start button. Task paralysis in ADHD isn't about effort or attitude — it's a dopamine and executive function problem that shows up in at least four very distinct ways, and most of us have a primary type we live in.\n\nThe Overwhelm Freezer can't find the entry point. The Perfectionist Staller is waiting to be ready. The Novelty Chaser already mentally moved on. The Deadline Gambler needs the fire to be real and close.\n\nWhich one is most painfully you — and did you see yourself in more than one?\n\nSave this and follow @bloomfocus.adhd for daily ADHD content.",
     "hashtags": [
       "#ADHD",
       "#ADHDbrain",
       "#neurodivergent",
       "#ADHDawareness",
       "#taskparalysis",
-      "#ADHDwomen",
+      "#ADHDexecutivefunction",
       "#adultADHD",
-      "#executivedysfunction",
-      "#ADHDtips",
+      "#ADHDwomen",
       "#neurodivergentlife",
-      "#ADHDcommunity",
-      "#dopaminedeficit"
+      "#ADHDstruggles",
+      "#executivedysfunction",
+      "#ADHDeducation"
     ],
     "id": "CR_W29_TUE",
     "week": 29,
@@ -221,77 +221,72 @@
     "slides": [
       {
         "type": "hook",
-        "headline": "Get out of doom-scroll without hating yourself",
-        "sub": "You didn't choose the spiral. Your ADHD brain chased dopamine because it was starving for it. Here's how to climb out — no willpower lecture included.",
-        "kicker": "you're not broken, promise"
+        "headline": "Escape a doom-scroll spiral without hating yourself",
+        "sub": "You didn't choose to lose 90 minutes to TikTok. Your brain did — and there's a way out that doesn't require willpower or a lecture.\nNo discipline required.",
+        "kicker": "yes, even right now"
       },
       {
         "type": "step",
         "idx": 1,
-        "headline": "Name it out loud right now",
-        "body": "Say — or type — 'I'm in a scroll spiral.' That's it. This isn't cheesy: externalizing what's happening activates your prefrontal cortex just enough to create a tiny gap between impulse and action. Your ADHD brain runs on automatic a lot of the time. Naming the pattern interrupts the loop.\n\nExample: literally whisper 'I've been on this for 47 minutes and I don't even like what I'm watching.'",
-        "kicker": "say it. seriously."
+        "headline": "Name it out loud, literally",
+        "body": "Say — or whisper — 'I'm in a scroll spiral.' That's it. No judgment attached.\nNaming an experience activates your prefrontal cortex and creates a tiny gap between impulse and action — something ADHD brains rarely get automatically.\nExample: You catch yourself 47 reels deep at midnight and you just say, 'yep, spiral.' Done."
       },
       {
         "type": "step",
         "idx": 2,
-        "headline": "Set a two-minute exit ramp",
-        "body": "Don't tell yourself to stop cold. Set a two-minute timer and keep scrolling — on purpose, with permission. Abrupt stopping spikes resistance in ADHD brains because it feels like punishment, which kills motivation completely. The timer makes stopping feel like a natural end, not a loss.\n\nExample: 'I get two more minutes, then I put the phone face-down on the charger.'",
-        "kicker": "soft landing > crash stop"
+        "headline": "Do one 10-second body interrupt",
+        "body": "Stand up, press your feet into the floor, take one slow breath, and look at something across the room.\nThis isn't mindfulness theater — it's a pattern interrupt that briefly spikes norepinephrine, helping your brain shift attentional gears.\nExample: You put your phone face-down on your chest, plant both feet flat, and just look at the ceiling fan for ten seconds."
       },
       {
         "type": "step",
         "idx": 3,
-        "headline": "Give your hands something tiny",
-        "body": "When the timer goes, immediately do one small physical thing: fill a glass of water, put one dish in the sink, fold the shirt that's been on your chair for four days. ADHD brains struggle with transitions because activation energy is high and momentum is low — a micro-task bridges the gap without requiring a full decision.\n\nExample: the girl who spent two hours on TikTok walked to the kitchen, filled a glass, and that was enough to break the spell.",
-        "kicker": "tiny = actually doable"
+        "headline": "Give your brain a tiny win",
+        "body": "Immediately do one micro-task that takes under 60 seconds — fill a glass of water, plug in your charger, close one browser tab.\nADHD brains struggle with activation energy, but completing even a trivial task releases a small dopamine hit that makes the next move feel possible.\nExample: You walk to the kitchen, fill a glass of water, and drink half of it. Your brain now has evidence that you can do things."
       },
       {
         "type": "step",
         "idx": 4,
-        "headline": "Don't audit the lost time",
-        "body": "Skip the 'what is wrong with me, it's 1am' spiral that follows the scroll spiral. That shame loop lights up the same dopamine-seeking circuits and often sends you straight back to your phone for comfort. You're not allowed to subtract the time — it's gone, it's fine, you're fine.\n\nExample: instead of 'I wasted my whole evening,' try 'okay, that happened, next thing is sleep.'",
-        "kicker": "shame is not a timer"
+        "headline": "Swap, don't stop cold",
+        "body": "Instead of trying to quit screens entirely, switch to a pre-chosen 'landing' app — something low-stimulation you already enjoy, like a calm playlist, a saved article, or a slow YouTube channel.\nCold-turkey stops create a dopamine cliff that almost always backfires for ADHD brains; a gentler swap keeps arousal regulated without a crash.\nExample: You close Instagram and open your lo-fi playlist — same screen, completely different neurological ask."
       },
       {
         "type": "step",
         "idx": 5,
-        "headline": "Stack one cue for next time",
-        "body": "Before you sleep, place one small friction between you and the spiral for tomorrow: phone charger outside the bedroom, app timer on Instagram set to 20 minutes, or a sticky note on your bathroom mirror that says 'scroll check.' ADHD working memory can't reliably remind future-you of intentions — environmental cues do it instead.\n\nExample: 'I put my charger in the hallway and scrolled 40 fewer minutes the next night without even trying.'",
-        "kicker": "let your room do the work"
+        "headline": "Set a 'reentry' anchor, not a rule",
+        "body": "Pick one specific, concrete thing you're moving toward — not 'be productive,' but 'get into bed and open my book.' Write it in your notes app before you close TikTok.\nWorking memory in ADHD is unreliable under high dopamine load; an external anchor offloads the cognitive work so your brain doesn't have to hold the intention alone.\nExample: You type 'brush teeth → bed → first page of book' in your notes before you close the app, so future-you has a script to follow."
       },
       {
         "type": "checklist",
         "headline": "your toolkit",
         "items": [
-          "Name it out loud",
-          "Two-minute exit ramp",
-          "Hands-on a micro-task",
-          "Skip the time audit",
-          "Stack one friction cue"
+          "Name the spiral aloud",
+          "10-second body interrupt",
+          "One micro-task win",
+          "Swap to calm content",
+          "Write your reentry anchor"
         ]
       },
       {
         "type": "cta",
-        "headline": "You got stuck. You got out. That counts.",
+        "headline": "You're not lazy. You're working with a brain that chases dopamine hard.",
         "body": "start with one. literally just one.",
-        "commentPrompt": "Which step are you trying tonight? Drop the number below — 1 through 5. We'll be here."
+        "commentPrompt": "Which step are you trying tonight? Drop a number (1–5) in the comments — I'll cheer you on. 👇"
       }
     ],
-    "caption": "Your ADHD brain didn't doom-scroll because you're lazy. It doom-scrolled because it was chasing dopamine and found a reliable source. That's not a character flaw — that's wiring.\n\nThe way out isn't discipline. It's a two-minute exit ramp, a glass of water, and skipping the shame spiral that usually follows. These five steps work with how your brain actually functions, not against it.\n\nWhich one are you stealing for tonight?\n\nSave this and follow @bloomfocus.adhd for daily ADHD content.",
+    "caption": "You didn't doom-scroll for 2 hours because you have no self-control. You did it because your brain was chasing dopamine and had no clear off-ramp.\n\nThis carousel gives you five small, science-backed steps to exit a scroll spiral — no shame spiral required. They work with ADHD wiring, not against it.\n\nThe naming step (slide 2) is underrated. It sounds too simple, but it genuinely creates a neurological pause that most ADHD strategies skip entirely.\n\nWhich step feels most doable for you tonight? Tell me below — 1, 2, 3, 4, or 5. 👇\n\nSave this and follow @bloomfocus.adhd for daily ADHD content.",
     "hashtags": [
       "#ADHD",
       "#ADHDbrain",
       "#neurodivergent",
       "#ADHDtips",
-      "#ADHDwomen",
       "#doomscrolling",
-      "#ADHDlife",
-      "#phoneaddiction",
-      "#attentiondeficit",
       "#ADHDawareness",
+      "#adultADHD",
       "#neurodivergentlife",
-      "#ADHDcommunity"
+      "#ADHDwomen",
+      "#screentime",
+      "#ADHDstrategies",
+      "#executivefunctionskills"
     ],
     "id": "CR_W29_WED",
     "week": 29,
@@ -347,39 +342,39 @@
     "slides": [
       {
         "type": "hook",
-        "headline": "These aren't flaws. They're ADHD symptoms.",
+        "headline": "These aren't flaws. They're ADHD traits.",
         "sub": "scroll through — you'll recognize yourself.",
-        "kicker": "...you'll feel so seen"
+        "kicker": "...this one's going to sting a little"
       },
       {
         "type": "chapter",
         "idx": 1,
         "headline": "Object Permanence",
-        "body": "Out of sight genuinely means out of mind — not because you don't care, but because your brain doesn't generate automatic reminders that things exist when you can't see them.\n\nYou texted someone back in your head and assumed it sent.\nThe birthday gift is still in a bag in your closet. It's been four months.\nYou forgot a friend existed for two weeks, then felt crushing guilt about it."
+        "body": "Out of sight genuinely means out of mind — not because you're careless, but because your brain doesn't passively hold objects or people in awareness the way neurotypical brains do.\nYou bought duplicates of something you already owned because you couldn't picture where the original was.\nYou haven't texted someone you love in four months and somehow didn't notice until now.\nThe bill sat in the drawer and your brain treated it like it didn't exist until the late notice arrived."
       },
       {
         "type": "chapter",
         "idx": 2,
         "headline": "Low Interoception",
-        "body": "Interoception is your brain's ability to read your body's internal signals. In ADHD, that signal is often static — hunger, thirst, exhaustion, even a full bladder can go undetected for hours.\n\nYou didn't realize you hadn't eaten until you started crying at a slow cashier.\nYou worked through a headache for six hours before noticing it was dehydration.\nYou looked up and it was 11pm and you genuinely did not feel tired — until you did, all at once."
+        "body": "Interoception is your brain's ability to read internal body signals — hunger, thirst, fatigue, a full bladder. In ADHD brains, that signal system is genuinely quieter.\nYou looked up at 4pm and realized you hadn't eaten or had water since yesterday morning.\nYou didn't know you were exhausted until you started crying at a commercial.\nYou held it for three hours because your body never sent an urgent enough message."
       },
       {
         "type": "chapter",
         "idx": 3,
         "headline": "Rejection Masking",
-        "body": "Rejection Sensitive Dysphoria makes perceived criticism feel like a physical blow. So the brain builds armor: people-pleasing, over-explaining, going quiet, pre-emptively agreeing.\n\nYou rewrote a two-sentence Slack message nine times so no one could possibly take it wrong.\nYou laughed along when someone teased you, then replayed it at 2am in genuine pain.\nYou said yes to something you hated because 'no' felt too dangerous."
+        "body": "Rejection Sensitive Dysphoria means perceived rejection can trigger an intense, fast emotional response — so many ADHDers become expert shape-shifters just to prevent it.\nYou agreed to something you hated because the thought of disappointing them felt physically unbearable.\nYou rewrote a two-line text eleven times because one wrong word could mean they're mad at you.\nYou became whoever the room needed you to be and lost track of who you actually are."
       },
       {
         "type": "chapter",
         "idx": 4,
         "headline": "Time Blindness",
-        "body": "ADHD brains often experience time as two states: now and not now. Future deadlines don't create urgency the way they're supposed to, and past time doesn't feel retrievable as a reference point.\n\nYou were absolutely sure the appointment was 'soon' — it was in eleven minutes and you were across town.\nThe report said 'doesn't apply herself' because you couldn't start things that weren't due yet.\nYou've been 'about to leave' for 45 minutes with no idea how that happened."
+        "body": "ADHD brains often experience time as two zones — now and not now — rather than a continuous, measurable flow. It's not rudeness. It's a neurological difference in time perception.\nYou were genuinely shocked that an hour had passed when it felt like ten minutes.\nYou showed up late to something you actually cared about, again, and hated yourself for it.\nThe report card said 'doesn't manage her time well' and no one asked why."
       },
       {
         "type": "chapter",
         "idx": 5,
         "headline": "Emotional Permanence",
-        "body": "Just as objects disappear when unseen, emotions can too — including the good ones. This means love, safety, and reassurance don't always stay felt between interactions, even when they're real.\n\nYou needed your partner to say they loved you again even though they said it this morning, because it stopped feeling true.\nWhen a friend didn't text back, you were convinced they were secretly angry — they were just busy.\nYou can't feel proud of something you did last week. It's like it happened to someone else."
+        "body": "Just as objects disappear when unseen, emotions can too — including love, safety, and confidence. When you can't feel it in the moment, your brain registers it as gone.\nYou needed your partner to reassure you they still loved you, even though nothing had changed.\nYou felt completely worthless the moment a project wasn't going well, forgetting every win before it.\nWhen someone wasn't texting back, the anxiety wasn't 'they're busy' — it was 'they hate me now.'"
       },
       {
         "type": "cta",
@@ -388,20 +383,20 @@
         "commentPrompt": "Which one hit hardest? Drop the number in the comments — I read every single one."
       }
     ],
-    "caption": "These aren't personality flaws. They're ADHD symptoms that were never explained to you.\n\nForgetting the person you love exists for two weeks. Needing reassurance you just received. Not starting the project until it's basically on fire — not because you don't care, but because your brain genuinely can't manufacture urgency for 'not now'. These are neurological patterns with names and explanations, not moral failures.\n\nWhich one on this carousel made you stop and go 'oh, that's a thing?'\n\nSave this and follow @bloomfocus.adhd for daily ADHD content.",
+    "caption": "These aren't personality flaws. They're ADHD traits that were never explained to you.\n\nForgetting people exist when they're not in front of you. Missing hunger cues until you're shaking. Agreeing to things you hate because disappointing someone feels catastrophic. None of that is laziness or carelessness or being 'too sensitive' — it's a brain that works differently.\n\nThe hardest part isn't the trait itself. It's spending decades believing it was a moral failure.\n\nWhich one on this list made you stop and go 'oh'? Tell me in the comments.\n\nSave this and follow @bloomfocus.adhd for daily ADHD content.",
     "hashtags": [
       "#ADHD",
       "#ADHDbrain",
       "#neurodivergent",
       "#ADHDawareness",
-      "#RejectionSensitiveDysphoria",
+      "#rejectionSensitiveDysphoria",
       "#ADHDwomen",
-      "#ADHDadults",
+      "#lateADHDdiagnosis",
+      "#ADHDtraits",
+      "#interoception",
       "#timeblindness",
-      "#ADHDeducation",
       "#neurodivergentlife",
-      "#ADHDmentalhealth",
-      "#lateADHDdiagnosis"
+      "#ADHDeducation"
     ],
     "id": "CR_W29_THU",
     "week": 29,
@@ -452,62 +447,62 @@
     "slides": [
       {
         "type": "hook",
-        "headline": "dear diary: i attempted a bedtime",
+        "headline": "dear diary: i just wanted to sleep",
         "sub": "a completely true story. unfortunately.",
         "kicker": "...it did not go well"
       },
       {
         "type": "diary",
-        "dateLine": "tuesday, 10:47pm",
-        "body": "decided tonight is the night. normal bedtime. maybe even 11pm like a person who has their life together. turned off the TV, felt genuinely proud of myself.\nopened TikTok 'just for a second.'"
+        "dateLine": "thursday, 10:47pm",
+        "body": "Decided tonight is the night. Reasonable bedtime. I am a person who sleeps. I put my phone down and closed my eyes for a full four minutes before remembering I never replied to that text from March."
       },
       {
         "type": "diary",
-        "dateLine": "tuesday, 11:58pm",
-        "body": "okay so I fell down a rabbit hole about whether or not otters hold hands while they sleep. they do. it was important to know this.\nstarted a notes app document called 'things to research later.' it has 14 items now."
+        "dateLine": "thursday, 11:03pm",
+        "body": "Just going to check one thing. The one thing was: what is the deepest lake in the world. I now know twelve facts about Lake Baikal and have watched a documentary clip about a fish that has never seen sunlight. I relate to that fish."
       },
       {
         "type": "diary",
-        "dateLine": "wednesday, 12:43am",
-        "body": "remembered I never replied to that text from three weeks ago. cannot sleep until I address this. spent 19 minutes drafting a response that is somehow both too much and not enough.\nsent a voice memo instead. probably fine."
+        "dateLine": "thursday, 11:52pm",
+        "body": "Okay. Phone is across the room. This is it. I am doing it. I am lying here thinking about that thing I said at a birthday party in 2014 and whether the person remembers it. They remember it."
       },
       {
         "type": "diary",
-        "dateLine": "wednesday, 1:17am",
-        "body": "lying in the dark doing a full audit of something embarrassing I said in 2016. found guilty on all counts.\nalso: is my left elbow normally this itchy? googled it. it's fine. probably."
+        "dateLine": "friday, 12:38am",
+        "body": "Got up to get water. Reorganized the mugs by height. Do not know why. Did not choose this."
       },
       {
         "type": "diary",
-        "dateLine": "wednesday, 2:52am",
-        "body": "at some point the thoughts just... kept coming. the grocery list, the thing I should have said in that meeting, a melody I can't place, whether I locked the car.\nI'm not trying to be awake. I genuinely cannot find the off switch."
+        "dateLine": "friday, 2:11am",
+        "body": "Still awake. Started a list of everything I need to do tomorrow, which reminded me of everything I didn't do today, which reminded me of everything I haven't done since 2019. The list is two pages. I feel terrible and also a little productive."
       },
       {
         "type": "truth",
         "idx": 1,
         "headline": "it was never laziness",
-        "body": "The ADHD brain has a dysregulated arousal system — meaning the transition from 'awake' to 'asleep' isn't a switch you can just flip with enough willpower. Racing thoughts, hypersensitivity, and a time-blindness that turns 'I'll sleep soon' into 3am aren't choices.\nThis is one of the most exhausting invisible parts of ADHD. And you've been living it without anyone ever explaining why."
+        "body": "ADHD brains have a dysregulated arousal system — meaning falling asleep isn't just a decision you make, it's a neurological event your brain actively makes harder. The racing thoughts, the random tasks, the 2am shame spiral: those aren't character flaws. That's an executive function system with no off switch. You weren't failing at bedtime. You were fighting your own wiring with zero backup."
       },
       {
         "type": "cta",
         "headline": "if this was uncomfortably accurate",
         "body": "send it to someone who gets it.",
-        "commentPrompt": "which entry was your 3am? drop the time below 👇"
+        "commentPrompt": "which entry was you tonight? drop the time stamp 👇"
       }
     ],
-    "caption": "dear diary: I tried to have a normal bedtime. I did not.\n\nThe ADHD sleep spiral is real — and it's not about bad habits or lack of discipline. It's a nervous system that genuinely struggles to downshift, no matter how tired you are. The racing thoughts, the random deep dives, the 2am guilt spiral about a text from 2021... it's all connected.\n\nYou're not dramatic. You're not lazy. Your brain just didn't come with an easy off switch.\n\nWhich entry had you nodding way too hard? Tell me in the comments.\n\nSave this and follow @bloomfocus.adhd for daily ADHD content.",
+    "caption": "i just wanted to go to sleep. that's it. that's the whole goal.\n\nand yet: Lake Baikal. a mug reorganization. a highlight reel of every awkward thing i've said since 2007.\n\nADHD bedtime isn't a routine — it's a hostage negotiation with your own brain, and your brain is not interested in settling.\n\nif your 'quick scroll' has ever turned into a deep dive about a fish that lives in total darkness — this one's for you.\n\nwhich entry hit closest to home tonight? tell me the timestamp. 👇\n\nSave this and follow @bloomfocus.adhd for daily ADHD content.",
     "hashtags": [
       "#ADHD",
       "#ADHDbrain",
       "#neurodivergent",
       "#ADHDsleep",
-      "#ADHDhumor",
-      "#adultADHD",
-      "#ADHDwomen",
-      "#sleepproblems",
-      "#executivefunction",
-      "#ADHDlife",
+      "#adhdhumor",
+      "#adhdlife",
+      "#sleepADHD",
       "#neurodivergentlife",
-      "#ADHDawareness"
+      "#adhdadult",
+      "#adhdawareness",
+      "#executivefunction",
+      "#adhdrelatable"
     ],
     "id": "CR_W29_FRI",
     "week": 29,
@@ -564,8 +559,8 @@
       {
         "type": "hook",
         "headline": "there's a word for that thing you do",
-        "sub": "when you sat down to 'quickly check' one thing and looked up four hours later, blinking, wondering where the sun went",
-        "kicker": "...you know the one"
+        "sub": "when you sat down to google one thing and looked up to find it was 3am and you'd read 47 articles about the migration patterns of monarch butterflies",
+        "kicker": "...it has a name."
       },
       {
         "type": "dict",
@@ -573,56 +568,56 @@
         "pos": "noun",
         "phonetic": "/ˌhaɪpərˈfoʊkəs/",
         "defs": [
-          "An intense, involuntary state of deep absorption in a task — so complete that external cues like hunger, time, and other people's voices stop registering entirely.",
-          "When your brain decides THIS is the one thing that exists now. Good luck with everything else you had planned."
+          "An intense, sustained state of absorption in a task or topic — often one the brain finds novel, urgent, or deeply interesting — during which time, hunger, and outside demands fade almost entirely from awareness.",
+          "The reason you can't 'just stop' playing a video game for five minutes but also genuinely cannot start a work email for three days."
         ],
-        "example": "\"I sat down to outline one slide deck at 2pm. At 9pm I had a fully designed, cited, 47-slide presentation, an empty stomach, and three missed calls from my mom.\""
+        "example": "\"I was supposed to restring one guitar string. Six hours later I had reorganized my entire music collection by decade, watched four documentaries, and ordered a ukulele. I was not hungry. I was not tired. I was unreachable.\""
       },
       {
         "type": "chapter",
         "idx": 1,
-        "headline": "the 'five more minutes' that ate a weekend",
-        "body": "You open a book on a Saturday morning, just to find your page. Six hours later you've finished it, researched the author, read two more chapters of a related book, and the laundry is still wet in the machine.\n\nYou didn't choose this. Your brain chose it for you — and it felt like the only thing that was ever real."
+        "headline": "the 'quick search' that wasn't",
+        "body": "You looked up the side effects of one medication at 9pm. By midnight you had seventeen tabs open, a hand-written timeline of pharmaceutical history, and a genuine opinion about a 2009 FDA hearing. You weren't being irresponsible. Your brain found a thread and pulled — hard."
       },
       {
         "type": "chapter",
         "idx": 2,
-        "headline": "the report card that said 'lacks focus'",
-        "body": "Teachers called it laziness. You couldn't explain why you could memorize every lyric to a three-hour concept album but couldn't get through a paragraph of assigned reading.\n\nHyperfocus wasn't the opposite of your ADHD — it was part of it. Interest-driven attention doesn't come with an off switch, in either direction."
+        "headline": "the project that finally clicked",
+        "body": "For weeks the presentation sat untouched. Then, two days before the deadline, something shifted — and you produced twelve slides, a custom color palette, and speaker notes in a single night. Your manager called it 'impressive under pressure.' You called it the only way it was ever going to happen."
       },
       {
         "type": "chapter",
         "idx": 3,
-        "headline": "the deadline that finally flipped the switch",
-        "body": "The project sat untouched for three weeks. Then, 11pm the night before, something clicked — suddenly you were unstoppable. Focused. Almost calm.\n\nNot because you 'got serious.' Because the urgency finally made it interesting enough for your nervous system to lock in. That's not a character flaw. That's brain chemistry doing what it does."
+        "headline": "the hobby spiral",
+        "body": "You picked up watercolor painting on a Tuesday. By Friday you had watched 30 hours of tutorials, bought professional-grade supplies, and could accurately explain the difference between cold-press and hot-press paper to anyone who would listen. Your family was not asking. You told them anyway."
       },
       {
         "type": "truth",
         "idx": 1,
         "headline": "naming it changes it",
-        "body": "Before you had this word, you had two options: take the credit weirdly ('I just get really into things') or take the blame ('I have no self-control, I can't stop').\n\nHyperfocus gives you a third option — accurate. You can start building around a pattern you can actually name instead of apologizing for a mystery.\n\nShame shrinks when the language gets precise. That's not a small thing."
+        "body": "For years, hyperfocus reads as proof you're 'lazy when you want to be' — because you can spend six hours on something you love and can't manage twenty minutes on something you don't. But hyperfocus isn't a choice or a character flaw; it's a dysregulation of attention, not a demonstration of selective effort. When you have the word, you stop explaining yourself with apologies and start building structure around how your brain actually works."
       },
       {
         "type": "cta",
         "headline": "now you have the word",
-        "body": "use it. share it. save it for the next time someone says 'just leave earlier'.",
-        "commentPrompt": "What word would YOU add to the ADHD dictionary? Drop it below — we might make it next Saturday's slide."
+        "body": "use it. share it. save it for the next time someone says 'well you managed to focus when it was something you wanted to do.'",
+        "commentPrompt": "What word would YOU add to the ADHD dictionary? Drop it in the comments — we might just make it next week's slide."
       }
     ],
-    "caption": "There's a word for losing four hours to something you sat down to do for five minutes.\n\nHyperfocus isn't a productivity trick and it's not a superpower — it's an involuntary neurological state that ADHD brains slip into when something finally meets the brain's threshold for interest or urgency. It's the same attention system that makes focusing on boring-but-important things feel impossible. Same mechanism, different direction.\n\nThe wild part? Most people with ADHD grew up being told they couldn't focus. Nobody mentioned the four-hour rabbit holes.\n\nHave you ever hyperfocused on something completely unexpected? Tell us what it was — the weirder the better.\n\nSave this and follow @bloomfocus.adhd for daily ADHD content.",
+    "caption": "There's actually a clinical name for the six-hour wikipedia spiral you can't explain to your boss.\n\nHyperfocus is one of the most misunderstood parts of ADHD — because from the outside it looks like proof you could 'try harder all along.' It's not. It's your brain's attention regulation doing the opposite of what you need, locking on instead of letting go, and it runs on interest and urgency — not intention.\n\nIt's why you can rebuild a computer from scratch but cannot send a two-sentence reply email. Both are real. Neither cancels the other out.\n\nHave you ever had to explain a hyperfocus spiral to someone who just didn't get it? Tell us the topic in the comments — we promise not to judge the 3am deep-dive into 14th century cartography.\n\nSave this and follow @bloomfocus.adhd for daily ADHD content.",
     "hashtags": [
       "#ADHD",
       "#ADHDbrain",
       "#neurodivergent",
       "#hyperfocus",
       "#ADHDawareness",
-      "#adultADHD",
+      "#ADHDadults",
+      "#neurodivergentlife",
       "#ADHDeducation",
-      "#neurodiversity",
-      "#ADHDlife",
-      "#ADHDwomen",
-      "#learnontiktok",
-      "#ADHDcommunity"
+      "#attentiondeficit",
+      "#ADHDcommunity",
+      "#bloomfocusadhd",
+      "#ADHDdictionary"
     ],
     "id": "CR_W29_SAT",
     "week": 29,
@@ -673,56 +668,56 @@
     "slides": [
       {
         "type": "hook",
-        "headline": "you don't need a perfect plan",
-        "sub": "Sunday is allowed to just be Sunday.",
-        "kicker": "no prep required."
+        "headline": "you don't need to plan the perfect week",
+        "sub": "Sunday isn't a productivity tool. It's just a day.",
+        "kicker": "...breathe for a sec"
       },
       {
         "type": "reset",
-        "headline": "the week will happen anyway",
-        "body": "You don't have to architect it tonight to survive it."
+        "headline": "the blank planner is not a failure",
+        "body": "Leaving it empty is a valid choice your brain can make."
       },
       {
         "type": "reset",
-        "headline": "rest is not falling behind",
-        "body": "Your brain actually needs this more than most brains do."
+        "headline": "rest doesn't have to be earned first",
+        "body": "You don't owe anyone a productive week before you recover."
       },
       {
         "type": "reset",
-        "headline": "the Sunday dread is not a sign",
-        "body": "It's anxiety talking, not an accurate preview of your week."
+        "headline": "one thing is enough to start with",
+        "body": "Not a system. Not a routine. Just one small next thing."
       },
       {
         "type": "reset",
-        "headline": "you can start small on Monday",
-        "body": "One task. One hour. That counts as a real start."
+        "headline": "your brain needs slack not schedules",
+        "body": "Unstructured time isn't wasted — it's how ADHD brains decompress."
       },
       {
         "type": "reset",
         "headline": "your permission slip for this week",
-        "body": "You are allowed to skip the color-coded planner and just write tomorrow on a sticky note."
+        "body": "You are allowed to skip the Sunday reset ritual entirely."
       },
       {
         "type": "cta",
         "headline": "see you monday",
         "body": "same brain. no new you required.",
-        "commentPrompt": "Tell us one thing you are NOT doing this weekend. Drop it below — we'll celebrate it."
+        "commentPrompt": "tell us one thing you are NOT doing this week — drop it below and make it official"
       }
     ],
-    "caption": "You don't need to plan a perfect week tonight.\n\nThe Sunday reset spiral — where you reorganize your entire system, buy a new planner, and promise yourself this week will be different — is exhausting. And for an ADHD brain already running on fumes, it often just adds more pressure to an already heavy day.\n\nRest isn't laziness. It's not falling behind. It's actually one of the most evidence-supported things you can do for executive function and emotional regulation.\n\nWhat is one thing you are NOT doing this Sunday? Drop it in the comments — we'll cheer you on for it.\n\nSave this and follow @bloomfocus.adhd for daily ADHD content.",
+    "caption": "you don't need to plan the perfect week.\n\nThe pressure to use Sunday as a launch pad — color-coded schedule, meal prep, inbox zero — is real. And for ADHD brains, that pressure usually ends in a paralysis spiral on the couch at 9pm feeling behind before Monday even starts.\n\nYou're not lazy. You're dysregulated. There's a difference.\n\nThis week, the bar is low and that's on purpose. One thing counts. Showing up halfway counts. Resting without justifying it counts.\n\nWhat's one thing you're giving yourself permission to skip this week?\n\nSave this and follow @bloomfocus.adhd for daily ADHD content.",
     "hashtags": [
       "#ADHD",
       "#ADHDbrain",
       "#neurodivergent",
-      "#ADHDwomen",
       "#ADHDadult",
       "#sundayreset",
-      "#adhdandanxiety",
-      "#executivefunction",
-      "#adhdlife",
-      "#restisproductive",
+      "#ADHDwomen",
+      "#neurodivergentlife",
+      "#ADHDawareness",
       "#adhdcommunity",
-      "#neurodivergentlife"
+      "#slowsunday",
+      "#adhdandanxiety",
+      "#restisproductive"
     ],
     "id": "CR_W29_SUN",
     "week": 29,
