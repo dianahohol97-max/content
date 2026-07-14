@@ -217,7 +217,9 @@ STRUCTURE:
 
 For EACH Short return:
 - voiceover: FULL narration as one flowing text (${isFlag ? "~110-135 words for ~42s" : "~75-90 words for ~30s"}). Natural spoken rhythm. End with: Follow for daily ADHD content.
-- scenes: array of ${isFlag ? "8-10" : "5-7"} scenes. CRITICAL: every scene must be VISUALLY DISTINCT from its neighbours — a different object, setting, or angle. NEVER show the same main object (e.g. a laptop) in two consecutive scenes. Vary the subject across the video: e.g. a window, then a coffee cup, then a tangled cord, then a calendar, then an open door. Each scene:
+- scenes: array of ${isFlag ? "8-10" : "5-7"} scenes. For each scene pick a "motif" — the visual backdrop — from this fixed list (use the tag before the colon, EXACTLY as written):
+${MOTIF_LIST}
+Rules for motifs: no motif twice in one video; pick motifs that emotionally match the scene's text. CRITICAL: every scene must be VISUALLY DISTINCT from its neighbours — a different object, setting, or angle. NEVER show the same main object (e.g. a laptop) in two consecutive scenes. Each scene: {"motif": tag_from_list, plus the fields below}
 ${SCENE_SPEC}
 - title: 40-70 chars, search-friendly, ends with #Shorts.
 - description: 2-3 sentences with keywords. Then on its own line: "Free 2-minute ADHD brain quiz: https://bloomfocus.org/quiz". Then on its own line: "Follow for daily ADHD content."
@@ -325,6 +327,53 @@ async function generateShorts(weekNum, count) {
   return all;
 }
 
+
+// ─── MOTIF POOL: reusable brandnoir scenes (cached forever, ~$0 marginal) ────
+// Scenes are picked FROM this pool → image-library caches each motif once.
+const MOTIF_POOL = {
+  rainy_window: "a rain-streaked window at dusk, city lights blurred outside, deep violet sky",
+  cold_coffee: "a forgotten cup of coffee on a desk, film of cold milk on top, soft lamp light",
+  tangled_cords: "a drawer of hopelessly tangled charger cables, warm light from above",
+  wall_calendar: "a wall calendar with several days circled and crossed out, soft shadow",
+  open_door: "an open door into a dim hallway, warm light spilling from the room",
+  messy_desk: "a desk covered in papers, sticky notes and two mugs, evening lamp glow",
+  unmade_bed: "an unmade bed with lavender bedding, morning light through curtains",
+  phone_glow: "a smartphone face-up on a dark table, screen glowing with notifications",
+  keys_bowl: "an empty key bowl by the front door, keys conspicuously absent",
+  laundry_chair: "a chair buried under a mountain of clean laundry, soft window light",
+  full_sink: "a kitchen sink with a few dishes, warm under-cabinet lighting",
+  sticky_notes: "a laptop edge framed with colorful sticky note reminders",
+  alarm_clock: "a bedside alarm clock showing an uncomfortably late hour, violet darkness",
+  open_fridge: "an open refrigerator glowing in a dark kitchen at night",
+  stack_books: "a stack of half-read books with bookmarks at different depths",
+  plant_shelf: "a shelf of houseplants in soft light, one slightly wilted",
+  blank_notebook: "an open blank notebook with an uncapped pen lying across it",
+  browser_tabs: "a laptop screen crowded with dozens of browser tabs, dim room",
+  doorway_pause: "an empty doorway between two softly lit rooms, inviting and still",
+  crumpled_list: "a crumpled to-do list next to a fresh empty one, desk lamp light",
+  headphones_desk: "over-ear headphones resting on a closed laptop, evening calm",
+  half_packed_bag: "a half-packed tote bag by the door, contents spilling out",
+  window_morning: "soft morning light through sheer curtains onto a wooden floor",
+  tea_steam: "a mug of tea with rising steam, cozy blanket in the background",
+  lost_glasses: "a pair of glasses on top of a head-shaped shadow, playful light",
+  stairs_light: "a staircase with warm light at the top, deep violet shadows below",
+  mirror_dim: "a dim hallway mirror reflecting soft lamplight, no人 visible",
+  pill_organizer: "a weekly pill organizer with some days open, gentle window light",
+  laptop_2am: "a laptop screen glowing in a dark room, clock corner showing 2 AM",
+  grocery_bags: "grocery bags left on the kitchen floor, one apple rolled away",
+  couch_blanket: "an inviting couch with a lavender blanket half fallen to the floor",
+  rain_umbrella: "a wet umbrella drying by the door, rainy evening mood",
+  timer_kitchen: "a kitchen timer mid-countdown on a counter, warm light",
+  window_night: "a dark window reflecting a cozy lamp-lit room interior",
+  shoes_hallway: "several pairs of shoes scattered in a hallway, one missing its pair",
+  charging_cable: "a phone at 3% next to an unplugged charging cable, dramatic light",
+  post_shower: "a foggy bathroom mirror with a heart drawn in the condensation",
+  desk_sunbeam: "a tidy desk corner caught in a single warm sunbeam, dust motes",
+  empty_hanger: "an open closet with one empty hanger swinging slightly",
+  candle_evening: "a lit candle on a windowsill against deep violet evening sky",
+};
+const MOTIF_LIST = Object.entries(MOTIF_POOL).map(([t, d]) => `${t}: ${d.slice(0, 50)}`).join("\n");
+
 async function main() {
   console.log(`\n🎬 bloom focus — YouTube Shorts generator — Week ${WEEK}\n${"━".repeat(50)}`);
   console.log(`Generating ${COUNT} shorts...`);
@@ -387,6 +436,18 @@ async function main() {
     return !dup;
   });
   if (before !== shorts.length) console.log(`  ✂ fuzzy dedupe: ${before - shorts.length} dropped, ${shorts.length} kept`);
+
+  // Map motif tags to cached prompts (cache key = motif → cross-video reuse)
+  for (const sh of shorts) {
+    for (const sc of (sh.scenes || [])) {
+      if (sc.motif && MOTIF_POOL[sc.motif]) {
+        sc.tag = sc.motif;
+        sc.imagePrompt = MOTIF_POOL[sc.motif];
+      } else if (sc.motif) {
+        sc.tag = undefined; // невідомий мотив — старий шлях по imagePrompt
+      }
+    }
+  }
 
   const offset = existing.length;
   if (offset) console.log(`  ↩ merging: ${offset} existing shorts kept, new IDs start at ${offset + 1}`);
