@@ -486,5 +486,64 @@
     "videoUrl": "https://raw.githubusercontent.com/dianahohol97-max/content/main/output/shorts/week_29/SH_W29_08.mp4",
     "postedAt": null,
     "coverUrl": "https://raw.githubusercontent.com/dianahohol97-max/content/main/output/shorts/week_29/SH_W29_08_cover.jpg"
+  },
+  {
+    "id": "SH_W29_09",
+    "week": 29,
+    "voiceover": "You have one appointment at 3pm and your entire day is gone. That is Waiting Mode. When one fixed event sits on your calendar, your brain treats everything before it as unscheduled limbo. Here is what it looks like: You cancel a morning workout because the appointment is 'coming up.' You sit at your desk for two hours but open nothing. You refresh your phone seventeen times and call it waiting. Your brain can not start a new thing when it knows an interruption is coming. Follow for daily ADHD content.",
+    "scenes": [
+      {
+        "tag": "calendar",
+        "imagePrompt": "Atmospheric editorial illustration with soft cinematic light and gentle depth, subtle film grain, sophisticated adult mood. STRICTLY brand palette only: lavender, blush pink, sage green, warm cream, deep violet — absolutely NO grey, NO charcoal, NO greige, NO black. Warm and calm but grown-up, like a refined wellness brand. NO people, no faces, no text, no letters. Keep the lower third calm and uncluttered for caption legibility. NOT cute, NOT cartoon, NOT childish. Vertical 9:16 composition. Dim cool lavender light. A single wall calendar pinned above a bare desk, one date circled in blush pink, the rest of the page empty and untouched, cool shadow falling across the lower half of the calendar, still and heavy atmosphere.",
+        "caption": ""
+      },
+      {
+        "tag": "clock",
+        "imagePrompt": "Atmospheric editorial illustration with soft cinematic light and gentle depth, subtle film grain, sophisticated adult mood. STRICTLY brand palette only: lavender, blush pink, sage green, warm cream, deep violet — absolutely NO grey, NO charcoal, NO greige, NO black. Warm and calm but grown-up, like a refined wellness brand. NO people, no faces, no text, no letters. Keep the lower third calm and uncluttered for caption legibility. NOT cute, NOT cartoon, NOT childish. Vertical 9:16 composition. Dim cool light. A round analog clock on a soft cream wall, hands showing mid-morning, soft violet shadow pooling beneath it, the surrounding wall bare and still, a sense of suspended time.",
+        "caption": ""
+      },
+      {
+        "tag": "window_light",
+        "imagePrompt": "Atmospheric editorial illustration with soft cinematic light and gentle depth, subtle film grain, sophisticated adult mood. STRICTLY brand palette only: lavender, blush pink, sage green, warm cream, deep violet — absolutely NO grey, NO charcoal, NO greige, NO black. Warm and calm but grown-up, like a refined wellness brand. NO people, no faces, no text, no letters. Keep the lower third calm and uncluttered for caption legibility. NOT cute, NOT cartoon, NOT childish. Vertical 9:16 composition. Dim cool lavender tone. A window with sheer sage curtains barely moving, pale morning light filtering through but feeling stalled, a cozy chair pulled in front of it unused, the room behind it still and dim.",
+        "caption": ""
+      },
+      {
+        "tag": "phone",
+        "imagePrompt": "Atmospheric editorial illustration with soft cinematic light and gentle depth, subtle film grain, sophisticated adult mood. STRICTLY brand palette only: lavender, blush pink, sage green, warm cream, deep violet — absolutely NO grey, NO charcoal, NO greige, NO black. Warm and calm but grown-up, like a refined wellness brand. NO people, no faces, no text, no letters. Keep the lower third calm and uncluttered for caption legibility. NOT cute, NOT cartoon, NOT childish. Vertical 9:16 composition. Dim cool tone with a faint blush screen glow. A phone face-up on a cream surface, its screen casting a soft blush pink light upward into the surrounding dimness, the rest of the surface completely bare, an atmosphere of restless waiting.",
+        "caption": ""
+      },
+      {
+        "tag": "desk_empty",
+        "imagePrompt": "Atmospheric editorial illustration with soft cinematic light and gentle depth, subtle film grain, sophisticated adult mood. STRICTLY brand palette only: lavender, blush pink, sage green, warm cream, deep violet — absolutely NO grey, NO charcoal, NO greige, NO black. Warm and calm but grown-up, like a refined wellness brand. NO people, no faces, no text, no letters. Keep the lower third calm and uncluttered for caption legibility. NOT cute, NOT cartoon, NOT childish. Vertical 9:16 composition. Dim cool lavender light. A completely bare wooden desk surface, a closed journal pushed to one corner untouched, a pencil resting beside it unused, soft violet shadow across the lower half of the desk, the entire scene still and heavy.",
+        "caption": ""
+      },
+      {
+        "tag": "lamp",
+        "imagePrompt": "Atmospheric editorial illustration with soft cinematic light and gentle depth, subtle film grain, sophisticated adult mood. STRICTLY brand palette only: lavender, blush pink, sage green, warm cream, deep violet — absolutely NO grey, NO charcoal, NO greige, NO black. Warm and calm but grown-up, like a refined wellness brand. NO people, no faces, no text, no letters. Keep the lower third calm and uncluttered for caption legibility. NOT cute, NOT cartoon, NOT childish. Vertical 9:16 composition. Introducing a warm pool of light for the hopeful practical beat. A small sage-green desk lamp switched on, casting a warm cream-toned circle of light onto a notebook below it, the surrounding room still dim in lavender shadow but the lamp offering a focused warm glow, a sense of gentle possibility.",
+        "caption": ""
+      }
+    ],
+    "title": "Waiting Mode: Why One Task Freezes Your Whole Day #Shorts",
+    "description": "Waiting Mode is a common ADHD pattern where one fixed event on your calendar puts your entire brain into a holding state — making it nearly impossible to start anything else before it. If you have ever lost a whole morning to a single afternoon appointment, this is why. Understanding the real mechanism behind Waiting Mode is the first step to working with your brain instead of against it.\nFollow for daily ADHD content.",
+    "tags": [
+      "ADHD waiting mode",
+      "ADHD patterns",
+      "ADHD productivity",
+      "ADHD education",
+      "ADHD tips",
+      "ADHD brain",
+      "time blindness ADHD",
+      "ADHD time management",
+      "ADHD explained",
+      "bloom focus",
+      "ADHD daily life",
+      "neurodivergent"
+    ],
+    "funnel": "follow",
+    "shortType": "pattern",
+    "status": "pending",
+    "videoUrl": "https://raw.githubusercontent.com/dianahohol97-max/content/main/output/shorts/week_29/SH_W29_09.mp4",
+    "postedAt": null,
+    "coverUrl": "https://raw.githubusercontent.com/dianahohol97-max/content/main/output/shorts/week_29/SH_W29_09_cover.jpg"
   }
 ]
