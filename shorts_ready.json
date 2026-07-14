@@ -545,5 +545,56 @@
     "videoUrl": "https://raw.githubusercontent.com/dianahohol97-max/content/main/output/shorts/week_29/SH_W29_09.mp4",
     "postedAt": null,
     "coverUrl": "https://raw.githubusercontent.com/dianahohol97-max/content/main/output/shorts/week_29/SH_W29_09_cover.jpg"
+  },
+  {
+    "id": "SH_W29_10",
+    "week": 29,
+    "question": "Which inbox is yours right now?",
+    "options": [
+      {
+        "label": "The avalanche",
+        "imagePrompt": "Atmospheric editorial illustration with soft cinematic light and gentle depth, subtle film grain, sophisticated adult mood. STRICTLY brand palette only: lavender, blush pink, sage green, warm cream, deep violet — absolutely NO grey, NO charcoal, NO greige, NO black. Warm and calm but grown-up, like a refined wellness brand. NO people, no faces, no text, no letters. Keep the lower third calm and uncluttered for caption legibility. NOT cute, NOT cartoon, NOT childish. Vertical 9:16 composition. A towering, precarious stack of envelopes and folded papers overflowing from a deep violet ceramic tray on a warm cream desk, soft lavender light catching the edges, several envelopes slipping mid-fall, the pile casting a long gentle shadow.",
+        "result": "You avoid the inbox entirely — unseen things don't exist to your brain yet."
+      },
+      {
+        "label": "Four bold tabs",
+        "imagePrompt": "Atmospheric editorial illustration with soft cinematic light and gentle depth, subtle film grain, sophisticated adult mood. STRICTLY brand palette only: lavender, blush pink, sage green, warm cream, deep violet — absolutely NO grey, NO charcoal, NO greige, NO black. Warm and calm but grown-up, like a refined wellness brand. NO people, no faces, no text, no letters. Keep the lower third calm and uncluttered for caption legibility. NOT cute, NOT cartoon, NOT childish. Vertical 9:16 composition. A close-up of a softly glowing laptop screen showing four browser tab shapes rendered as blush pink and lavender geometric strips across the top, warm cream background, cinematic depth of field blurring the keyboard below, a single sage green houseplant leaf curling in from the side.",
+        "result": "You have 47 tabs open and zero emails read — classic interest-based paralysis."
+      },
+      {
+        "label": "The neat zero",
+        "imagePrompt": "Atmospheric editorial illustration with soft cinematic light and gentle depth, subtle film grain, sophisticated adult mood. STRICTLY brand palette only: lavender, blush pink, sage green, warm cream, deep violet — absolutely NO grey, NO charcoal, NO greige, NO black. Warm and calm but grown-up, like a refined wellness brand. NO people, no faces, no text, no letters. Keep the lower third calm and uncluttered for caption legibility. NOT cute, NOT cartoon, NOT childish. Vertical 9:16 composition. A single open notebook lying flat on a warm cream linen surface, its pages completely blank and pristine, a fine-tipped blush pink pen resting diagonally across it, soft cinematic side-light creating a long warm shadow, a small sage green sprig in the corner.",
+        "result": "Inbox zero is your hyperfocus trophy — but the replies took 3 impulsive hours."
+      },
+      {
+        "label": "The sticky graveyard",
+        "imagePrompt": "Atmospheric editorial illustration with soft cinematic light and gentle depth, subtle film grain, sophisticated adult mood. STRICTLY brand palette only: lavender, blush pink, sage green, warm cream, deep violet — absolutely NO grey, NO charcoal, NO greige, NO black. Warm and calm but grown-up, like a refined wellness brand. NO people, no faces, no text, no letters. Keep the lower third calm and uncluttered for caption legibility. NOT cute, NOT cartoon, NOT childish. Vertical 9:16 composition. A flat lay of dozens of small square sticky notes in lavender, blush pink, and sage green scattered across a warm cream surface, some overlapping, some curling at the corners, soft diffused light casting tiny shadows under each note, a deep violet wax seal stamp resting among them.",
+        "result": "You outsource your working memory to paper — and lose the paper. Relatable."
+      }
+    ],
+    "introVoiceover": "Four inboxes. Pick the one that made your stomach drop just now. Your choice says something real about how your ADHD brain handles overwhelm — drop your answer in the comments.",
+    "outroVoiceover": "No wrong answer — just different wiring. Follow for daily ADHD content.",
+    "title": "Which inbox is yours? (ADHD brain test) #Shorts",
+    "description": "Pick the inbox that feels most painfully familiar — then watch as we reveal what each choice says about how your ADHD brain actually processes overwhelm. The answers are in the video.\nFollow for daily ADHD content.",
+    "tags": [
+      "ADHD",
+      "ADHDtest",
+      "ADHDtips",
+      "neurodivergent",
+      "ADHDbrain",
+      "bloomfocus",
+      "ADHDawareness",
+      "workingmemory",
+      "dopamine",
+      "ADHDlife",
+      "focustips",
+      "mentalhealth"
+    ],
+    "funnel": "follow",
+    "shortType": "quiztest",
+    "status": "pending",
+    "videoUrl": "https://raw.githubusercontent.com/dianahohol97-max/content/main/output/shorts/week_29/SH_W29_10.mp4",
+    "postedAt": null,
+    "coverUrl": "https://raw.githubusercontent.com/dianahohol97-max/content/main/output/shorts/week_29/SH_W29_10_cover.jpg"
   }
 ]
