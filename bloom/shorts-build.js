@@ -291,7 +291,11 @@ async function buildQuizGrid(short, outPath) {
   for (let i = 0; i < 4; i++) {
     const opt = short.options[i];
     let raw;
-    try { raw = await geminiBackground(opt.imagePrompt); }
+    try {
+      const qtag = "quiz_" + normalizeTag((opt.imagePrompt || "opt").slice(0, 30));
+      const qpath = await getOrCreate(qtag, "vertical", async () => await geminiBackground(opt.imagePrompt), null);
+      raw = fs.readFileSync(qpath);
+    }
     catch (e) { console.log(`   ⚠ quiz tile ${i+1} fallback:`, e.message.slice(0,50)); raw = await brandFallback(); }
     const tile = await sharp(raw).resize(tileW, tileH, { fit: "cover", position: "centre" }).toBuffer();
     const badge = Buffer.from(`
@@ -334,7 +338,11 @@ async function buildQuizGrid(short, outPath) {
 // a synced subtitle, like other shorts).
 async function buildResultImage(opt, number, outPath) {
   let raw;
-  try { raw = await geminiBackground(opt.imagePrompt); }
+  try {
+      const qtag = "quiz_" + normalizeTag((opt.imagePrompt || "opt").slice(0, 30));
+      const qpath = await getOrCreate(qtag, "vertical", async () => await geminiBackground(opt.imagePrompt), null);
+      raw = fs.readFileSync(qpath);
+    }
   catch (e) { console.log("   ⚠ result img fallback:", e.message.slice(0,50)); raw = await brandFallback(); }
   const base = await sharp(raw).resize(W, H, { fit: "cover", position: "centre" }).toBuffer();
   const badge = Buffer.from(`
