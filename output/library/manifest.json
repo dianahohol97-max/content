@@ -636,6 +636,12 @@
     "url": "https://raw.githubusercontent.com/dianahohol97-max/content/main/output/library/vertical/v5_books_1.png"
   },
   {
+    "id": "vertical_v5_books_2.png",
+    "aspect": "vertical",
+    "filename": "v5_books_2.png",
+    "url": "https://raw.githubusercontent.com/dianahohol97-max/content/main/output/library/vertical/v5_books_2.png"
+  },
+  {
     "id": "vertical_v5_brain_1.png",
     "aspect": "vertical",
     "filename": "v5_brain_1.png",
@@ -1908,6 +1914,12 @@
     "url": "https://raw.githubusercontent.com/dianahohol97-max/content/main/output/library/wide/v5_books_4.png"
   },
   {
+    "id": "wide_v5_books_5.png",
+    "aspect": "wide",
+    "filename": "v5_books_5.png",
+    "url": "https://raw.githubusercontent.com/dianahohol97-max/content/main/output/library/wide/v5_books_5.png"
+  },
+  {
     "id": "wide_v5_brain_1.png",
     "aspect": "wide",
     "filename": "v5_brain_1.png",
@@ -2080,6 +2092,12 @@
     "aspect": "wide",
     "filename": "v5_desk_empty_4.png",
     "url": "https://raw.githubusercontent.com/dianahohol97-max/content/main/output/library/wide/v5_desk_empty_4.png"
+  },
+  {
+    "id": "wide_v5_desk_empty_5.png",
+    "aspect": "wide",
+    "filename": "v5_desk_empty_5.png",
+    "url": "https://raw.githubusercontent.com/dianahohol97-max/content/main/output/library/wide/v5_desk_empty_5.png"
   },
   {
     "id": "wide_v5_desk_messy_1.png",
