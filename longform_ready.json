@@ -1,253 +1,235 @@
 [
   {
-    "id": "LF_20260805",
+    "id": "LF_20260807",
     "week": 32,
-    "title": "ADHD Time Blindness: The Full Science and a System That Works",
-    "thumbnailText": "Time just DISAPPEARS",
-    "thumbnailAccent": "DISAPPEARS",
-    "description": "If you have ADHD, time blindness isn't a character flaw — it's a neurological reality rooted in how your brain processes time, dopamine, and future consequences. This video breaks down the real science behind ADHD time blindness and walks you through a concrete system that actually works with your brain instead of against it. No 'just use a planner' advice — just honest, research-backed explanations and practical tools you can start using today. Timestamps below.\n\nChapters:\n00:00 The Feeling Nobody Has Words For\n02:00 What Time Blindness Actually Is\n04:00 The Neuroscience Behind It\n06:00 Why Every Common Fix Fails\n07:30 A System That Actually Works\n09:30 You Are Not the Problem\n\nChapters:\n0:00 The Feeling Nobody Has Words For\n1:24 What Time Blindness Actually Is\n3:13 The Neuroscience Behind It\n4:56 Why Every Common Fix Fails\n6:36 A System That Actually Works\n8:43 You Are Not the Problem\n\nundefined",
+    "title": "ADHD in Women: Why It Gets Missed for Decades",
+    "thumbnailText": "Missed for DECADES",
+    "thumbnailAccent": "DECADES",
+    "description": "ADHD in women looks completely different from the textbook version, and that difference is exactly why so many women go undiagnosed until their 30s, 40s, or even later. This video breaks down the real neuroscience behind why female ADHD is so often mistaken for anxiety, laziness, or just 'being a lot', and what the symptoms actually look like in daily life. We cover the hormonal connection, the masking that exhausts you from the inside out, and what to do if you finally see yourself in this. If you have ever been told you are too sensitive, too scattered, or not sick enough to have ADHD, this one is for you.\n\nChapters:\n\nChapters:\n0:00 The Diagnosis That Never Came\n1:35 What It Actually Looks Like\n3:16 The Neuroscience (Simply Put)\n4:59 Masking: The Hidden Exhaustion\n6:46 Hormones and the Cycle Nobody Talks About\n8:31 Where to Go From Here\n\nundefined",
     "tags": [
-      "ADHD time blindness",
-      "ADHD and time",
-      "time blindness explained",
-      "ADHD executive function",
-      "ADHD dopamine",
-      "ADHD tips that actually work",
-      "ADHD education",
+      "ADHD in women",
+      "female ADHD",
+      "ADHD diagnosis women",
+      "undiagnosed ADHD",
+      "ADHD symptoms women",
+      "ADHD masking",
+      "ADHD and anxiety",
+      "ADHD late diagnosis",
+      "women and ADHD",
       "ADHD neuroscience",
-      "ADHD planning system",
-      "time management ADHD",
-      "ADHD brain explained",
-      "adult ADHD",
-      "ADHD productivity",
-      "why ADHD makes you late",
-      "ADHD strategies"
+      "ADHD executive function",
+      "ADHD hormones",
+      "ADHD education",
+      "bloom focus",
+      "ADHD explained"
     ],
     "chapters": [
       {
-        "title": "The Feeling Nobody Has Words For",
-        "voiceover": "It is Tuesday morning. The appointment is at eleven. You checked the clock at nine forty-five and thought, great, plenty of time. Then something pulled your attention — a notification, a thought, a cup of coffee you decided to make — and the next time you looked up it was ten fifty-two. You were not asleep. You were not ignoring the clock. You were just — somewhere else. And now your heart is pounding and you are grabbing your keys and you are already composing the apology text in your head, and the worst part is that this is not the first time. It is not even the tenth time. And every single time, you swore you would do better. Here is what nobody tells you: that experience has a name, it has a mechanism, and it is not a moral failing. It is called time blindness, and it is one of the most disabling and least understood symptoms of ADHD. In this video we are going to do something most ADHD content does not bother to do. We are going to actually explain what is happening in your brain — the real neuroscience, not a simplified metaphor that falls apart the moment you think about it — and then we are going to walk through a specific, structured system that works with that brain, not against it. No planners that require you to already have the executive function you are missing. No advice that sounds like 'just try harder.' Real tools. Let us start at the beginning.",
+        "title": "The Diagnosis That Never Came",
+        "voiceover": "You were the girl who got good grades but cried in the bathroom before every test. The one who could read the same paragraph six times and still have no idea what it said. You were called sensitive, spacey, dramatic, a dreamer. Teachers said you were smart but not working to your potential. Your mum said you just needed to try harder. And somehow, despite all of it, you kept functioning. You kept showing up. So nobody called it anything. Nobody called it ADHD. Here is the thing that most people do not know: the entire framework we use to identify ADHD was built almost exclusively on research done on young boys. Hyperactive boys. Disruptive boys. Boys whose symptoms were impossible to ignore in a classroom. Girls were not in those studies in any meaningful numbers, which means the diagnostic checklist was never really built with girls in mind. So when a girl with ADHD sat quietly, stared out the window, handed in perfect work that took her four times longer than everyone else, she did not get flagged. She got overlooked. Fast forward twenty or thirty years, and that girl is now a woman sitting in a doctor's office for the first time, holding a list of symptoms she printed from the internet, wondering if she is allowed to be here. This video is for her. We are going to cover what ADHD actually looks like in women, why it gets missed, what the science says, and what you can do about it. Stay with me.",
         "scenes": [
-          {
-            "tag": "clock",
-            "caption": "",
-            "imagePrompt": "Hand-drawn illustration in soft pastel colors, cozy and warm style. Soft watercolor texture, gentle hand-painted lines, flat illustration. Palette: lavender, cream, sage green, blush pink. Calm, friendly, approachable, non-judgmental mood. No people, no faces, no text, no letters. Wide landscape 16:9 composition. A soft surreal melting clock draped gently over a windowsill, edges dissolving into watercolor mist.",
-            "seconds": 0
-          },
-          {
-            "tag": "coffee",
-            "caption": "",
-            "imagePrompt": "Hand-drawn illustration in soft pastel colors, cozy and warm style. Soft watercolor texture, gentle hand-painted lines, flat illustration. Palette: lavender, cream, sage green, blush pink. Calm, friendly, approachable, non-judgmental mood. No people, no faces, no text, no letters. Wide landscape 16:9 composition. A steaming coffee mug sitting on a desk beside a half-open notebook, morning light casting a soft shadow.",
-            "seconds": 0
-          },
           {
             "tag": "window_light",
             "caption": "",
-            "imagePrompt": "Hand-drawn illustration in soft pastel colors, cozy and warm style. Soft watercolor texture, gentle hand-painted lines, flat illustration. Palette: lavender, cream, sage green, blush pink. Calm, friendly, approachable, non-judgmental mood. No people, no faces, no text, no letters. Wide landscape 16:9 composition. A window with soft morning light streaming through sheer curtains, casting gentle pastel beams across a wooden floor.",
+            "imagePrompt": "Hand-drawn illustration in soft pastel colors, cozy and warm style. Soft watercolor texture, gentle hand-painted lines, flat illustration. Palette: lavender, cream, sage green, blush pink. Calm, friendly, approachable, non-judgmental mood. No people, no faces, no text, no letters. Wide landscape 16:9 composition. A window with soft morning light filtering through sheer curtains, a small plant on the sill casting a gentle shadow.",
+            "seconds": 0
+          },
+          {
+            "tag": "books",
+            "caption": "",
+            "imagePrompt": "Hand-drawn illustration in soft pastel colors, cozy and warm style. Soft watercolor texture, gentle hand-painted lines, flat illustration. Palette: lavender, cream, sage green, blush pink. Calm, friendly, approachable, non-judgmental mood. No people, no faces, no text, no letters. Wide landscape 16:9 composition. Stacked books of varying heights with a soft bookmark ribbon, arranged on a cozy surface.",
+            "seconds": 0
+          },
+          {
+            "tag": "desk_messy",
+            "caption": "",
+            "imagePrompt": "Hand-drawn illustration in soft pastel colors, cozy and warm style. Soft watercolor texture, gentle hand-painted lines, flat illustration. Palette: lavender, cream, sage green, blush pink. Calm, friendly, approachable, non-judgmental mood. No people, no faces, no text, no letters. Wide landscape 16:9 composition. A gently messy desk with scattered papers, a forgotten coffee cup, and an open notebook with a pen resting across it.",
+            "seconds": 0
+          },
+          {
+            "tag": "path",
+            "caption": "",
+            "imagePrompt": "Hand-drawn illustration in soft pastel colors, cozy and warm style. Soft watercolor texture, gentle hand-painted lines, flat illustration. Palette: lavender, cream, sage green, blush pink. Calm, friendly, approachable, non-judgmental mood. No people, no faces, no text, no letters. Wide landscape 16:9 composition. A winding gentle path through soft rolling hills disappearing into a hazy horizon.",
+            "seconds": 0
+          }
+        ]
+      },
+      {
+        "title": "What It Actually Looks Like",
+        "voiceover": "When people think ADHD, they picture a kid bouncing off the walls. What they do not picture is a thirty-four-year-old woman who has had an email open on her screen for forty minutes and still cannot start typing the reply. It is Tuesday morning. The email is not even complicated. She knows what she wants to say. But there is this wall between knowing and doing, and she cannot explain it, and she hates herself a little more each time the cursor blinks. That is ADHD. Not hyperactivity in the physical sense, but a nervous system that struggles to initiate, to transition, to regulate its own attention. In women, ADHD most commonly presents as the inattentive subtype. That means the loudest symptoms are internal: racing thoughts that never quiet down, extreme difficulty starting tasks that feel low-interest even when the stakes are high, losing track of time so consistently that it feels like a personality flaw, emotional responses that are intense and fast and hard to pull back from. There is also rejection sensitive dysphoria, which is not in the official diagnostic criteria but is reported by a huge proportion of ADHD women. It is the specific, searing pain of feeling criticised or left out, a pain that is neurologically disproportionate to the event but feels completely real in the body. And then there is the chronic overwhelm of a to-do list that lives in your head because writing it down somehow makes it worse. The clutter that spreads because starting to tidy requires the same executive resources that are already depleted. The appointments forgotten not because you do not care, but because your brain does not maintain information passively the way other brains do. This is not a character flaw. This is a dopamine regulation problem, and we need to talk about what that actually means.",
+        "scenes": [
+          {
+            "tag": "desk_empty",
+            "caption": "",
+            "imagePrompt": "Hand-drawn illustration in soft pastel colors, cozy and warm style. Soft watercolor texture, gentle hand-painted lines, flat illustration. Palette: lavender, cream, sage green, blush pink. Calm, friendly, approachable, non-judgmental mood. No people, no faces, no text, no letters. Wide landscape 16:9 composition. A clean empty desk with a single glowing laptop screen, the cursor blinking softly in the quiet.",
+            "seconds": 0
+          },
+          {
+            "tag": "clock",
+            "caption": "",
+            "imagePrompt": "Hand-drawn illustration in soft pastel colors, cozy and warm style. Soft watercolor texture, gentle hand-painted lines, flat illustration. Palette: lavender, cream, sage green, blush pink. Calm, friendly, approachable, non-judgmental mood. No people, no faces, no text, no letters. Wide landscape 16:9 composition. A soft surreal melting clock with gentle drooping edges dissolving into watercolor pools on a dreamy surface.",
             "seconds": 0
           },
           {
             "tag": "phone",
             "caption": "",
-            "imagePrompt": "Hand-drawn illustration in soft pastel colors, cozy and warm style. Soft watercolor texture, gentle hand-painted lines, flat illustration. Palette: lavender, cream, sage green, blush pink. Calm, friendly, approachable, non-judgmental mood. No people, no faces, no text, no letters. Wide landscape 16:9 composition. A phone lying face-up on a soft surface, a faint glow emanating from the screen, surrounded by small illustrated notification bubbles drifting upward like soap bubbles.",
+            "imagePrompt": "Hand-drawn illustration in soft pastel colors, cozy and warm style. Soft watercolor texture, gentle hand-painted lines, flat illustration. Palette: lavender, cream, sage green, blush pink. Calm, friendly, approachable, non-judgmental mood. No people, no faces, no text, no letters. Wide landscape 16:9 composition. A phone lying face-up on a soft surface with a faint glow, surrounded by small scattered notes and a pen.",
             "seconds": 0
           },
           {
-            "tag": "path",
+            "tag": "cozy_room",
             "caption": "",
-            "imagePrompt": "Hand-drawn illustration in soft pastel colors, cozy and warm style. Soft watercolor texture, gentle hand-painted lines, flat illustration. Palette: lavender, cream, sage green, blush pink. Calm, friendly, approachable, non-judgmental mood. No people, no faces, no text, no letters. Wide landscape 16:9 composition. A winding path disappearing into a soft misty horizon, bordered by small wildflowers and gentle rolling hills.",
-            "seconds": 0
-          }
-        ]
-      },
-      {
-        "title": "What Time Blindness Actually Is",
-        "voiceover": "Most people experience time as a kind of continuous ribbon. They can feel thirty minutes passing. They have a vague but functional sense of how far away the future is — next week feels different from next month, and tomorrow feels genuinely close. Researchers call this temporal awareness, and for most neurotypical people it operates almost automatically, like an internal metronome running in the background. For people with ADHD, that metronome is unreliable at best and completely absent at worst. Dr. Russell Barkley, one of the leading researchers on ADHD in the world, describes it this way: people with ADHD essentially live in two time zones — now, and not now. There is what is happening in this moment, and everything else collapses into a single undifferentiated future. Your best friend's birthday next week and a deadline in three months feel equally distant. Both are just — not now. This is not a metaphor. Studies using interval timing tasks, where participants are asked to estimate how much time has passed without a clock, consistently show that people with ADHD dramatically underestimate elapsed time. One study found that ADHD adults perceived a thirty-minute interval as roughly eighteen minutes. That is not carelessness. That is a measurably different relationship with time built into how the brain is functioning. And here is the part that should reframe everything: if your brain genuinely cannot feel time passing the way other brains do, then every consequence you have ever experienced for being late, for missing deadlines, for losing track of hours — none of that was failure. It was navigating the world with a tool that was never quite calibrated for it.",
-        "scenes": [
-          {
-            "tag": "clock",
-            "caption": "",
-            "imagePrompt": "Hand-drawn illustration in soft pastel colors, cozy and warm style. Soft watercolor texture, gentle hand-painted lines, flat illustration. Palette: lavender, cream, sage green, blush pink. Calm, friendly, approachable, non-judgmental mood. No people, no faces, no text, no letters. Wide landscape 16:9 composition. A soft surreal melting clock with its hands drifting apart, surrounded by gentle watercolor ripples suggesting the passage of time.",
-            "seconds": 0
-          },
-          {
-            "tag": "calendar",
-            "caption": "",
-            "imagePrompt": "Hand-drawn illustration in soft pastel colors, cozy and warm style. Soft watercolor texture, gentle hand-painted lines, flat illustration. Palette: lavender, cream, sage green, blush pink. Calm, friendly, approachable, non-judgmental mood. No people, no faces, no text, no letters. Wide landscape 16:9 composition. A wall calendar with soft illustrated pages, some dates marked with small gentle circles, surrounded by drifting leaf shapes.",
+            "imagePrompt": "Hand-drawn illustration in soft pastel colors, cozy and warm style. Soft watercolor texture, gentle hand-painted lines, flat illustration. Palette: lavender, cream, sage green, blush pink. Calm, friendly, approachable, non-judgmental mood. No people, no faces, no text, no letters. Wide landscape 16:9 composition. A gently messy cozy room with soft cushions, a lamp casting warm light, and a few open books on the floor.",
             "seconds": 0
           },
           {
             "tag": "brain",
             "caption": "",
-            "imagePrompt": "Hand-drawn illustration in soft pastel colors, cozy and warm style. Soft watercolor texture, gentle hand-painted lines, flat illustration. Palette: lavender, cream, sage green, blush pink. Calm, friendly, approachable, non-judgmental mood. No people, no faces, no text, no letters. Wide landscape 16:9 composition. An abstract brain made of soft clouds and gentle sparks, floating peacefully in a pastel sky, with small stars scattered around it.",
-            "seconds": 0
-          },
-          {
-            "tag": "path",
-            "caption": "",
-            "imagePrompt": "Hand-drawn illustration in soft pastel colors, cozy and warm style. Soft watercolor texture, gentle hand-painted lines, flat illustration. Palette: lavender, cream, sage green, blush pink. Calm, friendly, approachable, non-judgmental mood. No people, no faces, no text, no letters. Wide landscape 16:9 composition. A winding path that forks into two directions, one bathed in warm light and one fading into a soft misty distance, bordered by small gentle flowers.",
-            "seconds": 0
-          },
-          {
-            "tag": "window_light",
-            "caption": "",
-            "imagePrompt": "Hand-drawn illustration in soft pastel colors, cozy and warm style. Soft watercolor texture, gentle hand-painted lines, flat illustration. Palette: lavender, cream, sage green, blush pink. Calm, friendly, approachable, non-judgmental mood. No people, no faces, no text, no letters. Wide landscape 16:9 composition. A window with soft morning light streaming through sheer curtains, the light shifting subtly to suggest time moving, shadows lengthening gently across the floor.",
+            "imagePrompt": "Hand-drawn illustration in soft pastel colors, cozy and warm style. Soft watercolor texture, gentle hand-painted lines, flat illustration. Palette: lavender, cream, sage green, blush pink. Calm, friendly, approachable, non-judgmental mood. No people, no faces, no text, no letters. Wide landscape 16:9 composition. An abstract brain made of soft clouds and gentle sparks of light, floating quietly in a dreamy pastel space.",
             "seconds": 0
           }
         ]
       },
       {
-        "title": "The Neuroscience Behind It",
-        "voiceover": "So what is actually going on inside the brain? The answer involves three things working together — or rather, failing to work together the way they should. The first is dopamine. Dopamine is not just the pleasure chemical — that is an oversimplification. It is more accurately a signal-relevance chemical. It tells your brain what to pay attention to and what to pursue. In the ADHD brain, the dopamine system is underactive and dysregulated. Specifically, there are fewer dopamine transporters and different receptor density patterns, particularly in the striatum and prefrontal cortex. What this means practically is that your brain is constantly scanning for something more immediately stimulating. The present moment is competing with itself, which is why you can hyperfocus on a video game for six hours and completely lose track of time, but struggle to hold the awareness that your meeting starts in forty minutes. The second piece is the prefrontal cortex — the brain region responsible for executive functions: planning, impulse control, and crucially, prospective memory, which is the ability to remember to do something in the future. Brain imaging studies show consistently reduced activation and thinner cortical development in the prefrontal cortex of people with ADHD. The third piece is working memory, which is your brain's mental whiteboard. Holding 'I need to leave at ten thirty' in active awareness while you are doing something else requires working memory, and ADHD significantly reduces working memory capacity. What you get when all three of these systems are compromised together is a brain that is not lazy, not careless, but genuinely wired to live almost entirely in the present tense.",
+        "title": "The Neuroscience (Simply Put)",
+        "voiceover": "Let us talk about what is actually happening in there, because understanding the mechanism is one of the most relieving things you can do. ADHD is fundamentally a disorder of dopamine regulation. Dopamine is not just the reward chemical people talk about. In the prefrontal cortex, the part of your brain that handles planning, prioritising, starting tasks, and regulating emotions, dopamine acts more like a signal stabiliser. It helps neurons hold on to the information they need long enough to act on it. In the ADHD brain, dopamine transmission in the prefrontal cortex is less efficient. The signal is weaker and less consistent. What this means in practice is that the prefrontal cortex struggles to do its job: it cannot easily hold a goal in working memory while also managing the steps required to reach it. It cannot reliably apply the brakes to an emotional response before it spills out. It cannot generate the internal motivation to start something just because it is important. Instead, the ADHD brain is heavily dependent on what researchers call interest-based motivation. Tasks get done when they are novel, urgent, personally meaningful, or when someone else is present to create accountability. This is not a choice. It is the difference between a brain that can manufacture motivation and one that needs to find it externally. Norepinephrine also plays a role here, affecting alertness and arousal regulation, which is why focus can be so inconsistent. Hyperfocus is part of this too: when interest is high enough, dopamine transmission temporarily normalises and the brain locks in, sometimes for hours. That is not proof that you can focus when you try. It is proof that the system works when the neurochemical conditions are right. Understanding this reframes everything. You are not lazy. Your brain is running a different operating system.",
         "scenes": [
           {
             "tag": "brain",
             "caption": "",
-            "imagePrompt": "Hand-drawn illustration in soft pastel colors, cozy and warm style. Soft watercolor texture, gentle hand-painted lines, flat illustration. Palette: lavender, cream, sage green, blush pink. Calm, friendly, approachable, non-judgmental mood. No people, no faces, no text, no letters. Wide landscape 16:9 composition. An abstract brain made of soft clouds and gentle sparks, with small illustrated lightning bolt shapes suggesting neural activity, floating in a calm pastel sky.",
+            "imagePrompt": "Hand-drawn illustration in soft pastel colors, cozy and warm style. Soft watercolor texture, gentle hand-painted lines, flat illustration. Palette: lavender, cream, sage green, blush pink. Calm, friendly, approachable, non-judgmental mood. No people, no faces, no text, no letters. Wide landscape 16:9 composition. An abstract brain made of soft clouds and gentle sparks of light, floating quietly in a dreamy pastel space.",
             "seconds": 0
           },
           {
             "tag": "sparks",
             "caption": "",
-            "imagePrompt": "Hand-drawn illustration in soft pastel colors, cozy and warm style. Soft watercolor texture, gentle hand-painted lines, flat illustration. Palette: lavender, cream, sage green, blush pink. Calm, friendly, approachable, non-judgmental mood. No people, no faces, no text, no letters. Wide landscape 16:9 composition. Small illustrated sparks and soft glowing dots scattered across a dark lavender background, suggesting synaptic activity, gentle and warm in feel.",
+            "imagePrompt": "Hand-drawn illustration in soft pastel colors, cozy and warm style. Soft watercolor texture, gentle hand-painted lines, flat illustration. Palette: lavender, cream, sage green, blush pink. Calm, friendly, approachable, non-judgmental mood. No people, no faces, no text, no letters. Wide landscape 16:9 composition. Soft gentle sparks and small glowing dots floating upward in a calm pastel sky, like fireflies drifting.",
             "seconds": 0
           },
           {
-            "tag": "clock",
+            "tag": "lamp",
             "caption": "",
-            "imagePrompt": "Hand-drawn illustration in soft pastel colors, cozy and warm style. Soft watercolor texture, gentle hand-painted lines, flat illustration. Palette: lavender, cream, sage green, blush pink. Calm, friendly, approachable, non-judgmental mood. No people, no faces, no text, no letters. Wide landscape 16:9 composition. A soft surreal melting clock surrounded by small floating illustrated thought bubbles, each one fading softly into watercolor mist.",
+            "imagePrompt": "Hand-drawn illustration in soft pastel colors, cozy and warm style. Soft watercolor texture, gentle hand-painted lines, flat illustration. Palette: lavender, cream, sage green, blush pink. Calm, friendly, approachable, non-judgmental mood. No people, no faces, no text, no letters. Wide landscape 16:9 composition. A single soft glowing lamp on a small table casting a warm circle of light in an otherwise dim cozy corner.",
             "seconds": 0
           },
           {
-            "tag": "desk_messy",
+            "tag": "coffee",
             "caption": "",
-            "imagePrompt": "Hand-drawn illustration in soft pastel colors, cozy and warm style. Soft watercolor texture, gentle hand-painted lines, flat illustration. Palette: lavender, cream, sage green, blush pink. Calm, friendly, approachable, non-judgmental mood. No people, no faces, no text, no letters. Wide landscape 16:9 composition. A gently messy cozy desk with scattered notebooks, a coffee mug, small sticky notes, and soft lamp light, the clutter feeling warm and human rather than chaotic.",
-            "seconds": 0
-          },
-          {
-            "tag": "plant",
-            "caption": "",
-            "imagePrompt": "Hand-drawn illustration in soft pastel colors, cozy and warm style. Soft watercolor texture, gentle hand-painted lines, flat illustration. Palette: lavender, cream, sage green, blush pink. Calm, friendly, approachable, non-judgmental mood. No people, no faces, no text, no letters. Wide landscape 16:9 composition. A single potted plant with soft rounded leaves on a windowsill, morning light filtering through the leaves and casting gentle shadow patterns.",
+            "imagePrompt": "Hand-drawn illustration in soft pastel colors, cozy and warm style. Soft watercolor texture, gentle hand-painted lines, flat illustration. Palette: lavender, cream, sage green, blush pink. Calm, friendly, approachable, non-judgmental mood. No people, no faces, no text, no letters. Wide landscape 16:9 composition. A warm coffee cup with a thin curl of steam rising gently, resting on a small saucer beside a softly lit window.",
             "seconds": 0
           }
         ]
       },
       {
-        "title": "Why Every Common Fix Fails",
-        "voiceover": "Here is the frustrating part, and you have probably lived every version of this. Someone tells you to use a planner. You buy the planner. The planner is beautiful. You fill in the first two days. Then one morning you are running late and you forget to check it, and by Wednesday the planner is under three other things on your desk and you feel like a failure again. Or they tell you to set alarms. So you set six alarms. And then you get in the habit of dismissing them without fully registering what they mean because they go off so often they stop feeling urgent. Or the advice is to 'visualize your day the night before.' But visualization requires sustained working memory and the ability to make a future moment feel real and present — which are exactly the two things time blindness strips away. None of these strategies fail because you are not trying. They fail because they are designed for a brain that already has functional temporal awareness and intact working memory. They assume the very scaffolding that ADHD has removed. There is another reason common fixes fail that nobody talks about, and it is about emotional regulation. Time blindness in ADHD is entangled with shame. When you have been late your whole life, when you have watched people sigh and check their watches and say 'typical,' you develop a painful relationship with time-related tasks. The anticipatory anxiety around planning and scheduling can itself become a trigger for avoidance. The tool that was supposed to help becomes a reminder of every time you failed — so your brain avoids it. You are not avoiding the calendar. You are avoiding the feeling the calendar gives you. That distinction matters enormously for what actually works.",
+        "title": "Masking: The Hidden Exhaustion",
+        "voiceover": "Here is the part that breaks my heart a little, because it is so common and so invisible. Masking is what happens when you spend years learning to hide your symptoms so thoroughly that even the people closest to you do not know anything is wrong. And often, you do not fully know either. For women with ADHD, masking starts early. You watch how other people manage things and you reverse-engineer the behaviour. You make to-do lists not because they help you but because that is what organised people do. You over-explain yourself in emails to compensate for the anxiety of not being sure if you are making sense. You arrive early to avoid the shame spiral of being late, burning enormous energy on logistics that other people just handle automatically. You script conversations in advance. You stay quiet in meetings because you know your thoughts are coming out in the wrong order and you need more time to sort them. From the outside, all of this looks like competence. It looks like a woman who has it together. Inside, it is absolutely exhausting. Masking works well enough to fool diagnostic tools, which is a major reason women get missed. Clinicians see a woman who makes eye contact, communicates clearly, holds a job, and they do not see ADHD. They see anxiety, maybe depression, maybe just stress. And the woman herself often does not push back because she has spent her whole life being told she is fine, so she has internalised that version of herself. The cost of masking is not just tiredness. Research links chronic masking to significantly higher rates of anxiety, depression, and burnout in women with ADHD compared to men. When you spend your entire cognitive budget on appearing neurotypical, there is nothing left over for actually living.",
         "scenes": [
+          {
+            "tag": "calendar",
+            "caption": "",
+            "imagePrompt": "Hand-drawn illustration in soft pastel colors, cozy and warm style. Soft watercolor texture, gentle hand-painted lines, flat illustration. Palette: lavender, cream, sage green, blush pink. Calm, friendly, approachable, non-judgmental mood. No people, no faces, no text, no letters. Wide landscape 16:9 composition. A wall calendar with soft handwritten-style marks on some dates, a small pencil resting beside it on a cozy wall.",
+            "seconds": 0
+          },
           {
             "tag": "journal",
             "caption": "",
-            "imagePrompt": "Hand-drawn illustration in soft pastel colors, cozy and warm style. Soft watercolor texture, gentle hand-painted lines, flat illustration. Palette: lavender, cream, sage green, blush pink. Calm, friendly, approachable, non-judgmental mood. No people, no faces, no text, no letters. Wide landscape 16:9 composition. A closed journal with a soft ribbon bookmark, sitting alone on a desk in gentle lamplight, a sense of quiet stillness around it.",
+            "imagePrompt": "Hand-drawn illustration in soft pastel colors, cozy and warm style. Soft watercolor texture, gentle hand-painted lines, flat illustration. Palette: lavender, cream, sage green, blush pink. Calm, friendly, approachable, non-judgmental mood. No people, no faces, no text, no letters. Wide landscape 16:9 composition. An open journal with soft blank pages and a pen resting diagonally across it, sitting on a warm wooden surface.",
             "seconds": 0
           },
           {
-            "tag": "phone",
+            "tag": "bed",
             "caption": "",
-            "imagePrompt": "Hand-drawn illustration in soft pastel colors, cozy and warm style. Soft watercolor texture, gentle hand-painted lines, flat illustration. Palette: lavender, cream, sage green, blush pink. Calm, friendly, approachable, non-judgmental mood. No people, no faces, no text, no letters. Wide landscape 16:9 composition. A phone with several small illustrated alarm bell icons floating above it, the bells overlapping and fading, suggesting a cascade of dismissed notifications.",
-            "seconds": 0
-          },
-          {
-            "tag": "desk_messy",
-            "caption": "",
-            "imagePrompt": "Hand-drawn illustration in soft pastel colors, cozy and warm style. Soft watercolor texture, gentle hand-painted lines, flat illustration. Palette: lavender, cream, sage green, blush pink. Calm, friendly, approachable, non-judgmental mood. No people, no faces, no text, no letters. Wide landscape 16:9 composition. A gently messy cozy desk with a beautiful planner half-buried under notebooks and a coffee mug, soft lamp light making the clutter feel warm rather than shameful.",
-            "seconds": 0
-          },
-          {
-            "tag": "clock",
-            "caption": "",
-            "imagePrompt": "Hand-drawn illustration in soft pastel colors, cozy and warm style. Soft watercolor texture, gentle hand-painted lines, flat illustration. Palette: lavender, cream, sage green, blush pink. Calm, friendly, approachable, non-judgmental mood. No people, no faces, no text, no letters. Wide landscape 16:9 composition. A soft surreal melting clock with its face gently obscured by watercolor fog, the hands pointing in ambiguous directions.",
+            "imagePrompt": "Hand-drawn illustration in soft pastel colors, cozy and warm style. Soft watercolor texture, gentle hand-painted lines, flat illustration. Palette: lavender, cream, sage green, blush pink. Calm, friendly, approachable, non-judgmental mood. No people, no faces, no text, no letters. Wide landscape 16:9 composition. A neatly made bed with soft rumpled pillows in the morning light, a small plant on the bedside table beside a lamp.",
             "seconds": 0
           },
           {
             "tag": "window_light",
             "caption": "",
-            "imagePrompt": "Hand-drawn illustration in soft pastel colors, cozy and warm style. Soft watercolor texture, gentle hand-painted lines, flat illustration. Palette: lavender, cream, sage green, blush pink. Calm, friendly, approachable, non-judgmental mood. No people, no faces, no text, no letters. Wide landscape 16:9 composition. A window with soft light, a gentle shadow of a plant falling across the wall beside it, the atmosphere quiet and slightly melancholy but warm.",
+            "imagePrompt": "Hand-drawn illustration in soft pastel colors, cozy and warm style. Soft watercolor texture, gentle hand-painted lines, flat illustration. Palette: lavender, cream, sage green, blush pink. Calm, friendly, approachable, non-judgmental mood. No people, no faces, no text, no letters. Wide landscape 16:9 composition. A window with soft morning light filtering through sheer curtains, a small plant on the sill casting a gentle shadow.",
+            "seconds": 0
+          },
+          {
+            "tag": "chair",
+            "caption": "",
+            "imagePrompt": "Hand-drawn illustration in soft pastel colors, cozy and warm style. Soft watercolor texture, gentle hand-painted lines, flat illustration. Palette: lavender, cream, sage green, blush pink. Calm, friendly, approachable, non-judgmental mood. No people, no faces, no text, no letters. Wide landscape 16:9 composition. A single soft armchair in a quiet cozy room, a small side table beside it with a warm cup and a closed book.",
             "seconds": 0
           }
         ]
       },
       {
-        "title": "A System That Actually Works",
-        "voiceover": "What works is not a productivity system. It is an environmental redesign. Because if your brain cannot generate temporal awareness internally, the answer is to make time visible, physical, and impossible to miss — not as a punishment but as a prosthetic. Here is the system, step by step. Step one is what researchers and ADHD coaches call 'externalizing time.' This means replacing internal time-keeping with environmental cues you cannot ignore. The single most evidence-supported tool here is a visual analog timer — a Time Timer is the most common one — where you can literally watch time shrinking as a colored disc. It is not an alarm that fires at the end. It is a live, visual representation of time passing. Neuroimaging work suggests this engages visual processing pathways that bypass the broken internal clock. Put it in your physical line of sight, not your phone, because your phone is a dopamine vortex. Step two is something called time-chunking with transition warnings. Instead of telling yourself 'I have until eleven,' break the morning into twenty-minute visible chunks and build in a ten-minute buffer chunk before any transition. The buffer is not optional and it is not wasted time — it is the gap between your perceived timeline and real time. Step three is anchor alarms with meaning. Not six alarms. Two. One that says 'start getting ready' and one that says 'leave now, no exceptions.' Give them distinct sounds or labels so your brain registers them as different signals rather than noise. Step four is the night-before object placement method. Put your keys, bag, and anything you need tomorrow physically in front of the door the night before. This replaces prospective memory — which your working memory cannot reliably hold — with a physical trigger your eyes will catch in the morning. These four steps together do not require you to develop a new relationship with time. They take the job away from the broken system and give it to your environment.",
+        "title": "Hormones and the Cycle Nobody Talks About",
+        "voiceover": "There is one piece of the female ADHD picture that almost never comes up, and it is genuinely important. Oestrogen has a direct effect on dopamine transmission. Higher oestrogen levels, which happen in the first half of the menstrual cycle and during pregnancy, can temporarily improve dopamine signalling in the prefrontal cortex. Some women with ADHD report that the week after their period ends is their best week, mentally. They can start things. They can follow through. They feel almost like a different person. Then oestrogen drops in the second half of the cycle, particularly in the week before menstruation, and the floor falls out. Focus collapses, emotional regulation becomes nearly impossible, the executive function that was barely adequate becomes completely unreliable. This is not PMS in the casual sense. This is a real neurochemical shift that hits harder for ADHD brains because those brains were already working closer to the edge of their dopamine capacity. This pattern also explains why perimenopause is a crisis point for so many undiagnosed women. As oestrogen declines in the years approaching menopause, the coping strategies that have worked for decades suddenly stop working. Women who managed reasonably well at thirty-five find themselves at forty-five completely overwhelmed by things that used to be hard but manageable. This is when many women finally get diagnosed, not because their ADHD got worse, but because the hormonal scaffolding that was quietly helping them compensate has been removed. If you are in that window and things feel like they are falling apart, please know that this is a documented, biological process, and there is support available. Tracking your cycle alongside your ADHD symptoms, even just in a notes app, can give you and any clinician you see genuinely useful data.",
         "scenes": [
           {
-            "tag": "desk_tidy",
+            "tag": "plant",
             "caption": "",
-            "imagePrompt": "Hand-drawn illustration in soft pastel colors, cozy and warm style. Soft watercolor texture, gentle hand-painted lines, flat illustration. Palette: lavender, cream, sage green, blush pink. Calm, friendly, approachable, non-judgmental mood. No people, no faces, no text, no letters. Wide landscape 16:9 composition. A tidy desk with a visual timer, a small notebook, and a coffee mug, everything neatly arranged in soft morning light, calm and inviting.",
+            "imagePrompt": "Hand-drawn illustration in soft pastel colors, cozy and warm style. Soft watercolor texture, gentle hand-painted lines, flat illustration. Palette: lavender, cream, sage green, blush pink. Calm, friendly, approachable, non-judgmental mood. No people, no faces, no text, no letters. Wide landscape 16:9 composition. A small potted plant with soft round leaves in various stages of growth, sitting in gentle warm window light.",
             "seconds": 0
           },
           {
-            "tag": "clock",
+            "tag": "calendar",
             "caption": "",
-            "imagePrompt": "Hand-drawn illustration in soft pastel colors, cozy and warm style. Soft watercolor texture, gentle hand-painted lines, flat illustration. Palette: lavender, cream, sage green, blush pink. Calm, friendly, approachable, non-judgmental mood. No people, no faces, no text, no letters. Wide landscape 16:9 composition. A soft illustrated circular timer with a colored wedge shrinking visually, surrounded by gentle watercolor rings suggesting countdown, the design friendly and non-threatening.",
-            "seconds": 0
-          },
-          {
-            "tag": "phone",
-            "caption": "",
-            "imagePrompt": "Hand-drawn illustration in soft pastel colors, cozy and warm style. Soft watercolor texture, gentle hand-painted lines, flat illustration. Palette: lavender, cream, sage green, blush pink. Calm, friendly, approachable, non-judgmental mood. No people, no faces, no text, no letters. Wide landscape 16:9 composition. A phone with just two gentle alarm bell icons floating above it, clean and simple, a sense of calm purpose rather than overwhelm.",
-            "seconds": 0
-          },
-          {
-            "tag": "path",
-            "caption": "",
-            "imagePrompt": "Hand-drawn illustration in soft pastel colors, cozy and warm style. Soft watercolor texture, gentle hand-painted lines, flat illustration. Palette: lavender, cream, sage green, blush pink. Calm, friendly, approachable, non-judgmental mood. No people, no faces, no text, no letters. Wide landscape 16:9 composition. A winding path with small gentle stepping stones along it, each one slightly different, leading toward a soft warm light on the horizon.",
-            "seconds": 0
-          },
-          {
-            "tag": "cozy_room",
-            "caption": "",
-            "imagePrompt": "Hand-drawn illustration in soft pastel colors, cozy and warm style. Soft watercolor texture, gentle hand-painted lines, flat illustration. Palette: lavender, cream, sage green, blush pink. Calm, friendly, approachable, non-judgmental mood. No people, no faces, no text, no letters. Wide landscape 16:9 composition. A gently cozy room with a lamp glowing warmly, a tidy bag near the door, a small plant on the windowsill, and morning light just beginning to come through the curtains.",
-            "seconds": 0
-          },
-          {
-            "tag": "journal",
-            "caption": "",
-            "imagePrompt": "Hand-drawn illustration in soft pastel colors, cozy and warm style. Soft watercolor texture, gentle hand-painted lines, flat illustration. Palette: lavender, cream, sage green, blush pink. Calm, friendly, approachable, non-judgmental mood. No people, no faces, no text, no letters. Wide landscape 16:9 composition. An open journal with soft illustrated step-by-step marks beside it, a gentle numbered list feeling, the page warm and inviting in lamplight.",
-            "seconds": 0
-          }
-        ]
-      },
-      {
-        "title": "You Are Not the Problem",
-        "voiceover": "Here is what I want you to carry out of this video. Time blindness is not a character trait. It is not what you are like. It is what your brain does differently when it has not been given the right external scaffolding. The research on this is clear and it has been clear for decades. The problem is not that ADHD people have not been trying hard enough. The problem is that most of the systems around us were designed for a neurological majority, and when you fall outside that majority, the world tends to interpret the symptom as the person. You are late because you are irresponsible. You miss deadlines because you do not care. You lose track of time because you are not paying attention. None of that is true. You are someone whose brain processes temporal information differently — measurably, biologically differently — and who has been trying to navigate a world that assumed you had a tool you were never given. The four-step system we walked through is not magic. It will take some adjustment. There will be mornings where the timer is in the other room and the alarm gets dismissed and you are texting an apology again. That is okay. The goal is not perfection. The goal is reducing how often the gap between your perceived time and real time catches you off guard, and building an environment that does some of the work your working memory cannot. Every small structural change you make is not a workaround. It is good science applied to a real brain. You deserve tools that are built for you, not tools that assume you are broken for needing them. Follow for daily ADHD content that is actually grounded in what the research says.",
-        "scenes": [
-          {
-            "tag": "lamp",
-            "caption": "",
-            "imagePrompt": "Hand-drawn illustration in soft pastel colors, cozy and warm style. Soft watercolor texture, gentle hand-painted lines, flat illustration. Palette: lavender, cream, sage green, blush pink. Calm, friendly, approachable, non-judgmental mood. No people, no faces, no text, no letters. Wide landscape 16:9 composition. A single soft glowing lamp in a cozy room corner, its warm light spilling gently across the floor and walls, a small plant nearby.",
+            "imagePrompt": "Hand-drawn illustration in soft pastel colors, cozy and warm style. Soft watercolor texture, gentle hand-painted lines, flat illustration. Palette: lavender, cream, sage green, blush pink. Calm, friendly, approachable, non-judgmental mood. No people, no faces, no text, no letters. Wide landscape 16:9 composition. A wall calendar with soft handwritten-style marks on some dates, a small pencil resting beside it on a cozy wall.",
             "seconds": 0
           },
           {
             "tag": "sky",
             "caption": "",
-            "imagePrompt": "Hand-drawn illustration in soft pastel colors, cozy and warm style. Soft watercolor texture, gentle hand-painted lines, flat illustration. Palette: lavender, cream, sage green, blush pink. Calm, friendly, approachable, non-judgmental mood. No people, no faces, no text, no letters. Wide landscape 16:9 composition. A soft pastel sky with gentle watercolor clouds drifting peacefully, a warm light on the horizon suggesting early morning possibility.",
+            "imagePrompt": "Hand-drawn illustration in soft pastel colors, cozy and warm style. Soft watercolor texture, gentle hand-painted lines, flat illustration. Palette: lavender, cream, sage green, blush pink. Calm, friendly, approachable, non-judgmental mood. No people, no faces, no text, no letters. Wide landscape 16:9 composition. A soft dreamy sky with gentle gradient clouds drifting in calm pastel tones, shifting from pale lavender to warm blush.",
+            "seconds": 0
+          },
+          {
+            "tag": "journal",
+            "caption": "",
+            "imagePrompt": "Hand-drawn illustration in soft pastel colors, cozy and warm style. Soft watercolor texture, gentle hand-painted lines, flat illustration. Palette: lavender, cream, sage green, blush pink. Calm, friendly, approachable, non-judgmental mood. No people, no faces, no text, no letters. Wide landscape 16:9 composition. An open journal with soft blank pages and a pen resting diagonally across it, sitting on a warm wooden surface.",
             "seconds": 0
           },
           {
             "tag": "brain",
             "caption": "",
-            "imagePrompt": "Hand-drawn illustration in soft pastel colors, cozy and warm style. Soft watercolor texture, gentle hand-painted lines, flat illustration. Palette: lavender, cream, sage green, blush pink. Calm, friendly, approachable, non-judgmental mood. No people, no faces, no text, no letters. Wide landscape 16:9 composition. An abstract brain made of soft clouds and gentle sparks, glowing warmly from within, surrounded by small soft stars in a calm lavender sky.",
+            "imagePrompt": "Hand-drawn illustration in soft pastel colors, cozy and warm style. Soft watercolor texture, gentle hand-painted lines, flat illustration. Palette: lavender, cream, sage green, blush pink. Calm, friendly, approachable, non-judgmental mood. No people, no faces, no text, no letters. Wide landscape 16:9 composition. An abstract brain made of soft clouds and gentle sparks of light, floating quietly in a dreamy pastel space.",
             "seconds": 0
-          },
+          }
+        ]
+      },
+      {
+        "title": "Where to Go From Here",
+        "voiceover": "If you have watched this far and something in you has gone quiet and still in a way that is unfamiliar, that recognition matters. It is not a diagnosis, but it is information, and information is where everything starts. Here is what actually helps, practically and concretely. First: if you are seeking a diagnosis, go in prepared. Document specific examples, not just feelings. Not 'I have trouble focusing', but 'on three occasions this week I sat down to work and could not begin a task for over an hour despite wanting to'. Specificity matters because clinicians need to see impairment, not just traits. Second: the strategies that help neurotypical people organise themselves often fail ADHD brains because they require consistent self-initiation, which is exactly the thing that is impaired. What works better is reducing the number of decisions required. Body doubling, working alongside someone else virtually or in person, borrows their dopamine without requiring any extra effort from you. Externalising your working memory, which means putting everything outside your head into a visible system, removes the cognitive load of trying to hold it all internally. Time blocking with built-in transition buffers accounts for the fact that switching tasks is genuinely costly for an ADHD brain. Third: medication is not a moral choice. For many women with ADHD, stimulant or non-stimulant medication is the most evidence-based intervention available. It does not change who you are. It adjusts the neurochemical conditions so that the capable, creative, deeply feeling person you already are can actually function. And finally: the years you spent not knowing were not wasted. They built something in you, a resilience and an adaptability that is real. The diagnosis is not the end of a story. It is the first page of one where you finally have the right information. Follow for daily ADHD content, because there is so much more to cover and you deserve to understand your own brain.",
+        "scenes": [
           {
             "tag": "path",
             "caption": "",
-            "imagePrompt": "Hand-drawn illustration in soft pastel colors, cozy and warm style. Soft watercolor texture, gentle hand-painted lines, flat illustration. Palette: lavender, cream, sage green, blush pink. Calm, friendly, approachable, non-judgmental mood. No people, no faces, no text, no letters. Wide landscape 16:9 composition. A winding path leading gently forward into a warm soft light, wildflowers on either side, the atmosphere hopeful and calm.",
+            "imagePrompt": "Hand-drawn illustration in soft pastel colors, cozy and warm style. Soft watercolor texture, gentle hand-painted lines, flat illustration. Palette: lavender, cream, sage green, blush pink. Calm, friendly, approachable, non-judgmental mood. No people, no faces, no text, no letters. Wide landscape 16:9 composition. A winding gentle path through soft rolling hills disappearing into a hazy horizon.",
+            "seconds": 0
+          },
+          {
+            "tag": "desk_tidy",
+            "caption": "",
+            "imagePrompt": "Hand-drawn illustration in soft pastel colors, cozy and warm style. Soft watercolor texture, gentle hand-painted lines, flat illustration. Palette: lavender, cream, sage green, blush pink. Calm, friendly, approachable, non-judgmental mood. No people, no faces, no text, no letters. Wide landscape 16:9 composition. A tidy desk with a neatly placed notebook, a single pen, and a small plant, bathed in soft warm light.",
+            "seconds": 0
+          },
+          {
+            "tag": "coffee",
+            "caption": "",
+            "imagePrompt": "Hand-drawn illustration in soft pastel colors, cozy and warm style. Soft watercolor texture, gentle hand-painted lines, flat illustration. Palette: lavender, cream, sage green, blush pink. Calm, friendly, approachable, non-judgmental mood. No people, no faces, no text, no letters. Wide landscape 16:9 composition. A warm coffee cup with a thin curl of steam rising gently, resting on a small saucer beside a softly lit window.",
+            "seconds": 0
+          },
+          {
+            "tag": "window_light",
+            "caption": "",
+            "imagePrompt": "Hand-drawn illustration in soft pastel colors, cozy and warm style. Soft watercolor texture, gentle hand-painted lines, flat illustration. Palette: lavender, cream, sage green, blush pink. Calm, friendly, approachable, non-judgmental mood. No people, no faces, no text, no letters. Wide landscape 16:9 composition. A window with soft morning light filtering through sheer curtains, a small plant on the sill casting a gentle shadow.",
+            "seconds": 0
+          },
+          {
+            "tag": "sparks",
+            "caption": "",
+            "imagePrompt": "Hand-drawn illustration in soft pastel colors, cozy and warm style. Soft watercolor texture, gentle hand-painted lines, flat illustration. Palette: lavender, cream, sage green, blush pink. Calm, friendly, approachable, non-judgmental mood. No people, no faces, no text, no letters. Wide landscape 16:9 composition. Soft gentle sparks and small glowing dots floating upward in a calm pastel sky, like fireflies drifting.",
             "seconds": 0
           },
           {
             "tag": "plant",
             "caption": "",
-            "imagePrompt": "Hand-drawn illustration in soft pastel colors, cozy and warm style. Soft watercolor texture, gentle hand-painted lines, flat illustration. Palette: lavender, cream, sage green, blush pink. Calm, friendly, approachable, non-judgmental mood. No people, no faces, no text, no letters. Wide landscape 16:9 composition. A small potted plant with soft rounded leaves, sitting in a warm pool of window light, looking healthy and quietly thriving.",
-            "seconds": 0
-          },
-          {
-            "tag": "cozy_room",
-            "caption": "",
-            "imagePrompt": "Hand-drawn illustration in soft pastel colors, cozy and warm style. Soft watercolor texture, gentle hand-painted lines, flat illustration. Palette: lavender, cream, sage green, blush pink. Calm, friendly, approachable, non-judgmental mood. No people, no faces, no text, no letters. Wide landscape 16:9 composition. A gently cozy room viewed from a wide angle, lamp glowing, plant in the window, a tidy desk in the corner, the whole scene radiating warmth and quiet calm.",
+            "imagePrompt": "Hand-drawn illustration in soft pastel colors, cozy and warm style. Soft watercolor texture, gentle hand-painted lines, flat illustration. Palette: lavender, cream, sage green, blush pink. Calm, friendly, approachable, non-judgmental mood. No people, no faces, no text, no letters. Wide landscape 16:9 composition. A small potted plant with soft round leaves in various stages of growth, sitting in gentle warm window light.",
             "seconds": 0
           }
         ]
@@ -255,9 +237,9 @@
     ],
     "funnel": "follow",
     "status": "pending",
-    "videoUrl": "https://raw.githubusercontent.com/dianahohol97-max/content/main/output/longform/week_32/LF_20260805.mp4",
+    "videoUrl": "https://raw.githubusercontent.com/dianahohol97-max/content/main/output/longform/week_32/LF_20260807.mp4",
     "postedAt": null,
     "durationSec": 621,
-    "thumbnailUrl": "https://raw.githubusercontent.com/dianahohol97-max/content/main/output/longform/week_32/LF_20260805_thumb.jpg"
+    "thumbnailUrl": "https://raw.githubusercontent.com/dianahohol97-max/content/main/output/longform/week_32/LF_20260807_thumb.jpg"
   }
 ]
