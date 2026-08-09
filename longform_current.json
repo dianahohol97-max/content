@@ -1,235 +1,229 @@
 [
   {
-    "id": "LF_20260807",
+    "id": "LF_20260809",
     "week": 32,
-    "title": "ADHD in Women: Why It Gets Missed for Decades",
-    "thumbnailText": "Missed for DECADES",
-    "thumbnailAccent": "DECADES",
-    "description": "ADHD in women looks completely different from the textbook version, and that difference is exactly why so many women go undiagnosed until their 30s, 40s, or even later. This video breaks down the real neuroscience behind why female ADHD is so often mistaken for anxiety, laziness, or just 'being a lot', and what the symptoms actually look like in daily life. We cover the hormonal connection, the masking that exhausts you from the inside out, and what to do if you finally see yourself in this. If you have ever been told you are too sensitive, too scattered, or not sick enough to have ADHD, this one is for you.\n\nChapters:\n\nChapters:\n0:00 The Diagnosis That Never Came\n1:35 What It Actually Looks Like\n3:16 The Neuroscience (Simply Put)\n4:59 Masking: The Hidden Exhaustion\n6:46 Hormones and the Cycle Nobody Talks About\n8:31 Where to Go From Here\n\nundefined",
+    "title": "Rejection Sensitive Dysphoria: The Most Painful ADHD Symptom",
+    "thumbnailText": "The pain nobody explains",
+    "thumbnailAccent": "pain",
+    "description": "Rejection sensitive dysphoria (RSD) is one of the most intense and least understood symptoms of ADHD — and it affects almost everything: your relationships, your career, and your sense of self. In this video we break down exactly what RSD is, what is happening in the ADHD brain during an emotional spike, why common advice completely misses the mark, and what actually helps. If you have ever spiraled for hours over a single unanswered text or spent days dreading one difficult conversation, this video is for you. Keywords: rejection sensitive dysphoria, ADHD emotions, ADHD rejection, RSD ADHD, emotional dysregulation ADHD, ADHD relationships, dopamine ADHD.\n\nChapters:\n\nChapters:\n0:00 The Pain That Does Not Have a Name\n1:14 What RSD Actually Is\n2:44 What Is Happening in the Brain\n4:21 How It Quietly Shapes Your Whole Life\n5:59 Why Common Advice Fails and What Actually Helps\n7:46 Living With RSD Without Letting It Run Your Life\n\nundefined",
     "tags": [
-      "ADHD in women",
-      "female ADHD",
-      "ADHD diagnosis women",
-      "undiagnosed ADHD",
-      "ADHD symptoms women",
-      "ADHD masking",
-      "ADHD and anxiety",
-      "ADHD late diagnosis",
-      "women and ADHD",
-      "ADHD neuroscience",
-      "ADHD executive function",
-      "ADHD hormones",
+      "rejection sensitive dysphoria",
+      "RSD ADHD",
+      "ADHD emotions",
+      "emotional dysregulation ADHD",
+      "ADHD rejection",
+      "ADHD relationships",
+      "ADHD symptoms explained",
+      "dopamine ADHD",
+      "ADHD mental health",
       "ADHD education",
-      "bloom focus",
-      "ADHD explained"
+      "ADHD adults",
+      "ADHD brain",
+      "ADHD coping strategies",
+      "ADHD validation",
+      "neuroscience ADHD"
     ],
     "chapters": [
       {
-        "title": "The Diagnosis That Never Came",
-        "voiceover": "You were the girl who got good grades but cried in the bathroom before every test. The one who could read the same paragraph six times and still have no idea what it said. You were called sensitive, spacey, dramatic, a dreamer. Teachers said you were smart but not working to your potential. Your mum said you just needed to try harder. And somehow, despite all of it, you kept functioning. You kept showing up. So nobody called it anything. Nobody called it ADHD. Here is the thing that most people do not know: the entire framework we use to identify ADHD was built almost exclusively on research done on young boys. Hyperactive boys. Disruptive boys. Boys whose symptoms were impossible to ignore in a classroom. Girls were not in those studies in any meaningful numbers, which means the diagnostic checklist was never really built with girls in mind. So when a girl with ADHD sat quietly, stared out the window, handed in perfect work that took her four times longer than everyone else, she did not get flagged. She got overlooked. Fast forward twenty or thirty years, and that girl is now a woman sitting in a doctor's office for the first time, holding a list of symptoms she printed from the internet, wondering if she is allowed to be here. This video is for her. We are going to cover what ADHD actually looks like in women, why it gets missed, what the science says, and what you can do about it. Stay with me.",
+        "title": "The Pain That Does Not Have a Name",
+        "voiceover": "Someone leaves your message on read. That is it. That is the whole event. And yet within sixty seconds your chest is tight, your brain is already constructing an entire courtroom drama in which you are both the defendant and the only witness, and a feeling has arrived that is so disproportionate to what just happened that you almost feel embarrassed by yourself. You are not overreacting. You are not too sensitive. You are not broken. What you are experiencing has a name, and that name is rejection sensitive dysphoria. And today we are going to explain exactly what it is, why it happens specifically in ADHD brains, why everything people tell you to do about it basically does not work, and what actually does. RSD is considered by many ADHD clinicians to be among the most impairing symptoms of the condition, and it is almost never talked about in the places where people first learn they have ADHD. So if you have spent years wondering why emotional pain hits you so much harder and faster than it seems to hit everyone else around you, you are in exactly the right place. Stay with us, because understanding this one thing might reframe more of your life than almost anything else you learn about ADHD.",
         "scenes": [
-          {
-            "tag": "window_light",
-            "caption": "",
-            "imagePrompt": "Hand-drawn illustration in soft pastel colors, cozy and warm style. Soft watercolor texture, gentle hand-painted lines, flat illustration. Palette: lavender, cream, sage green, blush pink. Calm, friendly, approachable, non-judgmental mood. No people, no faces, no text, no letters. Wide landscape 16:9 composition. A window with soft morning light filtering through sheer curtains, a small plant on the sill casting a gentle shadow.",
-            "seconds": 0
-          },
-          {
-            "tag": "books",
-            "caption": "",
-            "imagePrompt": "Hand-drawn illustration in soft pastel colors, cozy and warm style. Soft watercolor texture, gentle hand-painted lines, flat illustration. Palette: lavender, cream, sage green, blush pink. Calm, friendly, approachable, non-judgmental mood. No people, no faces, no text, no letters. Wide landscape 16:9 composition. Stacked books of varying heights with a soft bookmark ribbon, arranged on a cozy surface.",
-            "seconds": 0
-          },
-          {
-            "tag": "desk_messy",
-            "caption": "",
-            "imagePrompt": "Hand-drawn illustration in soft pastel colors, cozy and warm style. Soft watercolor texture, gentle hand-painted lines, flat illustration. Palette: lavender, cream, sage green, blush pink. Calm, friendly, approachable, non-judgmental mood. No people, no faces, no text, no letters. Wide landscape 16:9 composition. A gently messy desk with scattered papers, a forgotten coffee cup, and an open notebook with a pen resting across it.",
-            "seconds": 0
-          },
-          {
-            "tag": "path",
-            "caption": "",
-            "imagePrompt": "Hand-drawn illustration in soft pastel colors, cozy and warm style. Soft watercolor texture, gentle hand-painted lines, flat illustration. Palette: lavender, cream, sage green, blush pink. Calm, friendly, approachable, non-judgmental mood. No people, no faces, no text, no letters. Wide landscape 16:9 composition. A winding gentle path through soft rolling hills disappearing into a hazy horizon.",
-            "seconds": 0
-          }
-        ]
-      },
-      {
-        "title": "What It Actually Looks Like",
-        "voiceover": "When people think ADHD, they picture a kid bouncing off the walls. What they do not picture is a thirty-four-year-old woman who has had an email open on her screen for forty minutes and still cannot start typing the reply. It is Tuesday morning. The email is not even complicated. She knows what she wants to say. But there is this wall between knowing and doing, and she cannot explain it, and she hates herself a little more each time the cursor blinks. That is ADHD. Not hyperactivity in the physical sense, but a nervous system that struggles to initiate, to transition, to regulate its own attention. In women, ADHD most commonly presents as the inattentive subtype. That means the loudest symptoms are internal: racing thoughts that never quiet down, extreme difficulty starting tasks that feel low-interest even when the stakes are high, losing track of time so consistently that it feels like a personality flaw, emotional responses that are intense and fast and hard to pull back from. There is also rejection sensitive dysphoria, which is not in the official diagnostic criteria but is reported by a huge proportion of ADHD women. It is the specific, searing pain of feeling criticised or left out, a pain that is neurologically disproportionate to the event but feels completely real in the body. And then there is the chronic overwhelm of a to-do list that lives in your head because writing it down somehow makes it worse. The clutter that spreads because starting to tidy requires the same executive resources that are already depleted. The appointments forgotten not because you do not care, but because your brain does not maintain information passively the way other brains do. This is not a character flaw. This is a dopamine regulation problem, and we need to talk about what that actually means.",
-        "scenes": [
-          {
-            "tag": "desk_empty",
-            "caption": "",
-            "imagePrompt": "Hand-drawn illustration in soft pastel colors, cozy and warm style. Soft watercolor texture, gentle hand-painted lines, flat illustration. Palette: lavender, cream, sage green, blush pink. Calm, friendly, approachable, non-judgmental mood. No people, no faces, no text, no letters. Wide landscape 16:9 composition. A clean empty desk with a single glowing laptop screen, the cursor blinking softly in the quiet.",
-            "seconds": 0
-          },
-          {
-            "tag": "clock",
-            "caption": "",
-            "imagePrompt": "Hand-drawn illustration in soft pastel colors, cozy and warm style. Soft watercolor texture, gentle hand-painted lines, flat illustration. Palette: lavender, cream, sage green, blush pink. Calm, friendly, approachable, non-judgmental mood. No people, no faces, no text, no letters. Wide landscape 16:9 composition. A soft surreal melting clock with gentle drooping edges dissolving into watercolor pools on a dreamy surface.",
-            "seconds": 0
-          },
           {
             "tag": "phone",
             "caption": "",
-            "imagePrompt": "Hand-drawn illustration in soft pastel colors, cozy and warm style. Soft watercolor texture, gentle hand-painted lines, flat illustration. Palette: lavender, cream, sage green, blush pink. Calm, friendly, approachable, non-judgmental mood. No people, no faces, no text, no letters. Wide landscape 16:9 composition. A phone lying face-up on a soft surface with a faint glow, surrounded by small scattered notes and a pen.",
+            "imagePrompt": "Hand-drawn illustration in soft pastel colors, cozy and warm style. Soft watercolor texture, gentle hand-painted lines, flat illustration. Palette: lavender, cream, sage green, blush pink. Calm, friendly, approachable, non-judgmental mood. No people, no faces, no text, no letters. Wide landscape 16:9 composition. A single smartphone lying face-up on a soft surface, screen glowing faintly, surrounded by gentle shadow.",
             "seconds": 0
           },
           {
             "tag": "cozy_room",
             "caption": "",
-            "imagePrompt": "Hand-drawn illustration in soft pastel colors, cozy and warm style. Soft watercolor texture, gentle hand-painted lines, flat illustration. Palette: lavender, cream, sage green, blush pink. Calm, friendly, approachable, non-judgmental mood. No people, no faces, no text, no letters. Wide landscape 16:9 composition. A gently messy cozy room with soft cushions, a lamp casting warm light, and a few open books on the floor.",
+            "imagePrompt": "Hand-drawn illustration in soft pastel colors, cozy and warm style. Soft watercolor texture, gentle hand-painted lines, flat illustration. Palette: lavender, cream, sage green, blush pink. Calm, friendly, approachable, non-judgmental mood. No people, no faces, no text, no letters. Wide landscape 16:9 composition. A gently messy cozy room with a soft armchair, a small lamp glowing warmly, and scattered cushions on the floor.",
             "seconds": 0
           },
           {
             "tag": "brain",
             "caption": "",
-            "imagePrompt": "Hand-drawn illustration in soft pastel colors, cozy and warm style. Soft watercolor texture, gentle hand-painted lines, flat illustration. Palette: lavender, cream, sage green, blush pink. Calm, friendly, approachable, non-judgmental mood. No people, no faces, no text, no letters. Wide landscape 16:9 composition. An abstract brain made of soft clouds and gentle sparks of light, floating quietly in a dreamy pastel space.",
+            "imagePrompt": "Hand-drawn illustration in soft pastel colors, cozy and warm style. Soft watercolor texture, gentle hand-painted lines, flat illustration. Palette: lavender, cream, sage green, blush pink. Calm, friendly, approachable, non-judgmental mood. No people, no faces, no text, no letters. Wide landscape 16:9 composition. An abstract brain made of soft clouds and gentle sparks of light, floating serenely.",
+            "seconds": 0
+          },
+          {
+            "tag": "window_light",
+            "caption": "",
+            "imagePrompt": "Hand-drawn illustration in soft pastel colors, cozy and warm style. Soft watercolor texture, gentle hand-painted lines, flat illustration. Palette: lavender, cream, sage green, blush pink. Calm, friendly, approachable, non-judgmental mood. No people, no faces, no text, no letters. Wide landscape 16:9 composition. A window with soft morning light streaming through sheer curtains, casting gentle shapes on the floor.",
             "seconds": 0
           }
         ]
       },
       {
-        "title": "The Neuroscience (Simply Put)",
-        "voiceover": "Let us talk about what is actually happening in there, because understanding the mechanism is one of the most relieving things you can do. ADHD is fundamentally a disorder of dopamine regulation. Dopamine is not just the reward chemical people talk about. In the prefrontal cortex, the part of your brain that handles planning, prioritising, starting tasks, and regulating emotions, dopamine acts more like a signal stabiliser. It helps neurons hold on to the information they need long enough to act on it. In the ADHD brain, dopamine transmission in the prefrontal cortex is less efficient. The signal is weaker and less consistent. What this means in practice is that the prefrontal cortex struggles to do its job: it cannot easily hold a goal in working memory while also managing the steps required to reach it. It cannot reliably apply the brakes to an emotional response before it spills out. It cannot generate the internal motivation to start something just because it is important. Instead, the ADHD brain is heavily dependent on what researchers call interest-based motivation. Tasks get done when they are novel, urgent, personally meaningful, or when someone else is present to create accountability. This is not a choice. It is the difference between a brain that can manufacture motivation and one that needs to find it externally. Norepinephrine also plays a role here, affecting alertness and arousal regulation, which is why focus can be so inconsistent. Hyperfocus is part of this too: when interest is high enough, dopamine transmission temporarily normalises and the brain locks in, sometimes for hours. That is not proof that you can focus when you try. It is proof that the system works when the neurochemical conditions are right. Understanding this reframes everything. You are not lazy. Your brain is running a different operating system.",
+        "title": "What RSD Actually Is",
+        "voiceover": "Rejection sensitive dysphoria is an intense, immediate, and often overwhelming emotional response to the perception of rejection, criticism, failure, or teasing. Notice the word perception. You do not need to actually be rejected. You need to feel like you might be, or might have been, or could be soon. The word dysphoria comes from the Greek for hard to bear. And that is genuinely accurate. Researchers who study RSD, most notably Dr. William Dodson, describe it not as sadness or disappointment, which are gradual and proportionate, but as a sudden emotional seizure. A spike. A wall of feeling that arrives in under a second and can register subjectively as one of the worst feelings a person has ever had. People with ADHD and RSD consistently rate the emotional pain as a ten out of ten. Over things that, from the outside, look completely minor. And that gap between how it looks and how it feels is the source of enormous shame. Here is something clinically important: RSD is not a mood disorder. It is not anxiety disorder. It is not borderline personality disorder, though it is frequently mistaken for all three. It is neurological. It is wired into the architecture of the ADHD brain. And it responds, or does not respond, to treatments accordingly. Understanding that distinction is not just academic. It changes what you do about it.",
         "scenes": [
           {
             "tag": "brain",
             "caption": "",
-            "imagePrompt": "Hand-drawn illustration in soft pastel colors, cozy and warm style. Soft watercolor texture, gentle hand-painted lines, flat illustration. Palette: lavender, cream, sage green, blush pink. Calm, friendly, approachable, non-judgmental mood. No people, no faces, no text, no letters. Wide landscape 16:9 composition. An abstract brain made of soft clouds and gentle sparks of light, floating quietly in a dreamy pastel space.",
+            "imagePrompt": "Hand-drawn illustration in soft pastel colors, cozy and warm style. Soft watercolor texture, gentle hand-painted lines, flat illustration. Palette: lavender, cream, sage green, blush pink. Calm, friendly, approachable, non-judgmental mood. No people, no faces, no text, no letters. Wide landscape 16:9 composition. An abstract brain made of soft clouds and gentle sparks of light, floating serenely.",
             "seconds": 0
           },
           {
             "tag": "sparks",
             "caption": "",
-            "imagePrompt": "Hand-drawn illustration in soft pastel colors, cozy and warm style. Soft watercolor texture, gentle hand-painted lines, flat illustration. Palette: lavender, cream, sage green, blush pink. Calm, friendly, approachable, non-judgmental mood. No people, no faces, no text, no letters. Wide landscape 16:9 composition. Soft gentle sparks and small glowing dots floating upward in a calm pastel sky, like fireflies drifting.",
+            "imagePrompt": "Hand-drawn illustration in soft pastel colors, cozy and warm style. Soft watercolor texture, gentle hand-painted lines, flat illustration. Palette: lavender, cream, sage green, blush pink. Calm, friendly, approachable, non-judgmental mood. No people, no faces, no text, no letters. Wide landscape 16:9 composition. Abstract soft sparks and gentle electric arcs floating in a calm pastel space, suggesting a sudden burst of energy.",
+            "seconds": 0
+          },
+          {
+            "tag": "journal",
+            "caption": "",
+            "imagePrompt": "Hand-drawn illustration in soft pastel colors, cozy and warm style. Soft watercolor texture, gentle hand-painted lines, flat illustration. Palette: lavender, cream, sage green, blush pink. Calm, friendly, approachable, non-judgmental mood. No people, no faces, no text, no letters. Wide landscape 16:9 composition. An open journal on a desk with a pen resting beside it, soft light falling gently across the pages.",
+            "seconds": 0
+          },
+          {
+            "tag": "books",
+            "caption": "",
+            "imagePrompt": "Hand-drawn illustration in soft pastel colors, cozy and warm style. Soft watercolor texture, gentle hand-painted lines, flat illustration. Palette: lavender, cream, sage green, blush pink. Calm, friendly, approachable, non-judgmental mood. No people, no faces, no text, no letters. Wide landscape 16:9 composition. A stack of softly colored books with a small potted plant beside them, sitting on a quiet shelf.",
+            "seconds": 0
+          }
+        ]
+      },
+      {
+        "title": "What Is Happening in the Brain",
+        "voiceover": "So why does this happen to ADHD brains specifically? The short answer is dopamine, norepinephrine, and a prefrontal cortex that is running on inconsistent fuel. Here is the slightly longer version, and it is worth understanding properly. The prefrontal cortex is responsible for what scientists call affect regulation, your brain's ability to receive an emotional signal, evaluate its actual threat level, and modulate your response. Think of it as the editor between the feeling and the reaction. In ADHD brains, the prefrontal cortex is chronically underactivated, partly because the dopamine and norepinephrine systems that power it are structurally different. This means the emotional signal, say, a slightly short reply in an email, arrives in the limbic system, which is the brain's ancient threat detector, and gets flagged as critical danger. The editor is slow to show up. So the feeling fires at full volume before anyone has had a chance to turn it down. And here is the piece that makes RSD different from just having big feelings: the intensity of the response has almost no relationship to the objective severity of the trigger. A mildly critical comment from a colleague can feel identical, neurologically, to a catastrophic personal failure. The brain's thermostat is broken. Not because you are weak. Because the thermostat is a dopamine-dependent system, and dopamine is exactly what ADHD brains have trouble regulating. You are not misreading the situation. Your brain is misfiring its alarm.",
+        "scenes": [
+          {
+            "tag": "brain",
+            "caption": "",
+            "imagePrompt": "Hand-drawn illustration in soft pastel colors, cozy and warm style. Soft watercolor texture, gentle hand-painted lines, flat illustration. Palette: lavender, cream, sage green, blush pink. Calm, friendly, approachable, non-judgmental mood. No people, no faces, no text, no letters. Wide landscape 16:9 composition. An abstract brain made of soft clouds and gentle sparks of light, floating serenely.",
+            "seconds": 0
+          },
+          {
+            "tag": "sparks",
+            "caption": "",
+            "imagePrompt": "Hand-drawn illustration in soft pastel colors, cozy and warm style. Soft watercolor texture, gentle hand-painted lines, flat illustration. Palette: lavender, cream, sage green, blush pink. Calm, friendly, approachable, non-judgmental mood. No people, no faces, no text, no letters. Wide landscape 16:9 composition. Abstract soft sparks and gentle electric arcs floating in a calm pastel space, suggesting a sudden burst of energy.",
+            "seconds": 0
+          },
+          {
+            "tag": "clock",
+            "caption": "",
+            "imagePrompt": "Hand-drawn illustration in soft pastel colors, cozy and warm style. Soft watercolor texture, gentle hand-painted lines, flat illustration. Palette: lavender, cream, sage green, blush pink. Calm, friendly, approachable, non-judgmental mood. No people, no faces, no text, no letters. Wide landscape 16:9 composition. A soft surreal melting clock with gentle curves, floating in a dreamy pastel background.",
             "seconds": 0
           },
           {
             "tag": "lamp",
             "caption": "",
-            "imagePrompt": "Hand-drawn illustration in soft pastel colors, cozy and warm style. Soft watercolor texture, gentle hand-painted lines, flat illustration. Palette: lavender, cream, sage green, blush pink. Calm, friendly, approachable, non-judgmental mood. No people, no faces, no text, no letters. Wide landscape 16:9 composition. A single soft glowing lamp on a small table casting a warm circle of light in an otherwise dim cozy corner.",
+            "imagePrompt": "Hand-drawn illustration in soft pastel colors, cozy and warm style. Soft watercolor texture, gentle hand-painted lines, flat illustration. Palette: lavender, cream, sage green, blush pink. Calm, friendly, approachable, non-judgmental mood. No people, no faces, no text, no letters. Wide landscape 16:9 composition. A single soft glowing table lamp on a small side table, casting a warm halo of light in a quiet room.",
+            "seconds": 0
+          },
+          {
+            "tag": "plant",
+            "caption": "",
+            "imagePrompt": "Hand-drawn illustration in soft pastel colors, cozy and warm style. Soft watercolor texture, gentle hand-painted lines, flat illustration. Palette: lavender, cream, sage green, blush pink. Calm, friendly, approachable, non-judgmental mood. No people, no faces, no text, no letters. Wide landscape 16:9 composition. A small potted plant with soft rounded leaves sitting on a windowsill in gentle diffused light.",
+            "seconds": 0
+          }
+        ]
+      },
+      {
+        "title": "How It Quietly Shapes Your Whole Life",
+        "voiceover": "It is Tuesday morning. You wrote an email yesterday to a colleague asking for feedback on your project. You were proud of that project. The email has been open on your screen for forty minutes. You have not sent it. Because the moment you imagine sending it, your brain fast-forwards to every possible way they could respond with even a hint of criticism, and the feeling that arrives in anticipation of that moment is already unbearable. So you do not send it. This is called avoidance, and it is one of the most common and most damaging downstream effects of RSD. People with ADHD and RSD frequently do not apply for jobs they are qualified for. They do not raise their hand in meetings. They do not start creative projects. They abandon hobbies at the first sign they are not immediately excellent. They over-apologize, over-explain, and edit themselves constantly in social situations because the internal cost of even mild disapproval is simply too high. In relationships, RSD can look like clinginess, jealousy, intense people-pleasing, or the opposite: preemptive withdrawal, ending relationships before the other person can, because that at least feels like control. None of this is a personality flaw. It is a nervous system running a very specific risk-calculation in the background of every single interaction, twenty-four hours a day. The tragedy is not just the pain itself. It is everything you stop doing because the pain has taught your brain that trying is not worth the risk.",
+        "scenes": [
+          {
+            "tag": "desk_messy",
+            "caption": "",
+            "imagePrompt": "Hand-drawn illustration in soft pastel colors, cozy and warm style. Soft watercolor texture, gentle hand-painted lines, flat illustration. Palette: lavender, cream, sage green, blush pink. Calm, friendly, approachable, non-judgmental mood. No people, no faces, no text, no letters. Wide landscape 16:9 composition. A gently messy desk with scattered papers, an open notebook, a coffee cup, and soft morning light falling across the surface.",
             "seconds": 0
           },
           {
             "tag": "coffee",
             "caption": "",
-            "imagePrompt": "Hand-drawn illustration in soft pastel colors, cozy and warm style. Soft watercolor texture, gentle hand-painted lines, flat illustration. Palette: lavender, cream, sage green, blush pink. Calm, friendly, approachable, non-judgmental mood. No people, no faces, no text, no letters. Wide landscape 16:9 composition. A warm coffee cup with a thin curl of steam rising gently, resting on a small saucer beside a softly lit window.",
-            "seconds": 0
-          }
-        ]
-      },
-      {
-        "title": "Masking: The Hidden Exhaustion",
-        "voiceover": "Here is the part that breaks my heart a little, because it is so common and so invisible. Masking is what happens when you spend years learning to hide your symptoms so thoroughly that even the people closest to you do not know anything is wrong. And often, you do not fully know either. For women with ADHD, masking starts early. You watch how other people manage things and you reverse-engineer the behaviour. You make to-do lists not because they help you but because that is what organised people do. You over-explain yourself in emails to compensate for the anxiety of not being sure if you are making sense. You arrive early to avoid the shame spiral of being late, burning enormous energy on logistics that other people just handle automatically. You script conversations in advance. You stay quiet in meetings because you know your thoughts are coming out in the wrong order and you need more time to sort them. From the outside, all of this looks like competence. It looks like a woman who has it together. Inside, it is absolutely exhausting. Masking works well enough to fool diagnostic tools, which is a major reason women get missed. Clinicians see a woman who makes eye contact, communicates clearly, holds a job, and they do not see ADHD. They see anxiety, maybe depression, maybe just stress. And the woman herself often does not push back because she has spent her whole life being told she is fine, so she has internalised that version of herself. The cost of masking is not just tiredness. Research links chronic masking to significantly higher rates of anxiety, depression, and burnout in women with ADHD compared to men. When you spend your entire cognitive budget on appearing neurotypical, there is nothing left over for actually living.",
-        "scenes": [
-          {
-            "tag": "calendar",
-            "caption": "",
-            "imagePrompt": "Hand-drawn illustration in soft pastel colors, cozy and warm style. Soft watercolor texture, gentle hand-painted lines, flat illustration. Palette: lavender, cream, sage green, blush pink. Calm, friendly, approachable, non-judgmental mood. No people, no faces, no text, no letters. Wide landscape 16:9 composition. A wall calendar with soft handwritten-style marks on some dates, a small pencil resting beside it on a cozy wall.",
+            "imagePrompt": "Hand-drawn illustration in soft pastel colors, cozy and warm style. Soft watercolor texture, gentle hand-painted lines, flat illustration. Palette: lavender, cream, sage green, blush pink. Calm, friendly, approachable, non-judgmental mood. No people, no faces, no text, no letters. Wide landscape 16:9 composition. A steaming coffee cup on a small saucer, sitting on a wooden surface with soft warm light around it.",
             "seconds": 0
           },
           {
-            "tag": "journal",
+            "tag": "phone",
             "caption": "",
-            "imagePrompt": "Hand-drawn illustration in soft pastel colors, cozy and warm style. Soft watercolor texture, gentle hand-painted lines, flat illustration. Palette: lavender, cream, sage green, blush pink. Calm, friendly, approachable, non-judgmental mood. No people, no faces, no text, no letters. Wide landscape 16:9 composition. An open journal with soft blank pages and a pen resting diagonally across it, sitting on a warm wooden surface.",
+            "imagePrompt": "Hand-drawn illustration in soft pastel colors, cozy and warm style. Soft watercolor texture, gentle hand-painted lines, flat illustration. Palette: lavender, cream, sage green, blush pink. Calm, friendly, approachable, non-judgmental mood. No people, no faces, no text, no letters. Wide landscape 16:9 composition. A single smartphone lying face-up on a soft surface, screen glowing faintly, surrounded by gentle shadow.",
             "seconds": 0
           },
           {
-            "tag": "bed",
+            "tag": "path",
             "caption": "",
-            "imagePrompt": "Hand-drawn illustration in soft pastel colors, cozy and warm style. Soft watercolor texture, gentle hand-painted lines, flat illustration. Palette: lavender, cream, sage green, blush pink. Calm, friendly, approachable, non-judgmental mood. No people, no faces, no text, no letters. Wide landscape 16:9 composition. A neatly made bed with soft rumpled pillows in the morning light, a small plant on the bedside table beside a lamp.",
+            "imagePrompt": "Hand-drawn illustration in soft pastel colors, cozy and warm style. Soft watercolor texture, gentle hand-painted lines, flat illustration. Palette: lavender, cream, sage green, blush pink. Calm, friendly, approachable, non-judgmental mood. No people, no faces, no text, no letters. Wide landscape 16:9 composition. A winding soft path through a gentle pastel landscape, curving gently into the distance under a calm sky.",
             "seconds": 0
           },
           {
             "tag": "window_light",
             "caption": "",
-            "imagePrompt": "Hand-drawn illustration in soft pastel colors, cozy and warm style. Soft watercolor texture, gentle hand-painted lines, flat illustration. Palette: lavender, cream, sage green, blush pink. Calm, friendly, approachable, non-judgmental mood. No people, no faces, no text, no letters. Wide landscape 16:9 composition. A window with soft morning light filtering through sheer curtains, a small plant on the sill casting a gentle shadow.",
-            "seconds": 0
-          },
-          {
-            "tag": "chair",
-            "caption": "",
-            "imagePrompt": "Hand-drawn illustration in soft pastel colors, cozy and warm style. Soft watercolor texture, gentle hand-painted lines, flat illustration. Palette: lavender, cream, sage green, blush pink. Calm, friendly, approachable, non-judgmental mood. No people, no faces, no text, no letters. Wide landscape 16:9 composition. A single soft armchair in a quiet cozy room, a small side table beside it with a warm cup and a closed book.",
+            "imagePrompt": "Hand-drawn illustration in soft pastel colors, cozy and warm style. Soft watercolor texture, gentle hand-painted lines, flat illustration. Palette: lavender, cream, sage green, blush pink. Calm, friendly, approachable, non-judgmental mood. No people, no faces, no text, no letters. Wide landscape 16:9 composition. A window with soft morning light streaming through sheer curtains, casting gentle shapes on the floor.",
             "seconds": 0
           }
         ]
       },
       {
-        "title": "Hormones and the Cycle Nobody Talks About",
-        "voiceover": "There is one piece of the female ADHD picture that almost never comes up, and it is genuinely important. Oestrogen has a direct effect on dopamine transmission. Higher oestrogen levels, which happen in the first half of the menstrual cycle and during pregnancy, can temporarily improve dopamine signalling in the prefrontal cortex. Some women with ADHD report that the week after their period ends is their best week, mentally. They can start things. They can follow through. They feel almost like a different person. Then oestrogen drops in the second half of the cycle, particularly in the week before menstruation, and the floor falls out. Focus collapses, emotional regulation becomes nearly impossible, the executive function that was barely adequate becomes completely unreliable. This is not PMS in the casual sense. This is a real neurochemical shift that hits harder for ADHD brains because those brains were already working closer to the edge of their dopamine capacity. This pattern also explains why perimenopause is a crisis point for so many undiagnosed women. As oestrogen declines in the years approaching menopause, the coping strategies that have worked for decades suddenly stop working. Women who managed reasonably well at thirty-five find themselves at forty-five completely overwhelmed by things that used to be hard but manageable. This is when many women finally get diagnosed, not because their ADHD got worse, but because the hormonal scaffolding that was quietly helping them compensate has been removed. If you are in that window and things feel like they are falling apart, please know that this is a documented, biological process, and there is support available. Tracking your cycle alongside your ADHD symptoms, even just in a notes app, can give you and any clinician you see genuinely useful data.",
+        "title": "Why Common Advice Fails and What Actually Helps",
+        "voiceover": "You have probably been told to take a breath, count to ten, challenge your negative thoughts, or remember that not everything is about you. And if you have RSD, you know that this advice is not just unhelpful in the moment, it is almost offensive, because the problem is not that you are thinking incorrectly. The problem is that the spike arrives faster than thought. By the time you could even attempt to reframe, the emotional state is already at full intensity. Cognitive tools require a functioning prefrontal cortex. RSD temporarily impairs it. So let us talk about what actually helps. The first and most underrated intervention is naming and preparation. Before a situation where RSD might fire, you create a written script. Not for the other person but for yourself. Something like: if this person responds critically, my brain will spike. That spike is not information about reality. It is a neurological event and it will pass in thirty to forty minutes if I do not feed it. Writing that down before the trigger happens pre-loads the rational framework before the prefrontal cortex goes offline. The second intervention is delay before response. Not because your feeling is wrong but because your first impulse under RSD is almost never the response you would choose from a calm state. A rule of no major decisions or communications within one hour of a spike gives the brain time to re-regulate. Third, for persistent and severe RSD, medication matters. Alpha agonists like guanfacine have specific evidence for emotional dysregulation in ADHD. This is a clinical conversation worth having with your prescriber, not just optimizing your stimulant dose.",
         "scenes": [
-          {
-            "tag": "plant",
-            "caption": "",
-            "imagePrompt": "Hand-drawn illustration in soft pastel colors, cozy and warm style. Soft watercolor texture, gentle hand-painted lines, flat illustration. Palette: lavender, cream, sage green, blush pink. Calm, friendly, approachable, non-judgmental mood. No people, no faces, no text, no letters. Wide landscape 16:9 composition. A small potted plant with soft round leaves in various stages of growth, sitting in gentle warm window light.",
-            "seconds": 0
-          },
-          {
-            "tag": "calendar",
-            "caption": "",
-            "imagePrompt": "Hand-drawn illustration in soft pastel colors, cozy and warm style. Soft watercolor texture, gentle hand-painted lines, flat illustration. Palette: lavender, cream, sage green, blush pink. Calm, friendly, approachable, non-judgmental mood. No people, no faces, no text, no letters. Wide landscape 16:9 composition. A wall calendar with soft handwritten-style marks on some dates, a small pencil resting beside it on a cozy wall.",
-            "seconds": 0
-          },
-          {
-            "tag": "sky",
-            "caption": "",
-            "imagePrompt": "Hand-drawn illustration in soft pastel colors, cozy and warm style. Soft watercolor texture, gentle hand-painted lines, flat illustration. Palette: lavender, cream, sage green, blush pink. Calm, friendly, approachable, non-judgmental mood. No people, no faces, no text, no letters. Wide landscape 16:9 composition. A soft dreamy sky with gentle gradient clouds drifting in calm pastel tones, shifting from pale lavender to warm blush.",
-            "seconds": 0
-          },
           {
             "tag": "journal",
             "caption": "",
-            "imagePrompt": "Hand-drawn illustration in soft pastel colors, cozy and warm style. Soft watercolor texture, gentle hand-painted lines, flat illustration. Palette: lavender, cream, sage green, blush pink. Calm, friendly, approachable, non-judgmental mood. No people, no faces, no text, no letters. Wide landscape 16:9 composition. An open journal with soft blank pages and a pen resting diagonally across it, sitting on a warm wooden surface.",
+            "imagePrompt": "Hand-drawn illustration in soft pastel colors, cozy and warm style. Soft watercolor texture, gentle hand-painted lines, flat illustration. Palette: lavender, cream, sage green, blush pink. Calm, friendly, approachable, non-judgmental mood. No people, no faces, no text, no letters. Wide landscape 16:9 composition. An open journal on a desk with a pen resting beside it, soft light falling gently across the pages.",
             "seconds": 0
           },
           {
-            "tag": "brain",
+            "tag": "clock",
             "caption": "",
-            "imagePrompt": "Hand-drawn illustration in soft pastel colors, cozy and warm style. Soft watercolor texture, gentle hand-painted lines, flat illustration. Palette: lavender, cream, sage green, blush pink. Calm, friendly, approachable, non-judgmental mood. No people, no faces, no text, no letters. Wide landscape 16:9 composition. An abstract brain made of soft clouds and gentle sparks of light, floating quietly in a dreamy pastel space.",
-            "seconds": 0
-          }
-        ]
-      },
-      {
-        "title": "Where to Go From Here",
-        "voiceover": "If you have watched this far and something in you has gone quiet and still in a way that is unfamiliar, that recognition matters. It is not a diagnosis, but it is information, and information is where everything starts. Here is what actually helps, practically and concretely. First: if you are seeking a diagnosis, go in prepared. Document specific examples, not just feelings. Not 'I have trouble focusing', but 'on three occasions this week I sat down to work and could not begin a task for over an hour despite wanting to'. Specificity matters because clinicians need to see impairment, not just traits. Second: the strategies that help neurotypical people organise themselves often fail ADHD brains because they require consistent self-initiation, which is exactly the thing that is impaired. What works better is reducing the number of decisions required. Body doubling, working alongside someone else virtually or in person, borrows their dopamine without requiring any extra effort from you. Externalising your working memory, which means putting everything outside your head into a visible system, removes the cognitive load of trying to hold it all internally. Time blocking with built-in transition buffers accounts for the fact that switching tasks is genuinely costly for an ADHD brain. Third: medication is not a moral choice. For many women with ADHD, stimulant or non-stimulant medication is the most evidence-based intervention available. It does not change who you are. It adjusts the neurochemical conditions so that the capable, creative, deeply feeling person you already are can actually function. And finally: the years you spent not knowing were not wasted. They built something in you, a resilience and an adaptability that is real. The diagnosis is not the end of a story. It is the first page of one where you finally have the right information. Follow for daily ADHD content, because there is so much more to cover and you deserve to understand your own brain.",
-        "scenes": [
-          {
-            "tag": "path",
-            "caption": "",
-            "imagePrompt": "Hand-drawn illustration in soft pastel colors, cozy and warm style. Soft watercolor texture, gentle hand-painted lines, flat illustration. Palette: lavender, cream, sage green, blush pink. Calm, friendly, approachable, non-judgmental mood. No people, no faces, no text, no letters. Wide landscape 16:9 composition. A winding gentle path through soft rolling hills disappearing into a hazy horizon.",
+            "imagePrompt": "Hand-drawn illustration in soft pastel colors, cozy and warm style. Soft watercolor texture, gentle hand-painted lines, flat illustration. Palette: lavender, cream, sage green, blush pink. Calm, friendly, approachable, non-judgmental mood. No people, no faces, no text, no letters. Wide landscape 16:9 composition. A soft surreal melting clock with gentle curves, floating in a dreamy pastel background.",
             "seconds": 0
           },
           {
             "tag": "desk_tidy",
             "caption": "",
-            "imagePrompt": "Hand-drawn illustration in soft pastel colors, cozy and warm style. Soft watercolor texture, gentle hand-painted lines, flat illustration. Palette: lavender, cream, sage green, blush pink. Calm, friendly, approachable, non-judgmental mood. No people, no faces, no text, no letters. Wide landscape 16:9 composition. A tidy desk with a neatly placed notebook, a single pen, and a small plant, bathed in soft warm light.",
+            "imagePrompt": "Hand-drawn illustration in soft pastel colors, cozy and warm style. Soft watercolor texture, gentle hand-painted lines, flat illustration. Palette: lavender, cream, sage green, blush pink. Calm, friendly, approachable, non-judgmental mood. No people, no faces, no text, no letters. Wide landscape 16:9 composition. A tidy desk with a neatly placed notebook, a single pen, and a small plant, bathed in calm soft light.",
+            "seconds": 0
+          },
+          {
+            "tag": "brain",
+            "caption": "",
+            "imagePrompt": "Hand-drawn illustration in soft pastel colors, cozy and warm style. Soft watercolor texture, gentle hand-painted lines, flat illustration. Palette: lavender, cream, sage green, blush pink. Calm, friendly, approachable, non-judgmental mood. No people, no faces, no text, no letters. Wide landscape 16:9 composition. An abstract brain made of soft clouds and gentle sparks of light, floating serenely.",
             "seconds": 0
           },
           {
             "tag": "coffee",
             "caption": "",
-            "imagePrompt": "Hand-drawn illustration in soft pastel colors, cozy and warm style. Soft watercolor texture, gentle hand-painted lines, flat illustration. Palette: lavender, cream, sage green, blush pink. Calm, friendly, approachable, non-judgmental mood. No people, no faces, no text, no letters. Wide landscape 16:9 composition. A warm coffee cup with a thin curl of steam rising gently, resting on a small saucer beside a softly lit window.",
+            "imagePrompt": "Hand-drawn illustration in soft pastel colors, cozy and warm style. Soft watercolor texture, gentle hand-painted lines, flat illustration. Palette: lavender, cream, sage green, blush pink. Calm, friendly, approachable, non-judgmental mood. No people, no faces, no text, no letters. Wide landscape 16:9 composition. A steaming coffee cup on a small saucer, sitting on a wooden surface with soft warm light around it.",
+            "seconds": 0
+          }
+        ]
+      },
+      {
+        "title": "Living With RSD Without Letting It Run Your Life",
+        "voiceover": "Here is the thing nobody says enough: RSD is not a character flaw that therapy is supposed to fix. It is a neurological feature that you learn to manage, accommodate, and slowly stop being ashamed of. That is not giving up. That is accurate. The goal is not to become a person who does not feel things intensely. The goal is to build enough of a gap between the spike and the action that your choices start belonging to you again. That gap gets built through consistency: the journaling before triggering situations, the delay rule after spikes, and where appropriate, working with a clinician on medication options. It also gets built through disclosure. Telling the people closest to you what RSD is and how it works in you is not oversharing. It is maintenance. It reduces the number of times a simple miscommunication becomes a two-day spiral, because you have already taught the people around you what is happening. And it gets built through radical compassion toward the version of you who has been white-knuckling through this for years without knowing it had a name. You were not too sensitive. You were not dramatic. You were running a nervous system that nobody explained to you, and you did the best you could with information you did not have. You have it now. And that matters more than it might feel like in this moment. If any of this resonated with you, follow for daily ADHD content. We do this every week, because understanding your brain is not a luxury. It is the whole thing.",
+        "scenes": [
+          {
+            "tag": "path",
+            "caption": "",
+            "imagePrompt": "Hand-drawn illustration in soft pastel colors, cozy and warm style. Soft watercolor texture, gentle hand-painted lines, flat illustration. Palette: lavender, cream, sage green, blush pink. Calm, friendly, approachable, non-judgmental mood. No people, no faces, no text, no letters. Wide landscape 16:9 composition. A winding soft path through a gentle pastel landscape, curving gently into the distance under a calm sky.",
             "seconds": 0
           },
           {
-            "tag": "window_light",
+            "tag": "sky",
             "caption": "",
-            "imagePrompt": "Hand-drawn illustration in soft pastel colors, cozy and warm style. Soft watercolor texture, gentle hand-painted lines, flat illustration. Palette: lavender, cream, sage green, blush pink. Calm, friendly, approachable, non-judgmental mood. No people, no faces, no text, no letters. Wide landscape 16:9 composition. A window with soft morning light filtering through sheer curtains, a small plant on the sill casting a gentle shadow.",
-            "seconds": 0
-          },
-          {
-            "tag": "sparks",
-            "caption": "",
-            "imagePrompt": "Hand-drawn illustration in soft pastel colors, cozy and warm style. Soft watercolor texture, gentle hand-painted lines, flat illustration. Palette: lavender, cream, sage green, blush pink. Calm, friendly, approachable, non-judgmental mood. No people, no faces, no text, no letters. Wide landscape 16:9 composition. Soft gentle sparks and small glowing dots floating upward in a calm pastel sky, like fireflies drifting.",
+            "imagePrompt": "Hand-drawn illustration in soft pastel colors, cozy and warm style. Soft watercolor texture, gentle hand-painted lines, flat illustration. Palette: lavender, cream, sage green, blush pink. Calm, friendly, approachable, non-judgmental mood. No people, no faces, no text, no letters. Wide landscape 16:9 composition. A wide open pastel sky with soft drifting clouds and a gentle warm glow on the horizon.",
             "seconds": 0
           },
           {
             "tag": "plant",
             "caption": "",
-            "imagePrompt": "Hand-drawn illustration in soft pastel colors, cozy and warm style. Soft watercolor texture, gentle hand-painted lines, flat illustration. Palette: lavender, cream, sage green, blush pink. Calm, friendly, approachable, non-judgmental mood. No people, no faces, no text, no letters. Wide landscape 16:9 composition. A small potted plant with soft round leaves in various stages of growth, sitting in gentle warm window light.",
+            "imagePrompt": "Hand-drawn illustration in soft pastel colors, cozy and warm style. Soft watercolor texture, gentle hand-painted lines, flat illustration. Palette: lavender, cream, sage green, blush pink. Calm, friendly, approachable, non-judgmental mood. No people, no faces, no text, no letters. Wide landscape 16:9 composition. A small potted plant with soft rounded leaves sitting on a windowsill in gentle diffused light.",
+            "seconds": 0
+          },
+          {
+            "tag": "lamp",
+            "caption": "",
+            "imagePrompt": "Hand-drawn illustration in soft pastel colors, cozy and warm style. Soft watercolor texture, gentle hand-painted lines, flat illustration. Palette: lavender, cream, sage green, blush pink. Calm, friendly, approachable, non-judgmental mood. No people, no faces, no text, no letters. Wide landscape 16:9 composition. A single soft glowing table lamp on a small side table, casting a warm halo of light in a quiet room.",
+            "seconds": 0
+          },
+          {
+            "tag": "window_light",
+            "caption": "",
+            "imagePrompt": "Hand-drawn illustration in soft pastel colors, cozy and warm style. Soft watercolor texture, gentle hand-painted lines, flat illustration. Palette: lavender, cream, sage green, blush pink. Calm, friendly, approachable, non-judgmental mood. No people, no faces, no text, no letters. Wide landscape 16:9 composition. A window with soft morning light streaming through sheer curtains, casting gentle shapes on the floor.",
             "seconds": 0
           }
         ]
@@ -237,9 +231,9 @@
     ],
     "funnel": "follow",
     "status": "pending",
-    "videoUrl": "https://raw.githubusercontent.com/dianahohol97-max/content/main/output/longform/week_32/LF_20260807.mp4",
+    "videoUrl": "https://raw.githubusercontent.com/dianahohol97-max/content/main/output/longform/week_32/LF_20260809.mp4",
     "postedAt": null,
-    "durationSec": 621,
-    "thumbnailUrl": "https://raw.githubusercontent.com/dianahohol97-max/content/main/output/longform/week_32/LF_20260807_thumb.jpg"
+    "durationSec": 554,
+    "thumbnailUrl": "https://raw.githubusercontent.com/dianahohol97-max/content/main/output/longform/week_32/LF_20260809_thumb.jpg"
   }
 ]
