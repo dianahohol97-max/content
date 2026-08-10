@@ -2,7 +2,7 @@ name: bloom focus — YouTube Long-form
 
 on:
   schedule:
-    - cron: "0 3 */2 * *"   # every 2 days 06:00 Kyiv — generate 1 fresh video + build it
+    - cron: "0 3 * * 1"     # Monday 06:00 Kyiv — one long-form video per week
   workflow_dispatch:
     inputs:
       week:
