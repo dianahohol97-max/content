@@ -150,7 +150,41 @@ function parseJSON(text) {
   const start = t.indexOf("[");
   const end = t.lastIndexOf("]");
   if (start !== -1 && end !== -1) t = t.slice(start, end + 1);
-  return JSON.parse(t);
+  try {
+    return JSON.parse(t);
+  } catch (err) {
+    // Truncated response (hit max_tokens): salvage the objects that DID close.
+    // Better a short batch than a throw that kills the whole week.
+    const salvaged = salvageObjects(t.slice(t.indexOf("[") + 1));
+    if (salvaged.length) {
+      console.warn(`  ⚠ truncated JSON — salvaged ${salvaged.length} complete item(s)`);
+      return salvaged;
+    }
+    throw err;
+  }
+}
+
+// Walk the array body and pull out every top-level {...} that is balanced and
+// parses. Quote- and escape-aware so braces inside strings don't fool it.
+function salvageObjects(body) {
+  const out = [];
+  let depth = 0, startIdx = -1, inStr = false, esc = false;
+  for (let i = 0; i < body.length; i++) {
+    const c = body[i];
+    if (esc) { esc = false; continue; }
+    if (c === "\\") { esc = true; continue; }
+    if (c === '"') { inStr = !inStr; continue; }
+    if (inStr) continue;
+    if (c === "{") { if (depth === 0) startIdx = i; depth++; }
+    else if (c === "}") {
+      depth--;
+      if (depth === 0 && startIdx !== -1) {
+        try { out.push(JSON.parse(body.slice(startIdx, i + 1))); } catch {}
+        startIdx = -1;
+      }
+    }
+  }
+  return out;
 }
 
 const SHARED_VOICE = `Voice/tone: warm, direct, science-backed but simple — "a friend with a neuroscience degree who also lost their keys this morning". Validating, never patronizing. Never say "just try harder" or "ADHD is a superpower".
@@ -185,8 +219,49 @@ const SCENE_SPEC = `    - tag: a SHORT category slug for this scene's main subje
 
 const CTA_LINE = `"Follow for daily ADHD content."`;
 
+// Big single calls overflow max_tokens and come back as unparseable truncated
+// JSON, so every kind is generated in small chunks. Each chunk retries on its
+// own and a chunk that still fails is skipped, not fatal — a short week beats
+// no week. Flagship shorts are ~2x the length, hence the smaller chunk.
+const CHUNK = { flagship: 2, quiztest: 1, default: 3 };
+const chunkFor = (kind) => CHUNK[kind] ?? CHUNK.default;
+
+function chunked(arr, size) {
+  const out = [];
+  for (let i = 0; i < arr.length; i += size) out.push(arr.slice(i, i + size));
+  return out;
+}
+
+// Retry one chunk in isolation; give up on it rather than failing the run.
+async function tryChunk(label, fn) {
+  for (let attempt = 1; attempt <= 3; attempt++) {
+    try {
+      const r = await fn();
+      if (Array.isArray(r) && r.length) return r;
+      throw new Error("empty");
+    } catch (err) {
+      console.warn(`  ✗ ${label} attempt ${attempt}: ${err.message}`);
+      if (attempt === 3) {
+        console.warn(`  ⚠ ${label} skipped after 3 attempts`);
+        return [];
+      }
+      await new Promise((r) => setTimeout(r, 1500 * attempt));
+    }
+  }
+  return [];
+}
+
 // ── Educational + pain-point shorts (voiced, changing scenes) ──
 async function generateVoicedShorts(weekTopics, kind) {
+  const groups = chunked(weekTopics, chunkFor(kind));
+  const all = [];
+  for (const [i, g] of groups.entries()) {
+    all.push(...await tryChunk(`${kind} ${i + 1}/${groups.length}`, () => voicedBatch(g, kind)));
+  }
+  return all;
+}
+
+async function voicedBatch(weekTopics, kind) {
   const count = weekTopics.length;
   const kindGuide = kind === "pattern"
     ? `These are PATTERN shorts — the high-save "named ADHD pattern + what it looks like" format. Each opens by naming a specific ADHD pattern as the hook (the topic gives the name + a one-line meaning, e.g. "Object Permanence — out of sight, out of mind"). Briefly explain it in plain language (1 sentence), then say "Here's what it looks like:" and give 3 SHORT, very concrete, relatable examples ("You ignore a text for days — it just vanished from your brain. You forget laundry in the machine until it smells. You lose things in plain sight."). Validating, specific, makes people go "that's literally me". End by gently asking if this is them, then the follow CTA.`
@@ -236,14 +311,24 @@ Return ONLY a valid JSON array, no markdown:
 
   const response = await client.messages.create({
     model: "claude-sonnet-4-6",
-    max_tokens: 4000,
+    max_tokens: 16000,
     messages: [{ role: "user", content: prompt }],
   });
   return parseJSON(response.content[0].text).map((s) => ({ ...s, shortType: kind }));
 }
 
 // ── Interactive quiz-test shorts (2x2 image grid, answer in description) ──
+// Four options x (label + long imagePrompt + result) makes these the biggest
+// payload per item — generated one at a time.
 async function generateQuizTestShorts(count) {
+  const all = [];
+  for (let i = 0; i < count; i++) {
+    all.push(...await tryChunk(`quiz-test ${i + 1}/${count}`, () => quizTestBatch(1)));
+  }
+  return all;
+}
+
+async function quizTestBatch(count) {
   const prompt = `You are a YouTube Shorts creator for bloom focus, a faceless ADHD brand.
 
 ${SHARED_VOICE}
@@ -280,7 +365,7 @@ Return ONLY a valid JSON array, no markdown:
 
   const response = await client.messages.create({
     model: "claude-sonnet-4-6",
-    max_tokens: 4000,
+    max_tokens: 16000,
     messages: [{ role: "user", content: prompt }],
   });
   return parseJSON(response.content[0].text).map((s) => ({ ...s, shortType: "quiztest" }));
@@ -391,18 +476,11 @@ async function main() {
     } catch {}
   }
 
-  let shorts;
-  for (let attempt = 1; attempt <= 3; attempt++) {
-    try {
-      shorts = await generateShorts(WEEK, COUNT);
-      if (!Array.isArray(shorts) || shorts.length === 0) throw new Error("empty");
-      break;
-    } catch (err) {
-      console.warn(`  ✗ attempt ${attempt}: ${err.message}`);
-      if (attempt === 3) throw err;
-      await new Promise((r) => setTimeout(r, 1500 * attempt));
-    }
-  }
+  // Retries now live per chunk inside generateShorts, so a single bad chunk no
+  // longer forces a full regeneration. Only a completely empty result is fatal.
+  const shorts = await generateShorts(WEEK, COUNT);
+  if (!Array.isArray(shorts) || shorts.length === 0) throw new Error("no shorts generated");
+  if (shorts.length < COUNT) console.warn(`  ⚠ ${shorts.length}/${COUNT} shorts — next run will top up the week`);
 
   // MERGE with existing week file: never destroy already-built/posted entries.
   // New shorts continue the ID numbering after the last existing one.
