@@ -1,8 +1,11 @@
 name: bloom focus — Instagram Stories
 
 on:
-  schedule:
-    - cron: "0 5 * * 1"   # every Monday 08:00 Kyiv (auto-pilot)
+  # Paused on 11.08.2026 at Diana's request — the account is at 16 followers,
+  # and Stories only pay off with a warm audience to show them to. Manual runs
+  # still work; put the schedule back when the account is worth posting to.
+  # schedule:
+  #   - cron: "0 5 * * 1"   # every Monday 08:00 Kyiv (auto-pilot)
   workflow_dispatch:
     inputs:
       week:
