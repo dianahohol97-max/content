@@ -478,7 +478,8 @@ async function main() {
 
   // Retries now live per chunk inside generateShorts, so a single bad chunk no
   // longer forces a full regeneration. Only a completely empty result is fatal.
-  const shorts = await generateShorts(WEEK, COUNT);
+  // reassigned below by the dedupe and numbering passes
+  let shorts = await generateShorts(WEEK, COUNT);
   if (!Array.isArray(shorts) || shorts.length === 0) throw new Error("no shorts generated");
   if (shorts.length < COUNT) console.warn(`  ⚠ ${shorts.length}/${COUNT} shorts — next run will top up the week`);
 
