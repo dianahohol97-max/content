@@ -413,6 +413,28 @@ async function generateShorts(weekNum, count) {
 }
 
 
+/**
+ * Split narration into sentences and hand each scene the part that plays over
+ * it. Diana generates these videos by hand, so a scene prompt has to carry both
+ * the frame and the words spoken during it — otherwise she has to stitch the
+ * two together herself for every shot.
+ */
+function attachNarration(scenes, voiceover) {
+  if (!Array.isArray(scenes) || !scenes.length || !voiceover) return;
+  const sents = String(voiceover).trim().split(/(?<=[.!?])\s+/).filter(Boolean);
+  if (!sents.length) return;
+  const n = scenes.length;
+  scenes.forEach((sc, i) => {
+    const from = Math.floor((i * sents.length) / n);
+    const to = Math.floor(((i + 1) * sents.length) / n);
+    const line = sents.slice(from, to).join(" ").trim();
+    if (!line) return;
+    const base = String(sc.imagePrompt || "").replace(/\n\nNarration over this shot:[\s\S]*$/, "");
+    sc.imagePrompt = `${base}\n\nNarration over this shot: "${line}"`;
+  });
+}
+
+
 // ─── MOTIF POOL: reusable brandnoir scenes (cached forever, ~$0 marginal) ────
 // Scenes are picked FROM this pool → image-library caches each motif once.
 const MOTIF_POOL = {
@@ -529,6 +551,7 @@ async function main() {
         sc.tag = undefined; // невідомий мотив — старий шлях по imagePrompt
       }
     }
+    attachNarration(sh.scenes, sh.voiceover);
   }
 
   const offset = existing.length;

@@ -67,6 +67,26 @@ function parseJSON(text) {
   return JSON.parse(t);
 }
 
+/**
+ * Split narration into sentences and hand each scene the part that plays over
+ * it. Diana generates these videos by hand, so a scene prompt has to carry both
+ * the frame and the words spoken during it.
+ */
+function attachNarration(scenes, voiceover) {
+  if (!Array.isArray(scenes) || !scenes.length || !voiceover) return;
+  const sents = String(voiceover).trim().split(/(?<=[.!?])\s+/).filter(Boolean);
+  if (!sents.length) return;
+  const n = scenes.length;
+  scenes.forEach((sc, i) => {
+    const from = Math.floor((i * sents.length) / n);
+    const to = Math.floor(((i + 1) * sents.length) / n);
+    const line = sents.slice(from, to).join(" ").trim();
+    if (!line) return;
+    const base = String(sc.imagePrompt || "").replace(/\n\nNarration over this shot:[\s\S]*$/, "");
+    sc.imagePrompt = `${base}\n\nNarration over this shot: "${line}"`;
+  });
+}
+
 async function generateOne(topic) {
   const ART_STYLE = "Hand-drawn illustration in soft pastel colors, cozy and warm style. Soft watercolor texture, gentle hand-painted lines, flat illustration. Palette: lavender, cream, sage green, blush pink. Calm, friendly, approachable, non-judgmental mood. No people, no faces, no text, no letters. Wide landscape 16:9 composition.";
 
@@ -159,6 +179,8 @@ async function main() {
       await new Promise((r) => setTimeout(r, 1500 * attempt));
     }
   }
+  // each chapter narrates its own scenes
+  for (const c of v.chapters || []) attachNarration(c.scenes, c.voiceover);
   const sceneCount = v.chapters.reduce((n, c) => n + (c.scenes?.length ?? 0), 0);
   console.log(`    ✓ ${v.chapters.length} chapters, ${sceneCount} scenes`);
 
