@@ -442,7 +442,7 @@ const MOTIF_POOL = {
   tea_steam: "a mug of tea with rising steam, cozy blanket in the background",
   lost_glasses: "a pair of glasses on top of a head-shaped shadow, playful light",
   stairs_light: "a staircase with warm light at the top, deep violet shadows below",
-  mirror_dim: "a dim hallway mirror reflecting soft lamplight, no人 visible",
+  mirror_dim: "a dim hallway mirror reflecting soft lamplight, no people visible",
   pill_organizer: "a weekly pill organizer with some days open, gentle window light",
   laptop_2am: "a laptop screen glowing in a dark room, clock corner showing 2 AM",
   grocery_bags: "grocery bags left on the kitchen floor, one apple rolled away",
@@ -521,7 +521,10 @@ async function main() {
     for (const sc of (sh.scenes || [])) {
       if (sc.motif && MOTIF_POOL[sc.motif]) {
         sc.tag = sc.motif;
-        sc.imagePrompt = MOTIF_POOL[sc.motif];
+        // The motif line is only the subject. Diana generates these videos by
+        // hand from the JSON, so the scene has to carry the whole prompt —
+        // a bare "a lit candle on a windowsill" produces nothing on brand.
+        sc.imagePrompt = `${ART_STYLE} ${MOTIF_POOL[sc.motif]}.`;
       } else if (sc.motif) {
         sc.tag = undefined; // невідомий мотив — старий шлях по imagePrompt
       }
