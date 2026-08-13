@@ -207,14 +207,20 @@ CONCRETENESS IS NON-NEGOTIABLE. Every short must be built on SPECIFIC, TANGIBLE 
 4. NUMBERS AND SPECIFICS over adjectives. "four unread days", "the third tab", "2am", "one fork" — concrete nouns beat 'often', 'sometimes', 'a lot'.
 If a line could appear on any generic ADHD account, REWRITE IT until it could only be bloom focus.`;
 
-// Muted-noir editorial style: cinematic, adult, atmospheric. Two brightness modes.
-const ART_STYLE = `Atmospheric editorial illustration with soft cinematic light and gentle depth, subtle film grain, sophisticated adult mood. STRICTLY brand palette only: lavender, blush pink, sage green, warm cream, deep violet — absolutely NO grey, NO charcoal, NO greige, NO black. Warm and calm but grown-up, like a refined wellness brand. NO people, no faces, no text, no letters. Keep the lower third calm and uncluttered for caption legibility. NOT cute, NOT cartoon, NOT childish. Vertical 9:16 composition.`;
+// Sketch-in-progress style. The previous wording ("atmospheric editorial
+// illustration, cinematic light, film grain") read to the video model as a
+// photograph, and it returned photoreal rooms — a finished image that just
+// sits there while the voice talks. What the format needs is the drawing
+// being MADE: the line arrives with the sentence, so the eye follows the
+// stroke instead of scanning a static picture.
+const ART_STYLE = `Hand-drawn line animation on warm cream paper: a single fine ink line draws the scene STROKE BY STROKE, live, as if sketched right now. The shot STARTS ON EMPTY PAPER and the drawing finishes exactly at the end of the beat — strokes appear in sequence, one after another, neat and unhurried. This is NOT a finished picture and NOT a photograph: at every moment the drawing is visibly incomplete and still growing. Clean minimal line art, confident even line weight, no shading, no texture; sparse washes of brand colour (lavender, blush pink, sage green, deep violet) bleed in softly only AFTER an outline is closed. The paper stays still — no camera movement, no zoom, no pan. STRICTLY no grey, no charcoal, no black fills. NO people, no faces, no hands, no text, no letters, no numbers. NOT photoreal, NOT 3D, NOT cartoon, NOT childish. Vertical 9:16 composition, subject centred, lower third left empty for captions.`;
 
-// Per-scene brightness: darker for painful/heavy beats, warmer light for hopeful/practical beats.
-const ART_MOOD = `Choose the scene's lighting to match the narration beat: for painful, heavy, or exhausting moments use a dim cool tone (soft shadow, still legible — never pitch black); for hopeful, calming, or practical "here's the fix" moments introduce a warm pool of light (a lamp, dawn, a glow) while keeping the same cinematic muted style. Never bright or cheerful — always cinematic and adult.`;
+// Line art has no lighting to modulate, so the beat's mood rides on how the
+// line behaves and how much colour is allowed in.
+const ART_MOOD = `Match the drawing's feel to the narration beat: for painful, heavy or exhausting moments keep it outline only — sparse, unfinished, plenty of bare paper, colour withheld; for hopeful, calming or practical "here's the fix" moments let one warm wash of brand colour flood in as the last stroke lands. Never busy, never cheerful-bright — calm, adult, deliberate.`;
 
 const SCENE_SPEC = `    - tag: a SHORT category slug for this scene's main subject (lowercase, underscores) from a small reusable vocabulary so images can be cached/reused. Prefer ONE of: brain, desk_messy, desk_tidy, desk_empty, coffee, journal, window_light, bed, clock, plant, books, phone, path, lamp, calendar, sparks, cozy_room, sky. If none fit, make a simple 1-2 word slug. Scenes about the same thing MUST share the same tag.
-    - imagePrompt: ALWAYS begin with exactly this style: "${ART_STYLE}" ${ART_MOOD} Then describe ONE clear cinematic scene (objects, spaces, light — NO people) that ILLUSTRATES EXACTLY what the narration says during this beat. Prefer concrete filmable objects over abstraction (an unmade bed lit by phone glow; a single lamp over a notebook; clean dishes in a rack; a coffee cup at dawn). Each scene shows a DIFFERENT object/setting than the previous one — never repeat the same item in a row. Keep the lower third darker/cleaner so captions stay readable.
+    - imagePrompt: ALWAYS begin with exactly this style: "${ART_STYLE}" ${ART_MOOD} Then describe ONE simple subject (an object or a small still-life — NO people) that ILLUSTRATES EXACTLY what the narration says during this beat, and SAY IN WHAT ORDER THE LINE DRAWS IT, e.g. "first the mug's rim, then its body, then the curl of steam, last a lavender wash inside". Keep it to a few strokes — a subject that cannot be drawn in about five seconds is too complex, so choose fewer objects rather than a busy scene. Prefer concrete drawable things over abstraction (an unmade bed; a single lamp over a notebook; a cup with a cold film on top; a key bowl). Each scene draws a DIFFERENT subject than the previous one — never repeat the same item in a row. Leave the lower third bare paper so captions stay readable.
     - caption: leave "" (on-screen text comes from synced subtitles).`;
 
 const CTA_LINE = `"Follow for daily ADHD content."`;
@@ -435,49 +441,54 @@ function attachNarration(scenes, voiceover) {
 }
 
 
-// ─── MOTIF POOL: reusable brandnoir scenes (cached forever, ~$0 marginal) ────
+// ─── MOTIF POOL: reusable line-drawing subjects (cached forever, ~$0 marginal)
 // Scenes are picked FROM this pool → image-library caches each motif once.
+// Each entry names the subject AND the order the line draws it, because the
+// format is the drawing happening — a motif written as a lit photograph (the
+// old "dim hallway mirror reflecting soft lamplight") comes back as a
+// photograph. Keep every motif to a handful of strokes: it has to finish
+// inside one narration beat.
 const MOTIF_POOL = {
-  rainy_window: "a rain-streaked window at dusk, city lights blurred outside, deep violet sky",
-  cold_coffee: "a forgotten cup of coffee on a desk, film of cold milk on top, soft lamp light",
-  tangled_cords: "a drawer of hopelessly tangled charger cables, warm light from above",
-  wall_calendar: "a wall calendar with several days circled and crossed out, soft shadow",
-  open_door: "an open door into a dim hallway, warm light spilling from the room",
-  messy_desk: "a desk covered in papers, sticky notes and two mugs, evening lamp glow",
-  unmade_bed: "an unmade bed with lavender bedding, morning light through curtains",
-  phone_glow: "a smartphone face-up on a dark table, screen glowing with notifications",
-  keys_bowl: "an empty key bowl by the front door, keys conspicuously absent",
-  laundry_chair: "a chair buried under a mountain of clean laundry, soft window light",
-  full_sink: "a kitchen sink with a few dishes, warm under-cabinet lighting",
-  sticky_notes: "a laptop edge framed with colorful sticky note reminders",
-  alarm_clock: "a bedside alarm clock showing an uncomfortably late hour, violet darkness",
-  open_fridge: "an open refrigerator glowing in a dark kitchen at night",
-  stack_books: "a stack of half-read books with bookmarks at different depths",
-  plant_shelf: "a shelf of houseplants in soft light, one slightly wilted",
-  blank_notebook: "an open blank notebook with an uncapped pen lying across it",
-  browser_tabs: "a laptop screen crowded with dozens of browser tabs, dim room",
-  doorway_pause: "an empty doorway between two softly lit rooms, inviting and still",
-  crumpled_list: "a crumpled to-do list next to a fresh empty one, desk lamp light",
-  headphones_desk: "over-ear headphones resting on a closed laptop, evening calm",
-  half_packed_bag: "a half-packed tote bag by the door, contents spilling out",
-  window_morning: "soft morning light through sheer curtains onto a wooden floor",
-  tea_steam: "a mug of tea with rising steam, cozy blanket in the background",
-  lost_glasses: "a pair of glasses on top of a head-shaped shadow, playful light",
-  stairs_light: "a staircase with warm light at the top, deep violet shadows below",
-  mirror_dim: "a dim hallway mirror reflecting soft lamplight, no people visible",
-  pill_organizer: "a weekly pill organizer with some days open, gentle window light",
-  laptop_2am: "a laptop screen glowing in a dark room, clock corner showing 2 AM",
-  grocery_bags: "grocery bags left on the kitchen floor, one apple rolled away",
-  couch_blanket: "an inviting couch with a lavender blanket half fallen to the floor",
-  rain_umbrella: "a wet umbrella drying by the door, rainy evening mood",
-  timer_kitchen: "a kitchen timer mid-countdown on a counter, warm light",
-  window_night: "a dark window reflecting a cozy lamp-lit room interior",
-  shoes_hallway: "several pairs of shoes scattered in a hallway, one missing its pair",
-  charging_cable: "a phone at 3% next to an unplugged charging cable, dramatic light",
-  post_shower: "a foggy bathroom mirror with a heart drawn in the condensation",
-  desk_sunbeam: "a tidy desk corner caught in a single warm sunbeam, dust motes",
-  empty_hanger: "an open closet with one empty hanger swinging slightly",
-  candle_evening: "a lit candle on a windowsill against deep violet evening sky",
+  rainy_window: "a window with rain running down it — draw the frame, then the sill, then a few streaks falling one by one, last a violet wash beyond the glass",
+  cold_coffee: "a forgotten mug of coffee — draw the rim, then the body, then the handle, last a thin ring of cold film inside",
+  tangled_cords: "an open drawer of tangled cables — draw the drawer edge, then one cable looping, then two more crossing it",
+  wall_calendar: "a wall calendar grid — draw the outer frame, then the grid lines, last three days crossed out one after another",
+  open_door: "a door standing open — draw the frame, then the door swung inward, last a wash of warm colour spilling across the floor",
+  messy_desk: "a desk edge under papers — draw the desk line, then two stacked sheets, then a mug, last a pen across them",
+  unmade_bed: "an unmade bed — draw the mattress line, then the headboard, then the duvet folded back in a few curves",
+  phone_glow: "a phone lying face-up — draw the rectangle, then the screen inset, last three notification bars stacking in",
+  keys_bowl: "an empty bowl by a door — draw the bowl's ellipse, then its base, then the shelf line under it, colour left out",
+  laundry_chair: "a chair under clothes — draw the chair legs, then the back, then a loose pile heaped over it",
+  full_sink: "a kitchen sink with dishes — draw the basin, then the tap, then two plates leaning inside",
+  sticky_notes: "a laptop edge framed with sticky notes — draw the laptop corner, then four small squares placed one by one, each washed a different brand colour",
+  alarm_clock: "a bedside clock — draw the circle, then the two feet, then the hands landing at a late hour",
+  open_fridge: "an open fridge — draw the outer box, then the open door, then two shelves, last a pale wash inside",
+  stack_books: "a stack of books — draw the bottom book, then each one above it, last bookmarks at different depths",
+  plant_shelf: "a shelf of plants — draw the shelf line, then three pots, then leaves rising from each, one drooping",
+  blank_notebook: "an open blank notebook — draw the two pages, then the spine, last an uncapped pen lying across",
+  browser_tabs: "a laptop screen crowded with tabs — draw the screen, then the tab bar, then tab after tab until it is too full",
+  doorway_pause: "an empty doorway between rooms — draw the near frame, then the far frame, last a warm wash in the far room",
+  crumpled_list: "a crumpled list beside a fresh one — draw the crumpled ball's outline, then the flat sheet, then its ruled lines",
+  headphones_desk: "headphones on a closed laptop — draw the laptop slab, then the headband arc, then both ear cups",
+  half_packed_bag: "a half-packed tote by a door — draw the bag's outline, then the handles, then two items tipping out",
+  window_morning: "morning light through curtains — draw the window frame, then the curtain folds, last a wide warm wash on the floor",
+  tea_steam: "a mug of tea — draw the mug, then the handle, last three curls of steam rising in sequence",
+  lost_glasses: "a pair of glasses — draw one lens, then the bridge, then the other lens, then both arms folding out",
+  stairs_light: "a staircase — draw the bottom step, then each step rising, last a warm wash at the top",
+  mirror_dim: "a tall mirror leaning on a wall — draw the outer frame, then the inner frame, then the floor line, last a soft lavender wash inside the glass",
+  pill_organizer: "a weekly pill organiser — draw the long case, then the dividers, then lids, some open some shut",
+  laptop_2am: "a laptop open in the dark — draw the screen, then the base, then the keyboard line, last a pale wash on the screen",
+  grocery_bags: "grocery bags on the floor — draw one bag, then the second, last an apple rolled away from them",
+  couch_blanket: "a couch with a blanket — draw the seat line, then the back and arms, last a blanket slipping to the floor in soft folds",
+  rain_umbrella: "an umbrella drying by a door — draw the canopy ribs one by one, then the shaft, then the handle hook",
+  timer_kitchen: "a kitchen timer — draw the circle, then the dial marks, then the pointer part-way round",
+  window_night: "a dark window reflecting a lamp — draw the frame, then the panes, last a small lamp shape mirrored in the glass",
+  shoes_hallway: "shoes scattered in a hallway — draw one shoe, then its pair apart from it, then a third alone",
+  charging_cable: "a phone beside an unplugged cable — draw the phone, then the battery icon nearly empty, then the cable curling away, not touching",
+  post_shower: "a fogged bathroom mirror — draw the mirror frame, then the fogged field, last a heart traced through it in one stroke",
+  desk_sunbeam: "a tidy desk corner — draw the desk edge, then a closed notebook, then a single pen, last a warm diagonal wash across it",
+  empty_hanger: "an open wardrobe with one hanger — draw the wardrobe frame, then the rail, last one empty hanger hooked over it",
+  candle_evening: "a candle on a sill — draw the sill line, then the candle body, then the flame, last a violet wash beyond the window",
 };
 const MOTIF_LIST = Object.entries(MOTIF_POOL).map(([t, d]) => `${t}: ${d.slice(0, 50)}`).join("\n");
 

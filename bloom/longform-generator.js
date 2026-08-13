@@ -88,7 +88,10 @@ function attachNarration(scenes, voiceover) {
 }
 
 async function generateOne(topic) {
-  const ART_STYLE = "Hand-drawn illustration in soft pastel colors, cozy and warm style. Soft watercolor texture, gentle hand-painted lines, flat illustration. Palette: lavender, cream, sage green, blush pink. Calm, friendly, approachable, non-judgmental mood. No people, no faces, no text, no letters. Wide landscape 16:9 composition.";
+  // Same sketch-in-progress format as the shorts: the line arrives with the
+  // sentence. "Hand-drawn illustration" alone was read as a finished painting
+  // and came back photoreal, which leaves the viewer nothing to follow.
+  const ART_STYLE = "Hand-drawn line animation on warm cream paper: a single fine ink line draws the scene STROKE BY STROKE, live, as if sketched right now. The shot STARTS ON EMPTY PAPER and the drawing finishes by the end of the beat — strokes appear in sequence, neat and unhurried. This is NOT a finished picture and NOT a photograph: the drawing is visibly incomplete and still growing throughout. Clean minimal line art, confident even line weight, no shading; sparse washes of brand colour (lavender, cream, sage green, blush pink) bleed in softly only AFTER an outline is closed. The paper stays still — no camera movement, no zoom, no pan. No grey, no black fills. No people, no faces, no hands, no text, no letters. NOT photoreal, NOT 3D, NOT cartoon. Wide landscape 16:9 composition.";
 
   const prompt = `You are a long-form YouTube scriptwriter for bloom focus, a faceless ADHD education brand.
 
@@ -116,7 +119,7 @@ STRUCTURE — 6 CHAPTERS. Each chapter:
 - scenes: 4-6 scenes for this chapter. Each scene:
     - tag: a SHORT category slug for this scene's main subject (lowercase, underscores) from a reusable vocabulary so images cache/reuse. Prefer ONE of: brain, desk_messy, desk_tidy, desk_empty, coffee, journal, window_light, bed, clock, plant, books, phone, path, lamp, calendar, sparks, cozy_room, sky, chair. If none fit, make a simple slug. Same subject MUST share the same tag.
     - caption: leave "" (on-screen text is synced subtitles from the voiceover).
-    - imagePrompt: ALWAYS begin with exactly this style: "${ART_STYLE}" Then add ONE simple scene detail matching the tag (a desk with coffee and a notebook; an abstract brain of soft clouds and sparks; a gently messy cozy room; a window with morning light; a soft surreal melting clock; a winding path; stacked books; a single chair). Keep EVERY scene in this SAME hand-drawn pastel style.
+    - imagePrompt: ALWAYS begin with exactly this style: "${ART_STYLE}" Then name ONE simple subject matching the tag (a desk with a mug and a notebook; a winding path; stacked books; a single chair; a window; a clock) AND SAY IN WHAT ORDER THE LINE DRAWS IT, e.g. "first the desk edge, then the mug, then the notebook, last a sage wash across the page". Keep it to a few strokes — a subject that cannot be drawn in about five seconds is too complex, so choose fewer objects rather than a busy scene. Keep EVERY scene in this SAME stroke-by-stroke line style.
     - seconds: leave as 0 (timing is computed automatically).
 
 Chapter 1 must HOOK in the first 15 seconds (55% of viewers leave in the first minute) — open mid-punch with sharp recognition, state what the video will give them, then deliver. The final chapter ends warmly with: "Follow for daily ADHD content."
