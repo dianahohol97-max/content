@@ -17,8 +17,10 @@ on:
           - sheets-only
           - text-and-sheets
 
-  schedule:
-    - cron: '0 6 * * 1'
+  # ПАУЗА (13.08.2026, на прохання): bloom focus зупинено, повернути —
+  # розкоментувати. Ручний запуск через workflow_dispatch лишається.
+  # schedule:
+  # - cron: '0 6 * * 1'
 
 jobs:
   generate:

@@ -1,8 +1,10 @@
 name: bloom focus — YouTube Shorts
 
 on:
-  schedule:
-    - cron: "0 3 * * 1"     # Monday 06:00 Kyiv — generate weekly scripts + full prompts (no video build)
+  # ПАУЗА (13.08.2026, на прохання): bloom focus зупинено, повернути —
+  # розкоментувати. Ручний запуск через workflow_dispatch лишається.
+  # schedule:
+  # - cron: "0 3 * * 1"     # Monday 06:00 Kyiv — generate weekly scripts + full prompts (no video build)
   workflow_dispatch:
     inputs:
       week:

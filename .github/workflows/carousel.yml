@@ -1,8 +1,10 @@
 name: bloom focus — Instagram Carousels
 
 on:
-  schedule:
-    - cron: "30 4 * * 1"   # Monday 07:30 Kyiv — weekly 7-day carousel pack
+  # ПАУЗА (13.08.2026, на прохання): bloom focus зупинено, повернути —
+  # розкоментувати. Ручний запуск через workflow_dispatch лишається.
+  # schedule:
+  # - cron: "30 4 * * 1"   # Monday 07:30 Kyiv — weekly 7-day carousel pack
   workflow_dispatch:
     inputs:
       week:

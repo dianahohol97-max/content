@@ -1,11 +1,13 @@
 name: bloom focus — Pinterest
 
 on:
-  schedule:
-    # Auto-generate pins twice a week: Monday + Thursday 04:00 UTC (07:00 Kyiv).
-    # Each run creates one "day batch" of 14 pins → 28/week, which exactly
-    # matches the poster's spend rate (4 pins/day × 7 = 28/week).
-    - cron: "0 4 * * 1,4"
+  # ПАУЗА (13.08.2026, на прохання): bloom focus зупинено, повернути —
+  # розкоментувати. Ручний запуск через workflow_dispatch лишається.
+  # schedule:
+  #   # Auto-generate pins twice a week: Monday + Thursday 04:00 UTC (07:00 Kyiv).
+  #   # Each run creates one "day batch" of 14 pins → 28/week, which exactly
+  #   # matches the poster's spend rate (4 pins/day × 7 = 28/week).
+  #   - cron: "0 4 * * 1,4"
   workflow_dispatch:
     inputs:
       week:
